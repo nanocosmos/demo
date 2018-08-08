@@ -1,0 +1,117 @@
+#playerDiv{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background-color: #000;
+    padding-bottom: 56.25%;
+}
+#playerDiv video {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+    position:absolute;
+}
+#debug, #debug li {
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+#debug li {
+    list-style-type: none;
+    padding: 4px 0;
+}
+#debug li.error {
+    color: #800000;
+}
+#debug li.warning {
+    color: #ff8800;
+}
+#debug li:nth-child(2n) {
+    background: #f4f4f4;
+}
+#debugContainer {
+    overflow: auto;
+    max-height: 500px;
+}
+.panel-body .buttongroup {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.panel {
+    position: relative;
+}
+
+#perfForm {
+    padding: 10px 10px;
+}
+.hidden {
+    display: none;
+}
+
+#snapshot canvas {
+    width: 100%;
+}
+
+#timeRanges {
+    height: 15px;
+    position: relative;
+}
+.range {
+    position: absolute;
+    top: 0;
+    height: 15px;
+    background: #a0ff40;
+    border: 1px solid #000000;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.range:before,
+.range:after {
+    position: absolute;
+    top: 0;
+    font-size: 11px;
+}
+.range:before {
+    content: attr(data-start);
+    left: 1px;
+}
+.range:after {
+    content: attr(data-end);
+    right: 1px;
+}
+.range:hover {
+    overflow: visible;
+}
+.range:hover:after {
+    display: none;
+}
+.range:hover:before {
+    content: attr(data-start) " > " attr(data-end);
+    width: 200px;
+    left: 50%;
+    top: -15px;
+    margin-left: -100px;
+    text-align: center;
+}
+.indicator {
+    position: absolute;
+    width: 1px;
+    background: black;
+    opacity: .5;
+    top: -2px;
+    height: 19px;
+    z-index: 1000;
+}
+.indicator:before {
+    content: attr(data-position);
+    position: absolute;
+    top: 19px;
+    left: -50px;
+    width: 100px;
+    font-size: 11px;
+    text-align: center;
+}

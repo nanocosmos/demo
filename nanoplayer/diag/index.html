@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>NanoPlayer Sandbox</title>
+    <link rel="stylesheet" href="ui/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="ui/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="ui/css/index.css">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">NanoPlayer Diagnostic Version <span id="version"></span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" role="main">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Stream player <span id="currentTime"></span></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="playerDiv"></div>
+                        <button type="button" id="playBtn" class="btn btn-sm btn-default" disabled>Play</button>
+                        <button type="button" id="pauseBtn" class="btn btn-sm btn-default" disabled>Pause</button>
+                        <button type="button" id="fullScreenBtn" class="btn btn-sm btn-default" disabled>FullScreen</button>
+                        <button type="button" id="dumpBtn" class="btn btn-sm btn-default" disabled>Dump</button>
+						<br />
+                        <label for="blur">blur</label>
+                        <input type="range" id="blur" step="1" value="15" min="0" max="25"/>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Stream properties</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs">
+                            <li class ="active"><a href="#nanoForm">nano</a></li>
+                            <li><a href="#customForm">custom</a></li>
+                            <li><a href="#localH5LiveForm">local H5live</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <form class="tab-pane active" id="nanoForm">
+                                <div class="form-group">
+                                    <label for="nanourl">nanoplayer query</label>
+                                    <input id="nanourl" type="text" class="form-control" placeholder="enter value" value="">
+                                </div>
+                            </form>
+                            <form class="tab-pane" id="customForm">
+                                <div class="form-group">
+                                    <label for="bintuapiurl">bintu apiurl</label>
+                                    <input id="bintuapiurl" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bintustreamid">bintu streamid</label>
+                                    <input id="bintustreamid" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="serverwss">server wss</label>
+                                    <input id="serverwss" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="serverhls">server hls</label>
+                                    <input id="serverhls" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rtmpurl">rtmp url</label>
+                                    <input id="rtmpurl" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rtmpstreamname">rtmp streamname</label>
+                                    <input id="rtmpstreamname" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="token">token</label>
+                                    <input id="token" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tweaks">tweaks (min,start,target,limit,max)</label>
+                                    <input id="tweaks" type="text" class="form-control" placeholder="enter value">
+                                </div>
+                            </form>
+                            <form class="tab-pane" id="localH5LiveForm">
+                                <div class="form-group">
+                                    <label for="lserverwss">server wss</label>
+                                    <input id="lserverwss" type="text" class="form-control" value="ws://localhost:8181" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lrtmpurl">rtmp url</label>
+                                    <input id="lrtmpurl" type="text" class="form-control" value="rtmp://192.168.1.168:1935/live" placeholder="enter value">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lrtmpstreamname">rtmp streamname</label>
+                                    <input id="lrtmpstreamname" type="text" class="form-control" value="testStream" placeholder="enter value">
+                                </div>
+                            </form>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <div>
+                                    <button type="button" id="applyBtn" class="btn btn-sm btn-default">Apply</button>
+                                    <button type="button" id="applyVideoBtn" class="btn btn-sm btn-default">Apply w/ video</button>
+                                    <button type="button" id="destroyBtn" class="btn btn-sm btn-default">Destroy</button><br />
+                                    <input type="checkbox" id="autoplay" checked> Autoplay<br>
+                                    <input type="checkbox" id="keepConnection"> Keep Connection<br>
+                                    <input type="checkbox" id="muted"> Muted<br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Buffered</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="timeRanges"></div>
+                        <div style="width: 100%; height: 200px;">
+                            <canvas id="bufferChart" style="width: 100%; height: 100%;"></canvas>
+                        </div>
+                        <div style="width: 100%; height: 200px;">
+                            <canvas id="bitrateChart" style="width: 100%; height: 100%;"></canvas>
+                        </div>
+                        <div style="width: 100%; height: 200px;">
+                            <canvas id="qualityChart" style="width: 100%; height: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Diagnostics</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="width: 100%; height: 350px;">
+                            <canvas id="profileChart" style="width: 100%; height: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Debug</h3>
+                    </div>
+                    <div id="debugContainer" class="panel-body">
+                        <ul id="debug"></ul>
+                        <div class="buttongroup">
+                            <button type="button" id="clearBtn" class="btn btn-sm btn-default btn-danger">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Client Info</h3>
+                    </div>
+                    <div id="infoContainer" class="panel-body">
+                        <ul id="info"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js"></script>
+    <script src="ui/js/jquery.min.js"></script>
+    <script src="ui/js/bootstrap.min.js"></script>
+    <script src="ui/js/require.min.js" data-main="js/requireconfig"></script>
+</body>
+</html>
