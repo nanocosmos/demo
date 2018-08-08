@@ -1,0 +1,228 @@
+nanocosmos H5Live player
+(c) 2010-2017, nanocosmos gmbh
+http://www.nanocosmos.de
+
+Contact: sales@nanocosmos.de
+
+This software is used for live video and audio encoding and streaming.
+Before installing and using this software, you need to accept the
+license agreement:
+
+Software End User License Agreement  
+
+This End User License Agreement ("EULA")is a legal agreement 
+between you (either an individual or an entity), the end user ("You"), and nanocosmos GmbH ("Licensor"). 
+BY INSTALLING, COPYING OR OTHERWISE USING THE SOFTWARE (IDENTIFIED BELOW), WHICH INCLUDES COMPUTER SOFTWARE AND MAY INCLUDE ASSOCIATED MEDIA, PRINTED MATERIALS, AND "ONLINE" OR ELECTRONIC DOCUMENTATION (COLLECTIVELY, THE "SOFTWARE"), YOU AGREE TO BE BOUND BY THE TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT INSTALL, COPY OR USE THE SOFTWARE AND, IF YOU RECEIVED THE SOFTWARE ON DISKS OR OTHER MEDIA, PROMPTLY RETURN THE DISKS AND THE ACCOMPANYING ITEMS (INCLUDING WRITTEN MATERIALS AND BINDERS OR OTHER CONTAINERS) TO Licensor. 
+
+END USER LICENSE AGREEMENT for SOFTWARE
+
+(See the Full License Text for SDK and Distribution below)
+
+SOFTWARE EVALUATION PRODUCT LICENSE
+
+International Copyright and intellectual laws and treaties, protect the
+SOFTWARE. The SOFTWARE is licensed, not sold.
+   
+1. GRANT OF LICENSE AND RESTRICTIONS.  
+   
+(a)  Subject to the restrictions specified below, Licensor grants You a limited, non-exclusive, non-assignable, nontransferable, license to install one copy of the SOFTWARE on one computer. All rights not expressly granted
+to Licensee are reserved to Licensor.
+   
+(b) You shall not rent, lease, sell, sublicense, assign, or otherwise transfer the SOFTWARE. You may not reverse engineer, decompile, or disassemble the SOFTWARE, except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation. 
+
+(c) Evaluation: In case of Evaluation Use you may evaluate Software internally for a period of 30 days from your first use. After this period no longer use is allowed without written permission.
+
+   
+2. TERM OF AGREEMENT. The term of this Agreement shall commence when You first install, copy or use the SOFTWARE.
+
+The term of this Agreement is for 30 days from the Effective Date and will end after this period automatically. A separate license agreement is needed to continue the use of the software.
+   
+3. SOFTWARE MAINTENANCE. Licensor is not obligated to provide any updates or further maintenance, including technical or other support, to You for the SOFTWARE licensed under this Agreement.
+   
+4. ACCEPTANCE. The SOFTWARE is deemed accepted by You the first time You install, copy or use the SOFTWARE.  
+   
+5. DISCLAIMER OF WARRANTIES. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, Licensor AND ITS SUPPLIERS PROVIDE THE SOFTWARE, AND ANY (IF ANY) SUPPORT SERVICES RELATED TO THE SOFTWARE ("SUPPORT SERVICES") AS IS AND WITH ALL FAULTS, AND HEREBY DISCLAIM ALL WARRANTIES AND CONDITIONS, EITHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, ANY (IF ANY) IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, OF FITNESS FOR A PARTICULAR PURPOSE, OF LACK OF VIRUSES, OF ACCURACY OR COMPLETENESS OF RESPONSES, OF RESULTS, AND OF LACK OF NEGLIGENCE OR LACK OF WORKMANLIKE EFFORT, ALL WITH REGARD TO THE SOFTWARE AND THE PROVISION OF OR FAILURE TO PROVIDE SUPPORT SERVICES. ALSO, THERE IS NO WARRANTY OR CONDITION OF TITLE, QUIET ENJOYMENT, QUIET POSSESSION, CORRESPONDENCE TO DESCRIPTION OR NON-INFRINGEMENT, WITH REGARD TO THE SOFTWARE. THE ENTIRE RISK AS TO THE QUALITY OF OR ARISING OUT OF USE OR PERFORMANCE OF THE SOFTWARE AND SUPPORT SERVICES, IF ANY, REMAINS WITH YOU.  
+   
+6. EXCLUSION OF INCIDENTAL, CONSEQUENTIAL AND CERTAIN OTHER DAMAGES. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL Licensor OR ITS SUPPLIERS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS OR CONFIDENTIAL OR OTHER INFORMATION, FOR BUSINESS INTERRUPTION, FOR PERSONAL INJURY, FOR LOSS OF PRIVACY, FOR FAILURE TO MEET ANY DUTY INCLUDING OF GOOD FAITH OR OF REASONABLE CARE, FOR NEGLIGENCE, AND FOR ANY OTHER PECUNIARY OR OTHER LOSS WHATSOEVER) ARISING OUT OF OR IN ANY WAY RELATED TO THE USE OF OR INABILITY TO USE THE SOFTWARE, THE PROVISION OF OR FAILURE TO PROVIDE SUPPORT SERVICES, OR OTHERWISE UNDER OR IN CONNECTION WITH ANY PROVISION OF AGREEMENT, EVEN IN THE EVENT OF THE FAULT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, BREACH OF CONTRACT OR BREACH OF WARRANTY OF Licensor OR ANY SUPPLIER, AND EVEN IF Licensor OR ANY SUPPLIER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  
+   
+7. LIMITATION OF LIABILITY AND REMEDIES. NOTWITHSTANDING ANY DAMAGES THAT YOU MIGHT INCUR FOR ANY REASON WHATSOEVER (INCLUDING, WITHOUT LIMITATION, ALL DAMAGES REFERENCED ABOVE AND ALL DIRECT OR GENERAL DAMAGES), THE ENTIRE LIABILITY OF Licensor AND ANY OF ITS SUPPLIERS UNDER ANY PROVISION OF THIS AGREEMENT AND YOUR EXCLUSIVE REMEDY FOR ALL OF THE FOREGOING SHALL BE LIMITED TO THE GREATER OF THE AMOUNT ACTUALLY PAID BY YOU FOR THE SOFTWARE OR U.S.$5.00. THE FOREGOING LIMITATIONS, EXCLUSIONS AND DISCLAIMERS SHALL APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EVEN IF ANY REMEDY FAILS ITS ESSENTIAL PURPOSE.  
+   
+8. GOVERNING LAW; ATTORNEYS' FEES. This Agreement shall be construed and controlled by the laws of Germany, and You consent to the jurisdiction and venue in the courts sitting in Berlin, Germany. You waive all defenses of lack of personal jurisdiction and forum nonconveniens. Process may be served on either party in the manner authorized by applicable law or court rule. If either Licensor or You employ attorneys to enforce any rights arising out of or relating to this Agreement, the prevailing party shall be entitled to recover reasonable attorneys' fees.  
+
+Should you have any questions concerning this Agreement, or if you desire to contact Licensor for any reason, please email info@nanocosmos.de.  
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+SOFTWARE PROFESSIONAL USAGE LICENSE
+
+Note: You need a paid license to work under the license below.
+
+Recitals/ Subject Matter of this Agreement
+Licensor delivers Licensee software components to create one software application with video/audio coding functionality as found in Exhibit B 
+
+NOW, THEREFORE, Licensor and Licensee agree as follows:
+
+1.	Definitions.
+	1.1	ìSoftwareî means software that meets the Specifications described on Exhibit A and any related documentation provided by Licensor.  
+
+1.2	ìApplication Program(s)î means those Licensee product(s) set forth on Exhibit B. with different functionality from the ìSoftwareî (1.1)  
+
+	1.3	ìCombination Productî means an Application Program that integrates the Software as defined in Exhibit B, with additional functionality different to the Software.
+
+1.4	ìUpdateî means a version of the Software that incorporates modifications necessary to maintain the functions, capabilities, and performance of the Software as specified in Exhibit B, including, but not exclusively limited to, bug fixes and modifications to improve quality, reliability, speed, ease of use, and ease of maintenance, provided by the unsolicited decision of the Licensor.
+
+1.5	ìUpgradeî means a version of the Software that incorporates new features or functions, adds support for new types of video file compressions, or includes revisions to the Software as necessitated by 1) new feature requests or by 2) the additional requirement to be integrated or made compatible with any software not specified in Exhibit A or B that is owned or licensed by Licensee or a third party. Upgrades are not integral part of this Agreement.
+
+1.6	ìCustom Developmentî or ìProject Workî means additional development services separate from the ìSoftwareî, provided by Licensor. Generally custom development is considered an ìUpgradeî to the ìSoftwareî, covered by the same licensing terms, if not otherwise specified.
+
+1.7	ìUnitî means one installed copy of the Software meant to run on one machine
+
+1.8	ìServerî means a PC, Workstation or Server Machine running in unattended mode without required user interaction. 
+
+1.9	ìServer Licenseî is a license to run the Software on one Server.
+
+1.10	ìService Licenseî or ìDomain Licenseî is a license allowing the usage of the software for one networking service or internet domain, e.g. ìmydomain.comî
+
+1.11	ìSubscription Licenseî is a license requiring a recurring payment each month, quarter of the year or year allowing the usage of the software during the subscription term.
+
+1.12	ìSupportî by Licensor means giving assistance to requests by Licensee for issues regarding installation and maintenance on Licenseeís computers, not including Licensee customers
+
+
+
+2.	License. 
+2.1	Commercial Usage and Redistribution: Subject to the terms and conditions set forth in this Agreement, Licensor grants Licensee a non-exclusive, non-transferable limited world-wide license to do one or more of the following (collectively, the ìPermitted Usesî)¥, as limited in Exhibit A: 
+(a) Single Installation License
+use the Software in binary (i.e., object code) form on one computer 
+(b) Combination Product License (SDK)
+use the Software in binary (i.e., object code) form in order to produce one Combination Product
+(c) Redistribution License (OEM)
+market the Software, as embedded in the Combination Product; and distribute and grant licenses to distribute (directly or indirectly through any distribution channel) the Software to end-users, as embedded in one Application Program (Combination Product). 
+2.2 	Evaluation: In case of Evaluation Use Licensee may evaluate Software internally for free for a period of 7 days from the first use. Longer Evaluation periods are possible with an additional usage fee. 
+2.3	Restricted License: License may be restricted to 
+a) a certain time (ìsubscription licenseî) 
+b) a server or domain (ìserver licenseî, ìservice licenseî, ìdomain licenseî)
+if mentioned in Exhibit C. In the subscription model, any further usage beyond the subscripted time is forbidden. In the server, service or domain model, the software may only be used for streaming to a certain server, service or domain. 
+3. 	Restrictions. 
+3.1	The copies of Software provided to you under this Agreement are licensed, not sold. Licensor reserves all rights not expressly granted.
+3.2	Licensee will not 
+(i) reverse assemble, decompile, reverse engineer, or otherwise attempt to derive source code or the underlying ideas, algorithms, structure, or organization from the Software or any other Licensor Confidential Information (as defined below),  
+(ii) export or re-export the same in violation of any applicable laws or regulations,
+(iii) except as otherwise provided in this Agreement, cause or permit unauthorized copying, reproduction, or disclosure of any portion of the Software, or the delivery or distribution of any part thereof to any third person or entity, for any purpose whatsoever, without the prior written permission of Licensor, or 
+(iv) sell the Software as a stand-alone or repackaged product separate from the Combination Product without Licensorís prior written consent.   
+(v) seek to register the Software under any patent or copyright, or register Licensorís trade name or trademarks, except as may be requested by or consented to in writing by Licensor.  Should Licensee register any patent, copyright or trademark of the Software without the written consent of Licensor, such registration shall automatically be deemed to inure to the benefit of Licensor.
+
+3.3	The Software is not designed, licensed or intended for use in the design, construction, operation or maintenance of any nuclear facility or any other dangerous environments or purposes which might be harmful to human health and the licensor disclaims any express or implied warranty of fitness for such uses.
+
+3.4	The Software must not be used for illegal or illicit purposes for the place of jurisdiction of either license party. 
+
+3.5	The Software may contain sample source code in the form of example applications and code fragments (collectively the Sample Source Code). The Licensee may only use the Sample Source Code internally for the Permitted Use.
+
+
+3.	Copyright and Attribution.  
+
+4.1 Licensee acknowledges that the Software and all supporting documentation constitute valuable property of Licensor and that all title and ownership rights in the Software and related materials remain exclusively with Licensor.  
+
+4.2 When a ìrebranding licenseî is added, the brand name of the product may be changed to a custom name. Rebranding does not affect the intellectual property rights of 4.1.
+
+4.3 Without a rebranding license, Licensee shall include the following copyright notice with each Application Program incorporating the Software: "Portions based on nanocosmos Technology Copyright ©  nanocosmos, http://www.nanocosmos.de."  This copyright notice may be placed with other copyright notices, including Licenseeís own copyright notice, or in any reasonably visible location in the application's packaging, software, or documentation. 
+
+4.	Payment / Fee
+
+5.1	Upon execution of the Agreement, Licensee shall pay Licensor a one-time, nonrefundable (NR) fee , see Exhibit C. (ìBasic Software License Feeî).  
+
+5.2	Subject to Licensorí compliance with the terms of this Agreement, Licensee shall pay Licensor a ìdistribution royaltyî as described in Exhibit C based upon usage and distribution of the Combination Product.  
+
+5.3	Additional upgrades and custom development on top of the software license shall be paid additionally based on mutual negotiations.
+
+5.4	Licensee shall be responsible for any applicable value-added taxes incurred with respect the sales or licenses of a Combination Product.  Licensor shall be responsible for all value added and other taxes applicable to the Basic Software License Fee and/or royalty payments from Licensee to Licensor.
+
+5.5	Licensee may not commercially use, sell, distribute or show the Software before the initial NR fee and required license/usage fees are paid (Exhibit C). Product royalty shall be paid by Licensee in advance to the licensing period.
+
+5.6 	Licensor reserves the right at any time to alter the price, features, specifications, capabilities, functions, licensing terms, release dates, general availability or other characteristics of the Software.
+
+5.7	Licensee is separately responsible for any fees payable to MPEG-LA or other patent holding organizations based on the type of product that is distributed, and Licensee shall pay such fees separately from the consideration herein. (http://www.mpegla.com/main/programs/AVC/Pages/Intro.aspx)
+
+5.	Confidential Information
+6.1 Each party agrees that all code, inventions, algorithms, know-how, ideas, and all business, technical and financial information it obtains from the other party are the confidential property of the other party and its suppliers (ìConfidential Informationî).  
+Except as permitted herein, each party will hold in confidence and not use or disclose any Confidential Information of the other party.  Each partyís nondisclosure obligation will not apply to information that (i) is or becomes (through no improper action or inaction by the receiving party) generally available to the public, or (ii) was in the receiving partyís possession or known by it without restriction prior to receipt from the disclosing party, or (iii) was rightfully disclosed to the receiving party by a third party without restriction, or (iv) was independently developed by employees of the receiving party without use of or access to any Confidential Information of the disclosing party.  
+6.2 The receiving party may make disclosures required by law or court order provided the receiving party gives the disclosing party prior notice of such required disclosure and allows the disclosing party to participate in the proceeding.  Each party acknowledges and agrees that, due to the unique nature of Confidential Information, there can be no adequate remedy at law for breach of this Section and that such breach would cause irreparable harm to the non-breaching party; therefore, the non-breaching party shall be entitled to seek immediate injunctive relief, without an obligation to post a bond in addition to whatever remedies it might have at law or under this Agreement.
+6.	Term/Termination.
+7.1 	The term of this Agreement is for three (3) years from the Effective Date and will automatically renew for subsequent one (1) year terms unless either party gives the other party 120 days advance written notice of its desire terminate. Licensor may terminate this Agreement at any time with notice to Licensee.
+7.2	Upon expiration or termination of this Agreement for any reason, (a) Licensee will (i) cease all distribution and usage of the Software within 12 months, (ii) promptly return or destroy all Licensor Confidential Information and all copies of the Software and all backups; (iii) pay all open fees due then to Licensor. 
+ 7.3    Licensor shall notify Licensee if Licensee commits a material breach of any of the terms of this Agreement and Licensee shall be given 30 days within which to correct such breach. Should Licensee fail to correct this breach within the time period then Licensor may immediately terminate this Agreement.
+7.4 Upon Termination due to legal breach of this Agreement, Licensee shall pay Licensor a penalty of at least the initial software license and one year usage and distribution fee, limited to Ä 15000. ( fifteen thousand Euros ) 
+7.5	Despite any other provision of this Agreement this clause and clauses  3, 4, 6, 8, 9, 10 survive the expiration or termination of this Agreement.
+8.	Warranty. 
+8.1	Licensor warrants to licensee that for a period of 30 days from the date of delivery of the Software, the media on which Software is furnished (if any) will be free of defects in materials and workmanship under normal use. 
+8.2	Because of the diversity of conditions of hardware and software environments under which the Software may be used, the parties agree that it is not possible to make software that is error-free for all conditions of use. A failure of or error in any part of the Software to be suitable for the Licensee's requirements will not give rise to any right or claim against the Licensor or its suppliers. According to this, Licensor warrants to Licensee for a period of thirty (30) days from the delivery of the Software that the Software will conform to and perform substantially under normal use as verified by the licensee during Evaluation Use in accordance with the Specifications therefore set forth in Exhibit A. 
+8.3 	Licensor and its suppliers do not warrant that the Software will be free from all known viruses and the Licensee is solely responsible for virus scanning the Software.
+8.4 The Licensor and its suppliers do not warrant that the Software will enable the Licensee to render its products compatible with the Licensor or its suppliers' products.
+8.5 	Licensor warrants that (i) Licensor has all rights and licenses necessary to grant the rights and licenses granted under this Agreement and the authority to enter into this Agreement; (ii) to the best of Licensorís knowledge neither the Software (including any of the content contained therein), nor the use thereof, shall infringe, violate or misappropriate the intellectual property rights of any third party and there are no claims in that regard of which Licensor is aware.
+8.6	Licensee warrants to Licensor that (i) Licensee has the authority to enter into this Agreement; and (ii) Licensee is responsible for any and all warranties that it makes to its customers with respect to the Application Programs.
+8.7 	Licensee shall not make any representations or warranties to its customers regarding the Software or sell the Software as a stand-alone product without Licensorís prior written consent.
+8.8 	Except as expressly set forth herein, neither party makes any warranties or representations with respect to the subject matter of this agreement, and each party hereby disclaims all other warranties, express or implied, including but not limited to, warranties of merchantability and fitness for a particular purpose.
+9.	Limitation of Warranty, Liability and Indemnity.  
+	9.1	Notwithstanding anything else in this Agreement or otherwise, Licensor does not make any warranties or representations with respect to the subject matter of this agreement, and hereby disclaims all other warranties, express or implied, including but not limited to, warranties of merchantability and fitness for a particular purpose. Licensor will not be liable or obligated with respect to any subject matter of this Agreement or under any contract, negligence, strict liability or other legal or equitable theory for any special, indirect, incidental or consequential damages, including data loss.  Notwithstanding anything else in this agreement or otherwise, except for indemnity obligations of a party under this Agreement, the total liability, in the aggregate, of each party with respect to any subject matter of this Agreement shall be limited to the total fees paid to licensor hereunder in average per year. 
+9.2	Licensee agrees to indemnify and hold Licensor harmless from any and all claims, damages, liabilities, settlements, attorneysí fees and expenses, as incurred, arising out of  (i) any third party claim that the Combination Product (excluding the Software supplied under this contract) infringes, violates or misappropriates any intellectual property or other third party right, or (ii) any third party claim arising out of any breach of this Agreement by Licensee. Licensor shall not be responsible for any settlement it does not approve in writing.
+10.	Licensee Obligations.
+	10.1	Licensee will keep complete and accurate records of the usage of the Software duplicated and distributed based on the number of a licensed Combination Product installed. 
+	10.2 	In case of per-unit license fees, Licensee will make such records available as set forth herein upon thirty (30) business daysí prior written notice by Licensor.  Licensee will maintain such records for a period of at two (2) years after the duplication and distribution activities to which such records pertain occur.  Licensee will permit an independent, nationally-recognized public accountant, as chosen by Licensor, at Licensorís own expense, to examine such records for the purpose of verifying the licensed usage of the software and/or the number of copies duplicated and distributed.  All of Licenseeís records shall be considered to be Confidential Information under Section 6.  If such an audit uncovers a deficiency of more than five percent (5%) in payments, Licensee shall bear Licensorís reasonable auditing expenses.
+	10.3	Licensee shall make reasonable commercial efforts to communicate to Licensor any and all modifications, design changes or improvements of the Software suggested by any customer, employee or agent.  Licensee further agrees that Licensor shall have and is hereby assigned any and all right, title and interest in and to any such suggested modifications, design changes, or improvements of the Software, without the payment of any additional consideration for either Licensee, or its employees, agents or customers.  Licensee will also use commercially reasonable efforts to promptly notify Licensor of any possible infringement of any trademarks or other proprietary rights relating to the Software of which Licensee becomes aware.
+	10.4	Licensee shall provide up to 3 free NFR (not-for-resale) samples of the Combination Product to Licensor, or free access to a web service which includes the software, which Licensor shall use solely for internal support purposes. 
+11.	Technical Support and Maintenance.  
+
+11.1	Provided that Licensee is not in material breach of this Agreement, Licensor shall provide technical support for the Software to Licensee by electronic mail for no additional fee for a certain term, to assist in setup in maintenance on Licenseeís computers.  Support for Licenseeís customers including 3rd party developers and client machines is not included. If not otherwise specified in Exhibit C, the support term is 3 months after first use of the software. There is no guaranteed reaction time for support cases, if not otherwise specified in the Exhibit C.
+
+11.2	In case of Support and Issue requests by Licensee to Licensor, Licensee is responsible to provide all required information and material to exactly reproduce the technical setup which leads to any reported issue and provide all access and information to Licensee setup or machines, including remote login support and 3rd party components with capability of installing or debugging software, creating log files and do other configuration changes to Licensee machines.
+
+11.3	Engineering fees and schedules for requested Support, Updates or Upgrades to the Software will be negotiated with Licensee at the time of Licenseeís request at Licensorí standard consulting rates. 
+
+11.4	Each party will provide a person/means of communication with each other for business and technical reasons. These will be listed in Exhibit D 
+
+12.	Product Registration/Activation: 
+For some parts in the Software, a product registration and/or activation technology might be required. Unregistered Software may be non-functional or subject to Evaluation. During registration, a serial number or activation code will be issued to you for one or more components. Upon entering a valid serial number for a component (ìregisteringî the component), the registered component will be released of its Evaluation and/or non-functional limitations. Licensee agrees not to disclose any serial number issued to you to any third-party. The product registration for redistribution might need to be renewed regularly for protection reasons.
+The activation and unlocking may also be done by a web or other internet server, which might require a network connection to a host within Licenseeís or Licensorís organization.
+
+13.	Miscellaneous.  
+13.1	Neither party may assign this Agreement without the consent of the other party, except to a subsidiary or to a successor to all or substantially all of its assets or business.  Neither party has the right or authority to assume or create any obligation or responsibility on behalf of the other. 
+13.2	Any notice, report, approval or consent required or permitted hereunder will be in writing via personal delivery, via certified mail, return receipt requested, or via a nationally recognized overnight delivery service to a party at the addresses first set forth herein.  
+13.3	Any press release issued by a party that specifically names the other party or the other partyís products must be approved by such named party in advance and any such approval shall not be unreasonably delayed or withheld.  
+13.4	Any waivers or amendments will be effective only if made in writing.  
+13.5	If any provision of this Agreement is unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary so that this Agreement will otherwise remain in full force and effect and enforceable. 
+13.6	This Agreement will be construed under the laws of Germany with the place of jurisdiction Berlin, Germany, without regard to conflicts of law provisions thereof. Termination is not an exclusive remedy and all other remedies will be available whether or not termination occurs. 
+13.7 	This Agreement is the complete and exclusive statement of the mutual understanding of the parties and supersedes all previous written and oral agreements and communications relating to the subject matter of this Agreement.
+  
+ 
+ Exhibit A ñ LICENSOR Software Specifications
+
+As verified by Licensee based on Evaluation Use and within licenseeís testing environment and combined into a Combination Product:
+
+nanocosmos software components:
+
+[DETAILS MAY BE SPECIFIED IN A SEPARATE QUOTE]
+
+Supported Operating Systems:
+32 and 64bit versions of Microsoft Windows7&8. Binary modules provided as 32bit versions, full compatible to 64bit OS. Native 64 Bit modules available as Upgrade upon request
+
+Exhibit B ñ LICENSEE Application Programs and Combination Product(s)
+
+Application Program used as Combination Product for Integrating Software from Exhibit A
+ 
+Exhibit C ñ License Model and License Fees
+
+License Model: 
+
+LICENSE FEE AND DETAILS SPECIFIED IN A SEPARATE QUOTE OR INVOICE
+
+One or more of following options:
+
+-	Developer License
+-	Initial Software License to install on one client PC
+-	Redistribution License for Combination Product
+-	Subscription License: Additional Usage and Distribution License per unit per year
+-	Domain / Service License: Run the Software in one internet domain or internet service
+-	Server License: Run the Software on one server
+
+

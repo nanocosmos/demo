@@ -1,0 +1,122 @@
+<!--
+    nanoStream Live Player
+    (c) 2016 nanocosmos gmbh
+    http://www.nanocosmos.de
+-->
+<!DOCTYPE html>
+<!--[if IE 8]>          <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="nanoStream live stream player">
+    <meta name="keywords" content="nanoStream Player">
+    <title>nanoStream Bintu Playout</title>
+    <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+    <style>
+        .map {
+            height: 500px;
+            width: 100%;
+            position: absolute;
+            left: -100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+            <strong id="demo-version"></strong>
+            <button onclick="window.location.reload(false);" style="position:absolute;right:10px;top:10px">Refresh Page</button>
+        </div>
+        <div id="invalid" style="display:none;">
+            <h1>no bintu apikey passed</h1>
+            <hr />
+            <label>use it like "...player.html?apikey=adsgfAEWRGsvgRQAEWTQawgagheraZWEGAbvgAERSTG"</label>
+        </div>
+        <div id="valid" style="display: block;">
+            <div>
+                <h2>bintu search parameters</h2>
+                <p class="normal">
+                    <strong>bintu stream tags (separate by comma)</strong><br />
+                    <input type="text" id="bintuTags" placeholder="search streams by tags e.g. 'nano, nanostream'" style="width:100%" />
+                </p>
+                <p class="normal" style="display:block">
+                    <strong>bintu stream state</strong><br />
+                    <input type="radio" name="bintuState" value="live" checked />&nbsp;live<br />
+                    <input type="radio" name="bintuState" value="created" />&nbsp;created<br />
+                    <input type="radio" name="bintuState" value="ended" />&nbsp;ended<br />
+                    <input type="radio" name="bintuState" value="all" />&nbsp;all<br />
+                </p>
+                <p class="normal">
+                    <button id="bintuGetStreams">search streams</button>
+                    <input type="checkbox" id="bintuAutoSearch" checked style="margin-left:10px;" />&nbsp;auto search<br />
+                    <input type="checkbox" id="map_results" style="margin-left:10px;" onchange="onCheckedMap()">&nbsp;Show Results on the map
+                </p>
+            </div>
+        </div>
+        <div>
+            <ul class="list-group" id="bintuStreamList">
+
+            </ul>
+            <div class="map" id="map"></div>
+        </div>
+        <div>
+            <div class="panel-body" id="bintuPlayoutContent" style="overflow:hidden;background-color:transparent">
+            </div>
+        </div>
+    </div>
+    <div id="message-box" class="panel panel-primary text-center" style="display: none; z-index: 999; position: fixed; width: 40%; left: 30%; top: 30%; margin-left: auto; margin-right: auto;">
+        <div class="panel-heading">
+            <h3 class="panel-title navbar-btn">Message</h3><button id="btn-x" class="btn btn-primary pull-right" style="position:absolute;right:2px;top:2px">&nbsp;X&nbsp;</button></div>
+        <div class="panel-body" style="font-weight:bold">
+            <span id="info-message">no stream found, maybe no network?</span>
+        </div>
+        <div class="panel-footer">
+            <p>
+                <button id="btn-ok" class="btn btn-primary" style="margin-left:auto;margin-right:auto">ok</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- nanoStream Scripts -->
+    <script src="js/multi/nano.bintu.js" type="text/javascript"></script>
+    <script src="js/multi/nano.tools.js" type="text/javascript"></script>
+    <script src="js/multi/nano.main.js" type="text/javascript"></script>
+
+    <!-- map Scripts -->
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBfo1QfXva9J6CJrpGFz1-5l90-eZRnilo"></script>
+    <script src="https://cdn.jsdelivr.net/underscorejs/1.8.3/underscore-min.js"></script>
+    <script src="./js/multi/underscore-observe.js"></script>
+    <script src="./js/multi/nano.map.js"></script>
+    
+    
+    
+    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.12.5.min.js"></script>
+    <script type="text/javascript">
+
+        var playerVersion = '3.12.5';
+        console.log('nanoplayer html version: ' + playerVersion);
+        document.getElementById('demo-version').innerText = 'version ' + playerVersion;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            app = new AppController(NanoPlayer);
+            app.Init();
+        });
+    </script>
+    
+
+    <script>
+
+        
+    </script>
+</body>
+</html>
+<!-- Localized -->

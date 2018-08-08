@@ -1,0 +1,54 @@
+<!doctype html>
+<head>
+    <title>H5Live Example</title>
+</head>
+<body>
+    <div id="playerDiv" class="player"></div>
+    <script type="text/javascript" src="../js/lib/require.js"></script>
+    
+    
+    <script type="text/javascript">
+
+        var player, debug;
+
+        requirejs.config({
+            paths: {
+                // loads the player ...
+                // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.min'
+                // for a online copy of the minified player use a url e.g. '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.min'
+                // if 'baseUrl' is defined this path have to be relative to the base path
+                nanoplayer: '../js/nanoplayer/nanoplayer.3.12.5.min.js?20180808'
+            },
+            waitSeconds: 20, // timeout for loading modules
+        });
+    </script>
+    
+
+    <script type="text/JavaScript">
+        require(["nanoplayer"], function (NanoPlayer) {
+            player = new NanoPlayer("playerDiv");
+            require(['tools/debug'], function (Debug) {
+                debug = Debug;
+                player.setup({}).then(function (config) {
+                }, function (error) {
+                    simulateResponsive();
+                });
+            });
+        });
+
+        function simulateResponsive() {
+            var playerDiv = document.getElementById('playerDiv'), dir = 'down';
+            setInterval(function () {
+                if (playerDiv.clientHeight < 240) {
+                    dir = 'up';
+                } else if (playerDiv.clientHeight > 800) {
+                    dir = 'down';
+                }
+                var f = .99;
+                var height = (dir === 'down') ? playerDiv.clientHeight * f : playerDiv.clientHeight / f;
+                playerDiv.style.height = height + 'px';
+            }, 100);
+        }
+
+    </script>
+</body>
