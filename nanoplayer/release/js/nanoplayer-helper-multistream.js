@@ -72,7 +72,7 @@ var onGetStreamsSuccess = function (request) {
         return;
     }
 
-    resetPlayer();
+    resetPlayer(true);
 };
 
 onGetStreamsError = function (request) {
@@ -81,8 +81,10 @@ onGetStreamsError = function (request) {
 
 getStreamFromResponse = function (response) {
     var id = response.id;
-    var url = response.ingest.rtmp.url;
-    var streamName = response.ingest.rtmp.streamname;
+    var h5live = response.playout.h5live[0];
+    var url = h5live.rtmp.url;
+    var streamName = h5live.rtmp.streamname;
+    var server = h5live.server;
 
     var tags = response.tags;
     if (tags && tags.push) {
@@ -106,7 +108,8 @@ getStreamFromResponse = function (response) {
             'url': url,
             'streamname': streamName,
             'group': group,
-            'bitrate': bitrate
+            'bitrate': bitrate,
+            'server': server
         };
     }
 

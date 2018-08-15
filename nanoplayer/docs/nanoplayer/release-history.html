@@ -113,7 +113,27 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
-<h1 id="-3-12-5-">[3.12.5]</h1>
+<h1 id="-3-13-2-">[3.13.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version brings a new feature. Now it&#39;s possible to change the source without call setup again. The new feature is available over the new public function &#39;player.updateSource&#39;, which is a Promise.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>add new public function &#39;updateSource&#39;<ul>
+<li>for changing the source at lifetime of the player without destroy/re-setup</li>
+<li>the video element will be kept</li>
+<li>pass the subobject &#39;source&#39; of the config object</li>
+<li>the Promise return&#39;s the new complete config</li>
+<li>see docs <a href="http://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#updateSource__anchor">http://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#updateSource__anchor</a></li>
+</ul>
+</li>
+</ul>
+<pre><code>      player.updateSource(source).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config)));
+      }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span> </span>{
+          <span class="hljs-built_in">console</span>.log(error);
+      });
+</code></pre><h1 id="-3-12-5-">[3.12.5]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version corrects two small issues. The playback wasn&#39;t stopped on iOS on tab change. Now on every &#39;focus lost&#39; on mobile devices the playback will be paused with reason &#39;playbacksuspended&#39;. The second fix addresses the &#39;playback started&#39; detection on iOS.</p>
 <h2 id="changelog">Changelog</h2>

@@ -1,5 +1,30 @@
 ﻿# Release History
 
+# [3.13.2]
+
+## Release Notes
+
+This version brings a new feature. Now it's possible to change the source without call setup again. The new feature is available over the new public function 'player.updateSource', which is a Promise.
+
+## Changelog
+
+### Added
+
+- add new public function 'updateSource'
+    - for changing the source at lifetime of the player without destroy/re-setup
+    - the video element will be kept
+    - pass the subobject 'source' of the config object
+    - the Promise return's the new complete config
+    - see docs http://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#updateSource__anchor
+
+~~~~
+      player.updateSource(source).then(function (config) {
+          console.log('update source ok with config: ' + JSON.stringify(config)));
+      }, function (error) {
+          console.log(error);
+      });
+~~~~
+
 # [3.12.5]
 
 ## Release Notes

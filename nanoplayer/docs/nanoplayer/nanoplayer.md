@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.12.5</p>
+<dd><p>NanoPlayer Public API Class 3.13.2</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.12.5
+NanoPlayer Public API Class 3.13.2
 
 **Kind**: global class  
-**Version**: 3.12.5  
+**Version**: 3.13.2  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
@@ -38,6 +38,7 @@ NanoPlayer Public API Class 3.12.5
         * [.mute()](#NanoPlayer+mute)
         * [.unmute()](#NanoPlayer+unmute)
         * [.setVolume(volume)](#NanoPlayer+setVolume)
+        * [.updateSource(source)](#NanoPlayer+updateSource) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
     * _inner_
         * ["onReady"](#NanoPlayer..event_onReady)
         * ["onPlay"](#NanoPlayer..event_onPlay)
@@ -127,6 +128,7 @@ The supported tech names of the player.
 Initializes the player with a given config object.
 
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
 <table>
   <thead>
     <tr>
@@ -216,6 +218,86 @@ Sets the volume of the player.
 **Example**  
 ```js
 // player instance of NanoPlayerplayer.setVolume(0.3);
+```
+<a name="NanoPlayer+updateSource"></a>
+
+### nanoPlayer.updateSource(source) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+Updates the source of the player.
+
+**Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>source</td><td><code>object</code></td><td></td><td><p>The object to configure the source to play, one of the following properties have to be set.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live]</td><td><code>object</code></td><td></td><td><p>The h5live object to configure the h5live connection.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.server</td><td><code>object</code></td><td></td><td><p>The h5live server object.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.server.websocket]</td><td><code>string</code></td><td></td><td><p>The h5live websocket url.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.server.progressive]</td><td><code>string</code></td><td></td><td><p>The h5live progressive download url.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.server.hls]</td><td><code>string</code></td><td></td><td><p>The h5live hls url. Have to be set for playback on iOS 10 or higher. iOS 9 or lower is not supported.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.token]</td><td><code>string</code></td><td></td><td><p>The h5live server token.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.rtmp]</td><td><code>object</code></td><td></td><td><p>The rtmp playout object for h5live playback.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.rtmp.url</td><td><code>string</code></td><td></td><td><p>The rtmp playout url. Have to include the domain, port and application e.g. &#39;rtmp://example.com:80/live&#39;.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.rtmp.streamname</td><td><code>string</code></td><td></td><td><p>The rtmp streamname.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.security]</td><td><code>object</code></td><td></td><td><p>The h5live security object for h5live playback.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.security.token</td><td><code>string</code></td><td></td><td><p>The security service token.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.security.expires</td><td><code>string</code></td><td></td><td><p>The time the token expires (system time).</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.security.options</td><td><code>string</code></td><td></td><td><p>The security options.</p>
+</td>
+    </tr><tr>
+    <td>source.h5live.security.tag</td><td><code>string</code></td><td></td><td><p>The custom tag to decrypt the token.</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live.params]</td><td><code>object</code></td><td></td><td><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p>
+</td>
+    </tr><tr>
+    <td>[source.bintu]</td><td><code>object</code></td><td></td><td><p>An bintu object to get sources.</p>
+</td>
+    </tr><tr>
+    <td>source.bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
+</td>
+    </tr><tr>
+    <td>[source.bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
+</td>
+    </tr><tr>
+    <td>[source.hls]</td><td><code>string</code></td><td></td><td><p>An hls playout url as string.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar source = {    h5live: {        server: {            websocket: 'wss://h5live.nanocosmos.de/h5live/stream',            hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'        },        rtmp: {            url: 'rtmp://example.nanocosmos.de:80/live',            streamname: 'h5liveStream'        },        security: {            token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',            expires: '1519819200',            options: '15',            tag: 'anyTag'        }    }}player.updateSource(source).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onReady"></a>
 
