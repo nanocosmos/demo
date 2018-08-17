@@ -1,5 +1,17 @@
 ﻿# Release History
 
+## [3.13.3]
+
+## Release Notes
+
+This version adresses an issue with mimetype changes on 'updateSource'. Now it can be switched between different mimetypes e.g. video/audio and video only.
+
+## Changelog
+
+### Fixed
+
+- enable format (mimetype) changes for 'updateSource', e.g. switch between v/a and video only
+
 # [3.13.2]
 
 ## Release Notes

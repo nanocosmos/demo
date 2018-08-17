@@ -38,7 +38,7 @@ All modifications will remain property of nanocosmos.
                 <button id="buttonPlay" onclick="play();">play</button>
                 <button id="buttonPause" onclick="pause();">pause</button>
                 <button id="buttonReset" onclick="startPlayer();">reset</button>
-                <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button>
+                <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
@@ -57,7 +57,7 @@ All modifications will remain property of nanocosmos.
         <p class="normal" id="streams-container" style="display:none">
             <strong>streams:&nbsp;</strong><select id="stream-select" onchange="resetPlayer();"></select>
         </p>
-        <div id="update-source-container" style="display:none">
+        <!-- <div id="update-source-container" style="display:none">
             <p class="normal" style="display:flex">
                 <strong>server:&nbsp;</strong><input id="inputServer" data-prop="server" style="flex:2" />
             </p>
@@ -70,7 +70,7 @@ All modifications will remain property of nanocosmos.
             <p class="normal" style="display:flex">
                 <button id="buttonUpdateSource" onclick="updateSource();" style="flex:1">update</button>
             </p>
-        </div>
+        </div> -->
         <p class="normal">
             <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
         </p>
@@ -132,17 +132,17 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.13.2.min.js"></script>
+    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.13.4.min.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
     <script src="js/multi/nano.bintu.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        var playerVersion = '3.13.2';
+        var playerVersion = '3.13.4';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20180815';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20180817';
         };
 
         var player;
@@ -322,19 +322,19 @@ All modifications will remain property of nanocosmos.
         };
 
         ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function (event) {
-            ['inputUrl', 'inputStreamname'].forEach(function (input) {
-                document.getElementById(input).addEventListener(event, function (e) {
-                    if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
-                        config.source.h5live.rtmp = config.source.h5live.rtmp || {};
-                        config.source.h5live.rtmp[e.currentTarget.dataset.prop] = e.currentTarget.value;
-                    }
-                });
-            });
-            document.getElementById('inputServer').addEventListener(event, function (e) {
-                if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
-                    checkH5Live(e.currentTarget.value);
-                }
-            });
+            // ['inputUrl', 'inputStreamname'].forEach(function (input) {
+            //     document.getElementById(input).addEventListener(event, function (e) {
+            //         if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
+            //             config.source.h5live.rtmp = config.source.h5live.rtmp || {};
+            //             config.source.h5live.rtmp[e.currentTarget.dataset.prop] = e.currentTarget.value;
+            //         }
+            //     });
+            // });
+            // document.getElementById('inputServer').addEventListener(event, function (e) {
+            //     if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
+            //         checkH5Live(e.currentTarget.value);
+            //     }
+            // });
         });
 
         function hideErrorWarning() {
@@ -542,9 +542,9 @@ All modifications will remain property of nanocosmos.
                 if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
                     config.source.h5live = config.source.h5live || {};
                     config.source.h5live.rtmp = h5liveQ.rtmp;
-                    document.getElementById('update-source-container').style.display = 'block';
-                    document.getElementById('inputUrl').value = h5liveQ.rtmp.url;
-                    document.getElementById('inputStreamname').value = h5liveQ.rtmp.streamname;
+                    // document.getElementById('update-source-container').style.display = 'block';
+                    // document.getElementById('inputUrl').value = h5liveQ.rtmp.url;
+                    // document.getElementById('inputStreamname').value = h5liveQ.rtmp.streamname;
                 }
                 var hls = getHTTPParam('hls');
                 if (hls) {
@@ -629,7 +629,7 @@ All modifications will remain property of nanocosmos.
                     config.source.h5live.server.websocket = route.websocket[0] + h5liveQ.server + route.websocket[1];
                     config.source.h5live.server.hls = route.hls[0] + h5liveQ.server + route.hls[1];
                     config.source.h5live.server.progressive = route.progressive[0] + h5liveQ.server + route.progressive[1];
-                    document.getElementById('inputServer').value = h5liveQ.server;
+                    // document.getElementById('inputServer').value = h5liveQ.server;
                 }
             } else { // try parse seperately
                 h5liveQ.server = {};
@@ -666,7 +666,7 @@ All modifications will remain property of nanocosmos.
                     config.source.h5live.server.hls = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS;
                     config.source.h5live.server.progressive = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE;
 
-                    document.getElementById('inputServer').value = DEFAULT_DEMO_PAGE_H5LIVE_SERVER;
+                    // document.getElementById('inputServer').value = DEFAULT_DEMO_PAGE_H5LIVE_SERVER;
                 }
             }
             h5liveQ.token = getHTTPParam('h5live.token');
