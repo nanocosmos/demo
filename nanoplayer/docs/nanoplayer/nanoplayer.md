@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.13.4</p>
+<dd><p>NanoPlayer Public API Class 3.13.5</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.13.4
+NanoPlayer Public API Class 3.13.5
 
 **Kind**: global class  
-**Version**: 3.13.4  
+**Version**: 3.13.5  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
@@ -80,34 +80,11 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
 
 **Example**  
 ```xml
-{}
-<script type="text/javascript" src="nanoplayer.3.min.js"></script>
-<script type="text/javascript">
-    var player;
-    document.addEventListener('DOMContentLoaded', function () {
-        player = new NanoPlayer('playerDiv');
-    });
-</script>
+{}<script type="text/javascript" src="nanoplayer.3.min.js"></script><script type="text/javascript">    var player;    document.addEventListener('DOMContentLoaded', function () {        player = new NanoPlayer('playerDiv');    });</script>
 ```
 **Example**  
 ```xml
-{}
-<script type="text/javascript" src="require.js"></script>
-<script type="text/javascript">
-    var player;
-    requirejs.config({
-        paths: {
-            // loads the player ...
-            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.3.min'
-            // if 'baseUrl' is defined a local path have to be relative to the base path
-            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js'
-        },
-        waitSeconds: 20, // timeout for loading modules
-    });
-    require('nanoplayer', function() {
-        player = new NanoPlayer('playerDiv');
-    });
-</script>
+{}<script type="text/javascript" src="require.js"></script><script type="text/javascript">    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.3.min'            // if 'baseUrl' is defined a local path have to be relative to the base path            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js'        },        waitSeconds: 20, // timeout for loading modules    });    require('nanoplayer', function() {        player = new NanoPlayer('playerDiv');    });</script>
 ```
 <a name="NanoPlayer+version"></a>
 
@@ -167,12 +144,7 @@ Initializes the player with a given config object.
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayerplayer.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer+destroy"></a>
 
@@ -182,9 +154,7 @@ Cleans up the player and removes all nested elements from the container div.
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.destroy();
-player.setup(config);
+// player instance of NanoPlayerplayer.destroy();player.setup(config);
 ```
 <a name="NanoPlayer+play"></a>
 
@@ -194,8 +164,7 @@ Plays the player.
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.play();
+// player instance of NanoPlayerplayer.play();
 ```
 <a name="NanoPlayer+pause"></a>
 
@@ -205,8 +174,7 @@ Pauses the player.
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.pause();
+// player instance of NanoPlayerplayer.pause();
 ```
 <a name="NanoPlayer+mute"></a>
 
@@ -216,8 +184,7 @@ Mutes the player.
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.mute();
+// player instance of NanoPlayerplayer.mute();
 ```
 <a name="NanoPlayer+unmute"></a>
 
@@ -227,8 +194,7 @@ Unmutes the player.
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.unmute();
+// player instance of NanoPlayerplayer.unmute();
 ```
 <a name="NanoPlayer+setVolume"></a>
 
@@ -251,8 +217,7 @@ Sets the volume of the player.
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-player.setVolume(0.3);
+// player instance of NanoPlayerplayer.setVolume(0.3);
 ```
 <a name="NanoPlayer+updateSource"></a>
 
@@ -332,30 +297,7 @@ Updates the source of the player.
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var source = {
-    h5live: {
-        server: {
-            websocket: 'wss://h5live.nanocosmos.de/h5live/stream',
-            hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'
-        },
-        rtmp: {
-            url: 'rtmp://example.nanocosmos.de:80/live',
-            streamname: 'h5liveStream'
-        },
-        security: {
-            token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',
-            expires: '1519819200',
-            options: '15',
-            tag: 'anyTag'
-        }
-    }
-}
-player.updateSource(source).then(function (config) {
-    console.log('update source ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar source = {    h5live: {        server: {            websocket: 'wss://h5live.nanocosmos.de/h5live/stream',            hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'        },        rtmp: {            url: 'rtmp://example.nanocosmos.de:80/live',            streamname: 'h5liveStream'        },        security: {            token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',            expires: '1519819200',            options: '15',            tag: 'anyTag'        }    }}player.updateSource(source).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onReady"></a>
 
@@ -399,16 +341,7 @@ The ready event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onReady = function (event) {
-    comnsole.log('Ready: ' + JSON.stringify(event.data.config));
-}
-config.events.onReady = onReady;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onReady = function (event) {    comnsole.log('Ready: ' + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onPlay"></a>
 
@@ -449,16 +382,7 @@ The play event to pass in the 'config.events' object at the setup call. Fires if
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onPlay = function (event) {
-    comnsole.log('Playing');
-};
-config.events.onPlay = onPlay;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onPlay = function (event) {    comnsole.log('Playing');};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onPause"></a>
 
@@ -502,19 +426,7 @@ The pause event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onPause = function (event) {
-    comnsole.log('Pause');
-    if (event.data.reason !== 'normal') {
-         alert('Paused with reason: ' + event.data.reason);
-    }
-};
-config.events.onPause = onPause;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onPause = function (event) {    comnsole.log('Pause');    if (event.data.reason !== 'normal') {         alert('Paused with reason: ' + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onLoading"></a>
 
@@ -558,16 +470,7 @@ The load event to pass in the 'config.events' object at the setup call. Fires if
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onLoading = function (event) {
-    comnsole.log('Loading with delay of ' + event.data.connectDelay + ' milliseconds');
-};
-config.events.onLoading = onLoading;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onLoading = function (event) {    comnsole.log('Loading with delay of ' + event.data.connectDelay + ' milliseconds');};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStartBuffering"></a>
 
@@ -608,16 +511,7 @@ The start buffering event to pass in the 'config.events' object at the setup cal
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onStartBuffering = function (event) {
-    comnsole.log('Buffering');
-};
-config.events.onStartBuffering = onStartBuffering;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onStartBuffering = function (event) {    comnsole.log('Buffering');};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStopBuffering"></a>
 
@@ -658,16 +552,7 @@ The stop buffering event to pass in the 'config.events' object at the setup call
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onStopBuffering = function (event) {
-    comnsole.log('Resume');
-};
-config.events.onStopBuffering = onStopBuffering;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onStopBuffering = function (event) {    comnsole.log('Resume');};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onError"></a>
 
@@ -714,16 +599,7 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onError = function (event) {
-    alert('Error: ' + event.data.code + ' ' + event.data.message);
-};
-config.events.onError = onError;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onError = function (event) {    alert('Error: ' + event.data.code + ' ' + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStats"></a>
 
@@ -851,16 +727,7 @@ The stats event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onStats = function (event) {
-    comnsole.log('Stats: ' + JSON.stringify(event.data.stats));
-};
-config.events.onStats = onStats;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onStats = function (event) {    comnsole.log('Stats: ' + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onMetaData"></a>
 
@@ -907,16 +774,7 @@ The metadata event to pass in the 'config.events' object at the setup call. The 
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onMetaData = function (event) {
-    comnsole.log('MetaData: ' + JSON.stringify(event.data));
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onMetaData = function (event) {    comnsole.log('MetaData: ' + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onMuted"></a>
 
@@ -957,16 +815,7 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onMuted = function (event) {
-    comnsole.log('Muted with volume: ' + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onMuted = function (event) {    comnsole.log('Muted with volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUnmuted"></a>
 
@@ -1007,16 +856,7 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onUnmuted = function (event) {
-    comnsole.log('Unmuted with volume: ' + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onUnmuted = function (event) {    comnsole.log('Unmuted with volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onVolumeChange"></a>
 
@@ -1057,16 +897,7 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onVolumeChange = function (event) {
-    comnsole.log('Volume: ' + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onVolumeChange = function (event) {    comnsole.log('Volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStreamInfo"></a>
 
@@ -1140,16 +971,7 @@ The stream info event to pass in the 'config.events' object at the setup call. F
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onStreamInfo = function (event) {
-    comnsole.log('StreamInfo: ' + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfo = onStreamInfo;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onStreamInfo = function (event) {    comnsole.log('StreamInfo: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStreamInfoUpdate"></a>
 
@@ -1223,16 +1045,7 @@ The stream info event to pass in the 'config.events' object at the setup call. F
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onStreamInfoUpdate = function (event) {
-    comnsole.log('StreamInfo updated: ' + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfoUpdate = onStreamInfoUpdate;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    comnsole.log('StreamInfo updated: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onWarning"></a>
 
@@ -1276,16 +1089,7 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayer
-var onWarning = function (event) {
-    console.log('Warning: ' + event.data.message);
-};
-config.events.onWarning = onWarning;
-player.setup(config).then(function (config) {
-    console.log('setup ok with config: ' + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});
+// player instance of NanoPlayervar onWarning = function (event) {    console.log('Warning: ' + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..config"></a>
 
@@ -1524,162 +1328,19 @@ The config object to pass as param for the 'setup' call.
 
 **Example**  
 ```js
-var config = {
-    source: {
-        bintu: {
-            streamid: 'q23rf2tzw3h6754iretmft7irt'
-        }
-    }
-}
+var config = {    source: {        bintu: {            streamid: 'q23rf2tzw3h6754iretmft7irt'        }    }}
 ```
 **Example**  
 ```js
-var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',
-                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'
-            },
-            rtmp: {
-                url: 'rtmp://example.nanocosmos.de:80/live',
-                streamname: 'h5liveStream'
-            },
-            security: {
-                token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',
-                expires: '1519819200',
-                options: '15',
-                tag: 'anyTag'
-            }
-        }
-    },
-    playback: {
-        autoplay: false,
-        metadata: true,
-        keepConnection: true,
-        reconnect: {
-            minDelay: 2.5,
-            maxDelay: 12.5,
-            delaySteps: 6,
-            maxRetries: 20
-        }
-    },
-    events: {
-        onWarning: function (e) {
-            console.log(e);
-        }
-    },
-    style: {
-        width: '1280px',
-        height: '720px'
-    },
-    tweaks: {
-        buffer: {
-            min: 0.2,
-            start: 0.5,
-            max: 8.0,
-            target: 1.2,
-            limit: 1.7
-        },
-        bufferDynamic: {
-            offsetThreshold: 2,
-            offsetStep: 0.5,
-            cooldownTime: 10
-        }
-    }
-}
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'h5liveStream'            },            security: {                token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                expires: '1519819200',                options: '15',                tag: 'anyTag'            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        height: '720px'    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    }}
 ```
 **Example**  
 ```js
-var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',
-                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'
-            },
-            params: {
-                url: 'rtmp://example.nanocosmos.de:80/live',
-                stream: 'h5liveStream',
-                custom_key: 'custom_value'
-            }
-        }
-    },
-    playback: {
-        autoplay: false,
-        videoId: 'myVideoTagId'
-    },
-    events: {
-        onStats: function (e) {
-            console.log(e);
-        }
-    },
-    style: {
-       view: false
-    }
-}
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            params: {                url: 'rtmp://example.nanocosmos.de:80/live',                stream: 'h5liveStream',                custom_key: 'custom_value'            }        }    },    playback: {        autoplay: false,        videoId: 'myVideoTagId'    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    }}
 ```
 **Example**  
 ```js
-var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',
-                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'
-            },
-            rtmp: {
-                url: 'rtmp://example.nanocosmos.de:80/live',
-                streamname: 'gwr23t4q3g3'
-            }
-        },
-        token: "{\"type\":\"token1\",\"key\":\"exampleToken\"}"
-    },
-    playback: {
-        autoplay: true,
-        muted: true
-    },
-    events: {
-        onReady: function (e) {
-            console.log('player ready with ' + JSON.stringify(e));
-        },
-        onPlay: function (e) {
-            console.log('playing');
-        },
-        onPause: function (e) {
-            console.log('pause');
-            if (e.data.reason !== 'normal') {
-                alert('Paused with reason: ' + e.data.reason);
-            }
-        },
-        onError: function (e) {
-            try {
-                var err = JSON.stringify(e);
-                if (err === '{}') {
-                    err = e.message;
-                }
-                e = err;
-            } catch (err) { }
-            console.log(e);
-            alert(e);
-        },
-        onMetaData: function (e) {
-            console.log(e);
-        },
-        onStats: function (e) {
-            console.log(e);
-        },
-        onStreamInfo: function (e) {
-            console.log(e);
-        },
-    },
-    style: {
-        width: '1280px',
-        aspectratio: '16/9',
-        controls: false,
-        scaling: 'crop'
-    }
-}
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'gwr23t4q3g3'            }        },        token: "{\"type\":\"token1\",\"key\":\"exampleToken\"}"    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log('player ready with ' + JSON.stringify(e));        },        onPlay: function (e) {            console.log('playing');        },        onPause: function (e) {            console.log('pause');            if (e.data.reason !== 'normal') {                alert('Paused with reason: ' + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === '{}') {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },    },    style: {        width: '1280px',        aspectratio: '16/9',        controls: false,        scaling: 'crop'    }}
 ```
 <a name="NanoPlayer..errorcode"></a>
 

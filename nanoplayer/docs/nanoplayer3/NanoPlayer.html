@@ -86,7 +86,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer Public API Class 3.13.4</p></div>
+            <div class="class-description"><p>NanoPlayer Public API Class 3.13.5</p></div>
         
     
 </header>
@@ -175,7 +175,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>3.13.4</li>
+			<li>3.13.5</li>
 		</ul>
 	</dd>
 	
@@ -229,32 +229,9 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">
-&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.3.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var player;
-    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {
-        player = new NanoPlayer(&#x27;playerDiv&#x27;);
-    });
-&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.3.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        player = new NanoPlayer(&#x27;playerDiv&#x27;);    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">
-&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var player;
-    requirejs.config({
-        paths: {
-            // loads the player ...
-            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.3.min&#x27;
-            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path
-            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js&#x27;
-        },
-        waitSeconds: 20, // timeout for loading modules
-    });
-    require(&#x27;nanoplayer&#x27;, function() {
-        player = new NanoPlayer(&#x27;playerDiv&#x27;);
-    });
-&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.3.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);    });&lt;/script&gt;</pre>
 
 
     
@@ -786,9 +763,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.destroy();
-player.setup(config);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.destroy();player.setup(config);</pre>
 
 
     
@@ -872,8 +847,7 @@ player.setup(config);</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.mute();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.mute();</pre>
 
 
     
@@ -957,8 +931,7 @@ player.mute();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.pause();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.pause();</pre>
 
 
     
@@ -1042,8 +1015,7 @@ player.pause();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.play();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.play();</pre>
 
 
     
@@ -1204,12 +1176,7 @@ player.play();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -1343,8 +1310,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.setVolume(0.3);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.setVolume(0.3);</pre>
 
 
     
@@ -1428,8 +1394,7 @@ player.setVolume(0.3);</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.unmute();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.unmute();</pre>
 
 
     
@@ -2341,30 +2306,7 @@ player.unmute();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var source = {
-    h5live: {
-        server: {
-            websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,
-            hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;
-        },
-        rtmp: {
-            url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,
-            streamname: &#x27;h5liveStream&#x27;
-        },
-        security: {
-            token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,
-            expires: &#x27;1519819200&#x27;,
-            options: &#x27;15&#x27;,
-            tag: &#x27;anyTag&#x27;
-        }
-    }
-}
-player.updateSource(source).then(function (config) {
-    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar source = {    h5live: {        server: {            websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        rtmp: {            url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,            streamname: &#x27;h5liveStream&#x27;        },        security: {            token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,            expires: &#x27;1519819200&#x27;,            options: &#x27;15&#x27;,            tag: &#x27;anyTag&#x27;        }    }}player.updateSource(source).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -5132,156 +5074,13 @@ player.updateSource(source).then(function (config) {
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var config = {
-    source: {
-        bintu: {
-            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;
-        }
-    }
-}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: {            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }}</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,
-                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;
-            },
-            rtmp: {
-                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,
-                streamname: &#x27;h5liveStream&#x27;
-            },
-            security: {
-                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,
-                expires: &#x27;1519819200&#x27;,
-                options: &#x27;15&#x27;,
-                tag: &#x27;anyTag&#x27;
-            }
-        }
-    },
-    playback: {
-        autoplay: false,
-        metadata: true,
-        keepConnection: true,
-        reconnect: {
-            minDelay: 2.5,
-            maxDelay: 12.5,
-            delaySteps: 6,
-            maxRetries: 20
-        }
-    },
-    events: {
-        onWarning: function (e) {
-            console.log(e);
-        }
-    },
-    style: {
-        width: &#x27;1280px&#x27;,
-        height: &#x27;720px&#x27;
-    },
-    tweaks: {
-        buffer: {
-            min: 0.2,
-            start: 0.5,
-            max: 8.0,
-            target: 1.2,
-            limit: 1.7
-        },
-        bufferDynamic: {
-            offsetThreshold: 2,
-            offsetStep: 0.5,
-            cooldownTime: 10
-        }
-    }
-}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;h5liveStream&#x27;            },            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    }}</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,
-                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;
-            },
-            params: {
-                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,
-                stream: &#x27;h5liveStream&#x27;,
-                custom_key: &#x27;custom_value&#x27;
-            }
-        }
-    },
-    playback: {
-        autoplay: false,
-        videoId: &#x27;myVideoTagId&#x27;
-    },
-    events: {
-        onStats: function (e) {
-            console.log(e);
-        }
-    },
-    style: {
-       view: false
-    }
-}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            params: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                stream: &#x27;h5liveStream&#x27;,                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    }}</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {
-    source: {
-        h5live: {
-            server: {
-                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,
-                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;
-            },
-            rtmp: {
-                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,
-                streamname: &#x27;gwr23t4q3g3&#x27;
-            }
-        },
-        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;
-    },
-    playback: {
-        autoplay: true,
-        muted: true
-    },
-    events: {
-        onReady: function (e) {
-            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));
-        },
-        onPlay: function (e) {
-            console.log(&#x27;playing&#x27;);
-        },
-        onPause: function (e) {
-            console.log(&#x27;pause&#x27;);
-            if (e.data.reason !== &#x27;normal&#x27;) {
-                alert(&#x27;Paused with reason: &#x27; + e.data.reason);
-            }
-        },
-        onError: function (e) {
-            try {
-                var err = JSON.stringify(e);
-                if (err === &#x27;{}&#x27;) {
-                    err = e.message;
-                }
-                e = err;
-            } catch (err) { }
-            console.log(e);
-            alert(e);
-        },
-        onMetaData: function (e) {
-            console.log(e);
-        },
-        onStats: function (e) {
-            console.log(e);
-        },
-        onStreamInfo: function (e) {
-            console.log(e);
-        },
-    },
-    style: {
-        width: &#x27;1280px&#x27;,
-        aspectratio: &#x27;16/9&#x27;,
-        controls: false,
-        scaling: &#x27;crop&#x27;
-    }
-}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;gwr23t4q3g3&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }}</pre>
 
 
     
@@ -7513,16 +7312,7 @@ player.updateSource(source).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onError = function (event) {
-    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);
-};
-config.events.onError = onError;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onError = function (event) {    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -7841,16 +7631,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onLoading = function (event) {
-    comnsole.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);
-};
-config.events.onLoading = onLoading;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onLoading = function (event) {    comnsole.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -8193,16 +7974,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onMetaData = function (event) {
-    comnsole.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMetaData = function (event) {    comnsole.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -8497,16 +8269,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onMuted = function (event) {
-    comnsole.log(&#x27;Muted with volume: &#x27; + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMuted = function (event) {    comnsole.log(&#x27;Muted with volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -8825,19 +8588,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onPause = function (event) {
-    comnsole.log(&#x27;Pause&#x27;);
-    if (event.data.reason !== &#x27;normal&#x27;) {
-         alert(&#x27;Paused with reason: &#x27; + event.data.reason);
-    }
-};
-config.events.onPause = onPause;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPause = function (event) {    comnsole.log(&#x27;Pause&#x27;);    if (event.data.reason !== &#x27;normal&#x27;) {         alert(&#x27;Paused with reason: &#x27; + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -9107,16 +8858,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onPlay = function (event) {
-    comnsole.log(&#x27;Playing&#x27;);
-};
-config.events.onPlay = onPlay;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPlay = function (event) {    comnsole.log(&#x27;Playing&#x27;);};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -9435,16 +9177,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onReady = function (event) {
-    comnsole.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));
-}
-config.events.onReady = onReady;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onReady = function (event) {    comnsole.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -9714,16 +9447,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStartBuffering = function (event) {
-    comnsole.log(&#x27;Buffering&#x27;);
-};
-config.events.onStartBuffering = onStartBuffering;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStartBuffering = function (event) {    comnsole.log(&#x27;Buffering&#x27;);};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -10889,16 +10613,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStats = function (event) {
-    comnsole.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));
-};
-config.events.onStats = onStats;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStats = function (event) {    comnsole.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -11168,16 +10883,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStopBuffering = function (event) {
-    comnsole.log(&#x27;Resume&#x27;);
-};
-config.events.onStopBuffering = onStopBuffering;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStopBuffering = function (event) {    comnsole.log(&#x27;Resume&#x27;);};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -11835,16 +11541,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStreamInfo = function (event) {
-    comnsole.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfo = onStreamInfo;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfo = function (event) {    comnsole.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -12502,16 +12199,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStreamInfoUpdate = function (event) {
-    comnsole.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfoUpdate = onStreamInfoUpdate;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    comnsole.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -12806,16 +12494,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUnmuted = function (event) {
-    comnsole.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUnmuted = function (event) {    comnsole.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13110,16 +12789,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onVolumeChange = function (event) {
-    comnsole.log(&#x27;Volume: &#x27; + event.data.volume);
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onVolumeChange = function (event) {    comnsole.log(&#x27;Volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13438,16 +13108,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onWarning = function (event) {
-    console.log(&#x27;Warning: &#x27; + event.data.message);
-};
-config.events.onWarning = onWarning;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onWarning = function (event) {    console.log(&#x27;Warning: &#x27; + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13499,9 +13160,9 @@ player.setup(config).then(function (config) {
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Fri Aug 17th 2018
+		on Thu Sep 6th 2018
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

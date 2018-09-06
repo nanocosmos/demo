@@ -1,5 +1,21 @@
 ﻿# Release History
 
+
+## [3.13.5]
+
+## Release Notes
+
+This version improves the demo page. One part is to use 'updateSource' for bintu multistream functionality.
+
+## Changelog
+
+### Improved
+
+- clean up demo ui
+- use 'updateSource' for bintu multistream switch
+- update player only if streams changed
+
+
 ## [3.13.3]
 
 ## Release Notes

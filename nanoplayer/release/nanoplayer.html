@@ -132,17 +132,17 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.13.4.min.js"></script>
+    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.13.5.min.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
     <script src="js/multi/nano.bintu.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        var playerVersion = '3.13.4';
+        var playerVersion = '3.13.5';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20180817';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20180906';
         };
 
         var player;
@@ -150,7 +150,6 @@ All modifications will remain property of nanocosmos.
         document.addEventListener('DOMContentLoaded', function () {
             var cap = NanoPlayer.capabilities;
             !cap.length ? console.log('no supported player tech') : cap.forEach(function (c) { console.log('supported player tech: ' + c) });
-            player = new NanoPlayer('playerDiv');
             init();
         });
     </script>
@@ -559,7 +558,7 @@ All modifications will remain property of nanocosmos.
             }
         }
 
-        function resetPlayer(complete) {
+        function resetPlayer() {
             var select = document.getElementById('stream-select');
             if (!select.options[select.selectedIndex]) {
                 return;
@@ -591,7 +590,7 @@ All modifications will remain property of nanocosmos.
             config.source.h5live = h5liveQ;
 
             checkSecurity();
-            if (!!complete) {
+            if (!player) {
                 startPlayer();
             } else {
                 updateSource();
@@ -715,10 +714,14 @@ All modifications will remain property of nanocosmos.
         function destroyPlayer() {
             if (player) {
                 player.destroy();
+                player = null;
             }
         }
 
         function startPlayer(config) {
+            if (!player) {
+                player = new NanoPlayer('playerDiv');
+            }
             config = config || this.config;
             createCodeSippet(this.config);
             //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);

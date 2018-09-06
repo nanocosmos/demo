@@ -1,4 +1,4 @@
-﻿var streamObj, streamObjs = [];
+﻿var responseText, response, streamObj, streamObjs = [], streamObjsOld = [];
 
 var searchStreams = function () {
     var group = getHTTPParam('bintu.group');
@@ -9,9 +9,9 @@ var searchStreams = function () {
 };
 
 var onGetStreamsSuccess = function (request) {
-    var response = request.responseText;
+    responseText = request.responseText;
     try {
-        response = JSON.parse(response);
+        response = JSON.parse(responseText);
         console.log('success - get streams');
         console.log(response);
     } catch (err) {
@@ -20,8 +20,9 @@ var onGetStreamsSuccess = function (request) {
     }
 
     // Clear streamObjs, if it exists and not empty
-    if (!!streamObjs & streamObjs.length > 0)
+    if (!!streamObjs & streamObjs.length > 0) {
         streamObjs = [];
+    }
 
     var i, responseLen = response.length;
     for (i = 0; i < responseLen; i += 1) {
@@ -29,7 +30,18 @@ var onGetStreamsSuccess = function (request) {
 
         if (!!streamObjTemp) {
             streamObjs.push(streamObjTemp);
+        }
+    }
 
+    if (JSON.stringify(streamObjsOld.sort()) === JSON.stringify(streamObjs.sort())) {
+        console.log('no change');
+        return;
+    } else {
+        streamObjsOld = streamObjs;
+    }
+
+    for (i = 0; i < streamObjs.length; i += 1) {
+        var streamObjTemp = streamObjs[i];
             // Add new streams to stream-select, if needed
             var select = document.getElementById('stream-select');
             var j, selectLen = select.options.length, exists = false;
@@ -43,7 +55,6 @@ var onGetStreamsSuccess = function (request) {
                 var value = streamObjTemp.streamname;
                 select.options[select.options.length] = new Option(text, value);
             }
-        }
     }
 
     // Remove finished streams from stream-select, if needed
@@ -72,7 +83,7 @@ var onGetStreamsSuccess = function (request) {
         return;
     }
 
-    resetPlayer(true);
+    resetPlayer();
 };
 
 onGetStreamsError = function (request) {
