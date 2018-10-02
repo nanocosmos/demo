@@ -1,5 +1,5 @@
 nanocosmos H5Live player
-(c) 2010-2018, nanocosmos gmbh
+(c) 2010-2017, nanocosmos gmbh
 http://www.nanocosmos.de
 
 Contact: sales@nanocosmos.de

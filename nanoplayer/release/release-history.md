@@ -1,38 +1,7 @@
 ﻿# Release History
 
-# [3.14.1]
 
-## Release Notes
-
-This version comes with some new features. The first one addresses the public 'onPlay' event. Now some startup stats will be passed in the event object. These values represent the different states during startup from 'connecting', 'connected', 'firstFragmentReceived', 'firstFrameRendered', 'playable' and at least 'playing', the total startup time.
-The second feature is the new public event 'onDestroy'. This event is fired when the player is destroyed. In relation to that new feature we introduced the new pause reason 'destroy'. If the player is playing on destroy, the player will be paused with this new reason.
-
-## Changelog
-
-### Added
-
-- add startup stats to the public 'onPlay' event
-    - subobject 'stats' in 'event.data'
-    - keys: 'connecting', 'connected', 'firstFragmentReceived', 'firstFrameRendered', 'playable', 'playing'
-    - times in milliseconds relative to 'connecting'
-    - see 'https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay'
-    - an example 'event.data.stats' object:
-~~~~
-        {
-            "stats": {
-                "connecting": 0,
-                "connected": 267,
-                "firstFragmentReceived": 1865,
-                "firstFrameRendered": 2028,
-                "playable": 2029,
-                "playing": 2448
-            }
-        }
-~~~~
-
-- new public event 'onDestroy'
-
-# [3.13.5]
+## [3.13.5]
 
 ## Release Notes
 
@@ -46,7 +15,8 @@ This version improves the demo page. One part is to use 'updateSource' for bintu
 - use 'updateSource' for bintu multistream switch
 - update player only if streams changed
 
-# [3.13.3]
+
+## [3.13.3]
 
 ## Release Notes
 
