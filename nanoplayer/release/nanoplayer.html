@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 nanoStream Player
-(c) 2016, nanocosmos gmbh
+(c) 2018, nanocosmos gmbh
 http://www.nanocosmos.de
 sales@nanocosmos.de
 
@@ -132,20 +132,21 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.3.13.5.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.3.14.1.min.js"></script>
+    <script src="./js/metrics/metrics.min.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
     <script src="js/multi/nano.bintu.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script>
 
-        var playerVersion = '3.13.5';
+        var playerVersion = '3.14.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20180906';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20181002';
         };
 
-        var player;
+        var player, metricsCollector;
 
         document.addEventListener('DOMContentLoaded', function () {
             var cap = NanoPlayer.capabilities;
@@ -219,6 +220,7 @@ All modifications will remain property of nanocosmos.
         };
         config.events.onPlay = function (e) {
             log('playing');
+            log('play stats: ' + JSON.stringify(e.data));
             document.getElementById('status').innerText = 'playing';
             hideErrorWarning();
         };
@@ -241,6 +243,8 @@ All modifications will remain property of nanocosmos.
                 document.getElementById('status').innerText = 'paused (interaction required)';
             } else if (e.data.reason === 'playbacksuspended') {
                 document.getElementById('status').innerText = 'paused (playback suspended by external reason)';
+            } else if (e.data.reason === 'destroy') {
+                document.getElementById('status').innerText = 'paused (destroy)';
             }
         };
         config.events.onLoading = function (e) {
@@ -318,6 +322,10 @@ All modifications will remain property of nanocosmos.
         config.events.onStreamInfoUpdate = function (e) {
             var streamInfo = JSON.stringify(e.data.streamInfo);
             log('onStreamInfoUpdate = ' + streamInfo);
+        };
+        config.events.onDestroy = function (e) {
+            log('destroy');
+            document.getElementById('status').innerText = 'destroy';
         };
 
         ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function (event) {
@@ -714,7 +722,6 @@ All modifications will remain property of nanocosmos.
         function destroyPlayer() {
             if (player) {
                 player.destroy();
-                player = null;
             }
         }
 
@@ -735,6 +742,26 @@ All modifications will remain property of nanocosmos.
             var buttonMute = document.getElementById('buttonMute');
             buttonMute.dataset.muted = config.playback.muted;
             buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
+            
+            metricsCollector = new NanoPlayerMetricsCollector();
+            var metricsConfig = {
+                'accountId': 'nanocosmos-demo',
+                'accountKey': 'hfgwj472649fkjah',
+                'userId': 'nanoplayer-demo',
+                'eventId': 'nanocosmos-demo',
+                'player': player,
+                'playerConfig': config,
+                'statsInterval': 10,
+                'customField1': 'demo',
+                'customField2': 'public',
+                'customField3': 'online resource'
+            };
+            metricsCollector.setup(metricsConfig).then(function success() {
+                log('metrics setup ok');
+            }).catch(function fail(e) {
+                log('metrics setup failed: ' + e.message);
+            });
+
             player.setup(config).then(function (conf) {
                 setVolume(null, document.getElementById('faderVolume').value);
                 checkConfig(conf);

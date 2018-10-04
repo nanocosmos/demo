@@ -113,7 +113,36 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
-<h2 id="-3-13-5-">[3.13.5]</h2>
+<h1 id="-3-14-1-">[3.14.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version comes with some new features. The first one addresses the public &#39;onPlay&#39; event. Now some startup stats will be passed in the event object. These values represent the different states during startup from &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39; and at least &#39;playing&#39;, the total startup time.
+The second feature is the new public event &#39;onDestroy&#39;. This event is fired when the player is destroyed. In relation to that new feature we introduced the new pause reason &#39;destroy&#39;. If the player is playing on destroy, the player will be paused with this new reason.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li><p>add startup stats to the public &#39;onPlay&#39; event</p>
+<ul>
+<li>subobject &#39;stats&#39; in &#39;event.data&#39;</li>
+<li>keys: &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39;, &#39;playing&#39;</li>
+<li>times in milliseconds relative to &#39;connecting&#39;</li>
+<li>see &#39;<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay</a>&#39;</li>
+<li>an example &#39;event.data.stats&#39; object:<pre><code>  {
+      "<span class="hljs-attribute">stats</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">connecting</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+          "<span class="hljs-attribute">connected</span>": <span class="hljs-value"><span class="hljs-number">267</span></span>,
+          "<span class="hljs-attribute">firstFragmentReceived</span>": <span class="hljs-value"><span class="hljs-number">1865</span></span>,
+          "<span class="hljs-attribute">firstFrameRendered</span>": <span class="hljs-value"><span class="hljs-number">2028</span></span>,
+          "<span class="hljs-attribute">playable</span>": <span class="hljs-value"><span class="hljs-number">2029</span></span>,
+          "<span class="hljs-attribute">playing</span>": <span class="hljs-value"><span class="hljs-number">2448</span>
+      </span>}
+  </span>}
+</code></pre></li>
+</ul>
+</li>
+<li><p>new public event &#39;onDestroy&#39;</p>
+</li>
+</ul>
+<h1 id="-3-13-5-">[3.13.5]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version improves the demo page. One part is to use &#39;updateSource&#39; for bintu multistream functionality.</p>
 <h2 id="changelog">Changelog</h2>
@@ -123,7 +152,7 @@
 <li>use &#39;updateSource&#39; for bintu multistream switch</li>
 <li>update player only if streams changed</li>
 </ul>
-<h2 id="-3-13-3-">[3.13.3]</h2>
+<h1 id="-3-13-3-">[3.13.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version adresses an issue with mimetype changes on &#39;updateSource&#39;. Now it can be switched between different mimetypes e.g. video/audio and video only.</p>
 <h2 id="changelog">Changelog</h2>
