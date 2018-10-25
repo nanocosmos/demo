@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.15.2</p>
+<dd><p>NanoPlayer Public API Class 3.14.1</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.15.2
+NanoPlayer Public API Class 3.14.1
 
 **Kind**: global class  
-**Version**: 3.15.2  
+**Version**: 3.14.1  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
@@ -1389,45 +1389,24 @@ The config object to pass as param for the 'setup' call.
     </tr><tr>
     <td>tweaks.bufferDynamic.cooldownTime</td><td><code>number</code></td><td></td><td><p>The time to check stable playback. If stable playback is detected, the buffer values will be decreased till original buffer values are reached.</p>
 </td>
-    </tr><tr>
-    <td>metrics</td><td><code>object</code></td><td></td><td><p>The metrics object. If not set, metrics are disabled.</p>
-</td>
-    </tr><tr>
-    <td>metrics.accountId</td><td><code>string</code></td><td></td><td><p>The account id for the metrics.</p>
-</td>
-    </tr><tr>
-    <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key for the metrics.</p>
-</td>
-    </tr><tr>
-    <td>metrics.userId</td><td><code>string</code></td><td></td><td><p>A user id if used.</p>
-</td>
-    </tr><tr>
-    <td>metrics.eventId</td><td><code>string</code></td><td></td><td><p>A event id if used.</p>
-</td>
-    </tr><tr>
-    <td>metrics.statsInterval</td><td><code>number</code></td><td><code>10</code></td><td><p>The interval how often the stats should be collected in seconds.</p>
-</td>
-    </tr><tr>
-    <td>metrics.customField*</td><td><code>*</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;. Can be all kind of types.</p>
-</td>
     </tr>  </tbody>
 </table>
 
 **Example**  
 ```js
-var config = {    source: {        bintu: {            streamid: 'q23rf2tzw3h6754iretmft7irt'        }    }};
+var config = {    source: {        bintu: {            streamid: 'q23rf2tzw3h6754iretmft7irt'        }    }}
 ```
 **Example**  
 ```js
-var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'h5liveStream'            },            security: {                token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                expires: '1519819200',                options: '15',                tag: 'anyTag'            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        height: '720px'    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    metrics: {        accountId: 'myId',        accountKey: 'sdfhe457zsjhnrtzd8',        userId: 'myUserId',        eventId: 'myEventId',        statsInterval: 10,        customField1: 'custom',        customField2: 42,        customField3: true    }};
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'h5liveStream'            },            security: {                token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                expires: '1519819200',                options: '15',                tag: 'anyTag'            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        height: '720px'    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    }}
 ```
 **Example**  
 ```js
-var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            params: {                url: 'rtmp://example.nanocosmos.de:80/live',                stream: 'h5liveStream',                custom_key: 'custom_value'            }        }    },    playback: {        autoplay: false,        videoId: 'myVideoTagId'    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: 'myId',        accountKey: 'sdfhe457zsjhnrtzd8'    }};
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            params: {                url: 'rtmp://example.nanocosmos.de:80/live',                stream: 'h5liveStream',                custom_key: 'custom_value'            }        }    },    playback: {        autoplay: false,        videoId: 'myVideoTagId'    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    }}
 ```
 **Example**  
 ```js
-var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'gwr23t4q3g3'            }        },        token: "{\"type\":\"token1\",\"key\":\"exampleToken\"}"    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log('player ready with ' + JSON.stringify(e));        },        onPlay: function (e) {            console.log('playing');            console.log('play stats: ' + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log('pause');            if (e.data.reason !== 'normal') {                alert('Paused with reason: ' + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === '{}') {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        aspectratio: '16/9',        controls: false,        scaling: 'crop'    }};
+var config = {    source: {        h5live: {            server: {                websocket: 'wss://h5live.nanocosmos.de/h5live/stream',                hls: 'https://h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            rtmp: {                url: 'rtmp://example.nanocosmos.de:80/live',                streamname: 'gwr23t4q3g3'            }        },        token: "{\"type\":\"token1\",\"key\":\"exampleToken\"}"    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log('player ready with ' + JSON.stringify(e));        },        onPlay: function (e) {            console.log('playing');            console.log('play stats: ' + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log('pause');            if (e.data.reason !== 'normal') {                alert('Paused with reason: ' + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === '{}') {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        aspectratio: '16/9',        controls: false,        scaling: 'crop'    }}
 ```
 <a name="NanoPlayer..errorcode"></a>
 
@@ -1586,83 +1565,6 @@ The possible error codes in a onError event.
 </td>
     </tr><tr>
     <td>4000-4999.4900-4999.4904</td><td></td><td><p>The security service can not be found.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999</td><td><code>SetupError</code></td><td></td>
-    </tr><tr>
-    <td>5000-5999.5000-5099</td><td><code>General</code></td><td></td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5001</td><td></td><td><p>An exception was thrown during setup.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5002</td><td></td><td><p>A forced tech is not supported by your browser.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5003</td><td></td><td><p>The players source configuration is malformed or missing.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5004</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5005</td><td></td><td><p>Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5006</td><td></td><td><p>Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5007</td><td></td><td><p>Configuration error. Could not create player, the websocket server configuration is missing.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5008</td><td></td><td><p>Configuration error. Could not create player, the hls server configuration is missing.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5009</td><td></td><td><p>Configuration error. Could not create player, the websocket server configuration for metadata is missing.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5010</td><td></td><td><p>Configuration error. A config property has the wrong type.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5011</td><td></td><td><p>Configuration error. A config property  is not valid.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5000-5099.5012</td><td></td><td><p>Could not embed player.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5100-5199</td><td><code>Bintu</code></td><td></td>
-    </tr><tr>
-    <td>5000-5999.5100-5199.5101</td><td></td><td><p>Could not find bintu stream. The stream is not live.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5100-5199.5102</td><td></td><td><p>No bintu stream id passed.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5100-5199.5103</td><td></td><td><p>Bintu service rejected.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299</td><td><code>Metrics</code></td><td></td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5201</td><td></td><td><p>Metrics configuration error. No metrics config object passed.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5202</td><td></td><td><p>Metrics configuration error. Metrics config is not from type &#39;object&#39;.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5203</td><td></td><td><p>Metrics configuration error. Metrics config is empty.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5204</td><td></td><td><p>Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5205</td><td></td><td><p>Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5206</td><td></td><td><p>Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5207</td><td></td><td><p>Metrics configuration error. A property is not valid.</p>
-</td>
-    </tr><tr>
-    <td>5000-5999.5200-5299.5208</td><td></td><td><p>Metrics configuration error. No credentials passed.</p>
 </td>
     </tr>  </tbody>
 </table>
