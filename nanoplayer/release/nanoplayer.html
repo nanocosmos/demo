@@ -120,7 +120,7 @@ All modifications will remain property of nanocosmos.
         </p>
     </div>
 
-    <script type="text/javascript">
+    <script>
 
         // DEFAULT DEMO PAGE H5LIVE SERVER
         var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'h5live.nanocosmos.de';
@@ -132,21 +132,21 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.3.14.1.min.js"></script>
-    <script src="./js/metrics/metrics.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.3.15.2.min.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
-    <script src="js/multi/nano.bintu.js" type="text/javascript"></script>
+    <script src="./js/nanoplayer-metrics-config.js"></script>
+    <script src="js/multi/nano.bintu.js"></script>
     <script>
 
-        var playerVersion = '3.14.1';
+        var playerVersion = '3.15.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20181002';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20181022';
         };
 
-        var player, metricsCollector;
+        var player;
 
         document.addEventListener('DOMContentLoaded', function () {
             var cap = NanoPlayer.capabilities;
@@ -214,17 +214,19 @@ All modifications will remain property of nanocosmos.
             }
         };
 
-        config.events.onReady = function (e) {
+        var events = {};
+
+        events.onReady = function (e) {
             log('ready');
             document.getElementById('status').innerText = 'ready';
         };
-        config.events.onPlay = function (e) {
+        events.onPlay = function (e) {
             log('playing');
             log('play stats: ' + JSON.stringify(e.data));
             document.getElementById('status').innerText = 'playing';
             hideErrorWarning();
         };
-        config.events.onPause = function (e) {
+        events.onPause = function (e) {
             log('pause');
             if (e.data.reason === 'servernotfound') {
                 document.getElementById('status').innerText = 'paused (server not found)';
@@ -247,11 +249,11 @@ All modifications will remain property of nanocosmos.
                 document.getElementById('status').innerText = 'paused (destroy)';
             }
         };
-        config.events.onLoading = function (e) {
+        events.onLoading = function (e) {
             log('loading');
             document.getElementById('status').innerText = 'loading';
         };
-        config.events.onStartBuffering = function (e) {
+        events.onStartBuffering = function (e) {
             buffering.start = new Date();
             setTimeout(function () {
                 if (buffering.start) {
@@ -259,7 +261,7 @@ All modifications will remain property of nanocosmos.
                 }
             }, 2000);
         };
-        config.events.onStopBuffering = function (e) {
+        events.onStopBuffering = function (e) {
             buffering.stop = new Date();
             if (buffering.start) {
                 var duration = Math.abs(buffering.stop - buffering.start);
@@ -270,7 +272,7 @@ All modifications will remain property of nanocosmos.
             }
             document.getElementById('status').innerText = 'playing';
         };
-        config.events.onError = function (e) {
+        events.onError = function (e) {
             try {
                 var err = JSON.stringify(e);
                 if (err === '{}') {
@@ -282,12 +284,12 @@ All modifications will remain property of nanocosmos.
             document.getElementById('error').innerText = e;
             document.getElementById('error-container').style.display = 'block';
         };
-        config.events.onWarning = function (e) {
+        events.onWarning = function (e) {
             log('Warning = ' + e.data.message);
             document.getElementById('warning').innerText = e.data.message;
             document.getElementById('warning-container').style.display = 'block';
         };
-        config.events.onMetaData = function (e) {
+        events.onMetaData = function (e) {
             var metadata = JSON.stringify(e.data);
             (metadata.length > 100) && (metadata = metadata.substr(0, 100) + '...');
             document.getElementById('metadata').innerText = metadata;
@@ -297,33 +299,33 @@ All modifications will remain property of nanocosmos.
             log('onMetaData');
             log(e, true);
         };
-        config.events.onStats = onStats;
-        config.events.onMute = function (e) {
+        events.onStats = onStats;
+        events.onMute = function (e) {
             log('onMute');
             var buttonMute = document.getElementById('buttonMute');
             buttonMute.dataset.muted = true;
             buttonMute.innerText = 'unmute';
         };
-        config.events.onUnmute = function (e) {
+        events.onUnmute = function (e) {
             log('onUnmute');
             var buttonMute = document.getElementById('buttonMute');
             buttonMute.dataset.muted = false;
             buttonMute.innerText = 'mute';
         };
-        config.events.onVolumeChange = function (e) {
+        events.onVolumeChange = function (e) {
             var volumeFader = document.getElementById('faderVolume'), volumeOutput = document.getElementById('volume'), volume = Math.round(e.data.volume * 100);
             (parseInt(volumeFader.value) !== volume) && (volumeFader.value = volume);
             volumeOutput.value = volume + '%';
         };
-        config.events.onStreamInfo = function (e) {
+        events.onStreamInfo = function (e) {
             var streamInfo = JSON.stringify(e.data.streamInfo);
             log('onStreamInfo = ' + streamInfo);
         };
-        config.events.onStreamInfoUpdate = function (e) {
+        events.onStreamInfoUpdate = function (e) {
             var streamInfo = JSON.stringify(e.data.streamInfo);
             log('onStreamInfoUpdate = ' + streamInfo);
         };
-        config.events.onDestroy = function (e) {
+        events.onDestroy = function (e) {
             log('destroy');
             document.getElementById('status').innerText = 'destroy';
         };
@@ -742,25 +744,16 @@ All modifications will remain property of nanocosmos.
             var buttonMute = document.getElementById('buttonMute');
             buttonMute.dataset.muted = config.playback.muted;
             buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
-            
-            metricsCollector = new NanoPlayerMetricsCollector();
-            var metricsConfig = {
-                'accountId': 'nanocosmos-demo',
-                'accountKey': 'hfgwj472649fkjah',
-                'userId': 'nanoplayer-demo',
-                'eventId': 'nanocosmos-demo',
-                'player': player,
-                'playerConfig': config,
-                'statsInterval': 10,
-                'customField1': 'demo',
-                'customField2': 'public',
-                'customField3': 'online resource'
-            };
-            metricsCollector.setup(metricsConfig).then(function success() {
-                log('metrics setup ok');
-            }).catch(function fail(e) {
-                log('metrics setup failed: ' + e.message);
-            });
+
+            for (var event in events) {
+                if (events.hasOwnProperty(event)) {
+                    player.on(event.substr(2), events[event]);
+                }
+            }
+
+            if (window.nanoPlayerMetricsConfig) {
+                config.metrics = window.nanoPlayerMetricsConfig;
+            }
 
             player.setup(config).then(function (conf) {
                 setVolume(null, document.getElementById('faderVolume').value);
@@ -919,8 +912,8 @@ All modifications will remain property of nanocosmos.
             var pre = document.getElementById('code-snippet');
             pre.innerHTML = '';
             var line = '<div id="playerDiv"></div>\r\n';
-            line += '<script type="text/JavaScript" src="' + getPlayerLocation() + '"><\/script>\r\n';
-            line += '<script type="text/JavaScript">\r\n';
+            line += '<script src="' + getPlayerLocation() + '"><\/script>\r\n';
+            line += '<script>\r\n';
             line += 'var player;\r\n';
             line += 'var config = ' + JSON.stringify(conf, undefined, 4) + ';\r\n';
             line += 'document.addEventListener(\'DOMContentLoaded\', function () {\r\n';

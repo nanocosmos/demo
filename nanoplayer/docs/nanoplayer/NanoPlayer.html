@@ -86,7 +86,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer Public API Class 3.14.1</p></div>
+            <div class="class-description"><p>NanoPlayer Public API Class 3.15.2</p></div>
         
     
 </header>
@@ -175,7 +175,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>3.14.1</li>
+			<li>3.15.2</li>
 		</ul>
 	</dd>
 	
@@ -5054,6 +5054,281 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>metrics</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The metrics object. If not set, metrics are disabled.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>accountId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The account id for the metrics.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>accountKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The account key for the metrics.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A user id if used.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>eventId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A event id if used.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>statsInterval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    10
+                
+                </td>
+            
+
+            <td class="description last"><p>The interval how often the stats should be collected in seconds.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>customField*</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Custom field. * can be replaced with 1 - 10 e.g. 'customField3'. Possible from 'customField1' to 'customField10'. Can be all kind of types.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 </dl>
@@ -5106,13 +5381,13 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: {            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: {            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;h5liveStream&#x27;            },            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    }}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;h5liveStream&#x27;            },            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;,        userId: &#x27;myUserId&#x27;,        eventId: &#x27;myEventId&#x27;,        statsInterval: 10,        customField1: &#x27;custom&#x27;,        customField2: 42,        customField3: true    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            params: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                stream: &#x27;h5liveStream&#x27;,                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    }}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            params: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                stream: &#x27;h5liveStream&#x27;,                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;gwr23t4q3g3&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }}</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;gwr23t4q3g3&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }};</pre>
 
 
     
@@ -6304,6 +6579,616 @@
             
 
             <td class="description last"><p>The security service can not be found.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5000-5999</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">SetupError</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>5000-5099</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">General</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>5001</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An exception was thrown during setup.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5002</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A forced tech is not supported by your browser.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5003</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The players source configuration is malformed or missing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5004</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5005</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5006</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5007</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. Could not create player, the websocket server configuration is missing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5008</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. Could not create player, the hls server configuration is missing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5009</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. Could not create player, the websocket server configuration for metadata is missing.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5010</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. A config property has the wrong type.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5011</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Configuration error. A config property  is not valid.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5012</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Could not embed player.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5100-5199</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Bintu</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>5101</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Could not find bintu stream. The stream is not live.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5102</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>No bintu stream id passed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5103</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Bintu service rejected.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5200-5299</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Metrics</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>5201</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. No metrics config object passed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5202</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. Metrics config is not from type 'object'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5203</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. Metrics config is empty.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5204</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.'customField1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5205</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.'customField1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5206</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.'customField1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5207</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. A property is not valid.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>5208</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Metrics configuration error. No credentials passed.</p></td>
         </tr>
 
     
@@ -13718,7 +14603,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Tue Oct 2nd 2018
+		on Mon Oct 22nd 2018
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
