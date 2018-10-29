@@ -113,6 +113,71 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-15-3-">[3.15.3]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type. 
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>fire &#39;onError&#39; if an error occure during setup<ul>
+<li>new error codes:<ul>
+<li>5001: An exception was thrown during setup.</li>
+<li>5002: A forced tech is not supported by your browser.</li>
+<li>5003: The players source configuration is malformed or missing.</li>
+<li>5004: This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</li>
+<li>5005: Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</li>
+<li>5006: Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.</li>
+<li>5007: Configuration error. Could not create player, the websocket server configuration is missing.</li>
+<li>5008: Configuration error. Could not create player, the hls server configuration is missing.</li>
+<li>5009: Configuration error. Could not create player, the websocket server configuration for metadata is missing.</li>
+<li>5010: Could not embed player.</li>
+<li>5101: Could not find bintu stream. The stream is not live.</li>
+<li>5102: No bintu stream id passed.</li>
+<li>5103: Bintu service rejected.</li>
+<li>5201: Metrics configuration error. No metrics config object passed.</li>
+<li>5202: Metrics configuration error. Metrics config is not from type &#39;object&#39;.</li>
+<li>5203: Metrics configuration error. Metrics config is empty.</li>
+<li>5204: Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.&#39;customField1&#39;.</li>
+<li>5205: Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.&#39;customField1&#39;.</li>
+<li>5206: Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.&#39;customField1&#39;.</li>
+<li>5207: Metrics configuration error. A property is not valid.</li>
+<li>5208: Metrics configuration error. No credentials passed.</li>
+</ul>
+</li>
+<li>this codes will also be passed as property &#39;code&#39; in the reject error object </li>
+<li>see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a></li>
+</ul>
+</li>
+<li>fire &#39;onWarning&#39; if a config property is not valid or from wrong type</li>
+<li>added a new metrics api<ul>
+<li>enables event logging and data aggregation</li>
+<li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
+<li>disabled by default</li>
+<li>for more information contact our sales team: mailto:sales@nanocosmos.de</li>
+<li>NOTE: don&#39;t set if you have no account!</li>
+<li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!<pre><code>  config.metrics = {
+      accountId: <span class="hljs-string">'myId'</span>,
+      accountKey: <span class="hljs-string">'sdfhe457zsjhnrtzd8'</span>,
+      userId: <span class="hljs-string">'myUserId'</span>,
+      eventId: <span class="hljs-string">'myEventId'</span>,
+      statsInterval: <span class="hljs-number">10</span>,
+      customField1: <span class="hljs-string">'custom'</span>,
+      customField2: <span class="hljs-number">42</span>,
+      customField3: <span class="hljs-literal">true</span>
+  }
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>stable resume playback on IE/edge if video was out of viewport</li>
+<li>calculate play stats on every &#39;play&#39; for IE/Edge</li>
+<li>detect Windows 10</li>
+<li>pause on &#39;Destroy&#39; only if playing</li>
+</ul>
 <h1 id="-3-14-1-">[3.14.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version comes with some new features. The first one addresses the public &#39;onPlay&#39; event. Now some startup stats will be passed in the event object. These values represent the different states during startup from &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39; and at least &#39;playing&#39;, the total startup time.
