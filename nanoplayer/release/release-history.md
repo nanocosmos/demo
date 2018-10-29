@@ -1,5 +1,70 @@
 ﻿# Release History
 
+# [3.15.3]
+
+## Release Notes
+
+With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor). Also a warnings will be fired if config properties are not valid or from wrong type. 
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
+
+## Changelog
+
+### Added
+
+- fire 'onError' if an error occure during setup
+    - new error codes:
+        - 5001: An exception was thrown during setup.
+        - 5002: A forced tech is not supported by your browser.
+        - 5003: The players source configuration is malformed or missing.
+        - 5004: This browser does not fully support HTML5 and H5Live. Supported are: Chrome >=54 (Windows, MacOSX, Android), Firefox >=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX & at least iOS 10).
+        - 5005: Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.
+        - 5006: Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.
+        - 5007: Configuration error. Could not create player, the websocket server configuration is missing.
+        - 5008: Configuration error. Could not create player, the hls server configuration is missing.
+        - 5009: Configuration error. Could not create player, the websocket server configuration for metadata is missing.
+        - 5010: Could not embed player.
+        - 5101: Could not find bintu stream. The stream is not live.
+        - 5102: No bintu stream id passed.
+        - 5103: Bintu service rejected.
+        - 5201: Metrics configuration error. No metrics config object passed.
+        - 5202: Metrics configuration error. Metrics config is not from type 'object'.
+        - 5203: Metrics configuration error. Metrics config is empty.
+        - 5204: Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.'customField1'.
+        - 5205: Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.'customField1'.
+        - 5206: Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.'customField1'.
+        - 5207: Metrics configuration error. A property is not valid.
+        - 5208: Metrics configuration error. No credentials passed.
+    - this codes will also be passed as property 'code' in the reject error object 
+    - see https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor
+- fire 'onWarning' if a config property is not valid or from wrong type
+- added a new metrics api
+    - enables event logging and data aggregation
+    - configurable via the new 'config.metrics' object, see https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor
+    - disabled by default
+    - for more information contact our sales team: mailto:sales@nanocosmos.de
+    - NOTE: don't set if you have no account!
+    - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
+~~~~
+        config.metrics = {
+            accountId: 'myId',
+            accountKey: 'sdfhe457zsjhnrtzd8',
+            userId: 'myUserId',
+            eventId: 'myEventId',
+            statsInterval: 10,
+            customField1: 'custom',
+            customField2: 42,
+            customField3: true
+        }
+~~~~
+
+### Fixed
+
+- stable resume playback on IE/edge if video was out of viewport
+- calculate play stats on every 'play' for IE/Edge
+- detect Windows 10
+- pause on 'Destroy' only if playing
+
 # [3.14.1]
 
 ## Release Notes
