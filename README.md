@@ -1,10 +1,10 @@
 ﻿# Release History
 
-# [3.15.2]
+# [3.15.3]
 
 ## Release Notes
 
-With this release come two new features and some patches. The one feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor).
+With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor). Also a warnings will be fired if config properties are not valid or from wrong type. 
 The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
@@ -23,9 +23,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
         - 5007: Configuration error. Could not create player, the websocket server configuration is missing.
         - 5008: Configuration error. Could not create player, the hls server configuration is missing.
         - 5009: Configuration error. Could not create player, the websocket server configuration for metadata is missing.
-        - 5010: Configuration error. A config property has the wrong type.
-        - 5011: Configuration error. A config property  is not valid.
-        - 5012: Could not embed player.
+        - 5010: Could not embed player.
         - 5101: Could not find bintu stream. The stream is not live.
         - 5102: No bintu stream id passed.
         - 5103: Bintu service rejected.
@@ -39,6 +37,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
         - 5208: Metrics configuration error. No credentials passed.
     - this codes will also be passed as property 'code' in the reject error object 
     - see https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor
+- fire 'onWarning' if a config property is not valid or from wrong type
 - added a new metrics api
     - enables event logging and data aggregation
     - configurable via the new 'config.metrics' object, see https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor
