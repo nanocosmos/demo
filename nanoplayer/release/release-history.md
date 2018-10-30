@@ -1,5 +1,17 @@
 ﻿# Release History
 
+# [3.15.4]
+
+## Release Notes
+
+This release patches an issue with bintu sources. Now after a successful bintu call the parsed rtmp config will be passed correctly. This issue was introduced in version 3.15.3.
+
+## Changelog
+
+### Fixed
+
+- pass rtmp settings correctly in modified config object if bintu source is used
+
 # [3.15.3]
 
 ## Release Notes
