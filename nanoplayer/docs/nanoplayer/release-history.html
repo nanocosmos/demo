@@ -113,6 +113,14 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-15-4-">[3.15.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release patches an issue with bintu sources. Now after a successful bintu call the parsed rtmp config will be passed correctly. This issue was introduced in version 3.15.3.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>pass rtmp settings correctly in modified config object if bintu source is used</li>
+</ul>
 <h1 id="-3-15-3-">[3.15.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type. 

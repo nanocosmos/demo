@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.15.3</p>
+<dd><p>NanoPlayer Public API Class 3.15.4</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.15.3
+NanoPlayer Public API Class 3.15.4
 
 **Kind**: global class  
-**Version**: 3.15.3  
+**Version**: 3.15.4  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
