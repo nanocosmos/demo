@@ -1390,25 +1390,25 @@ The config object to pass as param for the 'setup' call.
     <td>tweaks.bufferDynamic.cooldownTime</td><td><code>number</code></td><td></td><td><p>The time to check stable playback. If stable playback is detected, the buffer values will be decreased till original buffer values are reached.</p>
 </td>
     </tr><tr>
-    <td>metrics</td><td><code>object</code></td><td></td><td><p>The metrics object. If not set, metrics are disabled.</p>
+    <td>metrics</td><td><code>object</code></td><td></td><td><p>The metrics object. <b>Only usable with valid account.</b> Configuring this object allows you to collect and analyse data via the &#39;nanoStream Cloud&#39;. If not set, metrics are disabled. See our <a href="https://www.nanocosmos.de/v4/documentation/nanoplayer-h5live#nanostream_cloud_analytics_and_player_metrics"><b>nanocosmos / nanoStream documentation</b></a> for more informations.</p>
 </td>
     </tr><tr>
-    <td>metrics.accountId</td><td><code>string</code></td><td></td><td><p>The account id for the metrics.</p>
+    <td>metrics.accountId</td><td><code>string</code></td><td></td><td><p>The account id provided by nanocosmos to use with the metrics.</p>
 </td>
     </tr><tr>
-    <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key for the metrics.</p>
+    <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key provided by nanocosmos to use with the metrics.</p>
 </td>
     </tr><tr>
-    <td>metrics.userId</td><td><code>string</code></td><td></td><td><p>A user id if used.</p>
+    <td>metrics.userId</td><td><code>string</code></td><td></td><td><p>Application user/viewer id. If your application includes a user name or user id, providing this information enables you to filter or aggregate data by this user.</p>
 </td>
     </tr><tr>
-    <td>metrics.eventId</td><td><code>string</code></td><td></td><td><p>A event id if used.</p>
+    <td>metrics.eventId</td><td><code>string</code></td><td></td><td><p>Application event id. If the stream is related to a certain event, e.g. webinar, auction or sports event, providing this information enables you to filter or aggregate data by this event.</p>
 </td>
     </tr><tr>
-    <td>metrics.statsInterval</td><td><code>number</code></td><td><code>10</code></td><td><p>The interval how often the stats should be collected in seconds.</p>
+    <td>metrics.statsInterval</td><td><code>number</code></td><td><code>10</code></td><td><p>The interval how often the stats should be collected in seconds. The minimum is 1 second.</p>
 </td>
     </tr><tr>
-    <td>metrics.customField*</td><td><code>*</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;. Can be all kind of types.</p>
+    <td>metrics.customField*</td><td><code>any</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;. Can be all kind of types.</p>
 </td>
     </tr>  </tbody>
 </table>
