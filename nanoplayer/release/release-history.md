@@ -1,5 +1,17 @@
 ﻿# Release History
 
+# [3.15.5]
+
+## Release Notes
+
+This release patches an issue with the config handling. Now a copy of the config will be used for the setup instead of pointer.
+
+## Changelog
+
+### Fixed
+
+- use only a copy of passed config object for setup
+
 # [3.15.4]
 
 ## Release Notes
