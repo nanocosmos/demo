@@ -2,8 +2,8 @@
     var useMetrics = true;
     if (useMetrics) {
         window.nanoPlayerMetricsConfig = {
-            'accountId': 'nanocosmos-demo',
-            'accountKey': 'hfgwj472649fkjah',
+            'accountId': 'nanocosmos1',
+            'accountKey': 'nc1wj472649fkjah',
             'userId': 'nanoplayer-demo',
             'eventId': 'nanocosmos-demo',
             'statsInterval': 10,
