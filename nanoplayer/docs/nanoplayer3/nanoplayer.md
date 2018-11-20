@@ -49,8 +49,8 @@ NanoPlayer Public API Class 3.15.5
         * ["onError"](#NanoPlayer..event_onError)
         * ["onStats"](#NanoPlayer..event_onStats)
         * ["onMetaData"](#NanoPlayer..event_onMetaData)
-        * ["onMuted"](#NanoPlayer..event_onMuted)
-        * ["onUnmuted"](#NanoPlayer..event_onUnmuted)
+        * ["onMute"](#NanoPlayer..event_onMute)
+        * ["onUnmute"](#NanoPlayer..event_onUnmute)
         * ["onVolumeChange"](#NanoPlayer..event_onVolumeChange)
         * ["onStreamInfo"](#NanoPlayer..event_onStreamInfo)
         * ["onStreamInfoUpdate"](#NanoPlayer..event_onStreamInfoUpdate)
@@ -798,10 +798,10 @@ The metadata event to pass in the 'config.events' object at the setup call. The 
 ```js
 // player instance of NanoPlayervar onMetaData = function (event) {    console.log('MetaData: ' + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
-<a name="NanoPlayer..event_onMuted"></a>
+<a name="NanoPlayer..event_onMute"></a>
 
-### "onMuted"
-The muted event to pass in the 'config.events' object at the setup call. Fires if the player is muted.
+### "onMute"
+The mute event to pass in the 'config.events' object at the setup call. Fires if the player is muted.
 
 **Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
 **See**: [config](#NanoPlayer..config)  
@@ -837,12 +837,12 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onMuted = function (event) {    console.log('Muted with volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onMute = function (event) {    console.log('Muted with volume: ' + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
-<a name="NanoPlayer..event_onUnmuted"></a>
+<a name="NanoPlayer..event_onUnmute"></a>
 
-### "onUnmuted"
-The muted event to pass in the 'config.events' object at the setup call. Fires if the player is unmuted.
+### "onUnmute"
+The unmute event to pass in the 'config.events' object at the setup call. Fires if the player is unmuted.
 
 **Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
 **See**: [config](#NanoPlayer..config)  
@@ -878,12 +878,12 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUnmuted = function (event) {    console.log('Unmuted with volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUnmute = function (event) {    console.log('Unmuted with volume: ' + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onVolumeChange"></a>
 
 ### "onVolumeChange"
-The muted event to pass in the 'config.events' object at the setup call. Fires if the player's volume has changed.
+The volume change event to pass in the 'config.events' object at the setup call. Fires if the player's volume has changed.
 
 **Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
 **See**: [config](#NanoPlayer..config)  
@@ -919,7 +919,7 @@ The muted event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log('Volume: ' + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log('Volume: ' + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStreamInfo"></a>
 
@@ -1339,10 +1339,10 @@ The config object to pass as param for the 'setup' call.
     <td>events.onMetaData</td><td><code>function</code></td><td></td><td><p>Fires if the player has received metadata.</p>
 </td>
     </tr><tr>
-    <td>events.onMuted</td><td><code>function</code></td><td></td><td><p>Fires if the player is muted.</p>
+    <td>events.onMute</td><td><code>function</code></td><td></td><td><p>Fires if the player is muted.</p>
 </td>
     </tr><tr>
-    <td>events.onUnmuted</td><td><code>function</code></td><td></td><td><p>Fires if the player is unmuted.</p>
+    <td>events.onUnmute</td><td><code>function</code></td><td></td><td><p>Fires if the player is unmuted.</p>
 </td>
     </tr><tr>
     <td>events.onVolumeChange</td><td><code>function</code></td><td></td><td><p>Fires if the player&#39;s volume has changed.</p>

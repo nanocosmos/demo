@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
 				<ul class="dropdown-menu inline">
-					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMuted">NanoPlayer~event:onMuted</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmuted">NanoPlayer~event:onUnmuted</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
+					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
 				</ul>
 			</li>
 			
@@ -4493,7 +4493,7 @@
 
         <tr>
             
-                <td class="name"><code>onMuted</code></td>
+                <td class="name"><code>onMute</code></td>
             
 
             <td class="type">
@@ -4525,7 +4525,7 @@
 
         <tr>
             
-                <td class="name"><code>onUnmuted</code></td>
+                <td class="name"><code>onUnmute</code></td>
             
 
             <td class="type">
@@ -9171,7 +9171,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~event:onMuted">onMuted</h4>
+    <h4 class="name" id="~event:onMute">onMute</h4>
     
     
 </dt>
@@ -9179,7 +9179,7 @@
 
     
     <div class="description">
-        <p>The muted event to pass in the 'config.events' object at the setup call. Fires if the player is muted.</p>
+        <p>The mute event to pass in the 'config.events' object at the setup call. Fires if the player is muted.</p>
     </div>
     
 
@@ -9456,7 +9456,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMuted = function (event) {    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMute = function (event) {    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13614,7 +13614,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="~event:onUnmuted">onUnmuted</h4>
+    <h4 class="name" id="~event:onUnmute">onUnmute</h4>
     
     
 </dt>
@@ -13622,7 +13622,7 @@
 
     
     <div class="description">
-        <p>The muted event to pass in the 'config.events' object at the setup call. Fires if the player is unmuted.</p>
+        <p>The unmute event to pass in the 'config.events' object at the setup call. Fires if the player is unmuted.</p>
     </div>
     
 
@@ -13899,7 +13899,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUnmuted = function (event) {    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUnmute = function (event) {    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13917,7 +13917,7 @@
 
     
     <div class="description">
-        <p>The muted event to pass in the 'config.events' object at the setup call. Fires if the player's volume has changed.</p>
+        <p>The volume change event to pass in the 'config.events' object at the setup call. Fires if the player's volume has changed.</p>
     </div>
     
 
@@ -14194,7 +14194,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log(&#x27;Volume: &#x27; + event.data.volume);};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log(&#x27;Volume: &#x27; + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -14567,7 +14567,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Fri Nov 2nd 2018
+		on Tue Nov 20th 2018
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
