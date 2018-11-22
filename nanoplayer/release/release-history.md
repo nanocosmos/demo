@@ -1,5 +1,18 @@
 ﻿# Release History
 
+# [3.15.6]
+
+## Release Notes
+
+This version adresses an issue with the fullscreen functionality on iOS Safari. The player now can go fullscreen within nested iframes. NOTE: The iframe(s) must have the attribute 'allowfullscreen="allowfullscreen|true"]' or just 'allowfullscreen'. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.
+
+## Changelog
+
+### Fixed
+
+- enable fullscreen on iOS within nested iframe(s)
+- detection of IE/Edge viewport issue for stable playback
+
 # [3.15.5]
 
 ## Release Notes

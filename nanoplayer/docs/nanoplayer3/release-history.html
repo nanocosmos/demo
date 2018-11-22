@@ -113,6 +113,15 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-15-6-">[3.15.6]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version adresses an issue with the fullscreen functionality on iOS Safari. The player now can go fullscreen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>enable fullscreen on iOS within nested iframe(s)</li>
+<li>detection of IE/Edge viewport issue for stable playback</li>
+</ul>
 <h1 id="-3-15-5-">[3.15.5]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This release patches an issue with the config handling. Now a copy of the config will be used for the setup instead of pointer.</p>
