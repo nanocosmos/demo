@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.15.6</p>
+<dd><p>NanoPlayer Public API Class 3.16.0</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.15.6
+NanoPlayer Public API Class 3.16.0
 
 **Kind**: global class  
-**Version**: 3.15.6  
+**Version**: 3.16.0  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
@@ -1273,6 +1273,18 @@ The config object to pass as param for the 'setup' call.
     <td>playback.reconnect.maxRetries</td><td><code>number</code></td><td><code>10</code></td><td><p>The maximum count of reconnect tries. If set to zero no reconnect will be done.</p>
 </td>
     </tr><tr>
+    <td>playback.timeouts</td><td><code>object</code></td><td></td><td><p>The timeouts object to configure the timeouts for playback.</p>
+</td>
+    </tr><tr>
+    <td>playback.timeouts.loading</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the loading state in seconds, range from 10 - 60 seconds. If reached the player will be stopped with reason &#39;streamnotfound&#39; and error 2001 will be thrown. Will be cleared if player goes to playing state.</p>
+</td>
+    </tr><tr>
+    <td>playback.timeouts.buffering</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the buffering state in seconds, range from 10 - 60 seconds. If reached the player will be stopped with reason &#39;buffer&#39; and error 2002 will be thrown. Will be cleared if player goes to playing state again.</p>
+</td>
+    </tr><tr>
+    <td>playback.timeouts.connecting</td><td><code>number</code></td><td><code>5</code></td><td><p>The timeout for establishing the websocket connection, range from 5 - 30 seconds. If reached the player will be stopped with reason &#39;connectionclose&#39; and error 4106 will be thrown. WEBSOCKET ONLY, FOR IOS ONLY IF METADATA IS ENABLED</p>
+</td>
+    </tr><tr>
     <td>style</td><td><code>object</code></td><td></td><td><p>The object to configure the style of the player.</p>
 </td>
     </tr><tr>
@@ -1604,19 +1616,19 @@ The possible error codes in a onError event.
     <td>5000-5999.5000-5099.5004</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5005</td><td></td><td><p>Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>
+    <td>5000-5999.5000-5099.5005</td><td></td><td><p>Configuration error. Could not create/update player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5006</td><td></td><td><p>Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.</p>
+    <td>5000-5999.5000-5099.5006</td><td></td><td><p>Configuration error. Could not create/update player, with this configuration an security token is required. Add an token to the configuration.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5007</td><td></td><td><p>Configuration error. Could not create player, the websocket server configuration is missing.</p>
+    <td>5000-5999.5000-5099.5007</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration is missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5008</td><td></td><td><p>Configuration error. Could not create player, the hls server configuration is missing.</p>
+    <td>5000-5999.5000-5099.5008</td><td></td><td><p>Configuration error. Could not create/update player, the hls server configuration is missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5009</td><td></td><td><p>Configuration error. Could not create player, the websocket server configuration for metadata is missing.</p>
+    <td>5000-5999.5000-5099.5009</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration for metadata is missing.</p>
 </td>
     </tr><tr>
     <td>5000-5999.5000-5099.5010</td><td></td><td><p>Could not embed player.</p>

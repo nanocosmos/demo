@@ -86,7 +86,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer Public API Class 3.15.6</p></div>
+            <div class="class-description"><p>NanoPlayer Public API Class 3.16.0</p></div>
         
     
 </header>
@@ -175,7 +175,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>3.15.6</li>
+			<li>3.16.0</li>
 		</ul>
 	</dd>
 	
@@ -3666,6 +3666,159 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>timeouts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeouts object to configure the timeouts for playback.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>loading</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    20
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeout for the loading state in seconds, range from 10 - 60 seconds. If reached the player will be stopped with reason 'streamnotfound' and error 2001 will be thrown. Will be cleared if player goes to playing state.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>buffering</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    20
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeout for the buffering state in seconds, range from 10 - 60 seconds. If reached the player will be stopped with reason 'buffer' and error 2002 will be thrown. Will be cleared if player goes to playing state again.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>connecting</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    5
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeout for establishing the websocket connection, range from 5 - 30 seconds. If reached the player will be stopped with reason 'connectionclose' and error 4106 will be thrown. WEBSOCKET ONLY, FOR IOS ONLY IF METADATA IS ENABLED</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -6766,7 +6919,7 @@
 
             
 
-            <td class="description last"><p>Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p></td>
+            <td class="description last"><p>Configuration error. Could not create/update player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p></td>
         </tr>
 
     
@@ -6784,7 +6937,7 @@
 
             
 
-            <td class="description last"><p>Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.</p></td>
+            <td class="description last"><p>Configuration error. Could not create/update player, with this configuration an security token is required. Add an token to the configuration.</p></td>
         </tr>
 
     
@@ -6802,7 +6955,7 @@
 
             
 
-            <td class="description last"><p>Configuration error. Could not create player, the websocket server configuration is missing.</p></td>
+            <td class="description last"><p>Configuration error. Could not create/update player, the websocket server configuration is missing.</p></td>
         </tr>
 
     
@@ -6820,7 +6973,7 @@
 
             
 
-            <td class="description last"><p>Configuration error. Could not create player, the hls server configuration is missing.</p></td>
+            <td class="description last"><p>Configuration error. Could not create/update player, the hls server configuration is missing.</p></td>
         </tr>
 
     
@@ -6838,7 +6991,7 @@
 
             
 
-            <td class="description last"><p>Configuration error. Could not create player, the websocket server configuration for metadata is missing.</p></td>
+            <td class="description last"><p>Configuration error. Could not create/update player, the websocket server configuration for metadata is missing.</p></td>
         </tr>
 
     
@@ -14567,7 +14720,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Thu Nov 22nd 2018
+		on Thu Nov 29th 2018
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

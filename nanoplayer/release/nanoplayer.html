@@ -42,7 +42,7 @@ All modifications will remain property of nanocosmos.
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
-                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);">
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);" onchange="setVolume(this, value);" />
                 <output for="fader" id="volume">100%</output>
             </span>
             <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
@@ -132,18 +132,18 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.3.15.6.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.3.16.0.min.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
     <script src="./js/nanoplayer-metrics-config.js"></script>
     <script src="js/multi/nano.bintu.js"></script>
     <script>
 
-        var playerVersion = '3.15.6';
+        var playerVersion = '3.16.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20181122';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20181129';
         };
 
         var player;
@@ -227,27 +227,9 @@ All modifications will remain property of nanocosmos.
             hideErrorWarning();
         };
         events.onPause = function (e) {
-            log('pause');
-            if (e.data.reason === 'servernotfound') {
-                document.getElementById('status').innerText = 'paused (server not found)';
-            } else if (e.data.reason === 'streamnotfound') {
-                document.getElementById('status').innerText = 'paused (stream not found)';
-            } else if (e.data.reason === 'buffer') {
-                document.getElementById('status').innerText = 'paused (buffer timeout)';
-            } else if (e.data.reason === 'connectionclose') {
-                document.getElementById('status').innerText = 'paused (server connection lost)';
-            } else if (e.data.reason === 'unknown') {
-                document.getElementById('status').innerText = 'paused (unknown error)';
-            } else if (e.data.reason === 'normal') {
-                document.getElementById('status').innerText = 'paused';
-                document.getElementById('error-container').style.display = 'none';
-            } else if (e.data.reason === 'interactionrequired') {
-                document.getElementById('status').innerText = 'paused (interaction required)';
-            } else if (e.data.reason === 'playbacksuspended') {
-                document.getElementById('status').innerText = 'paused (playback suspended by external reason)';
-            } else if (e.data.reason === 'destroy') {
-                document.getElementById('status').innerText = 'paused (destroy)';
-            }
+            var reason = (e.data.reason !== 'normal') ? ' (%reason%)'.replace('%reason%', e.data.reason) : '';
+            log('pause' + reason);
+            document.getElementById('status').innerText = 'paused' + reason;
         };
         events.onLoading = function (e) {
             log('loading');
@@ -423,6 +405,39 @@ All modifications will remain property of nanocosmos.
                     config.playback.reconnect.maxRetries = parseFloat(maxRetries);
                 }
             }
+            var timeouts = getHTTPParam('timeouts') || getHTTPParam('playback.timeouts');
+            if (timeouts) {
+                var timeouts;
+                try {
+                    timeouts = JSON.parse(timeouts);
+                    config.playback.timeouts = timeouts;
+                } catch (e) {
+                    if (timeouts.length) {
+                        config.playback.timeouts = {};
+                        timeouts = timeouts.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                        var typed = ['loading', 'buffering', 'connecting'];
+                        for (var i = 0, len = Math.min(timeouts.length, typed.length) ; i < len; i += 1) {
+                            if (!isNaN(timeouts[i])) config.playback.timeouts[typed[i]] = parseFloat(timeouts[i]);
+                        }
+                    }
+                }
+            } else {
+                var loading = getHTTPParam('playback.timeouts.loading') || getHTTPParam('timeouts.loading');
+                var buffering = getHTTPParam('playback.timeouts.buffering') || getHTTPParam('timeouts.buffering');
+                var connecting = getHTTPParam('playback.timeouts.connecting') || getHTTPParam('timeouts.connecting');
+                if (loading || buffering || connecting) {
+                    config.playback.timeouts = {};
+                }
+                if (loading) {
+                    config.playback.timeouts.loading = parseFloat(loading);
+                }
+                if (buffering) {
+                    config.playback.timeouts.buffering = parseFloat(buffering);
+                }
+                if (connecting) {
+                    config.playback.timeouts.connecting = parseFloat(connecting);
+                }
+            }
             // TODO fix forcing in playerfactory
             var force = getHTTPParam('force') || getHTTPParam('playback.forceTech');
             if (force) {
@@ -453,6 +468,11 @@ All modifications will remain property of nanocosmos.
             var keepConnection = getHTTPParam('keepConnection') || getHTTPParam('playback.keepConnection');
             if (keepConnection) {
                 config.playback.keepConnection = (keepConnection === 'true' || keepConnection === '1');
+            }
+            var view = getHTTPParam('view') || getHTTPParam('style.view');
+            if (view) {
+                config.style = config.style || {};
+                config.style.view = (view === 'true' || view === '1');
             }
             var scaling = getHTTPParam('scaling') || getHTTPParam('style.scaling');
             if (scaling) {

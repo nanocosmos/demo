@@ -113,13 +113,44 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-16-0-">[3.16.0]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release introduces new features and several patches. Now it&#39;s possible to configure playback timeouts via the new &#39;config.playback.timeouts&#39; object. You can set timeouts for &#39;loading&#39; and &#39;buffering&#39; in a range of 10-60 seconds (default: 20) and for &#39;connecting&#39; in a range of 5-30 seconds (default: 5). If the timeouts are reached, an error will be thrown and the player stops.
+Another feature addresses the metrics. Now also the &#39;LOADING&#39; event will be sent. Furthermore if the player restarts in case of &#39;updateSource&#39; while in playing state the pause event will be triggered with the new pause reason &#39;playbackrestart&#39; before the replay attempt.
+The new version includes patches for the full screen functionality in general and for Internet Explorer (IE) in special. General the full screen icon changes now if exited by ESC and for IE the size is now correctly measured. Another patch fixes the volume change by the controls in IE.
+Two patches address the bintu service. The first one fixes a bug if the view is disabled and the bintu stream is not live or the services rejects. Now no view will be created in case of an bintu error. The other one enables to use &#39;updateSource&#39; with a bintu source. In general now within the &#39;updateSource&#39; promise the error handling is improved too. Further there are patches for displaying muted autoplay correctly and hiding the playbutton in the middle if switching streams using &#39;updateSource&#39; while playing.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>new object &#39;config.playback.timeouts&#39; to configure the timeouts for &#39;loading&#39;, &#39;buffering&#39; and &#39;connecting&#39; in seconds</li>
+</ul>
+<pre><code><span class="hljs-attribute">        config.playback.timeouts </span>=<span class="hljs-string"> {
+            loading: 20,
+            buffering: 20,
+            connecting: 5
+        }</span>
+</code></pre><ul>
+<li>the LOADING event will be sent through metrics</li>
+<li>new pause reason &#39;playbackrestart&#39; in case of a pause for update source in playing state</li>
+<li>updateSource error handling</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>full screen icon change if exited via ESC</li>
+<li>IE full screen sizing</li>
+<li>IE volume change via view controls</li>
+<li>hide view in case of bintu setup error if disabled via &#39;config.style.view=false&#39;</li>
+<li>enable using a bintu source with &#39;updateSource&#39;</li>
+<li>hide middle playbutton in case of a playback restart via &#39;updateSource&#39;</li>
+<li>display muted autoplay icon till first &#39;unmute&#39;</li>
+</ul>
 <h1 id="-3-15-6-">[3.15.6]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version adresses an issue with the fullscreen functionality on iOS Safari. The player now can go fullscreen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
+<p>This version adresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>enable fullscreen on iOS within nested iframe(s)</li>
+<li>enable full screen on iOS within nested iframe(s)</li>
 <li>detection of IE/Edge viewport issue for stable playback</li>
 </ul>
 <h1 id="-3-15-5-">[3.15.5]</h1>
@@ -568,13 +599,13 @@ Automatic pausing on lost focus has been added for Android too.</p>
 </ul>
 <h1 id="-3-5-2-">[3.5.2]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version contains a patch for the fullscreen functionality.
-Now fullscreen will only be exited, if the fullscreen element is the player instance.
-Before it exited every fullscreen on destroy without a check.</p>
+<p>This version contains a patch for the full screen functionality.
+Now full screen will only be exited, if the full screen element is the player instance.
+Before it exited every full screen on destroy without a check.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>fullscreen handling</li>
+<li>full screen handling</li>
 </ul>
 <h1 id="-3-5-1-">[3.5.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
@@ -595,7 +626,7 @@ nanoStream Mobile Apps. Its enabled if &#39;playback.metadata&#39; is set to tru
 </ul>
 <h1 id="-3-4-1-">[3.4.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version contains patches for iOS fullscreen functionality if meta tag &#39;viewport&#39; is set and the autoplay policy of Safari 11, where only muted autoplay is allowed.</p>
+<p>This version contains patches for iOS full screen functionality if meta tag &#39;viewport&#39; is set and the autoplay policy of Safari 11, where only muted autoplay is allowed.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="improved">Improved</h3>
 <ul>
@@ -603,7 +634,7 @@ nanoStream Mobile Apps. Its enabled if &#39;playback.metadata&#39; is set to tru
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>iOS fullscreen functionality if meta tag &#39;viewport&#39; is set</li>
+<li>iOS full screen functionality if meta tag &#39;viewport&#39; is set</li>
 </ul>
 <h1 id="-3-4-0-">[3.4.0]</h1>
 <h2 id="release-notes">Release Notes</h2>
@@ -910,7 +941,7 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li>time</li>
 <li>mute/unmute</li>
 <li>volume</li>
-<li>fullscreen</li>
+<li>full screen</li>
 </ul>
 </li>
 <li>config option to set flashplayer path (default is html root)</li>
@@ -945,7 +976,7 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li>interaction<ul>
 <li>try to scroll or move while mouse pressed should do nothing</li>
 <li>play/pause per click/touch</li>
-<li>fullscreen per doubleclick/doubletouch</li>
+<li>full screen per doubleclick/doubletouch</li>
 </ul>
 </li>
 <li>(ie/edge), more buffer on lower framerates</li>
