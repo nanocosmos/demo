@@ -8,7 +8,7 @@ With this release comes a new feature. We added new error codes and pause reason
 We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is 'visibilityhidden'.
 Further not only error 2001 'stream not found' can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is 'notenoughdata'.
 Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during 'loading', 'buffering' and 'playing' state and results in a pause with reason 'sourcestreamstopped'. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it's state to 'ended'. The pause reason is 'playbackerror'.
-For further informations see the definitions for 'errorcode' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor) and 'pausereason' (https://demo1.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor).
+For further informations see the definitions for 'errorcode' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor) and 'pausereason' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor).
 In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don't try to replay automatically.
 
 ## Changelog
