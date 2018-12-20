@@ -1,5 +1,100 @@
 ﻿# Release History
 
+# [3.17.1]
+
+## Release Notes
+
+With this release comes a new feature. We added new error codes and pause reasons. The errors that can occure during 'loading', 'buffering' and 'playing' state are now more specific regarding the root cause.
+We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is 'visibilityhidden'.
+Further not only error 2001 'stream not found' can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is 'notenoughdata'.
+Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during 'loading', 'buffering' and 'playing' state and results in a pause with reason 'sourcestreamstopped'. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it's state to 'ended'. The pause reason is 'playbackerror'.
+For further informations see the definitions for 'errorcode' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor) and 'pausereason' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor).
+In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don't try to replay automatically.
+
+## Changelog
+
+### Added
+
+- new error codes:
+    - 1009: Playback failed because the player was in visibility state 'hidden' at load start.
+    - 2003: Not enough media data received. The stream was already connected and the stream info event was fired.
+    - 2004: The source stream has been stopped.
+    - 3100: The media source extension changed the state to 'ended'. NOT AVAILABLE FOR IOS.
+- new pause reasons:
+    - 'visibilityhidden': Paused because the player was not visible at load start.
+    - 'notenoughdata': Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.
+    - 'sourcestreamstopped': Paused because the source stream has been stopped.
+
+### Improved
+
+- h5live support detection
+
+### Fixed
+
+- don't restart on error code 3003 MEDIA_DECODE_ERROR
+
+# [3.16.0]
+
+## Release Notes
+
+This release introduces new features and several patches. Now it's possible to configure playback timeouts via the new 'config.playback.timeouts' object. You can set timeouts for 'loading' and 'buffering' in a range of 10-60 seconds (default: 20) and for 'connecting' in a range of 5-30 seconds (default: 5). If the timeouts are reached, an error will be thrown and the player stops.
+Another feature addresses the metrics. Now also the 'LOADING' event will be sent. Furthermore if the player restarts in case of 'updateSource' while in playing state the pause event will be triggered with the new pause reason 'playbackrestart' before the replay attempt.
+The new version includes patches for the full screen functionality in general and for Internet Explorer (IE) in special. General the full screen icon changes now if exited by ESC and for IE the size is now correctly measured. Another patch fixes the volume change by the controls in IE.
+Two patches address the bintu service. The first one fixes a bug if the view is disabled and the bintu stream is not live or the services rejects. Now no view will be created in case of an bintu error. The other one enables to use 'updateSource' with a bintu source. In general now within the 'updateSource' promise the error handling is improved too. Further there are patches for displaying muted autoplay correctly and hiding the playbutton in the middle if switching streams using 'updateSource' while playing.
+
+## Changelog
+
+### Added
+
+- new object 'config.playback.timeouts' to configure the timeouts for 'loading', 'buffering' and 'connecting' in seconds
+
+~~~~
+        config.playback.timeouts = {
+            loading: 20,
+            buffering: 20,
+            connecting: 5
+        }
+~~~~
+
+- the LOADING event will be sent through metrics
+- new pause reason 'playbackrestart' in case of a pause for update source in playing state
+- updateSource error handling
+
+### Fixed
+
+- full screen icon change if exited via ESC
+- IE full screen sizing
+- IE volume change via view controls
+- hide view in case of bintu setup error if disabled via 'config.style.view=false'
+- enable using a bintu source with 'updateSource'
+- hide middle playbutton in case of a playback restart via 'updateSource'
+- display muted autoplay icon till first 'unmute'
+
+# [3.15.6]
+
+## Release Notes
+
+This version adresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute 'allowfullscreen="allowfullscreen|true"]' or just 'allowfullscreen'. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.
+
+## Changelog
+
+### Fixed
+
+- enable full screen on iOS within nested iframe(s)
+- detection of IE/Edge viewport issue for stable playback
+
+# [3.15.5]
+
+## Release Notes
+
+This release patches an issue with the config handling. Now a copy of the config will be used for the setup instead of pointer.
+
+## Changelog
+
+### Fixed
+
+- use only a copy of passed config object for setup
+
 # [3.15.4]
 
 ## Release Notes
@@ -558,15 +653,15 @@ Automatic pausing on lost focus has been added for Android too.
 
 ## Release Notes
 
-This version contains a patch for the fullscreen functionality.
-Now fullscreen will only be exited, if the fullscreen element is the player instance.
-Before it exited every fullscreen on destroy without a check.
+This version contains a patch for the full screen functionality.
+Now full screen will only be exited, if the full screen element is the player instance.
+Before it exited every full screen on destroy without a check.
 
 ## Changelog
 
 ### Fixed
 
-- fullscreen handling
+- full screen handling
 
 # [3.5.1]
 
@@ -593,7 +688,7 @@ nanoStream Mobile Apps. Its enabled if 'playback.metadata' is set to true.
 
 ## Release Notes
 
-This version contains patches for iOS fullscreen functionality if meta tag 'viewport' is set and the autoplay policy of Safari 11, where only muted autoplay is allowed.
+This version contains patches for iOS full screen functionality if meta tag 'viewport' is set and the autoplay policy of Safari 11, where only muted autoplay is allowed.
 
 ## Changelog
 
@@ -603,7 +698,7 @@ This version contains patches for iOS fullscreen functionality if meta tag 'view
 
 ### Fixed
 
-- iOS fullscreen functionality if meta tag 'viewport' is set
+- iOS full screen functionality if meta tag 'viewport' is set
 
 # [3.4.0]
 
@@ -964,7 +1059,7 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).
     - time
     - mute/unmute
     - volume
-    - fullscreen
+    - full screen
 - config option to set flashplayer path (default is html root)
 - events for mute/unmute/volumechange
 - buffer control for ios
@@ -995,7 +1090,7 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).
 - interaction
     - try to scroll or move while mouse pressed should do nothing
     - play/pause per click/touch
-    - fullscreen per doubleclick/doubletouch
+    - full screen per doubleclick/doubletouch
 - (ie/edge), more buffer on lower framerates
 
 ### Fixed
