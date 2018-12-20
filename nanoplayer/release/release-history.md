@@ -1,5 +1,38 @@
 ﻿# Release History
 
+# [3.17.1]
+
+## Release Notes
+
+With this release comes a new feature. We added new error codes and pause reasons. The errors that can occure during 'loading', 'buffering' and 'playing' state are now more specific regarding the root cause.
+We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is 'visibilityhidden'.
+Further not only error 2001 'stream not found' can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is 'notenoughdata'.
+Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during 'loading', 'buffering' and 'playing' state and results in a pause with reason 'sourcestreamstopped'. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it's state to 'ended'. The pause reason is 'playbackerror'.
+For further informations see the definitions for 'errorcode' (https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor) and 'pausereason' (https://demo1.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor).
+In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don't try to replay automatically.
+
+## Changelog
+
+### Added
+
+- new error codes:
+    - 1009: Playback failed because the player was in visibility state 'hidden' at load start.
+    - 2003: Not enough media data received. The stream was already connected and the stream info event was fired.
+    - 2004: The source stream has been stopped.
+    - 3100: The media source extension changed the state to 'ended'. NOT AVAILABLE FOR IOS.
+- new pause reasons:
+    - 'visibilityhidden': Paused because the player was not visible at load start.
+    - 'notenoughdata': Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.
+    - 'sourcestreamstopped': Paused because the source stream has been stopped.
+
+### Improved
+
+- h5live support detection
+
+### Fixed
+
+- don't restart on error code 3003 MEDIA_DECODE_ERROR
+
 # [3.16.0]
 
 ## Release Notes

@@ -86,7 +86,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer Public API Class 3.16.0</p></div>
+            <div class="class-description"><p>NanoPlayer Public API Class 3.17.1</p></div>
         
     
 </header>
@@ -175,7 +175,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>3.16.0</li>
+			<li>3.17.1</li>
 		</ul>
 	</dd>
 	
@@ -5787,6 +5787,24 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>1009</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Playback failed because the player was in visibility state 'hidden' at load start.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5869,6 +5887,42 @@
             
 
             <td class="description last"><p>No media available.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>2003</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Not enough media data received. The stream was already connected and the stream info event was fired.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>2004</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The source stream has been stopped.</p></td>
         </tr>
 
     
@@ -6062,6 +6116,24 @@
             
 
             <td class="description last"><p>The received audio/video is not supported.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>3100</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The media source extension changed the state to 'ended'. NOT AVAILABLE FOR IOS.</p></td>
         </tr>
 
     
@@ -7610,6 +7682,78 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>playbackrestart</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Paused because the player was stopped for update source. The player will restart immediately.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>visibilityhidden</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Paused because the player was not visible at load start.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>notenoughdata</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sourcestreamstopped</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Paused because the source stream has been stopped.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 </dl>
@@ -7984,6 +8128,78 @@
             
 
             <td class="description last"><p>DESTROYING</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>16</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>PLAYBACK_RESTARTING</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>17</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>VISIBILITY_HIDDEN</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>18</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>NOT_ENOUGH_DATA</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>19</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>SOURCE_STREAM_STOPPED</p></td>
         </tr>
 
     
@@ -14720,7 +14936,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
-		on Thu Nov 29th 2018
+		on Tue Dec 18th 2018
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

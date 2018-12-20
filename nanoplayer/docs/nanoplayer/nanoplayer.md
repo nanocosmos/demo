@@ -2,7 +2,7 @@
 
 <dl>
 <dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.16.0</p>
+<dd><p>NanoPlayer Public API Class 3.17.1</p>
 </dd>
 </dl>
 
@@ -17,10 +17,10 @@
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.16.0
+NanoPlayer Public API Class 3.17.1
 
 **Kind**: global class  
-**Version**: 3.16.0  
+**Version**: 3.17.1  
 
 * [NanoPlayer](#NanoPlayer)
     * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
@@ -1484,12 +1484,21 @@ The possible error codes in a onError event.
     <td>1000-1999.1008</td><td></td><td><p>Playback error.</p>
 </td>
     </tr><tr>
+    <td>1000-1999.1009</td><td></td><td><p>Playback failed because the player was in visibility state &#39;hidden&#39; at load start.</p>
+</td>
+    </tr><tr>
     <td>2000-2999</td><td><code>StreamError</code></td><td></td>
     </tr><tr>
     <td>2000-2999.2001</td><td></td><td><p>The requested stream can not be found.</p>
 </td>
     </tr><tr>
     <td>2000-2999.2002</td><td></td><td><p>No media available.</p>
+</td>
+    </tr><tr>
+    <td>2000-2999.2003</td><td></td><td><p>Not enough media data received. The stream was already connected and the stream info event was fired.</p>
+</td>
+    </tr><tr>
+    <td>2000-2999.2004</td><td></td><td><p>The source stream has been stopped.</p>
 </td>
     </tr><tr>
     <td>2000-2999.2011</td><td></td><td><p>Received metadata with wrong index.</p>
@@ -1516,6 +1525,9 @@ The possible error codes in a onError event.
 </td>
     </tr><tr>
     <td>3000-3999.3004</td><td></td><td><p>The received audio/video is not supported.</p>
+</td>
+    </tr><tr>
+    <td>3000-3999.3100</td><td></td><td><p>The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</p>
 </td>
     </tr><tr>
     <td>4000-4999</td><td><code>NetworkError</code></td><td></td>
@@ -1734,6 +1746,18 @@ The state of the player.
     </tr><tr>
     <td>15</td><td><p>DESTROYING</p>
 </td>
+    </tr><tr>
+    <td>16</td><td><p>PLAYBACK_RESTARTING</p>
+</td>
+    </tr><tr>
+    <td>17</td><td><p>VISIBILITY_HIDDEN</p>
+</td>
+    </tr><tr>
+    <td>18</td><td><p>NOT_ENOUGH_DATA</p>
+</td>
+    </tr><tr>
+    <td>19</td><td><p>SOURCE_STREAM_STOPPED</p>
+</td>
     </tr>  </tbody>
 </table>
 
@@ -1782,6 +1806,18 @@ The possible pause reason in a onPause event.
 </td>
     </tr><tr>
     <td>destroy</td><td><p>Paused because the player will be destroyed.</p>
+</td>
+    </tr><tr>
+    <td>playbackrestart</td><td><p>Paused because the player was stopped for update source. The player will restart immediately.</p>
+</td>
+    </tr><tr>
+    <td>visibilityhidden</td><td><p>Paused because the player was not visible at load start.</p>
+</td>
+    </tr><tr>
+    <td>notenoughdata</td><td><p>Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.</p>
+</td>
+    </tr><tr>
+    <td>sourcestreamstopped</td><td><p>Paused because the source stream has been stopped.</p>
 </td>
     </tr>  </tbody>
 </table>

@@ -113,6 +113,39 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-17-1-">[3.17.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>With this release comes a new feature. We added new error codes and pause reasons. The errors that can occure during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state are now more specific regarding the root cause.
+We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is &#39;visibilityhidden&#39;.
+Further not only error 2001 &#39;stream not found&#39; can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is &#39;notenoughdata&#39;.
+Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state and results in a pause with reason &#39;sourcestreamstopped&#39;. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it&#39;s state to &#39;ended&#39;. The pause reason is &#39;playbackerror&#39;.
+For further informations see the definitions for &#39;errorcode&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>) and &#39;pausereason&#39; (<a href="https://demo1.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor">https://demo1.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor</a>).
+In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don&#39;t try to replay automatically.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>new error codes:<ul>
+<li>1009: Playback failed because the player was in visibility state &#39;hidden&#39; at load start.</li>
+<li>2003: Not enough media data received. The stream was already connected and the stream info event was fired.</li>
+<li>2004: The source stream has been stopped.</li>
+<li>3100: The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</li>
+</ul>
+</li>
+<li>new pause reasons:<ul>
+<li>&#39;visibilityhidden&#39;: Paused because the player was not visible at load start.</li>
+<li>&#39;notenoughdata&#39;: Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.</li>
+<li>&#39;sourcestreamstopped&#39;: Paused because the source stream has been stopped.</li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>h5live support detection</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>don&#39;t restart on error code 3003 MEDIA_DECODE_ERROR</li>
+</ul>
 <h1 id="-3-16-0-">[3.16.0]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This release introduces new features and several patches. Now it&#39;s possible to configure playback timeouts via the new &#39;config.playback.timeouts&#39; object. You can set timeouts for &#39;loading&#39; and &#39;buffering&#39; in a range of 10-60 seconds (default: 20) and for &#39;connecting&#39; in a range of 5-30 seconds (default: 5). If the timeouts are reached, an error will be thrown and the player stops.
