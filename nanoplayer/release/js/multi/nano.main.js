@@ -30,12 +30,15 @@ var streamobj = [];
             playback: {
                 autoplay: true,
                 muted: true,
-                metadata: false
+                metadata: true
             },
             style: {
                 width: 'auto',
                 height: 'auto'
             }
+        }
+        if (window.nanoPlayerMetricsConfig) {
+            this.config.metrics = window.nanoPlayerMetricsConfig;
         }
         this.bintuQuery = {};
         this.h5liveQuery = {};
@@ -78,7 +81,7 @@ var streamobj = [];
             }
             this.config.source.bintu = {};
             if (!this.bintuQuery.apiurl) {
-                this.bintuQuery.apiurl = (document.location.href.indexOf('local') !== -1) ? "https://bintu.nanocosmos.de" : "https://bintu-local.nanocosmos.de";
+                this.bintuQuery.apiurl = (document.location.hostname.indexOf('local') !== -1) ? "https://bintu.nanocosmos.de" : "https://bintu-local.nanocosmos.de";
             }
             this.config.source.bintu.apiurl = this.bintuQuery.apiurl;
             if (this.bintuQuery.tags) {
@@ -444,7 +447,6 @@ var streamobj = [];
             var divEmbed = document.createElement('div');
             divEmbed.setAttribute('id', id);
 
-            this.players[id] = new NanoPlayer('player-' + id);
             //divObj.appendChild(divEmbed); 
             div.appendChild(divObj);
             parent.appendChild(div);
@@ -457,6 +459,7 @@ var streamobj = [];
             div.className = "";
             this.playersToStart[id] = true;
             this.playersConnectionErrors[id] = 0;
+            this.players[id] = new NanoPlayer('player-' + id);
         }
         var allUnused = [];
         for (j = 0; j < parent.childNodes.length; j += 1) {
