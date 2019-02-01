@@ -285,7 +285,7 @@ var streamobj = [];
             var gps   = { "latitude": lat, "longitude": lng }; // gps object
 
             //returns meta object
-            var standalone = "http://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?bintu.apiurl=https://bintu.nanocosmos.de&bintu.streamid=" + gpsResponse[i].id,
+            var standalone = "./nanoplayer.html?bintu.apiurl=https://bintu.nanocosmos.de&bintu.streamid=" + gpsResponse[i].id,
                 name = gpsResponse[i].ingest.rtmp.streamname,
                 url = gpsResponse[i].playout.rtmp[0].url + '/' + gpsResponse[i].playout.rtmp[0].streamname,
                 state = gpsResponse[i].state,
@@ -394,7 +394,7 @@ var streamobj = [];
                 }
             }
             item.innerHTML += '<strong>standalone player: </strong>';
-            var link = '<a href="http://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + streamId;
+            var link = '<a href="./nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + streamId;
             if (this.config.playback.forceTech) {
                 link += '&force=' + this.config.playback.forceTech;
             }
