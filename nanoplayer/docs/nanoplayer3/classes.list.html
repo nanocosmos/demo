@@ -429,7 +429,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onDestroy = function (event) {    console.log(&#x27;player destroy&#x27;);};config.events.onDestroy = onDestroy;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onDestroy = function (event) {
+    console.log(&#x27;player destroy&#x27;);
+};
+config.events.onDestroy = onDestroy;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -772,7 +781,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onError = function (event) {    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onError = function (event) {
+    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);
+};
+config.events.onError = onError;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -1091,7 +1109,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onLoading = function (event) {    console.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onLoading = function (event) {
+    console.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);
+};
+config.events.onLoading = onLoading;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -1434,7 +1461,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMetaData = function (event) {    console.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onMetaData = function (event) {
+    console.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));
+};
+config.events.onMetaData = onMetaData;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -1729,7 +1765,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMute = function (event) {    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onMute = function (event) {
+    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);
+};
+config.events.onMute = onMute;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -2048,7 +2093,19 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPause = function (event) {    console.log(&#x27;Pause&#x27;);    if (event.data.reason !== &#x27;normal&#x27;) {         alert(&#x27;Paused with reason: &#x27; + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onPause = function (event) {
+    console.log(&#x27;Pause&#x27;);
+    if (event.data.reason !== &#x27;normal&#x27;) {
+         alert(&#x27;Paused with reason: &#x27; + event.data.reason);
+    }
+};
+config.events.onPause = onPause;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -2536,7 +2593,17 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPlay = function (event) {    console.log(&#x27;Playing&#x27;);    console.log(&#x27;play stats: &#x27; + JSON.stringify(event.data.stats));};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onPlay = function (event) {
+    console.log(&#x27;Playing&#x27;);
+    console.log(&#x27;play stats: &#x27; + JSON.stringify(event.data.stats));
+};
+config.events.onPlay = onPlay;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -2855,7 +2922,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onReady = function (event) {    console.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onReady = function (event) {
+    console.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));
+}
+config.events.onReady = onReady;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -3125,7 +3201,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStartBuffering = function (event) {    console.log(&#x27;Buffering&#x27;);};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onStartBuffering = function (event) {
+    console.log(&#x27;Buffering&#x27;);
+};
+config.events.onStartBuffering = onStartBuffering;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -4291,7 +4376,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStats = function (event) {    console.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onStats = function (event) {
+    console.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));
+};
+config.events.onStats = onStats;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -4561,7 +4655,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStopBuffering = function (event) {    console.log(&#x27;Resume&#x27;);};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onStopBuffering = function (event) {
+    console.log(&#x27;Resume&#x27;);
+};
+config.events.onStopBuffering = onStopBuffering;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -5219,7 +5322,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfo = function (event) {    console.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onStreamInfo = function (event) {
+    console.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));
+};
+config.events.onStreamInfo = onStreamInfo;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -5877,7 +5989,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    console.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onStreamInfoUpdate = function (event) {
+    console.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));
+};
+config.events.onStreamInfoUpdate = onStreamInfoUpdate;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -6172,7 +6293,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUnmute = function (event) {    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onUnmute = function (event) {
+    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);
+};
+config.events.onUnmute = onUnmute;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -6467,7 +6597,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log(&#x27;Volume: &#x27; + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onVolumeChange = function (event) {
+    console.log(&#x27;Volume: &#x27; + event.data.volume);
+};
+config.events.onVolumeChange = onVolumeChange;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -6786,7 +6925,16 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onWarning = function (event) {    console.log(&#x27;Warning: &#x27; + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onWarning = function (event) {
+    console.log(&#x27;Warning: &#x27; + event.data.message);
+};
+config.events.onWarning = onWarning;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
 
 
     
@@ -6838,9 +6986,9 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Thu Dec 20th 2018
+		on Tue Feb 26th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
