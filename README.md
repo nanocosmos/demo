@@ -1,4 +1,16 @@
-﻿# Release History - nanoStream H5Live Player
+# Release History - nanoStream H5Live Player
+
+# [3.17.2]
+
+## Release Notes
+
+This release patches an issue with metrics fields type. Now the fields 'accountId', 'accountKey', 'userId', 'eventId', and 'customField1' - 'customField10' must be of type String. If one of the mentioned fields has a different type, it will be silently converted to String.
+
+## Changelog
+
+### Fixed
+
+- convert metrics fields to String, if necessary
 
 # [3.17.1]
 

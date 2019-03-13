@@ -113,13 +113,21 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-17-2-">[3.17.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release patches an issue with metrics fields type. Now the fields &#39;accountId&#39;, &#39;accountKey&#39;, &#39;userId&#39;, &#39;eventId&#39;, and &#39;customField1&#39; - &#39;customField10&#39; must be of type String. If one of the mentioned fields has a different type, it will be silently converted to String.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>convert metrics fields to String, if necessary</li>
+</ul>
 <h1 id="-3-17-1-">[3.17.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>With this release comes a new feature. We added new error codes and pause reasons. The errors that can occure during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state are now more specific regarding the root cause.
 We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is &#39;visibilityhidden&#39;.
 Further not only error 2001 &#39;stream not found&#39; can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is &#39;notenoughdata&#39;.
 Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state and results in a pause with reason &#39;sourcestreamstopped&#39;. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it&#39;s state to &#39;ended&#39;. The pause reason is &#39;playbackerror&#39;.
-For further informations see the definitions for &#39;errorcode&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>) and &#39;pausereason&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor</a>).
+For further informations see the definitions for &#39;errorcode&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>) and &#39;pausereason&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor)</a>.
 In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don&#39;t try to replay automatically.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="added">Added</h3>
@@ -204,8 +212,8 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 </ul>
 <h1 id="-3-15-3-">[3.15.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type. 
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+<p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)</a>. Also a warnings will be fired if config properties are not valid or from wrong type. 
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:sales@nanocosmos.de">sales@nanocosmos.de</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="added">Added</h3>
@@ -244,7 +252,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>enables event logging and data aggregation</li>
 <li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
 <li>disabled by default</li>
-<li>for more information contact our sales team: mailto:sales@nanocosmos.de</li>
+<li>for more information contact our sales team: mailto:<a href="mailto:sales@nanocosmos.de">sales@nanocosmos.de</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
 <li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!<pre><code>  config.metrics = {
       accountId: <span class="hljs-string">'myId'</span>,
@@ -279,7 +287,7 @@ The second feature is the new public event &#39;onDestroy&#39;. This event is fi
 <li>subobject &#39;stats&#39; in &#39;event.data&#39;</li>
 <li>keys: &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39;, &#39;playing&#39;</li>
 <li>times in milliseconds relative to &#39;connecting&#39;</li>
-<li>see &#39;<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay</a>&#39;</li>
+<li>see &#39;<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay&#39;">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay&#39;</a></li>
 <li>an example &#39;event.data.stats&#39; object:<pre><code>  {
       "<span class="hljs-attribute">stats</span>": <span class="hljs-value">{
           "<span class="hljs-attribute">connecting</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
@@ -440,9 +448,11 @@ config.source.h5live.<span class="hljs-keyword">params</span> = {
     <span class="hljs-string">'stream'</span>: <span class="hljs-string">'dtHSa-aEWRT'</span>,
     <span class="hljs-string">'custom_param'</span>: <span class="hljs-string">'very_custom'</span>
 }
+
 </code></pre><p>In this example we pass directly the rtmp settings, &#39;url&#39; and &#39;stream&#39;. If a &#39;config.source.h5live.rtmp&#39; object is declared, it will be overwritten. This will result for websocket in a connection string like this:</p>
 <pre><code>
 <span class="hljs-keyword">wss</span>://bintu-play.nanocosmos.de/h5live/stream/?url=rtmp<span class="hljs-number">%3</span>A<span class="hljs-number">%2</span>F<span class="hljs-number">%2</span>Fbintu-play.nanocosmos.de<span class="hljs-number">%3</span>A80<span class="hljs-number">%2</span>Fplay&amp;stream=dtHSa-aEWRT&amp;custom_param=very_custom&amp;cid=405498&amp;pid=43377944190
+
 </code></pre><p>This version also contains fixes for a wrong buffering state detection on iOS and one for the view. In the view now a configured &#39;scaling&#39; mode will be keeped over the whole lifetime of the player.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="added">Added</h3>
@@ -458,6 +468,7 @@ config.source.h5live.<span class="hljs-keyword">params</span> = {
     <span class="hljs-string">'stream'</span>: <span class="hljs-string">'dtHSa-aEWRT'</span>,
     <span class="hljs-string">'custom_param'</span>: <span class="hljs-string">'very_custom'</span>
 }
+
 </code></pre><h3 id="fixed">Fixed</h3>
 <ul>
 <li>buffering state detection on iOS</li>
@@ -733,7 +744,7 @@ In this release are also several fixes. There are fixes for the scaling function
 </ul>
 </li>
 <li>dispatch network error 4503: service unavailable</li>
-<li>add performance marks with timestamps (see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks</a>),
+<li>add performance marks with timestamps (see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks)</a>,
 the middle part of the name string is the elementId of the player container (not supported on Safari 11 OSX and iOS):<ul>
 <li>&#39;nano.[playerDivId].connecting&#39;</li>
 <li>&#39;nano.[playerDivId].connected&#39;</li>

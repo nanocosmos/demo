@@ -81,7 +81,7 @@ var streamobj = [];
             }
             this.config.source.bintu = {};
             if (!this.bintuQuery.apiurl) {
-                this.bintuQuery.apiurl = (document.location.hostname.indexOf('local') !== -1) ? "https://bintu.nanocosmos.de" : "https://bintu-local.nanocosmos.de";
+                this.bintuQuery.apiurl = (document.location.hostname.indexOf('local') !== -1) ? "https://bintu-local.nanocosmos.de" : "https://bintu.nanocosmos.de";
             }
             this.config.source.bintu.apiurl = this.bintuQuery.apiurl;
             if (this.bintuQuery.tags) {
