@@ -1,5 +1,40 @@
 # Release History - nanoStream H5Live Player
 
+# [3.17.4]
+
+## Release Notes
+
+This release improves and stabilizes the metrics play event stats collection, the playback stats collection and the general metrics event error handling. There are some checks added to avoid playback interupts in case of metrics collection errors.
+Further the stats object in the flash fallback is updated with all possible properties. Before this resulted in an error at metrics collection.
+
+## Changelog
+
+### Improved
+
+- catch errors in metrics module 
+- check play event stats and playback stats in metrics module for consistancy
+
+### Fixed
+
+- update stats object for flash fallback with all possible properties
+
+# [3.17.3]
+
+## Release Notes
+
+This release contains several patches. One patch fixes a potential problem with autoplay policies regarding the play promise implementation of certain browsers. The main problem were side effects with the promise wrapper of the player and some third party libs which manipulate promises. In this cases the promise always resolved, also in case of an play start error.
+Another patch addresses a bug in Microsoft Edge 18. We removed the 'MediaSource.isTypeSupported' check for all Edge versions because of an inconsistancy in Edge 18.
+Further a bug in the 'updateSource' function for iOS is fixed. Also now the full screen icon on Chrome changes correctly.
+
+## Changelog
+
+### Fixed
+
+- change media play promise wrapping to avoid side effects of promise manipulating third party libs
+- remove 'MediaSource.isTypeSupported' check for all Microsoft Edge versions
+- fix 'type undefined' error in 'updateSource' for iOS
+- fix full screen icon change on Chrome
+
 # [3.17.2]
 
 ## Release Notes

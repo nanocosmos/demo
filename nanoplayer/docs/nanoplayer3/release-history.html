@@ -113,6 +113,33 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-17-4-">[3.17.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release improves and stabilizes the metrics play event stats collection, the playback stats collection and the general metrics event error handling. There are some checks added to avoid playback interupts in case of metrics collection errors.
+Further the stats object in the flash fallback is updated with all possible properties. Before this resulted in an error at metrics collection.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>catch errors in metrics module </li>
+<li>check play event stats and playback stats in metrics module for consistancy</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>update stats object for flash fallback with all possible properties</li>
+</ul>
+<h1 id="-3-17-3-">[3.17.3]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release contains several patches. One patch fixes a potential problem with autoplay policies regarding the play promise implementation of certain browsers. The main problem were side effects with the promise wrapper of the player and some third party libs which manipulate promises. In this cases the promise always resolved, also in case of an play start error.
+Another patch addresses a bug in Microsoft Edge 18. We removed the &#39;MediaSource.isTypeSupported&#39; check for all Edge versions because of an inconsistancy in Edge 18.
+Further a bug in the &#39;updateSource&#39; function for iOS is fixed. Also now the full screen icon on Chrome changes correctly.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>change media play promise wrapping to avoid side effects of promise manipulating third party libs</li>
+<li>remove &#39;MediaSource.isTypeSupported&#39; check for all Microsoft Edge versions</li>
+<li>fix &#39;type undefined&#39; error in &#39;updateSource&#39; for iOS</li>
+<li>fix full screen icon change on Chrome</li>
+</ul>
 <h1 id="-3-17-2-">[3.17.2]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This release patches an issue with metrics fields type. Now the fields &#39;accountId&#39;, &#39;accountKey&#39;, &#39;userId&#39;, &#39;eventId&#39;, and &#39;customField1&#39; - &#39;customField10&#39; must be of type String. If one of the mentioned fields has a different type, it will be silently converted to String.</p>
