@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!--
+nanoStream Player
+(c) 2018, nanocosmos gmbh
+http://www.nanocosmos.de
+sales@nanocosmos.de
+
+LEGAL NOTICE:
+This material is subject to the terms and conditions defined in
+separate license conditions ('LICENSE.txt')
+All information contained herein is, and remains the property
+of nanocosmos GmbH and its suppliers if any. The intellectual and technical concepts
+contained herein are proprietary to nanocosmos GmbH, and are protected by trade secret
+or copyright law. Dissemination of this information or reproduction of this material
+is strictly forbidden unless prior written permission is obtained from nanocosmos.
+All modifications will remain property of nanocosmos.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>nanoplayer</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <div id="container">
+        <p class="normal">
+            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+            <strong id="demo-version"></strong>
+        </p>
+        <div id="playerDiv" class="player">
+            <!---->
+            <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
+        </div>
+        <p class="normal">
+            <span>
+                <strong>controls:&nbsp;</strong>
+                <button id="buttonPlay" onclick="play();">play</button>
+                <button id="buttonPause" onclick="pause();">pause</button>
+                <button id="buttonReset" onclick="startPlayer();">reset</button>
+                <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
+            </span>
+            <span style="float:right">
+                <span>&nbsp;</span>
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);" onchange="setVolume(this, value);" />
+                <output for="fader" id="volume">100%</output>
+            </span>
+            <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
+            <strong id="friendly-message"></strong>
+        </p>
+        <p class="normal" id="warning-container" style="display:none">
+            <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
+        </p>
+        <p class="normal" id="group-container" style="display:none">
+            <strong>group:&nbsp;</strong><span id="group">uninitialized</span>
+        </p>
+        <p class="normal" id="streams-container" style="display:none">
+            <strong>streams:&nbsp;</strong><select id="stream-select" onchange="resetPlayer();"></select>
+        </p>
+        <!-- <div id="update-source-container" style="display:none">
+            <p class="normal" style="display:flex">
+                <strong>server:&nbsp;</strong><input id="inputServer" data-prop="server" style="flex:2" />
+            </p>
+            <p class="normal" style="display:flex">
+                <strong>url:&nbsp;</strong><input id="inputUrl" data-prop="url" style="flex:2" />
+            </p>
+            <p class="normal" style="display:flex">
+                <strong>streamname:&nbsp;</strong><input id="inputStreamname" data-prop="streamname" style="flex:2" />
+            </p>
+            <p class="normal" style="display:flex">
+                <button id="buttonUpdateSource" onclick="updateSource();" style="flex:1">update</button>
+            </p>
+        </div> -->
+        <p class="normal">
+            <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
+        </p>
+        <p class="normal" id="metadata-container" style="display:none">
+            <strong>metadata:&nbsp;</strong><span id="metadata"></span>
+        </p>
+        <p class="normal" id="error-container" style="display:none">
+            <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
+        </p>
+        <p class="normal" id="h5live-server-container" style="display:none">
+            <strong>h5live server wss:&nbsp;</strong><span id="h5live-server-wss">???</span><br />
+            <strong>h5live server hls:&nbsp;</strong><span id="h5live-server-hls">???</span>
+        </p>
+        <p class="normal">
+        </p>
+        <p class="normal">
+            <strong>source:&nbsp;</strong><span id="url">???</span><span>&nbsp;&nbsp;&nbsp;</span><strong>tech:&nbsp;</strong><span id="tech">???</span>
+        </p>
+        <p class="normal">
+            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
+        </p>
+        <div id="code-snippet-container" style="display:none">
+            <strong>code snippet</strong>
+            <pre id="code-snippet"></pre>
+        </div>
+        <p class="normal">
+            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">open api documentation</a>
+        </p>
+        <p class="normal">
+            <strong>log:&nbsp;</strong><br />
+            <span id="log"></span>
+        </p>
+    </div>
+
+    <script>
+
+        // DEFAULT DEMO PAGE H5LIVE SERVER
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'h5live.nanocosmos.de';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://h5live.nanocosmos.de:443/h5live/stream';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+
+    </script>
+
+    
+    
+    <script src="../api/release/nanoplayer.3.min.js"></script>
+    <script src="./js/nanoplayer-metrics-config.js"></script>
+    <script>
+
+        var getPlayerLocation = function () {
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190313';
+        };
+
+        var player;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var cap = NanoPlayer.capabilities;
+            !cap.length ? console.log('no supported player tech') : cap.forEach(function (c) { console.log('supported player tech: ' + c) });
+            init();
+        });
+    </script>
+    
+
+    <script>
+
+        var _HTTPParams = undefined;
+        var getHTTPParam = function (paramKey) {
+            // if params dont exist, create/read them
+            if (!_HTTPParams) {
+                _HTTPParams = new Array();
+                var strGET = document.location.search.substr(1, document.location.search.length);
+                if (strGET === '' && document.location.href.indexOf('?') !== -1) {
+                    var pos = document.location.href.indexOf('?') + 1;
+                    strGET = document.location.href.slice(pos);
+                }
+                if (strGET !== '') {
+                    var gArr = strGET.split('&');
+                    for (var i = 0; i < gArr.length; ++i) {
+                        var v = '';
+                        var vArr = gArr[i].split('=');
+                        var k = vArr[0];
+                        if (vArr.length > 1) {
+                            v = vArr[1];
+                        }
+                        _HTTPParams[decodeURIComponent(k)] = decodeURIComponent(v);
+                    }
+                }
+            }
+            // return requested param, if exists
+            try {
+                return _HTTPParams[paramKey];
+            } catch (e) {
+                return undefined;
+            }
+        };
+
+        var buffering = {
+            start: 0,
+            end: 0
+        };
+
+        var bintu, bintuQ;
+        var metaDataTimeout = 0;
+        var forceAutoplay = null;
+        var forceMuted = null;
+
+        var searchRefreshInterval = 0;
+
+        var config = {
+            source: {},
+            playback: {
+                autoplay: true,
+                automute: true,
+                muted: false
+            },
+            events: {},
+            style: {
+                controls: true
+            }
+        };
+
+        var events = {};
+
+        events.onReady = function (e) {
+            log('ready');
+            document.getElementById('status').innerText = 'ready';
+        };
+        events.onPlay = function (e) {
+            log('playing');
+            log('play stats: ' + JSON.stringify(e.data));
+            document.getElementById('status').innerText = 'playing';
+            hideErrorWarning();
+        };
+        events.onPause = function (e) {
+            var reason = (e.data.reason !== 'normal') ? ' (%reason%)'.replace('%reason%', e.data.reason) : '';
+            log('pause' + reason);
+            document.getElementById('status').innerText = 'paused' + reason;
+        };
+        events.onLoading = function (e) {
+            log('loading');
+            document.getElementById('status').innerText = 'loading';
+        };
+        events.onStartBuffering = function (e) {
+            buffering.start = new Date();
+            setTimeout(function () {
+                if (buffering.start) {
+                    document.getElementById('status').innerText = 'buffering';
+                }
+            }, 2000);
+        };
+        events.onStopBuffering = function (e) {
+            buffering.stop = new Date();
+            if (buffering.start) {
+                var duration = Math.abs(buffering.stop - buffering.start);
+                if (duration > 1000) {
+                    log('buffering ' + duration + 'ms');
+                }
+                buffering.stop = buffering.start = 0;
+            }
+            document.getElementById('status').innerText = 'playing';
+        };
+        events.onError = function (e) {
+            try {
+                var err = JSON.stringify(e);
+                if (err === '{}') {
+                    err = e.message;
+                }
+                e = err;
+            } catch (err) { }
+            log('Error = ' + e);
+            document.getElementById('error').innerText = e;
+            document.getElementById('error-container').style.display = 'block';
+        };
+        events.onWarning = function (e) {
+            log('Warning = ' + e.data.message);
+            document.getElementById('warning').innerText = e.data.message;
+            document.getElementById('warning-container').style.display = 'block';
+        };
+        events.onMetaData = function (e) {
+            var metadata = JSON.stringify(e.data);
+            (metadata.length > 100) && (metadata = metadata.substr(0, 100) + '...');
+            document.getElementById('metadata').innerText = metadata;
+            document.getElementById('metadata-container').style.display = 'block';
+            clearTimeout(metaDataTimeout);
+            metaDataTimeout = setTimeout(function () { document.getElementById('metadata-container').style.display = 'none'; }, 5000);
+            log('onMetaData');
+            log(e, true);
+        };
+        events.onStats = onStats;
+        events.onMute = function (e) {
+            log('onMute');
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = true;
+            buttonMute.innerText = 'unmute';
+        };
+        events.onUnmute = function (e) {
+            log('onUnmute');
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = false;
+            buttonMute.innerText = 'mute';
+        };
+        events.onVolumeChange = function (e) {
+            var volumeFader = document.getElementById('faderVolume'), volumeOutput = document.getElementById('volume'), volume = Math.round(e.data.volume * 100);
+            (parseInt(volumeFader.value) !== volume) && (volumeFader.value = volume);
+            volumeOutput.value = volume + '%';
+        };
+        events.onStreamInfo = function (e) {
+            var streamInfo = JSON.stringify(e.data.streamInfo);
+            log('onStreamInfo = ' + streamInfo);
+        };
+        events.onStreamInfoUpdate = function (e) {
+            var streamInfo = JSON.stringify(e.data.streamInfo);
+            log('onStreamInfoUpdate = ' + streamInfo);
+        };
+        events.onDestroy = function (e) {
+            log('destroy');
+            document.getElementById('status').innerText = 'destroy';
+        };
+
+        ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function (event) {
+            // ['inputUrl', 'inputStreamname'].forEach(function (input) {
+            //     document.getElementById(input).addEventListener(event, function (e) {
+            //         if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
+            //             config.source.h5live.rtmp = config.source.h5live.rtmp || {};
+            //             config.source.h5live.rtmp[e.currentTarget.dataset.prop] = e.currentTarget.value;
+            //         }
+            //     });
+            // });
+            // document.getElementById('inputServer').addEventListener(event, function (e) {
+            //     if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
+            //         checkH5Live(e.currentTarget.value);
+            //     }
+            // });
+        });
+
+        function hideErrorWarning() {
+            document.getElementById('error-container').style.display = 'none';
+            document.getElementById('warning-container').style.display = 'none';
+        }
+
+        function init() {
+            document.querySelector('#faderVolume').value = 100;
+            var tweaksQ = getHTTPParam('tweaks') || getHTTPParam('tweaks.buffer');
+            if (tweaksQ) {
+                var tweaks;
+                try {
+                    tweaks = JSON.parse(tweaksQ);
+                    config.tweaks = tweaks;
+                } catch (e) {
+                    if (tweaksQ.length) {
+                        config.tweaks = {}, config.tweaks.buffer = {};
+                        tweaks = tweaksQ.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                        var typed = ['min', 'start', 'target', 'limit', 'max'];
+                        for (var i = 0, len = Math.min(tweaks.length, typed.length) ; i < len; i += 1) {
+                            if (!isNaN(tweaks[i])) config.tweaks.buffer[typed[i]] = parseFloat(tweaks[i]);
+                        }
+                    }
+                }
+            } else {
+                tweaksQ = { buffer: {} };
+                var min = getHTTPParam('tweaks.buffer.min');
+                var start = getHTTPParam('tweaks.buffer.start');
+                var target = getHTTPParam('tweaks.buffer.target');
+                var limit = getHTTPParam('tweaks.buffer.limit');
+                var max = getHTTPParam('tweaks.buffer.max');
+                if (min && start && target && limit && max) {
+                    config.tweaks = { buffer: {} };
+                    config.tweaks.buffer.min = parseFloat(min);
+                    config.tweaks.buffer.start = parseFloat(start);
+                    config.tweaks.buffer.max = parseFloat(max);
+                    config.tweaks.buffer.target = parseFloat(target);
+                    config.tweaks.buffer.limit = parseFloat(limit);
+                }
+            }
+            var tweaksDQ = getHTTPParam('bufferDynamic') || getHTTPParam('tweaks.bufferDynamic');
+            if (tweaksDQ) {
+                config.tweaks = config.tweaks || {}, config.tweaks.bufferDynamic = {};
+                tweaks = tweaksDQ.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                var typed = ['offsetThreshold', 'offsetStep', 'cooldownTime'];
+                for (var i = 0, len = Math.min(tweaks.length, typed.length) ; i < len; i += 1) {
+                    if (!isNaN(tweaks[i])) config.tweaks.bufferDynamic[typed[i]] = parseFloat(tweaks[i]);
+                }
+            }
+            var reconnect = getHTTPParam('reconnect') || getHTTPParam('playback.reconnect');
+            if (reconnect) {
+                var reconnect;
+                try {
+                    reconnect = JSON.parse(reconnect);
+                    config.playback.reconnect = reconnect;
+                } catch (e) {
+                    if (reconnect.length) {
+                        config.playback.reconnect = {};
+                        reconnect = reconnect.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                        var typed = ['minDelay', 'maxDelay', 'delaySteps', 'maxRetries'];
+                        for (var i = 0, len = Math.min(reconnect.length, typed.length) ; i < len; i += 1) {
+                            if (!isNaN(reconnect[i])) config.playback.reconnect[typed[i]] = parseFloat(reconnect[i]);
+                        }
+                    }
+                }
+            } else {
+                var minDelay = getHTTPParam('playback.reconnect.minDelay');
+                var maxDelay = getHTTPParam('playback.reconnect.maxDelay');
+                var delaySteps = getHTTPParam('playback.reconnect.delaySteps');
+                var maxRetries = getHTTPParam('playback.reconnect.maxRetries');
+                if (minDelay && delaySteps && maxRetries && maxDelay) {
+                    config.playback.reconnect = {};
+                    config.playback.reconnect.minDelay = parseFloat(minDelay);
+                    config.playback.reconnect.maxDelay = parseFloat(maxDelay);
+                    config.playback.reconnect.delaySteps = parseFloat(delaySteps);
+                    config.playback.reconnect.maxRetries = parseFloat(maxRetries);
+                }
+            }
+            var timeouts = getHTTPParam('timeouts') || getHTTPParam('playback.timeouts');
+            if (timeouts) {
+                var timeouts;
+                try {
+                    timeouts = JSON.parse(timeouts);
+                    config.playback.timeouts = timeouts;
+                } catch (e) {
+                    if (timeouts.length) {
+                        config.playback.timeouts = {};
+                        timeouts = timeouts.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                        var typed = ['loading', 'buffering', 'connecting'];
+                        for (var i = 0, len = Math.min(timeouts.length, typed.length) ; i < len; i += 1) {
+                            if (!isNaN(timeouts[i])) config.playback.timeouts[typed[i]] = parseFloat(timeouts[i]);
+                        }
+                    }
+                }
+            } else {
+                var loading = getHTTPParam('playback.timeouts.loading') || getHTTPParam('timeouts.loading');
+                var buffering = getHTTPParam('playback.timeouts.buffering') || getHTTPParam('timeouts.buffering');
+                var connecting = getHTTPParam('playback.timeouts.connecting') || getHTTPParam('timeouts.connecting');
+                if (loading || buffering || connecting) {
+                    config.playback.timeouts = {};
+                }
+                if (loading) {
+                    config.playback.timeouts.loading = parseFloat(loading);
+                }
+                if (buffering) {
+                    config.playback.timeouts.buffering = parseFloat(buffering);
+                }
+                if (connecting) {
+                    config.playback.timeouts.connecting = parseFloat(connecting);
+                }
+            }
+            // TODO fix forcing in playerfactory
+            var force = getHTTPParam('force') || getHTTPParam('playback.forceTech');
+            if (force) {
+                config.playback.forceTech = force;
+            }
+            var videoId = getHTTPParam('videoId') || getHTTPParam('playback.videoId');
+            var external = getHTTPParam('external')
+            if (videoId || external) {
+                config.playback.videoId = videoId ? videoId : 'h5live';
+                if (external) document.getElementById('h5live').style.display = 'block';
+            }
+            var muted = getHTTPParam('muted') || getHTTPParam('playback.muted');
+            if (muted) {
+                forceMuted = (muted === 'true' || muted === '1');
+            }
+            var autoplay = getHTTPParam('autoplay') || getHTTPParam('playback.autoplay');
+            if (autoplay) {
+                forceAutoplay = (autoplay === 'true' || autoplay === '1');
+            }
+            var automute = getHTTPParam('automute') || getHTTPParam('playback.automute');
+            if (automute) {
+                config.playback.automute = (automute === 'true' || automute === '1');
+            }
+            var metadata = getHTTPParam('metadata') || getHTTPParam('playback.metadata');
+            if (metadata) {
+                config.playback.metadata = true;
+            }
+            var keepConnection = getHTTPParam('keepConnection') || getHTTPParam('playback.keepConnection');
+            if (keepConnection) {
+                config.playback.keepConnection = (keepConnection === 'true' || keepConnection === '1');
+            }
+            var view = getHTTPParam('view') || getHTTPParam('style.view');
+            if (view) {
+                config.style = config.style || {};
+                config.style.view = (view === 'true' || view === '1');
+            }
+            var scaling = getHTTPParam('scaling') || getHTTPParam('style.scaling');
+            if (scaling) {
+                config.style = config.style || {};
+                config.style.scaling = scaling;
+            }
+            var keepFrame = getHTTPParam('keepFrame') || getHTTPParam('style.keepFrame');
+            if (keepFrame) {
+                config.style = config.style || {};
+                config.style.keepFrame = (keepFrame === 'true' || keepFrame === '1');
+            }
+            var displayAudioOnly = getHTTPParam('displayAudioOnly') || getHTTPParam('style.displayAudioOnly');
+            if (displayAudioOnly) {
+                config.style = config.style || {};
+                config.style.displayAudioOnly = (displayAudioOnly === 'true' || displayAudioOnly === '1');
+            }
+            var displayMutedAutoplay = getHTTPParam('displayMutedAutoplay') || getHTTPParam('style.displayMutedAutoplay');
+            if (displayMutedAutoplay) {
+                config.style = config.style || {};
+                config.style.displayMutedAutoplay = (displayMutedAutoplay === 'true' || displayMutedAutoplay === '1');
+            }
+            var audioPlayer = getHTTPParam('audioPlayer') || getHTTPParam('style.audioPlayer');
+            if (audioPlayer) {
+                config.style = config.style || {};
+                config.style.audioPlayer = (audioPlayer === 'true' || audioPlayer === '1');;
+            }
+            var controls = getHTTPParam('controls') || getHTTPParam('style.controls');
+            if (controls) {
+                config.style = config.style || {};
+                config.style.controls = (controls === 'true' || controls === '1');
+            }
+            var width = getHTTPParam('width') || getHTTPParam('style.width');
+            if (width) {
+                config.style = config.style || {};
+                config.style.width = isNaN(width) ? width : width + 'px';
+            }
+            var height = getHTTPParam('height') || getHTTPParam('style.height');
+            if (height) {
+                config.style = config.style || {};
+                config.style.height = isNaN(height) ? height : height + 'px';
+            }
+            var bintuQ = getHTTPParam('bintu');
+            if (bintuQ) {
+                bintuQ = JSON.parse(bintuQ);
+            } else {
+                bintuQ = {};
+                bintuQ.apiurl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
+                bintuQ.streamid = getHTTPParam('bintu.streamid');
+                bintuQ.streamname = getHTTPParam('bintu.streamname');
+                bintuQ.group = getHTTPParam('bintu.group');
+                bintuQ.apikey = getHTTPParam('bintu.apikey');
+            }
+            if (bintuQ.streamid) {
+                config.source.bintu = {};
+                if (bintuQ.apiurl)
+                    config.source.bintu.apiurl = bintuQ.apiurl;
+                config.source.bintu.streamid = bintuQ.streamid;
+                checkH5Live();
+                checkSecurity();
+                startPlayer(config);
+            } else if (bintuQ.streamname) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.rtmp = {
+                    url: 'rtmp://bintu-play.nanocosmos.de:80/play',
+                    streamname: bintuQ.streamname
+                }
+                config.source.h5live.server = {
+                    websocket: 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4',
+                    hls: 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8',
+                    progressive: 'https://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4'
+                }
+                checkH5Live();
+                checkSecurity();
+                startPlayer(config);
+            }
+            else if (bintuQ.group && bintuQ.apikey) {
+                bintu = new Bintu(bintuQ.apiurl, bintuQ.apikey);
+                searchStreams();
+                searchRefreshInterval = setInterval(searchStreams.bind(this), 8000);
+
+                var count = streamObjs.length
+                document.getElementById('group').innerText = group + ' - ' + count + ' stream(s)';
+
+                var groupContainer = document.getElementById('group-container');
+                groupContainer.style.display = 'block';
+
+                var streamsContainer = document.getElementById('streams-container');
+                streamsContainer.style.display = 'block';
+            }
+            else {
+                checkH5Live();
+                var h5liveQ = {};
+                h5liveQ.rtmp = {};
+                h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
+                h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname');
+                if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
+                    config.source.h5live = config.source.h5live || {};
+                    config.source.h5live.rtmp = h5liveQ.rtmp;
+                    // document.getElementById('update-source-container').style.display = 'block';
+                    // document.getElementById('inputUrl').value = h5liveQ.rtmp.url;
+                    // document.getElementById('inputStreamname').value = h5liveQ.rtmp.streamname;
+                }
+                var hls = getHTTPParam('hls');
+                if (hls) {
+                    config.source.hls = hls;
+                }
+                var dash = getHTTPParam('dash');
+                if (dash) {
+                    config.source.dash = dash;
+                }
+                checkSecurity();
+                startPlayer(config);
+            }
+        }
+
+        function resetPlayer() {
+            var select = document.getElementById('stream-select');
+            if (!select.options[select.selectedIndex]) {
+                return;
+            }
+            var selectedValue = select.options[select.selectedIndex].value;
+
+            if (!!streamObj) {
+                if (streamObj.streamname === selectedValue) {
+                    console.log('already playing this stream');
+                    return;
+                }
+            }
+
+            var i, len = streamObjs.length;
+            for (i = 0; i < len; i += 1) {
+                if (streamObjs[i].streamname === selectedValue)
+                    streamObj = streamObjs[i];
+            }
+
+            var h5liveQ = {};
+            h5liveQ.rtmp = {};
+            h5liveQ.rtmp.url = streamObj.url;
+            h5liveQ.rtmp.streamname = streamObj.streamname;
+            h5liveQ.server = {};
+            h5liveQ.server.websocket = streamObj.server.websocket;
+            h5liveQ.server.hls = streamObj.server.hls;
+            h5liveQ.server.progressive = streamObj.server.progressive;
+
+            config.source.h5live = h5liveQ;
+
+            checkSecurity();
+            if (!player) {
+                startPlayer();
+            } else {
+                updateSource();
+            }
+        }
+
+        function checkH5Live(server) {
+            var h5liveQ = {};
+            h5liveQ.server = server || getHTTPParam('h5live.server');
+            if (h5liveQ.server) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.server = {};
+                if (h5liveQ.server.indexOf('wss://') !== -1) {
+                    warning('The query param "h5live.server" is deprecated. With this config iOS is not supported. To use h5live on all supported platforms use the query params "h5live.server.websocket" and "h5live.server.hls"!');
+                    try {
+                        var servers = JSON.parse(h5liveQ.server); // parse server object (new since 1.0.2)
+                        config.source.h5live.server = servers;
+                    } catch (e) {
+                        config.source.h5live.server.websocket = h5liveQ.server; // fallback for versions < 1.0.2
+                    }
+                } else {
+                    var routes = {
+                        secured: {
+                            websocket: ['wss://', '/h5live/stream'],
+                            hls: ['https://', '/h5live/http/playlist.m3u8'],
+                            progressive: ['https://', '/h5live/http/stream.mp4']
+                        },
+                        unsecured: {
+                            websocket: ['ws://', ':8181'],
+                            hls: ['http://', ':8180/playlist.m3u8'],
+                            progressive: ['http://', ':8180/stream.mp4']
+                        }
+                    }
+                    var route = (document.location.protocol.indexOf('https') === 0) ? routes.secured : routes.unsecured;
+                    config.source.h5live.server.websocket = route.websocket[0] + h5liveQ.server + route.websocket[1];
+                    config.source.h5live.server.hls = route.hls[0] + h5liveQ.server + route.hls[1];
+                    config.source.h5live.server.progressive = route.progressive[0] + h5liveQ.server + route.progressive[1];
+                    // document.getElementById('inputServer').value = h5liveQ.server;
+                }
+            } else { // try parse seperately
+                h5liveQ.server = {};
+                h5liveQ.server.websocket = getHTTPParam('h5live.server.websocket');
+                h5liveQ.server.progressive = getHTTPParam('h5live.server.progressive');
+                h5liveQ.server.hls = getHTTPParam('h5live.server.hls');
+                if (h5liveQ.server.websocket || h5liveQ.server.progressive || h5liveQ.server.hls) {
+                    config.source.h5live = config.source.h5live || {};
+                    config.source.h5live.server = {};
+                    var sourceConut = 0;
+                    if (h5liveQ.server.websocket) {
+                        config.source.h5live.server.websocket = h5liveQ.server.websocket;
+                    }
+                    if (h5liveQ.server.progressive) {
+                        config.source.h5live.server.progressive = h5liveQ.server.progressive;
+                    }
+                    if (h5liveQ.server.hls) {
+                        config.source.h5live.server.hls = h5liveQ.server.hls;
+                    }
+                    if (!config.source.h5live.server.websocket && config.source.h5live.server.hls && config.playback.metadata) {
+                        warning('To use h5live on iOS with metadata please also pass a websocket url over the query param "h5live.server.websocket"!');
+                    } else if (!config.source.h5live.server.websocket && config.source.h5live.server.hls) {
+                        warning('To use h5live on platforms other then iOS please also pass a websocket url over the query param "h5live.server.websocket"!');
+                    } else if (config.source.h5live.server.websocket && !config.source.h5live.server.hls) {
+                        warning('To use h5live on iOS please also pass a hls url over the query param "h5live.server.hls"!');
+                    }
+                } else if (!config.source.bintu && !config.source.h5live) {
+                    config.source.h5live = {};
+                    config.source.h5live.server = {};
+
+                    // USE DEFAULT DEMO PAGE H5LIVE SERVER
+                    // to change the page defaults see line 94
+                    config.source.h5live.server.websocket = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS;
+                    config.source.h5live.server.hls = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS;
+                    config.source.h5live.server.progressive = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE;
+
+                    // document.getElementById('inputServer').value = DEFAULT_DEMO_PAGE_H5LIVE_SERVER;
+                }
+            }
+            h5liveQ.token = getHTTPParam('h5live.token');
+            if (h5liveQ.token) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.token = h5liveQ.token;
+            } else {
+                h5liveQ.token = {};
+                h5liveQ.token.key = getHTTPParam('h5live.token.key');
+                h5liveQ.token.type = getHTTPParam('h5live.token.type');
+                if (h5liveQ.token.key) {
+                    config.source.h5live = config.source.h5live || {};
+                    config.source.h5live.token = '{"type":"' + (h5liveQ.token.type ? h5liveQ.token.type : 'token1') + '","key":"' + h5liveQ.token.key + '"}';
+                }
+            }
+        }
+
+        function checkSecurity() {
+            var security = {};
+            security.token = getHTTPParam('h5live.security.token');
+            if (security.token) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.security = config.source.h5live.security || {};
+                config.source.h5live.security.token = security.token;
+            }
+            security.expires = getHTTPParam('h5live.security.expires');
+            if (security.expires) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.security = config.source.h5live.security || {};
+                config.source.h5live.security.expires = security.expires;
+            }
+            security.options = getHTTPParam('h5live.security.options');
+            if (security.options) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.security = config.source.h5live.security || {};
+                config.source.h5live.security.options = security.options;
+            }
+            security.tag = getHTTPParam('h5live.security.tag');
+            if (security.tag) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.security = config.source.h5live.security || {};
+                config.source.h5live.security.tag = security.tag;
+            }
+        }
+
+        function destroyPlayer() {
+            if (player) {
+                player.destroy();
+            }
+        }
+
+        function startPlayer(config) {
+            if (!player) {
+                player = new NanoPlayer('playerDiv');
+            }
+            config = config || this.config;
+            createCodeSippet(this.config);
+            //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);
+            //config.playback.autoplay = (!mobile && config.playback.autoplay);
+            if (forceAutoplay !== null) {
+                config.playback.autoplay = forceAutoplay;
+            }
+            if (forceMuted !== null) {
+                config.playback.muted = forceMuted;
+            }
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = config.playback.muted;
+            buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
+
+            for (var event in events) {
+                if (events.hasOwnProperty(event)) {
+                    player.on(event.substr(2), events[event]);
+                }
+            }
+
+            if (window.nanoPlayerMetricsConfig) {
+                config.metrics = window.nanoPlayerMetricsConfig;
+            }
+
+            player.setup(config).then(function (conf) {
+                setVolume(null, document.getElementById('faderVolume').value);
+                checkConfig(conf);
+                try {
+                    conf = JSON.stringify(conf)
+                } catch (err) { }
+                log('setup ok: ' + conf);
+            }, function (error) {
+                if (error.message) {
+                    error = error.message;
+                } else {
+                    try {
+                        var err = JSON.stringify(error);
+                        if (err === '{}') {
+                            err = error.message;
+                        }
+                        error = err;
+                    } catch (err) { }
+                }
+                log('Setup Error: ' + error);
+                document.getElementById('status').innerText = 'Setup Error: ' + error;
+            });
+        }
+
+        function checkConfig(conf) {
+            if ((config.source.bintu && !config.source.h5live) || (conf.source.h5live && conf.source.h5live.server)) {
+                var container = document.getElementById('h5live-server-container');
+                var wssEl = document.getElementById('h5live-server-wss');
+                var hlsEl = document.getElementById('h5live-server-hls');
+                wssEl.innerText = conf.source.h5live.server.websocket;
+                wssEl.innerText += (conf.source.h5live.server.websocket === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
+                hlsEl.innerText = conf.source.h5live.server.hls;
+                hlsEl.innerText += (conf.source.h5live.server.hls === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
+                container.style.display = 'block';
+            }
+            document.getElementById('url').innerText = conf.url;
+            document.getElementById('tech').innerText = conf.type;
+            document.getElementById('demo-version').innerText = 'version ' + player.version;
+        }
+
+        function onStats(e) {
+            var stats = e.data.stats;
+            document.getElementById("currentTime").textContent = stats.currentTime.toFixed(1);
+            document.getElementById("playTimeStart").textContent = stats.playout.start.toFixed(1);
+            document.getElementById("playTimeEnd").textContent = stats.playout.end.toFixed(1);
+            document.getElementById("bufferTimeStart").textContent = stats.buffer.start.toFixed(1);
+            document.getElementById("bufferTimeEnd").textContent = stats.buffer.end.toFixed(1);
+            document.getElementById("bufferTimeDelay").textContent = stats.buffer.delay.avg.toFixed(1);
+            document.getElementById("bufferTimeDelayMin").textContent = stats.buffer.delay.min.toFixed(1);
+            document.getElementById("bufferTimeDelayMax").textContent = stats.buffer.delay.max.toFixed(1);
+            if (stats.bitrate) {
+                document.getElementById("bitrateAvg").textContent = (stats.bitrate.avg / 1000).toFixed(0) + ' kbps';
+                document.getElementById("bitrateMin").textContent = (stats.bitrate.min / 1000).toFixed(0) + ' kbps';
+                document.getElementById("bitrateMax").textContent = (stats.bitrate.max / 1000).toFixed(0) + ' kbps';
+            }
+            if (stats.framerate) {
+                document.getElementById("framerateCurrent").textContent = stats.framerate.current + ' fps';
+                document.getElementById("framerateAvg").textContent = (stats.framerate.avg).toFixed(1) + ' fps';
+                document.getElementById("framerateMin").textContent = stats.framerate.min + ' fps';
+                document.getElementById("framerateMax").textContent = stats.framerate.max + ' fps';
+            }
+        };
+
+        var logCount = 0;
+
+        function log(e, consoleOnly) {
+            if (typeof e === 'object') {
+                try {
+                    e = JSON.stringify(e);
+                } catch (err) { }
+            }
+            e = new Date().toLocaleTimeString() + ": " + e;
+            console.log(e);
+            if (!consoleOnly) {
+                if (logCount > 100) {
+                    document.getElementById('log').innerText = "";
+                    logCount = 0;
+                }
+                document.getElementById('log').innerText += e + "\r\n";
+                logCount += 1;
+            }
+        }
+
+        function warning(message) {
+            document.getElementById('warning').innerText = message;
+            document.getElementById('warning-container').style.display = 'block';
+            log('Warning: ' + message);
+        }
+
+        function play() {
+            player.play();
+        }
+
+        function pause() {
+            player.pause();
+        }
+
+        function mute(e) {
+            var muted = (e.dataset.muted === 'true') ? true : false;
+            if (muted) {
+                player.unmute();
+            } else {
+                player.mute();
+            }
+        }
+
+        function setVolume(e, value) {
+            if (!player) {
+                return;
+            }
+            if (value < 0) {
+                value = 0;
+            } else if (value > 100) {
+                value = 100;
+            }
+            var volume = value / 100;
+            player.setVolume(volume);
+        }
+
+        function updateSource() {
+            if (!player) {
+                return;
+            }
+            player.updateSource(config.source).then(function (conf) {
+                checkConfig(conf);
+                try {
+                    conf = JSON.stringify(conf);
+                } catch (err) { }
+                log('update source ok: ' + conf);
+            }, function (error) {
+                if (error.message) {
+                    error = error.message;
+                } else {
+                    try {
+                        var err = JSON.stringify(error);
+                        if (err === '{}') {
+                            err = error.message;
+                        }
+                        error = err;
+                    } catch (err) { }
+                }
+                log('update source error: ' + error);
+                document.getElementById('status').innerText = 'Update Source Error: ' + error;
+            });
+        }
+
+        function createCodeSippet(config) {
+            var conf = JSON.parse(JSON.stringify(config));
+            delete conf.events;
+            conf.playback = conf.playback || {};
+            conf.playback.flashplayer = '//demo.nanocosmos.de/nanoplayer/nano.player.swf';
+            var pre = document.getElementById('code-snippet');
+            pre.innerHTML = '';
+            var line = '<div id="playerDiv"></div>\r\n';
+            line += '<script src="' + getPlayerLocation() + '"><\/script>\r\n';
+            line += '<script>\r\n';
+            line += 'var player;\r\n';
+            line += 'var config = ' + JSON.stringify(conf, undefined, 4) + ';\r\n';
+            line += 'document.addEventListener(\'DOMContentLoaded\', function () {\r\n';
+            line += '    player = new NanoPlayer("playerDiv");\r\n';
+            line += '    player.setup(config).then(function (config) {\r\n';
+            line += '        console.log("setup success");\r\n';
+            line += '        console.log("config: " + JSON.stringify(config, undefined, 4));\r\n';
+            line += '    }, function (error) {\r\n';
+            line += '        alert(error.message);\r\n';
+            line += '    });\r\n';
+            line += '});\r\n';
+            line += '<\/script>\r\n';
+            pre.appendChild(document.createTextNode(line));
+            document.getElementById('code-snippet-container').style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
