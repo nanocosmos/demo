@@ -34,7 +34,8 @@ var streamobj = [];
             },
             style: {
                 width: 'auto',
-                height: 'auto'
+                height: 'auto',
+                displayMutedAutoplay: false
             }
         }
         if (window.nanoPlayerMetricsConfig) {
@@ -164,6 +165,15 @@ var streamobj = [];
             el.addEventListener('change', this.onCheckedAutoSearch.bind(this), false);
         else if (el.attachEvent)
             el.attachEvent('change', this.onCheckedAutoSearch.bind(this), false);
+        var els = document.querySelectorAll('[data-display]');
+        for (var i = 0; i < els.length; i += 1) {
+            var el = els[i];
+            el.addEventListener('click', function click(e){
+                var elem = e.currentTarget;
+                elem.nextElementSibling.style.display = (elem.dataset.display === 'none') ? 'block': 'none';
+                elem.dataset.display = elem.nextElementSibling.style.display;
+            });
+        }
     };
 
     proto.onClickGetStreams = function () {
@@ -285,7 +295,7 @@ var streamobj = [];
             var gps   = { "latitude": lat, "longitude": lng }; // gps object
 
             //returns meta object
-            var standalone = "http://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?bintu.apiurl=https://bintu.nanocosmos.de&bintu.streamid=" + gpsResponse[i].id,
+            var standalone = "http://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?bintu.apiurl=" + this.config.source.bintu.apiurl + "&bintu.streamid=" + gpsResponse[i].id,
                 name = gpsResponse[i].ingest.rtmp.streamname,
                 url = gpsResponse[i].playout.rtmp[0].url + '/' + gpsResponse[i].playout.rtmp[0].streamname,
                 state = gpsResponse[i].state,
@@ -367,15 +377,20 @@ var streamobj = [];
             item = document.createElement('li');
             item.className = 'list-group-item';
             item.setAttribute('id', 'item-' + streamId)
-            var url = response[i].playout.rtmp[0].url + '/' + response[i].playout.rtmp[0].streamname;
+            var url = response[i].playout.rtmp[0].url;
+            var streamname = response[i].playout.rtmp[0].streamname;
             var tags = response[i].tags;
             item.setAttribute('data-id', streamId);
+            item.setAttribute('data-streamname', streamname);
             item.setAttribute('data-state', state);
             item.innerHTML += '<strong>id: </strong>';
             item.innerHTML += '<span>' + streamId + '</span>';
             item.innerHTML += '<br/>';
             item.innerHTML += '<strong>url: </strong>';
-            item.innerHTML += '<span id="url-' + streamId + '">' + url + '</span>';
+            item.innerHTML += '<span id="url-' + url + '">' + url + '</span>';
+            item.innerHTML += '<br/>';
+            item.innerHTML += '<strong>streamname: </strong>';
+            item.innerHTML += '<span id="streamname-' + streamId + '">' + streamname + '</span>';
             item.innerHTML += '<br/>';
             item.innerHTML += '<strong>state: </strong>';
             item.innerHTML += '<span>' + state + '</span>';
@@ -394,11 +409,11 @@ var streamobj = [];
                 }
             }
             item.innerHTML += '<strong>standalone player: </strong>';
-            var link = '<a href="http://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + streamId;
+            var link = '<a style="cursor:pointer" onclick="window.open(\'nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + streamId;
             if (this.config.playback.forceTech) {
                 link += '&force=' + this.config.playback.forceTech;
             }
-            link += '" target="_blank">';
+            link += '\',\'_blank\');">';
             link += 'open';
             link += '</a>';
             item.innerHTML += link;
@@ -430,6 +445,8 @@ var streamobj = [];
             newIds = [];
         for (i = 0, len = liveSpans.length; i < len; i += 1) {
             var id = liveSpans[i].dataset.id;
+            var url = liveSpans[i].dataset.url;
+            var streamname = liveSpans[i].dataset.streamname;
             allIds.push(id);
             var el = document.getElementById('player-' + id);
             if (el) continue;
@@ -446,6 +463,10 @@ var streamobj = [];
             divObj.setAttribute('data-id', id);
             var divEmbed = document.createElement('div');
             divEmbed.setAttribute('id', id);
+            var divInfo = document.createElement('div');
+            divInfo.setAttribute('id', 'info-' + id);
+            divInfo.innerHTML += '<strong id="status-playback-player-' + id + '">ready: </strong>';
+            divInfo.innerHTML += '<a style="cursor:pointer" onclick="window.open(\'nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + id + '\',\'_blank\');">' + streamname + '</a>';
 
             //divObj.appendChild(divEmbed); 
             div.appendChild(divObj);
@@ -457,6 +478,8 @@ var streamobj = [];
             div.style.height = height + "px";
             div.style.cssFloat = "left";
             div.className = "";
+            div.appendChild(divInfo);
+            div.style.marginBottom = divInfo.offsetHeight + 'px';
             this.playersToStart[id] = true;
             this.playersConnectionErrors[id] = 0;
             this.players[id] = new NanoPlayer('player-' + id);
@@ -548,6 +571,10 @@ var streamobj = [];
         if (el) {
             el.innerText = 'ready';
         }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'ready: ';
+        }
         //document.getElementById('error-container').style.display = 'none'; 
     };
 
@@ -557,6 +584,10 @@ var streamobj = [];
         var el = document.getElementById('status-' + player);
         if (el) {
             el.innerText = 'playing';
+        }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'playing: ';
         }
         //document.getElementById('error-container').style.display = 'none'; 
     };
@@ -608,6 +639,10 @@ var streamobj = [];
             }
             //document.getElementById('error-container').style.display = 'none'; 
         }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'paused: ';
+        }
     };
 
     proto.onLoading = function (e) {
@@ -616,6 +651,10 @@ var streamobj = [];
         var el = document.getElementById('status-' + player);
         if (el) {
             el.innerText = 'loading';
+        }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'loading: ';
         }
         //document.getElementById('error-container').style.display = 'none'; 
     };
@@ -627,6 +666,10 @@ var streamobj = [];
         if (el) {
             el.innerText = 'buffering';
         }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'buffering: ';
+        }
         //document.getElementById('error-container').style.display = 'none'; 
     };
 
@@ -636,6 +679,10 @@ var streamobj = [];
         var el = document.getElementById('status-' + player);
         if (el) {
             el.innerText = 'playing (resumed)';
+        }
+        var el = document.getElementById('status-playback-' + player);
+        if (el) {
+            el.innerText = 'playing: ';
         }
         //document.getElementById('error-container').style.display = 'none'; 
     };
@@ -728,6 +775,7 @@ var streamobj = [];
         document.getElementById('btn-ok').addEventListener('click', function () {
             document.getElementById('message-box').style.display = 'none';
         });
+        mb.style.zIndex = Math.pow(2, 64).toString();
         mb.style.display = 'block';
     };
 

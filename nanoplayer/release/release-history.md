@@ -1,5 +1,32 @@
 ﻿# Release History
 
+# [3.18.1]
+
+## Release Notes
+
+This release brings the possibility to allow H5Live low latency HLS playback as fallback for Safari on Mac OS X. If enabled the player will decide for Safari Mac OS X the playback method and utilize H5Live low latency HLS if appropriate.
+Another feature is that we added the quality stats to the metrics stats event. Also several little patches are included in this release. Now for bintu sources without explicit 'h5live' playout object in the response the rtmp object will be choosen and a missing server object in the h5live config will be catched.
+An 'undefined' error at destroy is fixed too. Now also playback will always be recovered on Edge if frames are dropped and the player is visible.
+
+## Changelog
+
+### Added
+
+- new config parameter 'playback.allowSafariHlsPlayback' to enable selecting the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate (default:false)
+
+~~~~
+        config.playback.allowSafariHlsPlayback = true
+~~~~
+
+- send quality values in metrics stats event
+
+### Fixed
+
+- use bintu rtmp playout object in case h5live rtmp object isn't defined
+- catch missing server object in config
+- fix 'undefined' error at destroy
+- always recover playback on Edge at frame dropping if player is visible
+
 # [3.17.4]
 
 ## Release Notes

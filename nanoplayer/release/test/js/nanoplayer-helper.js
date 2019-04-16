@@ -1,81 +1,5 @@
-<!DOCTYPE html>
-<!--
-nanoStream Player
-(c) 2018, nanocosmos gmbh
-http://www.nanocosmos.de
-sales@nanocosmos.de
-
-LEGAL NOTICE:
-This material is subject to the terms and conditions defined in
-separate license conditions ('LICENSE.txt')
-All information contained herein is, and remains the property
-of nanocosmos GmbH and its suppliers if any. The intellectual and technical concepts
-contained herein are proprietary to nanocosmos GmbH, and are protected by trade secret
-or copyright law. Dissemination of this information or reproduction of this material
-is strictly forbidden unless prior written permission is obtained from nanocosmos.
-All modifications will remain property of nanocosmos.
--->
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>nanoplayer simple</title>
-</head>
-<body>
-    <style>
-        body {
-            padding:0 !important;
-            margin:0 !important;
-            overflow: hidden;
-        }
-        .full {
-            background-color: black;
-            width:100vw;
-            height:100vh;
-            left:0;
-            top:0;
-        }
-        .video {
-            background-color: black;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-    <div id="playerDiv" class="full">
-        <!--<video id="video" class="video"></video>-->
-    </div>
-
-    <script type="text/javascript">
-        // DEFAULT DEMO PAGE H5LIVE SERVER
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://h5live.nanocosmos.de:443/h5live/stream';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4'
-    </script>
-
-    
-    
-    <script type="text/javascript" src="//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js"></script>
-    <script type="text/javascript">
-
-        var playerVersion = '3.18.1';
-        console.log('nanoplayer html version: ' + playerVersion);
-        var player;
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var cap = NanoPlayer.capabilities;
-            !cap.length ? console.log('no supported player tech') : cap.forEach(function (c) { console.log('supported player tech: ' + c) });
-                player = new NanoPlayer('playerDiv');
-                init();
-        });
-    </script>
-    
-
-    <script>
-
-        //var video = document.getElementById('video');
-        //video.addEventListener('click', function () {
-        //    if (player instanceof NanoPlayer) {
-        //        !playing ? player.play() : player.pause();
-        //    }
-        //});
+        // nanoPlayer Helper Scripts
+        // (c) 2019 nanocosmos gmbh
 
         var _HTTPParams = undefined;
         var getHTTPParam = function (paramKey) {
@@ -83,11 +7,11 @@ All modifications will remain property of nanocosmos.
             if (!_HTTPParams) {
                 _HTTPParams = new Array();
                 var strGET = document.location.search.substr(1, document.location.search.length);
-                if (strGET === '' && document.location.href.indexOf('?') !==-1) {
+                if (strGET === '' && document.location.href.indexOf('?') !== -1) {
                     var pos = document.location.href.indexOf('?') + 1;
                     strGET = document.location.href.slice(pos);
                 }
-                if (strGET !=='') {
+                if (strGET !== '') {
                     var gArr = strGET.split('&');
                     for (var i = 0; i < gArr.length; ++i) {
                         var v = '';
@@ -108,70 +32,9 @@ All modifications will remain property of nanocosmos.
             }
         };
 
-        var playing = false;
 
-        var bintu, bintuQ;
-        var metaDataTimeout = 0;
-        var forceAutoplay = null;
-        var forceMuted = null;
-
-        var searchRefreshInterval = 0;
-
-        var config = {
-            source: {},
-            playback: {
-                autoplay: true,
-                muted: true,
-                //videoId: 'video'
-            },
-            events: {
-                onReady: function (e) {
-                    log('ready');
-                },
-                onPlay: function (e) {
-                    log('playing');
-                    playing = true;
-                },
-                onPause: function (e) {
-                    log('pause - ' + e.data.reason);
-                    playing = false;
-                },
-                onLoading: function (e) {
-                    log('loading');
-                },
-                onStartBuffering: function (e) {
-                    log('buffering');
-                },
-                onStopBuffering: function (e) {
-                    log('resume playing');
-                },
-                onError: function (e) {
-                    try {
-                        var err = JSON.stringify(e);
-                        if (err === '{}') {
-                            err = e.message;
-                        }
-                        e = err;
-                    } catch (err) { }
-                    log('Error: ' + e);
-                },
-                onMetaData: function (e) {
-                    var metadata = JSON.stringify(e.data);
-                    log('onMetaData');
-                    log(metadata);
-                },
-                onStreamInfo: function (e) {
-                    var streamInfo = JSON.stringify(e.data.streamInfo);
-                    log('onStreamInfo: ' + streamInfo);
-                }
-            },
-            style: {
-                width: 'auto',
-                height: 'auto'
-            }
-        };
-
-        function init() {
+        function nanoPlayer_getParameters() {
+            var doStartPlayer = false;
             var tweaksQ = getHTTPParam('tweaks') || getHTTPParam('tweaks.buffer');
             if (tweaksQ) {
                 var tweaks;
@@ -203,10 +66,6 @@ All modifications will remain property of nanocosmos.
                     config.tweaks.buffer.target = parseFloat(target);
                     config.tweaks.buffer.limit = parseFloat(limit);
                 }
-            }
-            var rawcontrols = getHTTPParam('rawcontrols');
-            if (rawcontrols) {
-                video.controls = true;
             }
             var tweaksDQ = getHTTPParam('bufferDynamic') || getHTTPParam('tweaks.bufferDynamic');
             if (tweaksDQ) {
@@ -246,10 +105,49 @@ All modifications will remain property of nanocosmos.
                     config.playback.reconnect.maxRetries = parseFloat(maxRetries);
                 }
             }
+            var timeouts = getHTTPParam('timeouts') || getHTTPParam('playback.timeouts');
+            if (timeouts) {
+                var timeouts;
+                try {
+                    timeouts = JSON.parse(timeouts);
+                    config.playback.timeouts = timeouts;
+                } catch (e) {
+                    if (timeouts.length) {
+                        config.playback.timeouts = {};
+                        timeouts = timeouts.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
+                        var typed = ['loading', 'buffering', 'connecting'];
+                        for (var i = 0, len = Math.min(timeouts.length, typed.length) ; i < len; i += 1) {
+                            if (!isNaN(timeouts[i])) config.playback.timeouts[typed[i]] = parseFloat(timeouts[i]);
+                        }
+                    }
+                }
+            } else {
+                var loading = getHTTPParam('playback.timeouts.loading') || getHTTPParam('timeouts.loading');
+                var buffering = getHTTPParam('playback.timeouts.buffering') || getHTTPParam('timeouts.buffering');
+                var connecting = getHTTPParam('playback.timeouts.connecting') || getHTTPParam('timeouts.connecting');
+                if (loading || buffering || connecting) {
+                    config.playback.timeouts = {};
+                }
+                if (loading) {
+                    config.playback.timeouts.loading = parseFloat(loading);
+                }
+                if (buffering) {
+                    config.playback.timeouts.buffering = parseFloat(buffering);
+                }
+                if (connecting) {
+                    config.playback.timeouts.connecting = parseFloat(connecting);
+                }
+            }
             // TODO fix forcing in playerfactory
             var force = getHTTPParam('force') || getHTTPParam('playback.forceTech');
             if (force) {
                 config.playback.forceTech = force;
+            }
+            var videoId = getHTTPParam('videoId') || getHTTPParam('playback.videoId');
+            var external = getHTTPParam('external')
+            if (videoId || external) {
+                config.playback.videoId = videoId ? videoId : 'h5live';
+                if (external) document.getElementById('h5live').style.display = 'block';
             }
             var muted = getHTTPParam('muted') || getHTTPParam('playback.muted');
             if (muted) {
@@ -259,6 +157,10 @@ All modifications will remain property of nanocosmos.
             if (autoplay) {
                 forceAutoplay = (autoplay === 'true' || autoplay === '1');
             }
+            var automute = getHTTPParam('automute') || getHTTPParam('playback.automute');
+            if (automute) {
+                config.playback.automute = (automute === 'true' || automute === '1');
+            }
             var metadata = getHTTPParam('metadata') || getHTTPParam('playback.metadata');
             if (metadata) {
                 config.playback.metadata = true;
@@ -266,6 +168,11 @@ All modifications will remain property of nanocosmos.
             var keepConnection = getHTTPParam('keepConnection') || getHTTPParam('playback.keepConnection');
             if (keepConnection) {
                 config.playback.keepConnection = (keepConnection === 'true' || keepConnection === '1');
+            }
+            var view = getHTTPParam('view') || getHTTPParam('style.view');
+            if (view) {
+                config.style = config.style || {};
+                config.style.view = (view === 'true' || view === '1');
             }
             var scaling = getHTTPParam('scaling') || getHTTPParam('style.scaling');
             if (scaling) {
@@ -281,6 +188,11 @@ All modifications will remain property of nanocosmos.
             if (displayAudioOnly) {
                 config.style = config.style || {};
                 config.style.displayAudioOnly = (displayAudioOnly === 'true' || displayAudioOnly === '1');
+            }
+            var displayMutedAutoplay = getHTTPParam('displayMutedAutoplay') || getHTTPParam('style.displayMutedAutoplay');
+            if (displayMutedAutoplay) {
+                config.style = config.style || {};
+                config.style.displayMutedAutoplay = (displayMutedAutoplay === 'true' || displayMutedAutoplay === '1');
             }
             var audioPlayer = getHTTPParam('audioPlayer') || getHTTPParam('style.audioPlayer');
             if (audioPlayer) {
@@ -298,7 +210,7 @@ All modifications will remain property of nanocosmos.
                 config.style.width = isNaN(width) ? width : width + 'px';
             }
             var height = getHTTPParam('height') || getHTTPParam('style.height');
-            if (controls) {
+            if (height) {
                 config.style = config.style || {};
                 config.style.height = isNaN(height) ? height : height + 'px';
             }
@@ -310,6 +222,8 @@ All modifications will remain property of nanocosmos.
                 bintuQ.apiurl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
                 bintuQ.streamid = getHTTPParam('bintu.streamid');
                 bintuQ.streamname = getHTTPParam('bintu.streamname');
+                bintuQ.group = getHTTPParam('bintu.group');
+                bintuQ.apikey = getHTTPParam('bintu.apikey');
             }
             if (bintuQ.streamid) {
                 config.source.bintu = {};
@@ -318,7 +232,7 @@ All modifications will remain property of nanocosmos.
                 config.source.bintu.streamid = bintuQ.streamid;
                 checkH5Live();
                 checkSecurity();
-                startPlayer(config);
+                doStartPlayer=true;
             } else if (bintuQ.streamname) {
                 config.source.h5live = config.source.h5live || {};
                 config.source.h5live.rtmp = {
@@ -332,36 +246,10 @@ All modifications will remain property of nanocosmos.
                 }
                 checkH5Live();
                 checkSecurity();
-                startPlayer(config);
+                doStartPlayer=true;
             }
-            else
-            {
-                checkH5Live();
-                var h5liveQ = {};
-                h5liveQ.rtmp = {};
-                h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
-                h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname');
-                if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
-                    config.source.h5live = config.source.h5live || {};
-                    config.source.h5live.rtmp = h5liveQ.rtmp;
-                }
-                var hls = getHTTPParam('hls');
-                if (hls) {
-                    config.source.hls = hls;
-                }
-                var dash = getHTTPParam('dash');
-                if (dash) {
-                    config.source.dash = dash;
-                }
-                checkSecurity();
-                startPlayer(config);
-            }
-
-            var group = getHTTPParam('bintu.group');
-            var apiKey = getHTTPParam('bintu.apikey');
-            var apiUrl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
-            if (!!group & !!apiKey & !!apiUrl) {
-                bintu = new Bintu(apiUrl, apiKey);
+            else if (bintuQ.group && bintuQ.apikey) {
+                bintu = new Bintu(bintuQ.apiurl, bintuQ.apikey);
                 searchStreams();
                 searchRefreshInterval = setInterval(searchStreams.bind(this), 8000);
 
@@ -374,44 +262,36 @@ All modifications will remain property of nanocosmos.
                 var streamsContainer = document.getElementById('streams-container');
                 streamsContainer.style.display = 'block';
             }
-        }
-        
-        function resetPlayer() {
-            var select = document.getElementById('stream-select');
-            if (!select.options[select.selectedIndex]) {
-                return;
-            }
-            var selectedValue = select.options[select.selectedIndex].value;
-
-            if (!!streamObj) {
-                if (streamObj.streamname === selectedValue) {
-                    console.log('already playing this stream');
-                    return;
+            else {
+                checkH5Live();
+                var h5liveQ = {};
+                h5liveQ.rtmp = {};
+                h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
+                h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname');
+                if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
+                    config.source.h5live = config.source.h5live || {};
+                    config.source.h5live.rtmp = h5liveQ.rtmp;
+                    // document.getElementById('update-source-container').style.display = 'block';
+                    // document.getElementById('inputUrl').value = h5liveQ.rtmp.url;
+                    // document.getElementById('inputStreamname').value = h5liveQ.rtmp.streamname;
                 }
+                var hls = getHTTPParam('hls');
+                if (hls) {
+                    config.source.hls = hls;
+                }
+                var dash = getHTTPParam('dash');
+                if (dash) {
+                    config.source.dash = dash;
+                }
+                checkSecurity();
+                doStartPlayer=true;
             }
-
-            var i, len = streamObjs.length;
-            for (i = 0; i < len; i += 1) {
-                if (streamObjs[i].streamname === selectedValue)
-                    streamObj = streamObjs[i];
-            }
-
-            var h5liveQ = {};
-            h5liveQ.rtmp = {};
-            h5liveQ.rtmp.url = streamObj.url;
-            h5liveQ.rtmp.streamname = streamObj.streamname;
-
-            if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
-                config.source.h5live = config.source.h5live || {};
-                config.source.h5live.rtmp = h5liveQ.rtmp;
-            }
-			checkSecurity();
-            startPlayer(config);
+            return doStartPlayer;
         }
 
-        function checkH5Live() {
+        function checkH5Live(server) {
             var h5liveQ = {};
-            h5liveQ.server = getHTTPParam('h5live.server');
+            h5liveQ.server = server || getHTTPParam('h5live.server');
             if (h5liveQ.server) {
                 config.source.h5live = config.source.h5live || {};
                 config.source.h5live.server = {};
@@ -440,6 +320,7 @@ All modifications will remain property of nanocosmos.
                     config.source.h5live.server.websocket = route.websocket[0] + h5liveQ.server + route.websocket[1];
                     config.source.h5live.server.hls = route.hls[0] + h5liveQ.server + route.hls[1];
                     config.source.h5live.server.progressive = route.progressive[0] + h5liveQ.server + route.progressive[1];
+                    // document.getElementById('inputServer').value = h5liveQ.server;
                 }
             } else { // try parse seperately
                 h5liveQ.server = {};
@@ -475,6 +356,8 @@ All modifications will remain property of nanocosmos.
                     config.source.h5live.server.websocket = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS;
                     config.source.h5live.server.hls = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS;
                     config.source.h5live.server.progressive = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE;
+
+                    // document.getElementById('inputServer').value = DEFAULT_DEMO_PAGE_H5LIVE_SERVER;
                 }
             }
             h5liveQ.token = getHTTPParam('h5live.token');
@@ -520,44 +403,10 @@ All modifications will remain property of nanocosmos.
             }
         }
 
-        function startPlayer(config) {
-            config = config || this.config;
-            if (forceAutoplay !== null) {
-                config.playback.autoplay = forceAutoplay;
-            }
-            if (forceMuted !== null) {
-                config.playback.muted = forceMuted;
-                var buttonMute = document.getElementById('buttonMute');
-                buttonMute.dataset.muted = forceMuted;
-                buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
-            }
-            if (player) {
-                player.destroy();
-            }
-            player.setup(config).then(function (conf) {
-                try {
-                    conf = JSON.stringify(conf)
-                } catch (err) { }
-                log('setup ok: ' + conf);
-            }, function (error) {
-                if (error.message) {
-                    error = error.message;
-                } else {
-                    try {
-                        var err = JSON.stringify(error);
-                        if (err === '{}') {
-                            err = error.message;
-                        }
-                        error = err;
-                    } catch (err) { }
-                }
-                log('Setup Error: ' + error);
-            });
-        }
 
         var logCount = 0;
 
-        function log(e) {
+        function log(e, consoleOnly) {
             if (typeof e === 'object') {
                 try {
                     e = JSON.stringify(e);
@@ -565,11 +414,19 @@ All modifications will remain property of nanocosmos.
             }
             e = new Date().toLocaleTimeString() + ": " + e;
             console.log(e);
+            if (!consoleOnly) {
+                if (logCount > 100) {
+                    document.getElementById('log').innerText = "";
+                    logCount = 0;
+                }
+                document.getElementById('log').innerText += e + "\r\n";
+                logCount += 1;
+            }
         }
 
         function warning(message) {
+            document.getElementById('warning').innerText = message;
+            document.getElementById('warning-container').style.display = 'block';
             log('Warning: ' + message);
         }
-    </script>
-</body>
-</html>
+

@@ -31,7 +31,7 @@
             infowindow = new google.maps.InfoWindow({
                 content: "loading..."
             });
-
+            onCheckedMap();
         }
 
         var streamspins = [];
@@ -78,14 +78,14 @@
             if (document.getElementById("map_results").checked === true) {
               //show the map
                 document.getElementById("map").style.position = "relative";
-                document.getElementById("map").style.left = "0";
+                document.getElementById('map').style.display = "block";
                 //hide stream list
                 document.getElementById('bintuStreamList').style.display = "none";
             } else {
                 //if the checkbox is unchecked
                 //hide the map
-                document.getElementById("map").style.position = "absolute";
-                document.getElementById("map").style.left = "-100%";
+                document.getElementById("map").style.position = "relative";
+                document.getElementById('map').style.display = "none";
                 //show Stream List
                 document.getElementById('bintuStreamList').style.display = "block";
 

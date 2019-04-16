@@ -113,6 +113,27 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-18-1-">[3.18.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release brings the possibility to allow H5Live low latency HLS playback as fallback for Safari on Mac OS X. If enabled the player will decide for Safari Mac OS X the playback method and utilize H5Live low latency HLS if appropriate.
+Another feature is that we added the quality stats to the metrics stats event. Also several little patches are included in this release. Now for bintu sources without explicit &#39;h5live&#39; playout object in the response the rtmp object will be choosen and a missing server object in the h5live config will be catched.
+An &#39;undefined&#39; error at destroy is fixed too. Now also playback will always be recovered on Edge if frames are dropped and the player is visible.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>new config parameter &#39;playback.allowSafariHlsPlayback&#39; to enable selecting the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate (default:false)</li>
+</ul>
+<pre><code>        config<span class="hljs-class">.playback</span><span class="hljs-class">.allowSafariHlsPlayback</span> = true
+</code></pre><ul>
+<li>send quality values in metrics stats event</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>use bintu rtmp playout object in case h5live rtmp object isn&#39;t defined</li>
+<li>catch missing server object in config</li>
+<li>fix &#39;undefined&#39; error at destroy</li>
+<li>always recover playback on Edge at frame dropping if player is visible</li>
+</ul>
 <h1 id="-3-17-4-">[3.17.4]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This release improves and stabilizes the metrics play event stats collection, the playback stats collection and the general metrics event error handling. There are some checks added to avoid playback interupts in case of metrics collection errors.

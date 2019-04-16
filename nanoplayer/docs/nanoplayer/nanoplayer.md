@@ -1,66 +1,15 @@
-## Classes
-
-<dl>
-<dt><a href="#NanoPlayer">NanoPlayer</a></dt>
-<dd><p>NanoPlayer Public API Class 3.17.4</p>
-</dd>
-</dl>
-
-## Members
-
-<dl>
-<dt><a href="#performance marks">performance marks</a></dt>
-<dd><p>This marks will be set via &#39;performance.mark()&#39; and are related to a websocket connection only. Marks can be read with performance.getEntriesByName(name) that returns an array with objects. The object has the properties &#39;entryType=mark&#39;, &#39;name&#39; and &#39;startTime&#39;. The middle part of the name string is the element id of the player container. Not supported on Safari 11 OSX and iOS.</p>
-</dd>
-</dl>
-
+---
+id: nanoplayer_api
+title: NanoPlayer
+sidebar_label: NanoPlayer
+---
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer Public API Class 3.17.4
+NanoPlayer Public API Class 3.18.1
 
 **Kind**: global class  
-**Version**: 3.17.4  
-
-* [NanoPlayer](#NanoPlayer)
-    * [new NanoPlayer(playerDivId)](#new_NanoPlayer_new)
-    * _instance_
-        * [.version](#NanoPlayer+version) : <code>string</code>
-        * [.coreversion](#NanoPlayer+coreversion) : <code>string</code>
-        * [.viewversion](#NanoPlayer+viewversion) : <code>string</code>
-        * [.type](#NanoPlayer+type) : <code>string</code>
-        * [.id](#NanoPlayer+id) : <code>string</code>
-        * [.capabilities](#NanoPlayer+capabilities) : <code>Array.&lt;string&gt;</code>
-        * [.setup(config)](#NanoPlayer+setup) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
-        * [.destroy()](#NanoPlayer+destroy)
-        * [.play()](#NanoPlayer+play)
-        * [.pause()](#NanoPlayer+pause)
-        * [.mute()](#NanoPlayer+mute)
-        * [.unmute()](#NanoPlayer+unmute)
-        * [.setVolume(volume)](#NanoPlayer+setVolume)
-        * [.updateSource(source)](#NanoPlayer+updateSource) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
-    * _inner_
-        * ["onReady"](#NanoPlayer..event_onReady)
-        * ["onPlay"](#NanoPlayer..event_onPlay)
-        * ["onPause"](#NanoPlayer..event_onPause)
-        * ["onLoading"](#NanoPlayer..event_onLoading)
-        * ["onStartBuffering"](#NanoPlayer..event_onStartBuffering)
-        * ["onStopBuffering"](#NanoPlayer..event_onStopBuffering)
-        * ["onError"](#NanoPlayer..event_onError)
-        * ["onStats"](#NanoPlayer..event_onStats)
-        * ["onMetaData"](#NanoPlayer..event_onMetaData)
-        * ["onMute"](#NanoPlayer..event_onMute)
-        * ["onUnmute"](#NanoPlayer..event_onUnmute)
-        * ["onVolumeChange"](#NanoPlayer..event_onVolumeChange)
-        * ["onStreamInfo"](#NanoPlayer..event_onStreamInfo)
-        * ["onStreamInfoUpdate"](#NanoPlayer..event_onStreamInfoUpdate)
-        * ["onWarning"](#NanoPlayer..event_onWarning)
-        * ["onDestroy"](#NanoPlayer..event_onDestroy)
-        * [~config](#NanoPlayer..config) : <code>object</code>
-        * [~errorcode](#NanoPlayer..errorcode) : <code>number</code>
-        * [~state](#NanoPlayer..state) : <code>number</code>
-        * [~pausereason](#NanoPlayer..pausereason) : <code>string</code>
-
+**Version**: 3.18.1  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -1256,6 +1205,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>playback.keepConnection</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If enabled the player will have always a connection to the h5live server.</p>
+</td>
+    </tr><tr>
+    <td>playback.allowSafariHlsFallback</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If enabled the player will select the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate.</p>
 </td>
     </tr><tr>
     <td>playback.reconnect</td><td><code>object</code></td><td></td><td><p>The reconnect object to configure the reconnect settings. See <a href="#NanoPlayer..errorcode">errorcodes</a> for reconnect possibility.</p>
