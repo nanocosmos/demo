@@ -97,9 +97,9 @@ All modifications will remain property of nanocosmos.
     <script type="text/javascript">
 
         // DEFAULT DEMO PAGE H5LIVE SERVER
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://h5live.nanocosmos.de:443/h5live/stream';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
 
     </script>
 
@@ -107,12 +107,12 @@ All modifications will remain property of nanocosmos.
     
     <script type="text/javascript">
 
-        var playerVersion = '3.18.1';
+        var playerVersion = '3.18.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190416';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190604';
         };
 
         var player;
@@ -122,7 +122,7 @@ All modifications will remain property of nanocosmos.
                 // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.min'
                 // for a online copy of the minified player use a url e.g. '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.min'
                 // if 'baseUrl' is defined this path have to be relative to the base path
-                nanoplayer: './js/nanoplayer/nanoplayer.3.18.1.min.js?20190416'
+                nanoplayer: './js/nanoplayer/nanoplayer.3.18.2.min.js?20190604'
             },
             waitSeconds: 20, // timeout for loading modules
         });

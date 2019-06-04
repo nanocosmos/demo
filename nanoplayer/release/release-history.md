@@ -1,5 +1,30 @@
 ﻿# Release History
 
+# [3.18.2]
+
+## Release Notes
+
+This release is adding two configuration options to the config.style section. 
+style.backgroundColor allows custom background colors via the config. 
+style.fullScreenControl allows to show/hide the full-screen button in the inline player controls.
+
+
+## Changelog
+
+### Added
+
+- new config parameter 'style.backgroundColor' to enable custom background colors in the player div
+- new config parameter 'style.fullScreenControl' to show or hide the full-screen button in the inline player controls
+
+~~~~
+        config.style.backgroundColor = 'black'
+        config.style.fullScreenControl = true
+~~~~
+
+### Improved
+
+- browser version detection for Safari macOS
+
 # [3.18.1]
 
 ## Release Notes
@@ -992,9 +1017,9 @@ except if the server configuration is done through the bintu API by providing a 
 For playback from the nanoStream Cloud without the bintu API the following values have to be set. 
 
 ~~~
-source.h5live.server.websocket = 'wss://h5live.nanocosmos.de:443/h5live/stream';
-source.h5live.server.hls = 'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
-source.h5live.server.progressive = 'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4';
+source.h5live.server.websocket = 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream';
+source.h5live.server.hls = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
+source.h5live.server.progressive = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4';
 ~~~
 
 For the On-Premise setup this server values have to be replaced with the own server urls.

@@ -44,13 +44,6 @@
 				</ul>
 			</li>
 			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu inline">
-					<li><a href="global.html#performancemarks">performance marks</a></li>
-				</ul>
-			</li>
-			
 		</ul>
 		<div class="col-sm-3 col-md-3">
             <form class="navbar-form" role="search">
@@ -86,7 +79,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer Public API Class 3.18.1</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 3.18.2</p></div>
         
     
 </header>
@@ -175,7 +168,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>3.18.1</li>
+			<li>3.18.2</li>
 		</ul>
 	</dd>
 	
@@ -229,9 +222,11 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.3.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        player = new NanoPlayer(&#x27;playerDiv&#x27;);    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.3.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                    hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;                },                // rtmp stream source (your live stream)                rtmp: {                    url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                    streamname: &#x27;XXXXX-YYYYY&#x27;                }            }        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.3.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                    hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;                },                // rtmp stream source (your live stream)                rtmp: {                    url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                    streamname: &#x27;XXXXX-YYYYY&#x27;                }            }        },        playback: {            videoId: &#x27;myPlayer&#x27;        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.3.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();     });&lt;/script&gt;</pre>
 
 
     
@@ -2306,7 +2301,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar source = {    h5live: {        server: {            websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        rtmp: {            url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,            streamname: &#x27;h5liveStream&#x27;        },        security: {            token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,            expires: &#x27;1519819200&#x27;,            options: &#x27;15&#x27;,            tag: &#x27;anyTag&#x27;        }    }}player.updateSource(source).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        // rtmp stream source (your live stream)        rtmp: {            url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,            streamname: &#x27;XXXXX-YYYYY&#x27;        }    },    security: {        token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,        expires: &#x27;1519819200&#x27;,        options: &#x27;15&#x27;,        tag: &#x27;anyTag&#x27;    }}// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -3219,7 +3214,7 @@
                 </td>
             
 
-            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. Known browsers are: Safari 11 on Mac OS X and Safari 10/11 on iOS, Chrome on Android (desktop versions follow in early 2018). See our <a href="https://%3Ca"><b>nanocosmos-blog</b></a>">www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/}</a> for more informations.</p></td>
+            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://%3Ca"><b>nanocosmos-blog</b></a>">www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/}</a> for more informations.</p></td>
         </tr>
 
     
@@ -4331,6 +4326,82 @@
             
 
             <td class="description last"><p>If true a muted audio symbol will be shown in case of muted autoplay.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fullScreenControl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>If true shows fullscreen control symbol in player controls.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>backgroundColor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'black'
+                
+                </td>
+            
+
+            <td class="description last"><p>Sets the background color of the video element - possible values: html colors (&quot;red&quot;, &quot;blue&quot;, ...), hex color codes (&quot;#FACAFD&quot;, &quot;#FCEC66&quot;, ...) and rgba color values (&quot;rgba(255,0,0,1)&quot;, &quot;rgba(0,255,0,0.7)&quot;, ...).</p></td>
         </tr>
 
     
@@ -5574,11 +5645,11 @@
         
     <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: {            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;h5liveStream&#x27;            },            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;,        userId: &#x27;myUserId&#x27;,        eventId: &#x27;myEventId&#x27;,        statsInterval: 10,        customField1: &#x27;custom&#x27;,        customField2: 42,        customField3: true    }};</pre>
+    <pre class="sunlight-highlight-javascript">// Complete config examplevar config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            rtmp: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;            },            // (optional) secure token            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    // playback is completely optional    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    // optional buffer tweaks, use with care, usually not required    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    // metrics/analytics (requires account)    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;,        userId: &#x27;myUserId&#x27;,        eventId: &#x27;myEventId&#x27;,        statsInterval: 10,        customField1: &#x27;custom&#x27;,        customField2: 42,        customField3: true    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            params: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                stream: &#x27;h5liveStream&#x27;,                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
+    <pre class="sunlight-highlight-javascript">// example with source url params and eventsvar config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            params: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            rtmp: {                url: &#x27;rtmp://example.nanocosmos.de:80/live&#x27;,                streamname: &#x27;gwr23t4q3g3&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }};</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            rtmp: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }};</pre>
 
 
     
@@ -14974,7 +15045,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on Tue Apr 16th 2019
+		on Tue Jun 4th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -203,6 +203,16 @@ function getNanoPlayerParameters() {
         config.style = config.style || {};
         config.style.audioPlayer = (audioPlayer === 'true' || audioPlayer === '1');;
     }
+    var backgroundColor = getHTTPParam('backgroundColor') || getHTTPParam('style.backgroundColor');
+    if (backgroundColor) {
+        config.style = config.style || {};
+        config.style.backgroundColor = backgroundColor;
+    }
+    var fullScreenControl = getHTTPParam('fullScreenControl') || getHTTPParam('style.fullScreenControl');
+    if (fullScreenControl) {
+        config.style = config.style || {};
+        config.style.fullScreenControl = (fullScreenControl === 'true' || fullScreenControl === '1');
+    }
     var controls = getHTTPParam('controls') || getHTTPParam('style.controls');
     if (controls) {
         config.style = config.style || {};

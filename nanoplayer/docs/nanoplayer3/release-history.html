@@ -113,6 +113,23 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-18-2-">[3.18.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This release is adding two configuration options to the config.style section. 
+style.backgroundColor allows custom background colors via the config. 
+style.fullScreenControl allows to show/hide the full-screen button in the inline player controls.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>new config parameter &#39;style.backgroundColor&#39; to enable custom background colors in the player div</li>
+<li>new config parameter &#39;style.fullScreenControl&#39; to show or hide the full-screen button in the inline player controls</li>
+</ul>
+<pre><code>        config<span class="hljs-class">.style</span><span class="hljs-class">.backgroundColor</span> = <span class="hljs-string">'black'</span>
+        config<span class="hljs-class">.style</span><span class="hljs-class">.fullScreenControl</span> = true
+</code></pre><h3 id="improved">Improved</h3>
+<ul>
+<li>browser version detection for Safari macOS</li>
+</ul>
 <h1 id="-3-18-1-">[3.18.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This release brings the possibility to allow H5Live low latency HLS playback as fallback for Safari on Mac OS X. If enabled the player will decide for Safari Mac OS X the playback method and utilize H5Live low latency HLS if appropriate.
@@ -906,9 +923,9 @@ for resuming after pause.</p>
 As a result providing the h5live.server configuration object is now mandatory, 
 except if the server configuration is done through the bintu API by providing a bintu source. 
 For playback from the nanoStream Cloud without the bintu API the following values have to be set. </p>
-<pre><code>source.h5live.<span class="hljs-keyword">server</span>.websocket = <span class="hljs-string">'wss://h5live.nanocosmos.de:443/h5live/stream'</span>;
-source.h5live.<span class="hljs-keyword">server</span>.hls = <span class="hljs-string">'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8'</span>;
-source.h5live.<span class="hljs-keyword">server</span>.progressive = <span class="hljs-string">'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4'</span>;
+<pre><code>source.h5live.<span class="hljs-keyword">server</span>.websocket = <span class="hljs-string">'wss://bintu-h5live.nanocosmos.de:443/h5live/stream'</span>;
+source.h5live.<span class="hljs-keyword">server</span>.hls = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8'</span>;
+source.h5live.<span class="hljs-keyword">server</span>.progressive = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'</span>;
 </code></pre><p>For the On-Premise setup this server values have to be replaced with the own server urls.</p>
 <h3 id="breaking-change">BREAKING CHANGE</h3>
 <p>The seperate configuration of the rtmp url for the fallback to flash player, 

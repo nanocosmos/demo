@@ -74,6 +74,24 @@ All modifications will remain property of nanocosmos.
         <p class="normal">
             <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
         </p>
+        <p class="normal">
+            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
+        </p>
         <p class="normal" id="metadata-container" style="display:none">
             <strong>metadata:&nbsp;</strong><span id="metadata"></span>
         </p>
@@ -88,24 +106,6 @@ All modifications will remain property of nanocosmos.
         </p>
         <p class="normal">
             <strong>source:&nbsp;</strong><span id="url">???</span><span>&nbsp;&nbsp;&nbsp;</span><strong>tech:&nbsp;</strong><span id="tech">???</span>
-        </p>
-        <p class="normal">
-            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
-        </p>
-        <p class="normal">
-            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
-        </p>
-        <p class="normal">
-            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
-        </p>
-        <p class="normal">
-            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
-        </p>
-        <p class="normal">
-            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
-        </p>
-        <p class="normal">
-            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
         </p>
         <div id="code-snippet-container" style="display:none">
             <strong>code snippet</strong>
@@ -123,10 +123,10 @@ All modifications will remain property of nanocosmos.
     <script>
 
         // DEFAULT DEMO PAGE H5LIVE SERVER
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'h5live.nanocosmos.de';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://h5live.nanocosmos.de:443/h5live/stream';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'bintu-h5live.nanocosmos.de';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
 
     </script>
     <script src="./js/nanoplayer-helper.js"></script>
@@ -137,15 +137,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.3.18.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.3.18.2.min.js"></script>
     <script>
 
-        var playerVersion = '3.18.1';
+        var playerVersion = '3.18.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190416';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190604';
         };
 
         var player;
