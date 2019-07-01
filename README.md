@@ -37,10 +37,10 @@ An 'undefined' error at destroy is fixed too. Now also playback will always be r
 
 ### Added
 
-- new config parameter 'playback.allowSafariHlsPlayback' to enable selecting the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate (default:false)
+- new config parameter 'playback.allowSafariHlsFallback' to enable selecting the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate (default:false)
 
 ~~~~
-        config.playback.allowSafariHlsPlayback = true
+        config.playback.allowSafariHlsFallback = true
 ~~~~
 
 - send quality values in metrics stats event
