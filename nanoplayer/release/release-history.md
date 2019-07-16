@@ -1,5 +1,17 @@
 ﻿# Release History
 
+# [3.18.3]
+
+## Release Notes
+
+This version brings an improvement for the playback stability under higher cpu/gpu load influence like heavy load in browsers caused by complex WebGL animations. 
+
+## Changelog
+
+### Improved
+
+- optimized playback stability in case of high general cpu/gpu load
+
 # [3.18.2]
 
 ## Release Notes
@@ -7,7 +19,6 @@
 This release is adding two configuration options to the config.style section. 
 style.backgroundColor allows custom background colors via the config. 
 style.fullScreenControl allows to show/hide the full-screen button in the inline player controls.
-
 
 ## Changelog
 
