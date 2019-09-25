@@ -30,7 +30,6 @@
                         <button class="btn btn-primary" onclick="updateSource()">updateSource</button>
                         <button class="btn btn-primary" onclick="play()">play</button>
                         <button class="btn btn-primary" onclick="pause()">pause</button>
-                        <button class="btn btn-primary " onclick="setH5liveDefaults()">default config</button><br /><br />
                         <input type=checkbox id="muted" checked><span>&nbsp;muted</span><br />
                     </div>
                 </div>
@@ -128,7 +127,8 @@
                                 </div>
                                 <div class="col-sm-6 col-lg-8">
                                     <div class="form-inline">
-                                        <input type="text" style="width: 100%" id="url-two" value="
+                                        <input type="text" style="width: 100%" id="url-two" value=""><br>
+                                    </div>
                                 </div>
                                 <hr>
                             </div>
@@ -322,7 +322,6 @@
         function init() {
             player = new NanoPlayer("playerDiv");
             document.getElementById('demo-version').textContent = player.version;
-            getH5liveDefaults();
             getH5liveFromLocals();
             getH5liveFromQuery();
             setH5live();
@@ -489,30 +488,6 @@
                 //hidden && autoUpdateEnabled.checked && autoUpdateEnabled.click();
             }
             document.addEventListener(eventName, onVisibilityChange);
-        }
-
-        function getH5liveDefaults() {
-            h5live = [
-                {
-                    server: 'bintu-play.nanocosmos.de',
-                    rtmp: {
-                        url: 'rtmp://bintu-play.nanocosmos.de:80/play',
-                        streamname: 'CD6oL-2kE1g'
-                    }
-                },
-                {
-                    server: 'bintu-play.nanocosmos.de',
-                    rtmp: {
-                        url: 'rtmp://bintu-play.nanocosmos.de:80/play',
-                        streamname: 'CD6oL-2kE1g'
-                    }
-                },
-            ];
-        }
-
-        function setH5liveDefaults() {
-            getH5liveDefaults();
-            setH5live();
         }
 
         function getH5liveFromLocals() {
