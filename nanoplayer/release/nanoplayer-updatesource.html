@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/demo.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+                <span class="label label-default" style="display: inline-block;" ">update source</span>
+                <span class="label label-info" style="display: inline-block;" id="demo-version"></span>
+                <button class="btn btn-primary" onclick="window.location.reload(false);" style="float:right">Refresh Page</button>
+                <a href="http://nanocosmos.de/contact">nanocosmos.de/contact</a>
+                <br>
+                <br>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <label for="playerDiv">Player</label>
+                    </div>
+                    <div class="panel-body">
+                        <div id="playerDiv" style="width: 100%; padding-bottom: 56.25%"></div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" onclick="setup()">setup</button>
+                        <button class="btn btn-primary" onclick="updateSource()">updateSource</button>
+                        <button class="btn btn-primary" onclick="play()">play</button>
+                        <button class="btn btn-primary" onclick="pause()">pause</button>
+                        <button class="btn btn-primary " onclick="setH5liveDefaults()">default config</button><br /><br />
+                        <input type=checkbox id="muted" checked><span>&nbsp;muted</span><br />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <input type="radio" name="config" id="config-one" value="one" onclick="updateSource(this)" checked><label for="config-one">&nbsp;Config One</label>
+                    </div>
+                    <div class="panel-body">
+                        <div class=row>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="security-one">security:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="radio" name="security-one" id="security-one-one" value="secured" checked><label for="security-one-one">&nbsp;secured</label>
+                                        <input type="radio" name="security-one" id="security-one-two" value="unsecured"><label for="security-one-two">&nbsp;unsecured</label><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="server-one">server:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="server-one" value="t2dev-edge-eu-do-fra-01.out-dev.nanocosmos.de"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="url-one">url:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="url-one" value="rtmp://bintu-play.nanocosmos.de:80/play"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="streamname-one">streamname:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="streamname-one" value="meAno-LZBoN"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <input type="radio" name="config" id="config-two" value="two" onclick="updateSource(this)"><label for="config-two">&nbsp;Config Two</label>
+                    </div>
+                    <div class="panel-body">
+                        <div class=row>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="security-two">security:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="radio" name="security-two" id="security-two-one" value="secured" checked><label for="security-two-one">&nbsp;secured</label>
+                                        <input type="radio" name="security-two" id="security-two-two" value="unsecured"><label for="security-two-one">&nbsp;unsecured</label><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="server-two">server:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="server-two" value="t2dev-edge-eu-do-fra-01.out-dev.nanocosmos.de"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="url-two">url:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="url-two" value="rtmp://bintu-play.nanocosmos.de:80/play"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-sm-6 col-lg-4">
+                                    <label for="streamname-two">streamname:</label><br>
+                                </div>
+                                <div class="col-sm-6 col-lg-8">
+                                    <div class="form-inline">
+                                        <input type="text" style="width: 100%" id="streamname-two" value="meAno-y0x4z"><br>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer"></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <label>Update Source</label>
+                    </div>
+                    <div class="panel-body">
+                        <select id="update-method">
+                            <option name="update-method" selected value="server">server</option>
+                            <option name="update-method" value="client">client</option>
+                        </select><br />
+                        <input type="checkbox" name="update-pauseOnError" id="update-pauseOnError"><label for="update-pauseOnError">&nbsp;pauseOnError</label><br />
+                        <input type="checkbox" name="update-forcePlay" id="update-forcePlay" checked><label for="update-forcePlay">&nbsp;forcePlay</label><br />
+                        <input type="checkbox" name="update-fastStart" id="update-fastStart"><label for="update-fastStart">&nbsp;fastStart</label><br />
+                        <select type="text" id="autoUpdateTime" data-running="false" style="width:50px;margin-right:5px;text-align:center">
+                            <option selected value="5">5s</option>
+                            <option value="10">10s</option>
+                            <option value="20" selected>20s</option>
+                            <option value="30">30s</option>
+                            <option value="60">60s</option>
+                        </select><input type="checkbox" id="autoUpdateEnabled" style="margin-left:10px;" /><label for="autoUpdateEnabled">&nbsp;auto switch between streams</label><br />
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <label>Logging</label>
+                    </div>
+                    <div class="panel-body" style="height:300px;overflow:scroll">
+                        <div id="error-container" style="display:none">
+                            <strong>error: </strong><span id="error"></span>
+                        </div>
+                        <div id="warning-container" style="display:none">
+                            <strong>warning: </strong><span id="warning"></span>
+                        </div>
+                        <div id="metadata-container" style="display:none">
+                            <strong>metadata: </strong><span id="metadata"></span>
+                        </div>
+                        <div id="log-container">
+                            <div id="log">
+                            </div>
+                        </div>
+                            <!--
+                        <div id="debug-container">
+                            <h3>Debug</h3>
+                            <div id="_nanoDebug">
+                            </div>
+                        </div>
+                                -->
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <label>StreamInfo</label>
+                    </div>
+                    <div class="panel-body" id="update-streaminfo">
+                        <strong>resolution:&nbsp;</strong><span id="update-width">0</span><span>&nbsp;x&nbsp;</span><span id="update-height">0</span><br />
+                        <strong>frame rate:&nbsp;</strong><span id="update-framerate">0</span><br />
+                        <strong>audio:&nbsp;</strong><span id="update-audio">false</span><br />
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <label>Stats</label>
+                    </div>
+                    <div class="panel-body">
+                        <strong>status: </strong><span id="status">unitialized</span><br />
+                        <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
+                        <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
+                        <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span><br />
+                        <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span><br />
+                        <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span><br />
+                        <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/nanoplayer-helper.js?release=20190327"></script>
+    <script src="./js/nanoplayer-helper-events.js?release=20190327"></script>
+    <script src="./js/nanoplayer-metrics-config.js?release=20190327"></script>
+    
+    
+    <script src="./js/nanoplayer/nanoplayer.4.0.2.min.js?release=20190924"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () { init(); });
+    </script>
+    
+
+    <script>
+
+        var player;
+        var config = {
+            "source": {
+                "h5live": {
+                    "server": {
+                        "websocket": "",
+                        "hls": "",
+                        "progressive": ""
+                    },
+                    "rtmp": {
+                        "url": "",
+                        "streamname": ""
+                    }
+                }
+            },
+            "playback": {
+                "autoplay": true,
+                "automute": true,
+                "muted": true,
+                "flashplayer": "//demo.nanocosmos.de/nanoplayer/nano.player.swf",
+                "timeouts": {
+                    "loading": 10,
+                    "buffering": 10,
+                    "connecting": 10
+                },
+                'keepConnection': false
+            },
+            "style": {
+                "controls": true
+            }
+        };
+        var server = {
+            "secured": {
+                "websocket": ["wss://", ":443/h5live/stream"],
+                "hls": ["https://", ":443/h5live/http/playlist.m3u8"],
+                "progressive": ["https://", ":443/h5live/http/stream.mp4"]
+            },
+            "unsecured": {
+                "websocket": ["ws://", ":8181"],
+                "hls": ["http://", ":8180/playlist.m3u8"],
+                "progressive": ["http://", ":8180/stream.mp4"]
+            }
+        };
+        var buffering = {
+            start: 0,
+            end: 0
+        };
+        var h5live = [
+            {
+                server: '',
+                rtmp: {
+                    url: '',
+                    streamname: ''
+                }
+            },
+            {
+                server: '',
+                rtmp: {
+                    url: '',
+                    streamname: ''
+                }
+            },
+        ];
+        var secured =  true;
+
+        function init() {
+            player = new NanoPlayer("playerDiv");
+            document.getElementById('demo-version').textContent = player.version;
+            getH5liveDefaults();
+            getH5liveFromLocals();
+            getH5liveFromQuery();
+            setH5live();
+            setEvents();
+            setUpdateHandler();
+            setup();
+        }
+
+        function setup() {
+            setConfigFromForm();
+            for (var event in events) {
+                if (events.hasOwnProperty(event)) {
+                    player.on(event.substr(2), events[event]);
+                }
+            }
+            //if (window.nanoPlayerMetricsConfig) {
+            //    config.metrics = window.nanoPlayerMetricsConfig;
+            // }
+
+
+            player.setup(config).then(function (_config) {
+                console.log("setup success");
+                console.log("config: " + JSON.stringify(_config, undefined, 4));
+            }, function (error) {
+                alert(error.message);
+            });
+
+        }
+
+        function setup1() {
+            setConfigFromForm();
+            player.setup(config).then(function (_config) {
+                console.log("setup success");
+                console.log("config: " + JSON.stringify(_config, undefined, 4));
+            }, function (error) {
+                alert(error.message);
+            });
+        }
+
+        function updateSource(e) {
+            e && (e.checked = true);
+            setConfigFromForm();
+            var options = {
+                method: document.querySelector('#update-method').options[document.querySelector('#update-method').selectedIndex].value,
+                pauseOnError: document.querySelector('input[name=update-pauseOnError]').checked,
+                forcePlay: document.querySelector('input[name=update-forcePlay]').checked,
+                fastStart: document.querySelector('input[name=update-fastStart]').checked,
+                tag: config.source.h5live.rtmp.streamname
+            };
+            player.updateSource(config.source, options).then(function (_config) {
+                console.log("updateSource success");
+                console.log("config: " + JSON.stringify(_config, undefined, 4));
+            }, function (error) {
+                console.error(error.message);
+            });
+        }
+
+        function play() {
+            player.play();
+        }
+
+        function pause() {
+            player.pause();
+        }
+
+        function setConfigFromForm() {
+            try {
+                var _selected = document.querySelector('input[name=config]:checked').value;
+                var _security = document.querySelector('input[name=security-' + _selected + ']:checked').value;
+                var _server = document.querySelector('input[id=server-' + _selected + ']').value;
+                var _url = document.querySelector('input[id=url-' + _selected + ']').value;
+                var _streamname = document.querySelector('input[id=streamname-' + _selected + ']').value;
+                var _muted = document.querySelector('input[id=muted]').checked;
+                config.source.h5live.server.websocket = server[_security].websocket[0] + _server + server[_security].websocket[1];
+                config.source.h5live.server.hls = server[_security].hls[0] + _server + server[_security].hls[1];
+                config.source.h5live.server.progressive = server[_security].progressive[0] + _server + server[_security].progressive[1];
+                config.source.h5live.rtmp.url = _url;
+                config.source.h5live.rtmp.streamname = _streamname;
+                config.playback.muted = _muted;
+                log("Streamname: " + _streamname);
+                console.log(config.source);
+                setLocals();
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+        function setEvents() {
+            function onStreamInfo(streamInfo) {
+                document.getElementById('update-width').textContent = streamInfo.haveVideo ? streamInfo.videoInfo.width : 0;
+                document.getElementById('update-height').textContent = streamInfo.haveVideo ? streamInfo.videoInfo.height : 0;
+                document.getElementById('update-framerate').textContent = streamInfo.haveVideo ? streamInfo.videoInfo.frameRate : 0;
+                document.getElementById('update-audio').textContent = streamInfo.haveAudio;
+            }
+            var _onStreamInfo = events.onStreamInfo;
+            var _onStreamInfoUpdate = events.onStreamInfoUpdate;
+            events.onStreamInfo = function (e) {
+                _onStreamInfo(e);
+                onStreamInfo(e.data.streamInfo);
+            };
+            events.onStreamInfoUpdate = function (e) {
+                _onStreamInfoUpdate(e);
+                onStreamInfo(e.data.streamInfo);
+            };
+        }
+
+        function setUpdateHandler() {
+            var autoUpdateEnabled = document.getElementById('autoUpdateEnabled');
+            var autoUpdateTime = document.getElementById('autoUpdateTime');
+            var autoUpdateTimeOptions = document.querySelector('#autoUpdateTime').getElementsByTagName('option');
+            function enable() {
+                !isNaN(autoUpdateTime.dataset.running) && clearInterval(parseInt(autoUpdateTime.dataset.running));
+                var checked = autoUpdateEnabled.checked;
+                if (checked) {
+                    var time = '20';
+                    for (var i = 0; i < autoUpdateTimeOptions.length; i++) {
+                        if (autoUpdateTimeOptions[i].selected) {
+                            time = autoUpdateTimeOptions[i].value;
+                        }
+                    };
+                    autoUpdateTime.dataset.running = setInterval(function doSwitch() {
+                        var configs = document.querySelectorAll('input[name=config]');
+                        for (i = 0; i < configs.length; ++i) {
+                            if (!configs[i].checked) {
+                                configs[i].checked = true;
+                                updateSource();
+                                break;
+                            }
+                        }
+                    }, parseInt(time) * 1000);
+                } else {
+                    autoUpdateTime.dataset.running = false;
+                }
+            }
+            autoUpdateEnabled.addEventListener('click', enable);
+            autoUpdateTime.addEventListener('change', enable);
+            var auto = getHTTPParam('autoswitch');
+            if (auto) {
+                if (!isNaN(auto)) {
+                    for (var i = 0; i < autoUpdateTimeOptions.length; i++) {
+                        if (autoUpdateTimeOptions[i].value === auto) {
+                            autoUpdateTimeOptions[i].selected = "1";
+                        }
+                    };
+                    autoUpdateEnabled.checked = true;
+                    enable();
+                }
+            }
+            var propertyName, eventName;
+            if (typeof document.hidden !== 'undefined') {
+                propertyName = 'hidden';
+                eventName = 'visibilitychange';
+            }
+            else if (typeof document.msHidden !== 'undefined') {
+                propertyName = 'msHidden';
+                eventName = 'msvisibilitychange';
+            }
+            else if (typeof document.webkitHidden !== 'undefined') {
+                propertyName = 'webkitHidden';
+                eventName = 'webkitvisibilitychange';
+            }
+            function onVisibilityChange() {
+                hidden = document[propertyName];
+                //hidden && autoUpdateEnabled.checked && autoUpdateEnabled.click();
+            }
+            document.addEventListener(eventName, onVisibilityChange);
+        }
+
+        function getH5liveDefaults() {
+            h5live = [
+                {
+                    server: 't2dev-edge-eu-do-fra-01.out-dev.nanocosmos.de',
+                    rtmp: {
+                        url: 'rtmp://bintu-play.nanocosmos.de:80/play',
+                        streamname: 'CD6oL-2kE1g'
+                    }
+                },
+                {
+                    server: 't2dev-edge-eu-do-fra-01.out-dev.nanocosmos.de',
+                    rtmp: {
+                        url: 'rtmp://bintu-play.nanocosmos.de:80/play',
+                        streamname: 'meAno-y0x4z'
+                    }
+                },
+            ];
+        }
+
+        function setH5liveDefaults() {
+            getH5liveDefaults();
+            setH5live();
+        }
+
+        function getH5liveFromLocals() {
+            try {
+                if (localStorage && localStorage.getItem('nano.updatesource')) {
+                    document.querySelector('input[id=muted]').checked = (localStorage.getItem('nano.updatesource.muted') === 'true');
+                    document.querySelector('input[id=' + localStorage.getItem('nano.updatesource.config') + ']').checked = true;
+                    ["one", "two"].forEach(function (number, i) {
+                        h5live[i].server = localStorage.getItem('nano.updatesource.server.' + number);
+                        h5live[i].rtmp.url = localStorage.getItem('nano.updatesource.url.' + number);
+                        h5live[i].rtmp.streamname = localStorage.getItem('nano.updatesource.streamname.' + number);
+                        document.querySelector('input[id=' + localStorage.getItem('nano.updatesource.security.' + number) + ']').checked = true;
+                    });
+                }
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+        // get values from query or keeps default if not set
+        function getH5liveFromQuery() {
+            h5live = [
+                {
+                    server: getHTTPParam('h5live.server') ? getHTTPParam('h5live.server') : h5live[0].server,
+                    rtmp: {
+                        url: getHTTPParam('h5live.rtmp.url') ? getHTTPParam('h5live.rtmp.url') : h5live[0].rtmp.url,
+                        streamname: getHTTPParam('h5live.rtmp.streamname') ? getHTTPParam('h5live.rtmp.streamname') : h5live[0].rtmp.streamname
+                    }
+                },
+                {
+                    server: getHTTPParam('h5live.server2') ? getHTTPParam('h5live.server2') : h5live[1].server,
+                    rtmp: {
+                        url: getHTTPParam('h5live.rtmp2.url') ? getHTTPParam('h5live.rtmp2.url') : h5live[1].rtmp.url,
+                        streamname: getHTTPParam('h5live.rtmp2.streamname') ? getHTTPParam('h5live.rtmp2.streamname') : h5live[1].rtmp.streamname
+                    }
+                },
+            ];
+            secured = (getHTTPParam('h5live.unsecured') === 'true' || getHTTPParam('h5live.unsecured') === '1') ? false : true;
+        }
+
+        function setH5live() {
+            document.querySelector('input[id=config-one]').checked = true;
+            document.querySelector('input[id=security-one-' + (secured ? 'one' : 'two') + ']').checked = document.querySelector('input[id=security-two-' + (secured ? 'one' : 'two') + ']').checked = true;
+            document.querySelector('input[id=server-one]').value = h5live[0].server;
+            document.querySelector('input[id=server-two]').value = h5live[1].server;
+            document.querySelector('input[id=url-one]').value = h5live[0].rtmp.url;
+            document.querySelector('input[id=url-two]').value = h5live[1].rtmp.url;
+            document.querySelector('input[id=streamname-one]').value = h5live[0].rtmp.streamname;
+            document.querySelector('input[id=streamname-two]').value = h5live[1].rtmp.streamname;
+        }
+
+        function setLocals() {
+            try {
+                if (localStorage) {
+                    localStorage.setItem('nano.updatesource', 'true');
+                    localStorage.setItem('nano.updatesource.muted', document.querySelector('input[id=muted]').checked);
+                    localStorage.setItem('nano.updatesource.config', document.querySelector('input[name=config]:checked').id);
+                    ["one", "two"].forEach(function (number) {
+                        localStorage.setItem('nano.updatesource.security.' + number, document.querySelector('input[name=security-' + number + ']:checked').id);
+                        localStorage.setItem('nano.updatesource.server.' + number, document.querySelector('input[id=server-' + number + ']').value);
+                        localStorage.setItem('nano.updatesource.url.' + number, document.querySelector('input[id=url-' + number + ']').value);
+                        localStorage.setItem('nano.updatesource.streamname.' + number, document.querySelector('input[id=streamname-' + number + ']').value);
+                    });
+                }
+            } catch (e) {
+                alert(e.message);
+            }
+        }
+
+    </script>
+
+</body>
+</html>

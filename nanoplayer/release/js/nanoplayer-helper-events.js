@@ -108,6 +108,51 @@ events.onDestroy = function (e) {
     log('destroy');
     document.getElementById('status').innerText = 'destroy';
 };
+events.onUpdateSourceInit = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onUpdateSourceInit: ' + data);
+    var updateSourceInit = document.getElementById('updateSourceInit');
+    if (updateSourceInit !== null) {
+        updateSourceInit.textContent = parseInt(updateSourceInit.textContent)+1;
+    }
+};
+events.onUpdateSourceSuccess = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onUpdateSourceSuccess: ' + data);
+    var updateSourceSuccess = document.getElementById('updateSourceSuccess');
+    if (updateSourceSuccess !== null) {
+        updateSourceSuccess.textContent = parseInt(updateSourceSuccess.textContent)+1;
+        updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent)+1;
+    }
+};
+events.onUpdateSourceFail = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onUpdateSourceFail: ' + data);
+    var updateSourceFail = document.getElementById('updateSourceFail');
+    if (updateSourceFail !== null) {
+        updateSourceFail.textContent = parseInt(updateSourceFail.textContent)+1;
+        updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent)+1;
+    }
+};
+events.onUpdateSourceAbort = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onUpdateSourceAbort: ' + data);
+    var updateSourceAbortEqual = document.getElementById('updateSourceAbortEqual');
+    var updateSourceAbortFrequency = document.getElementById('updateSourceAbortFrequency');
+    var updateSourceAbortSuperseded = document.getElementById('updateSourceAbortSuperseded');
+    if (updateSourceAbortEqual !== null && e.data.reason === 'equalsource') {
+        updateSourceAbortEqual.textContent = parseInt(updateSourceAbortEqual.textContent) + 1;
+        updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent)+1;
+    }
+    if (updateSourceAbortFrequency !== null && e.data.reason === 'updatefrequency') {
+        updateSourceAbortFrequency.textContent = parseInt(updateSourceAbortFrequency.textContent) + 1;
+        updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent) + 1;
+    }
+    if (updateSourceAbortSuperseded !== null && e.data.reason === 'superseded') {
+        updateSourceAbortSuperseded.textContent = parseInt(updateSourceAbortSuperseded.textContent) + 1;
+        updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent) + 1;
+    }
+};
 
 ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function (event) {
     // ['inputUrl', 'inputStreamname'].forEach(function (input) {

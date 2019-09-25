@@ -320,9 +320,14 @@ function checkH5Live(server) {
         } else {
             var routes = {
                 secured: {
-                    websocket: ['wss://', '/h5live/stream'],
-                    hls: ['https://', '/h5live/http/playlist.m3u8'],
-                    progressive: ['https://', '/h5live/http/stream.mp4']
+                    websocket: ['wss://', ':443/h5live/stream'],
+                    hls: ['https://', ':443/h5live/http/playlist.m3u8'],
+                    progressive: ['https://', ':443/h5live/http/stream.mp4']
+                },
+                secured_stream: {
+                    websocket: ['wss://', ':443/h5live/authstream'],
+                    hls: ['https://', ':443/h5live/authhttp/playlist.m3u8'],
+                    progressive: ['https://', ':443/h5live/authhttp/stream.mp4']
                 },
                 unsecured: {
                     websocket: ['ws://', ':8181'],
@@ -330,11 +335,13 @@ function checkH5Live(server) {
                     progressive: ['http://', ':8180/stream.mp4']
                 }
             }
-            var route = (document.location.protocol.indexOf('https') === 0) ? routes.secured : routes.unsecured;
-            config.source.h5live.server.websocket = route.websocket[0] + h5liveQ.server + route.websocket[1];
-            config.source.h5live.server.hls = route.hls[0] + h5liveQ.server + route.hls[1];
-            config.source.h5live.server.progressive = route.progressive[0] + h5liveQ.server + route.progressive[1];
-            // document.getElementById('inputServer').value = h5liveQ.server;
+            var securityCurrent = securityCurrent || null;
+            var route = (document.location.protocol.indexOf('https') === 0) ? (securityCurrent !== null ? routes.secured_stream : routes.secured) : routes.unsecured;
+            config.source.h5live.server = {
+                websocket: route.websocket[0] + h5liveQ.server + route.websocket[1],
+                hls: route.hls[0] + h5liveQ.server + route.hls[1],
+                progressive: route.progressive[0] + h5liveQ.server + route.progressive[1]
+            }
         }
     } else { // try parse seperately
         h5liveQ.server = {};

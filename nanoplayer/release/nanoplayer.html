@@ -137,15 +137,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.3.18.3.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.0.2.min.js"></script>
     <script>
 
-        var playerVersion = '3.18.3';
+        var playerVersion = '4.0.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.3.min.js?20190711';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20190924';
         };
 
         var player;
@@ -177,11 +177,11 @@ All modifications will remain property of nanocosmos.
             playback: {
                 autoplay: true,
                 automute: true,
-                muted: false
+                muted: true
             },
             events: {},
             style: {
-                controls: true
+                displayMutedAutoplay: false
             }
         };
         events = events || {};

@@ -1,5 +1,124 @@
 ﻿# Release History
 
+# [4.0.2]
+
+## Release Notes
+
+### BREAKING CHANGE
+The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old 'updateSource' functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
+Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason 'playbackrestart' and restart playback with the new source is removed except for iOS.
+In general we added a new 'options' param to the 'updateSource' promise to be able to configure the way of stream switching. The new options are:
+
+* @param {string}  [options.method=server] - The update method. Possible values are 'server' (default) and 'client'.
+* @param {boolean}  [options.pauseOnError=false] - If set the player stops if an error occure during the stream switch. Default is false.
+* @param {boolean}  [options.forcePlay=true] - If set the player starts playback in case the player is paused. Default is true.
+* @param {boolean}  [options.fastStart=false] - Only if method is 'server'. Tries to accelerate the startup time of the new source. Default is false.
+* @param {number}  [options.timeout=10] - The timeout for the update source request in seconds. If reached the error 4006 will thrown in the 'onUpdateSourceFail' event. Default is 10 seconds, valid range is between 5 and 30.
+* @param {string}  [options.tag] - A custom field that can be any string like 'stream-800k' or '720p'. This tag will be returned in any completion event of the 'updateSource' request like 'onUpdateSourceSuccess', 'onUpdateSourceFail' and 'onUpdateSourceAbort'.
+
+Example:
+
+~~~~
+ var source = {
+     h5live: {
+         // h5live server endpoint (not required to change)
+         server: {
+             websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',
+             hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'
+         },
+         // rtmp stream source (your live stream)
+         rtmp: {
+             url: 'rtmp://bintu-play.nanocosmos.de:80/live',
+             streamname: 'XXXXX-YYYYY'
+         }
+     },
+     security: {
+         token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',
+         expires: '1519819200',
+         options: '15',
+         tag: 'anyTag'
+     }
+ }
+ var options = {
+     method: 'server',
+     pauseOnError: false,
+     forcePlay: true,
+     fastStart: false,
+     timeout: 10,
+     tag: 'XXXXX-YYYYY'
+ }
+ // player instance of NanoPlayer
+ player.updateSource(source, options).then(function (config) {
+     console.log('update source ok with config: ' + JSON.stringify(config)));
+ }, function (error) {
+     console.log(error);
+ });
+~~~~
+
+To get more information about the update request start and completion we added four new public events related to the 'updateSource' call:
+
+* [events.onUpdateSourceInit] - Fires if the player has received an update source request.
+    * @property {object} data.source - The source object given in the 'updateSource' call.
+    * @property {object} data.options - The options object used for the 'updateSource' call.
+    * @property {string} data.tag - The custom tag string given in the options object of the 'updateSource' call. Is an empty string if not set.
+    * @property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+* [events.onUpdateSourceSuccess] - Fires if the player has successfully updated the source.
+    * @property {string} data.tag - The custom tag string given in the options object of the 'updateSource' call. Is an empty string if not set.
+    * @property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+* [events.onUpdateSourceFail] - Fires if the player has failed to update the source.
+    * @property {object} data.code - The error code. Similar to the errorcodes.
+    * @property {object} data.message - The error message.
+    * @property {string} data.tag - The custom tag string given in the options object of the 'updateSource' call. Is an empty string if not set.
+    * @property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+* [events.onUpdateSourceAbort] - Fires if the player aborted the update source request.
+    * @property {string} data.reason - The options object used for the 'updateSource' call. Possible values are 'equalsource', 'superseded' and 'updatefrequency'.
+    * @property {string} data.tag - The custom tag string given in the options object of the 'updateSource' call. Is an empty string if not set.
+    * @property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+
+Especially for the 'onUpdateSourceFail' event we added two new errors that also will triggered in the 'onError' event if 'options.pauseOnError' is set to true:
+
+* 4005 - 'The requested source stream in the \'updateSource\' call has been stopped.'
+* 4006 - 'The update source request was aborted by timeout.'
+
+Please see documentation for further infos: https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/.
+
+## Changelog
+
+### Improved
+
+- new 'updateSource' methods 'server' and 'client' for smoother and faster behaviour
+- 'updateSource' options object as param
+- new public events 'onUpdateSourceInit', 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+- new error codes 4005 and 4006
+
+### Removed
+
+- pause/play update behaviour except for iOS
+
+# [3.18.5]
+
+## Release Notes
+
+This version patches the usage of the 'params' object of the config source object. Now it isn't necessary to pass 'url' & 'stream' if no 'source.h5live.rtmp' object is present.
+
+## Changelog
+
+### Fixed
+
+- remove check for rtmp queries 'url' & 'stream' in 'params' object of the source config
+
+# [3.18.4]
+
+## Release Notes
+
+This version fixes a small bug with buffer config validation. 
+
+## Changelog
+
+### Fixed
+
+- use 'hasOwnProperty' in buffer config validation
+
 # [3.18.3]
 
 ## Release Notes
