@@ -369,7 +369,7 @@
                 pauseOnError: document.querySelector('input[name=update-pauseOnError]').checked,
                 forcePlay: document.querySelector('input[name=update-forcePlay]').checked,
                 fastStart: document.querySelector('input[name=update-fastStart]').checked,
-                tag: config.source.h5live.rtmp.streamname
+                tag: (config.source.h5live && config.source.h5live.rtmp) ? config.source.h5live.rtmp.streamname : (config.source.bintu ? config.source.bintu.streamid : 'none')
             };
             player.updateSource(config.source, options).then(function (_config) {
                 console.log("updateSource success");
@@ -395,11 +395,35 @@
                 var _url = document.querySelector('input[id=url-' + _selected + ']').value;
                 var _streamname = document.querySelector('input[id=streamname-' + _selected + ']').value;
                 var _muted = document.querySelector('input[id=muted]').checked;
-                config.source.h5live.server.websocket = server[_security].websocket[0] + _server + server[_security].websocket[1];
-                config.source.h5live.server.hls = server[_security].hls[0] + _server + server[_security].hls[1];
-                config.source.h5live.server.progressive = server[_security].progressive[0] + _server + server[_security].progressive[1];
-                config.source.h5live.rtmp.url = _url;
-                config.source.h5live.rtmp.streamname = _streamname;
+                if (_url.length > 1) {
+                    delete config.source.bintu;
+                    config.source.h5live = {
+                        server: {
+                            websocket: server[_security].websocket[0] + _server + server[_security].websocket[1],
+                            hls: server[_security].hls[0] + _server + server[_security].hls[1],
+                            progressive: server[_security].progressive[0] + _server + server[_security].progressive[1]
+                        },
+                        rtmp: {
+                            url: _url,
+                            streamname: _streamname
+                        }
+                    }
+                } else {
+                    delete config.source.h5live;
+                    if (_server) {
+                        config.source.h5live = {
+                            server: {
+                                websocket: server[_security].websocket[0] + _server + server[_security].websocket[1],
+                                hls: server[_security].hls[0] + _server + server[_security].hls[1],
+                                progressive: server[_security].progressive[0] + _server + server[_security].progressive[1]
+                            }
+                        }
+                    }
+                    config.source.bintu = {
+                        streamid: _streamname,
+                        apiurl: 'https://bintu.nanocosmos.de'
+                    }
+                }
                 config.playback.muted = _muted;
                 log("Streamname: " + _streamname);
                 console.log(config.source);
