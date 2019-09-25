@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<!--
+nanoStream Player
+(c) 2018, nanocosmos gmbh
+http://www.nanocosmos.de
+sales@nanocosmos.de
+
+LEGAL NOTICE:
+This material is subject to the terms and conditions defined in
+separate license conditions ('LICENSE.txt')
+All information contained herein is, and remains the property
+of nanocosmos GmbH and its suppliers if any. The intellectual and technical concepts
+contained herein are proprietary to nanocosmos GmbH, and are protected by trade secret
+or copyright law. Dissemination of this information or reproduction of this material
+is strictly forbidden unless prior written permission is obtained from nanocosmos.
+All modifications will remain property of nanocosmos.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>nanoplayer</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <div id="container">
+        <h3>Streamnames</h3>
+        <div class="row">
+            <div class="col" id="container1" name="container">
+                <label for="inputStreamname">Stream 1</label>
+                <input placeholder="server" id="inputServer" style="width:100px" />
+                <input placeholder="url" id="inputUrl" style="width:100px"/>
+                <input placeholder="streamname" id="inputStreamName" style="width:100px"/>
+                <label for="inputSecurity">Sec.</label>
+                <input type="checkbox" id="_checkSecurity" />
+                <input id="inputSecurity" value='{"token":"","expires":"","options":"","tag":""}' style="width:400px"/>
+            </div>
+            <div class="col" id="container2" name="container">
+                <label for="inputStreamname2">Stream 2</label>
+                <input placeholder="server2" id="inputServer2" style="width:100px" />
+                <input placeholder="url2" id="inputUrl2" style="width:100px" />
+                <input placeholder="streamname2" id="inputStreamName2" style="width:100px"/>
+                <label for="inputSecurity2">Sec.</label>
+                <input type="checkbox" id="_checkSecurity2"/>
+                <input id="inputSecurity2" value='{"token":"","expires":"","options":"","tag":""}' style="width:400px"/>
+            </div>
+            <div class="col" id="container3" name="container">
+                <label for="inputStreamname3">Stream 3</label>
+                <input placeholder="server3" id="inputServer3" style="width:100px" />
+                <input placeholder="url3" id="inputUrl3" style="width:100px" />
+                <input placeholder="streamname3" id="inputStreamName3" style="width:100px"/>
+                <label for="inputSecurity3">Sec.</label>
+                <input type="checkbox" id="_checkSecurity3" />
+                <input id="inputSecurity3" value='{"token":"","expires":"","options":"","tag":""}' style="width:400px"/>
+            </div>
+            <div class="col" id="container4" name="container">
+                <label for="inputStreamname4">Stream 4</label>
+                <input placeholder="server4" id="inputServer4" style="width:100px" />
+                <input placeholder="url4" id="inputUrl4" style="width:100px" />
+                <input placeholder="streamname4" id="inputStreamName4" style="width:100px"/>
+                <label for="inputSecurity4">Sec.</label>
+                <input type="checkbox" id="_checkSecurity4" />
+                <input id="inputSecurity4" value='{"token":"","expires":"","options":"","tag":""}' style="width:400px"/>
+            </div>
+        </div>
+        <h3>Update Source</h3>
+        <div class="row">
+            <div class="col flex-item">
+                <h2>Options</h2>
+                <div>
+                    <select id="update-method">
+                        <option name="update-method" selected value="server">server</option>
+                        <option name="update-method" value="client">client</option>
+                    </select><label for="update-method">&nbsp;method</label><br />
+                    <input type="checkbox" name="update-pauseOnError" id="update-pauseOnError"><label for="update-pauseOnError">&nbsp;pauseOnError</label><br />
+                    <input type="checkbox" name="update-forcePlay" id="update-forcePlay" checked><label for="update-forcePlay">&nbsp;forcePlay</label><br />
+                    <input type="checkbox" name="update-fastStart" id="update-fastStart"><label for="update-fastStart">&nbsp;fastStart</label><br />
+                    <input type="text" name="update-timeout" id="update-timeout" value="10" style="width:40px"><label for="update-timeout">&nbsp;timeout</label><br />
+                </div>
+            </div>
+            <div class="col flex-item">
+                <h2>Static</h2>
+                <div>
+                    <label for="inputStatic">Interval</label>
+                    <input id="inputStatic" type="number" value="500" placeholder="Interval in ms">
+                    <button id="btnStaticStart">Start</button>
+                    <button id="btnStaticStop">Stop</button>
+                </div>
+            </div>
+            <div class="col flex-item">
+                <h2>Random</h2>
+                <div>
+                    <label for="inputRandomMin">Min</label>
+                    <input id="inputRandomMin" type="number" value="1" placeholder="Interval in ms">
+                    <label for="inputRandomMax">Max</label>
+                    <input id="inputRandomMax" type="number" value="1000" placeholder="Interval in ms">
+                    <button id="btnRandomStart">Start</button>
+                    <button id="btnRandomStop">Stop</button>
+                </div>
+            </div>
+            <div class="col flex-item">
+                <h2>Manual</h2>
+                <button id="btnManual">Update Source</button>
+            </div>
+        </div>
+        <br />
+        <div>Update Source calls: <span id="updateSourceCalls">0</span></div>
+        <div>Update Source completed: <span id="updateSourceCompleted">0</span></div><br />
+        <div>Update Source init: <span id="updateSourceInit">0</span></div>
+        <div>Update Source success: <span id="updateSourceSuccess">0</span></div>
+        <div>Update Source fail: <span id="updateSourceFail">0</span></div>
+        <div>Update Source abort equal: <span id="updateSourceAbortEqual">0</span></div>
+        <div>Update Source abort frequency: <span id="updateSourceAbortFrequency">0</span></div>
+        <div>Update Source abort superseded: <span id="updateSourceAbortSuperseded">0</span></div>
+        <p class="normal">
+            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+            <strong id="demo-version"></strong>
+        </p>
+        <div id="playerDiv" class="player">
+            <!---->
+            <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
+        </div>
+        <p class="normal">
+            <span>
+                <strong>controls:&nbsp;</strong>
+                <button id="buttonPlay" onclick="play();">play</button>
+                <button id="buttonPause" onclick="pause();">pause</button>
+                <button id="buttonReset" onclick="startPlayer();">reset</button>
+                <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
+            </span>
+            <span style="float:right">
+                <span>&nbsp;</span>
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
+                       onchange="setVolume(this, value);" />
+                <output for="fader" id="volume">100%</output>
+            </span>
+            <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
+            <strong id="friendly-message"></strong>
+        </p>
+        <p class="normal" id="warning-container" style="display:none">
+            <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
+        </p>
+        <p class="normal" id="group-container" style="display:none">
+            <strong>group:&nbsp;</strong><span id="group">uninitialized</span>
+        </p>
+        <p class="normal" id="streams-container" style="display:none">
+            <strong>streams:&nbsp;</strong><select id="stream-select" onchange="resetPlayer();"></select>
+        </p>
+        <p class="normal">
+            <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
+        </p>
+        <p class="normal">
+            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
+        </p>
+        <p class="normal">
+            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
+        </p>
+        <p class="normal">
+            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">
+                0
+                kBps
+            </span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">
+                0
+                kBps
+            </span><span>/</span><span id="framerateMax">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>log:&nbsp;</strong><br />
+            <span id="log"></span>
+        </p>
+        <p class="normal" id="metadata-container" style="display:none">
+            <strong>metadata:&nbsp;</strong><span id="metadata"></span>
+        </p>
+        <p class="normal" id="error-container" style="display:none">
+            <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
+        </p>
+        <p class="normal" id="h5live-server-container" style="display:none">
+            <strong>h5live server wss:&nbsp;</strong><span id="h5live-server-wss">???</span><br />
+            <strong>h5live server hls:&nbsp;</strong><span id="h5live-server-hls">???</span>
+        </p>
+        <p class="normal">
+        </p>
+        <p class="normal">
+            <strong>source:&nbsp;</strong><span id="url">???</span><span>&nbsp;&nbsp;&nbsp;</span><strong>tech:&nbsp;</strong><span id="tech">???</span>
+        </p>
+        <p class="normal">
+            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">
+                open api
+                documentation
+            </a>
+        </p>
+    </div>
+
+    <script>
+
+        // DEFAULT DEMO PAGE H5LIVE SERVER
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'bintu-h5live.nanocosmos.de';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
+        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+
+    </script>
+    <script src="./js/nanoplayer-helper.js"></script>
+    <script src="./js/nanoplayer-helper-events.js"></script>
+    <script src="./js/nanoplayer-helper-multistream.js"></script>
+    <script src="./js/nanoplayer-metrics-config.js"></script>
+    <script src="./js/multi/nano.bintu.js"></script>
+
+    
+    
+    <script src="./js/nanoplayer/nanoplayer.4.0.2.min.js"></script>
+    <script>
+
+        var playerVersion = '4.0.2';
+        console.log('nanoplayer html version: ' + playerVersion);
+        document.getElementById('demo-version').innerText = 'version ' + playerVersion;
+
+        var getPlayerLocation = function () {
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20190925';
+        };
+
+        var player;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var cap = NanoPlayer.capabilities;
+            !cap.length ? console.log('no supported player tech') : cap.forEach(function (c) { console.log('supported player tech: ' + c) });
+            init();
+        });
+    </script>
+    
+
+    <script>
+        var buffering = {
+            start: 0,
+            end: 0
+        };
+
+        var bintu, bintuQ;
+        var metaDataTimeout = 0;
+        var forceAutoplay = null;
+        var forceMuted = null;
+
+        var searchRefreshInterval = 0;
+
+        var config = {
+            source: {},
+            playback: {
+                autoplay: true,
+                automute: true,
+                muted: false
+            },
+            events: {},
+            style: {
+                controls: true
+            }
+        };
+        events = events || {};
+        events.onMute = function (e) {
+            log('onMute');
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = true;
+            buttonMute.innerText = 'unmute';
+        };
+        events.onUnmute = function (e) {
+            log('onUnmute');
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = false;
+            buttonMute.innerText = 'mute';
+        };
+        events.onVolumeChange = function (e) {
+            log('onVolumeChange ' + e.data.volume * 100);
+            var volumeFader = document.getElementById('faderVolume'), volumeOutput = document.getElementById('volume'), volume = Math.round(e.data.volume * 100);
+            (parseInt(volumeFader.value) !== volume) && (volumeFader.value = volume);
+            volumeOutput.value = volume + '%';
+        };
+
+        function init() {
+            document.querySelector('#faderVolume').value = 100;
+            var doStartPlayer = getNanoPlayerParameters();
+            if (doStartPlayer) {
+                startPlayer(config);
+            }
+        }
+
+        function resetPlayer() {
+            var select = document.getElementById('stream-select');
+            if (!select.options[select.selectedIndex]) {
+                return;
+            }
+            var selectedValue = select.options[select.selectedIndex].value;
+
+            if (!!streamObj) {
+                if (streamObj.streamname === selectedValue) {
+                    console.log('already playing this stream');
+                    return;
+                }
+            }
+
+            var i, len = streamObjs.length;
+            for (i = 0; i < len; i += 1) {
+                if (streamObjs[i].streamname === selectedValue)
+                    streamObj = streamObjs[i];
+            }
+
+            var h5liveQ = {};
+            h5liveQ.rtmp = {};
+            h5liveQ.rtmp.url = streamObj.url;
+            h5liveQ.rtmp.streamname = streamObj.streamname;
+            h5liveQ.server = {};
+            h5liveQ.server.websocket = streamObj.server.websocket;
+            h5liveQ.server.hls = streamObj.server.hls;
+            h5liveQ.server.progressive = streamObj.server.progressive;
+
+            config.source.h5live = h5liveQ;
+
+            checkSecurity();
+            if (!player) {
+                startPlayer();
+            } else {
+                updateSource();
+            }
+        }
+
+        function destroyPlayer() {
+            if (player) {
+                player.destroy();
+            }
+        }
+
+        function startPlayer(config) {
+            if (!player) {
+                player = new NanoPlayer('playerDiv');
+            }
+            config = config || this.config;
+            //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);
+            //config.playback.autoplay = (!mobile && config.playback.autoplay);
+            if (forceAutoplay !== null) {
+                config.playback.autoplay = forceAutoplay;
+            }
+            if (forceMuted !== null) {
+                config.playback.muted = forceMuted;
+            }
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = config.playback.muted;
+            buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
+
+            for (var event in events) {
+                if (events.hasOwnProperty(event)) {
+                    player.on(event.substr(2), events[event]);
+                }
+            }
+
+            if (window.nanoPlayerMetricsConfig) {
+                config.metrics = window.nanoPlayerMetricsConfig;
+            }
+            streamnameCurrent = config.source.h5live.rtmp.streamname;
+            player.setup(config).then(function (conf) {
+                setVolume(null, document.getElementById('faderVolume').value);
+                checkConfig(conf);
+                try {
+                    conf = JSON.stringify(conf)
+                } catch (err) { }
+                log('setup ok: ' + conf);
+            }, function (error) {
+                if (error.message) {
+                    error = error.message;
+                } else {
+                    try {
+                        var err = JSON.stringify(error);
+                        if (err === '{}') {
+                            err = error.message;
+                        }
+                        error = err;
+                    } catch (err) { }
+                }
+                log('Setup Error: ' + error);
+                document.getElementById('status').innerText = 'Setup Error: ' + error;
+            });
+        }
+
+        function checkConfig(conf) {
+            if ((config.source.bintu && !config.source.h5live) || (conf.source.h5live && conf.source.h5live.server)) {
+                var container = document.getElementById('h5live-server-container');
+                var wssEl = document.getElementById('h5live-server-wss');
+                var hlsEl = document.getElementById('h5live-server-hls');
+                wssEl.innerText = conf.source.h5live.server.websocket;
+                wssEl.innerText += (conf.source.h5live.server.websocket === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
+                hlsEl.innerText = conf.source.h5live.server.hls;
+                hlsEl.innerText += (conf.source.h5live.server.hls === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
+                container.style.display = 'block';
+            }
+            document.getElementById('url').innerText = conf.url;
+            document.getElementById('tech').innerText = conf.type;
+            document.getElementById('demo-version').innerText = 'version ' + player.version;
+        }
+
+        function play() {
+            player.play();
+        }
+
+        function pause() {
+            player.pause();
+        }
+
+        function mute(e) {
+            var muted = (e.dataset.muted === 'true') ? true : false;
+            if (muted) {
+                player.unmute();
+            } else {
+                player.mute();
+            }
+        }
+
+        function setVolume(e, value) {
+            if (!player) {
+                return;
+            }
+            if (value < 0) {
+                value = 0;
+            } else if (value > 100) {
+                value = 100;
+            }
+            var volume = value / 100;
+            player.setVolume(volume);
+        }
+
+        function updateSource() {
+            if (!player) {
+                return;
+            }
+            player.updateSource(config.source).then(function (conf) {
+                checkConfig(conf);
+                try {
+                    conf = JSON.stringify(conf);
+                } catch (err) { }
+                log('update source ok: ' + conf);
+            }, function (error) {
+                if (error.message) {
+                    error = error.message;
+                } else {
+                    try {
+                        var err = JSON.stringify(error);
+                        if (err === '{}') {
+                            err = error.message;
+                        }
+                        error = err;
+                    } catch (err) { }
+                }
+                log('update source error: ' + error);
+                document.getElementById('status').innerText = 'Update Source Error: ' + error;
+            });
+        }
+    </script>
+    <script>
+        var count = 0;
+        var interval;
+        var timeout;
+        var streamname;
+        var streamname2;
+        var streamname3;
+        var streamname4;
+
+        var streamnameCurrent, urlCurrent, serverCurrent, securityCurrent;
+
+        // cache DOM
+        var inputStreamName = document.getElementById('inputStreamName');
+        var inputStreamName2 = document.getElementById('inputStreamName2');
+        var inputStreamName3 = document.getElementById('inputStreamName3');
+        var inputStreamName4 = document.getElementById('inputStreamName4');
+        var inputUrl = document.getElementById('inputUrl');
+        var inputUrl2 = document.getElementById('inputUrl2');
+        var inputUrl3 = document.getElementById('inputUrl3');
+        var inputUrl4 = document.getElementById('inputUrl4');
+        var inputSecurity = document.getElementById('inputSecurity');
+        var inputSecurity2 = document.getElementById('inputSecurity2');
+        var inputSecurity3 = document.getElementById('inputSecurity3');
+        var inputSecurity4 = document.getElementById('inputSecurity4');
+        var _checkSecurity = document.getElementById('_checkSecurity');
+        var _checkSecurity2 = document.getElementById('_checkSecurity2');
+        var _checkSecurity3 = document.getElementById('_checkSecurity3');
+        var _checkSecurity4 = document.getElementById('_checkSecurity4');
+        var inputServer = document.getElementById('inputServer');
+        var inputServer2 = document.getElementById('inputServer2');
+        var inputServer3 = document.getElementById('inputServer3');
+        var inputServer4 = document.getElementById('inputServer4');
+        var inputStatic = document.getElementById('inputStatic');
+        var inputRandomMin = document.getElementById('inputRandomMin');
+        var inputRandomMax = document.getElementById('inputRandomMax');
+        var btnStaticStart = document.getElementById('btnStaticStart');
+        var btnStaticStop = document.getElementById('btnStaticStop');
+        var btnRandomStart = document.getElementById('btnRandomStart');
+        var btnRandomStop = document.getElementById('btnRandomStop');
+        var btnManual = document.getElementById('btnManual');
+        var updateSourceCalls = document.getElementById('updateSourceCalls');
+        var updateSourceCompleted = document.getElementById('updateSourceCompleted');
+        var updateSourceInit = document.getElementById('updateSourceInit');
+        var updateSourceSuccess = document.getElementById('updateSourceSuccess');
+        var updateSourceFail = document.getElementById('updateSourceFail');
+        var updateSourceAbortEqual = document.getElementById('updateSourceAbortEqual');
+        var updateSourceAbortFrequency = document.getElementById('updateSourceAbortFrequency');
+        var updateSourceAbortSuperseded = document.getElementById('updateSourceAbortSuperseded');
+
+
+        // bind event listeners
+        btnStaticStart.addEventListener('click', function () {
+            console.log("Start Interval @" + inputStatic.value + " ms each!")
+            intervalStart(inputStatic.value);
+        });
+        btnStaticStop.addEventListener('click', intervalStop);
+
+        btnRandomStart.addEventListener('click', function () {
+            timeoutStart();
+        });
+
+        btnRandomStop.addEventListener('click', function () {
+            timeoutStop();
+        });
+
+        btnManual.addEventListener('click', updateSource);
+
+        inputStreamName.addEventListener('change', function () {
+            if (this.value !== "") {
+                console.log("CHANGED")
+                streamname = this.value;
+            } else streamname = undefined;
+        });
+
+        inputStreamName2.addEventListener('change', function () {
+            if (this.value !== "") {
+                streamname2 = this.value;
+            } else streamname2 = undefined;
+        });
+
+        inputStreamName3.addEventListener('change', function () {
+            if (this.value !== "") {
+                streamname3 = this.value;
+            } else streamname3 = undefined;
+        });
+
+        inputStreamName4.addEventListener('change', function () {
+            if (this.value !== "") {
+                streamname4 = this.value;
+            } else streamname4 = undefined;
+        });
+
+        function intervalStart(duration) {
+            intervalStop();
+            interval = setInterval(function () {
+                console.log("[Interval] duration: " + duration + ' ms')
+                updateSource();
+            }, duration);
+        }
+
+        function intervalStop() {
+            console.log("Stopped Interval!")
+            clearInterval(interval);
+        }
+
+        function timeoutStart() {
+            timeoutStop();
+
+            var randomDuration = getRandomDuration();
+            timeout = setTimeout(function () {
+                console.log("[Timeout] random duration: " + randomDuration + " ms");
+                updateSource();
+                timeoutStart();
+            }, randomDuration);
+        }
+
+        function timeoutStop() {
+            console.log("Stopped Timeout!")
+            clearTimeout(timeout);
+        }
+
+        function updateSource() {
+            console.log("Update Source");
+            count++;
+            updateSourceCalls.textContent = parseInt(updateSourceCalls.textContent)+1;
+
+            var newSource = {
+                h5live: getRandomSource()
+            };
+
+            // get values from playersettings inputs later
+            var methods = document.getElementById('update-method');
+            var method = methods.options[methods.selectedIndex].value;
+            var opts = {
+                'method': method,
+                'pauseOnError': document.querySelector('input[name=update-pauseOnError]').checked,
+                'forcePlay': document.querySelector('input[name=update-forcePlay]').checked,
+                'fastStart': document.querySelector('input[name=update-fastStart]').checked,
+                'timeout': parseInt(document.querySelector('input[name=update-timeout]').value),
+                'tag': newSource.h5live.rtmp.streamname
+            };
+
+            console.log('update source opts: ' + JSON.stringify(opts));
+            player.updateSource(newSource, opts).then(function (config) {
+                console.log('update source ok with config: ' + JSON.stringify(config));
+                // todo remove with update source event?
+            }, function (error) {
+                console.log(error.message);
+                // workaround
+                // coming soon pause on error => nicht pause on error => warning !
+                // update source success // error
+            });
+        }
+
+        //The maximum is inclusive and the minimum is inclusive
+        function getRandomDuration() {
+            var min = Math.ceil(inputRandomMin.value);
+            var max = Math.floor(inputRandomMax.value);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function initStreamnameInputs() {
+
+            var server = getHTTPParam('h5live.server');
+            var server2 = getHTTPParam('h5live.server2');
+            var server3 = getHTTPParam('h5live.server3');
+            var server4 = getHTTPParam('h5live.server4');
+
+            if (server) inputServer.value = server;
+            if (server2) inputServer2.value = server2;
+            if (server3) inputServer3.value = server3;
+            if (server4) inputServer4.value = server4;
+
+            var streamname = getHTTPParam('h5live.rtmp.streamname');
+            var streamname2 = getHTTPParam('h5live.rtmp2.streamname');
+            var streamname3 = getHTTPParam('h5live.rtmp3.streamname');
+            var streamname4 = getHTTPParam('h5live.rtmp4.streamname');
+
+            if (streamname) inputStreamName.value = streamname;
+            if (streamname2) inputStreamName2.value = streamname2;
+            if (streamname3) inputStreamName3.value = streamname3;
+            if (streamname4) inputStreamName4.value = streamname4;
+
+            var url = getHTTPParam('h5live.rtmp.url');
+            var url2 = getHTTPParam('h5live.rtmp2.url');
+            var url3 = getHTTPParam('h5live.rtmp3.url');
+            var url4 = getHTTPParam('h5live.rtmp4.url');
+
+            if (url) inputUrl.value = url;
+            if (url2) inputUrl2.value = url2;
+            if (url3) inputUrl3.value = url3;
+            if (url4) inputUrl4.value = url4;
+
+            var security = getHTTPParam('h5live.security');
+            var security2 = getHTTPParam('h5live.security2');
+            var security3 = getHTTPParam('h5live.security3');
+            var security4 = getHTTPParam('h5live.security4');
+
+            if (security) inputSecurity.value = decodeURIComponent(security);
+            if (security2) inputSecurity2.value = decodeURIComponent(security);
+            if (security3) inputSecurity3.value = decodeURIComponent(security);
+            if (security4) inputSecurity4.value = decodeURIComponent(security);
+
+            if (getHTTPParam('h5live.security.token')) {
+                security = {
+                    "token": getHTTPParam('h5live.security.token') || '',
+                    "expires": getHTTPParam('h5live.security.expires') || '',
+                    "options": getHTTPParam('h5live.security.options') || '',
+                    "tag": getHTTPParam('h5live.security.tag') || ''
+                }
+                inputSecurity.value = JSON.stringify(security);
+            }
+            if (getHTTPParam('h5live.security2.token')) {
+                security2 = {
+                    "token": getHTTPParam('h5live.security2.token') || '',
+                    "expires": getHTTPParam('h5live.security2.expires') || '',
+                    "options": getHTTPParam('h5live.security2.options') || '',
+                    "tag": getHTTPParam('h5live.security2.tag') || ''
+                }
+                inputSecurity2.value = JSON.stringify(security2);
+            }
+            if (getHTTPParam('h5live.security3.token')) {
+                security3 = {
+                    "token": getHTTPParam('h5live.security3.token') || '',
+                    "expires": getHTTPParam('h5live.security3.expires') || '',
+                    "options": getHTTPParam('h5live.security3.options') || '',
+                    "tag": getHTTPParam('h5live.security3.tag') || ''
+                }
+                inputSecurity3.value = JSON.stringify(security3);
+            }
+            if (getHTTPParam('h5live.security4.token')) {
+                security4 = {
+                    "token": getHTTPParam('h5live.security4.token') || '',
+                    "expires": getHTTPParam('h5live.security4.expires') || '',
+                    "options": getHTTPParam('h5live.security4.options') || '',
+                    "tag": getHTTPParam('h5live.security4.tag') || ''
+                }
+                inputSecurity4.value = JSON.stringify(security4);
+            }
+            if (security) _checkSecurity.checked = true;
+            if (security2) _checkSecurity2.checked = true;
+            if (security3) _checkSecurity3.checked = true;
+            if (security4) _checkSecurity4.checked = true;
+
+        }
+
+        function getRandomSource() {
+            var availableStreamNames = [];
+            if (inputStreamName.value) availableStreamNames.push('');
+            if (inputStreamName2.value) availableStreamNames.push('2');
+            if (inputStreamName3.value) availableStreamNames.push('3');
+            if (inputStreamName4.value) availableStreamNames.push('4');
+            var random = getRandomInt(availableStreamNames.length);
+            streamnameCurrent = document.getElementById('inputStreamName' + availableStreamNames[random]).value;
+            urlCurrent = document.getElementById('inputUrl' + availableStreamNames[random]).value;
+            serverCurrent = document.getElementById('inputServer' + availableStreamNames[random]).value;
+            try {
+                if (document.getElementById('_checkSecurity' + availableStreamNames[random]).checked) {
+                    securityCurrent = document.getElementById('inputSecurity' + availableStreamNames[random]).value;
+                    securityCurrent = JSON.parse(securityCurrent);
+                } else {
+                    securityCurrent = undefined;
+                }
+            } catch (e) {
+                securityCurrent = undefined;
+            }
+            var routes = {
+                secured: {
+                    websocket: ['wss://', ':443/h5live/stream'],
+                    hls: ['https://', ':443/h5live/http/playlist.m3u8'],
+                    progressive: ['https://', ':443/h5live/http/stream.mp4']
+                },
+                secured_stream: {
+                    websocket: ['wss://', ':443/h5live/authstream'],
+                    hls: ['https://', ':443/h5live/authhttp/playlist.m3u8'],
+                    progressive: ['https://', ':443/h5live/authhttp/stream.mp4']
+                },
+                unsecured: {
+                    websocket: ['ws://', ':8181'],
+                    hls: ['http://', ':8180/playlist.m3u8'],
+                    progressive: ['http://', ':8180/stream.mp4']
+                }
+            }
+            var route = (document.location.protocol.indexOf('https') === 0) ? (securityCurrent !== undefined ? routes.secured_stream : routes.secured) : routes.unsecured;
+            var server = {
+                websocket: route.websocket[0] + serverCurrent + route.websocket[1],
+                hls: route.hls[0] + serverCurrent + route.hls[1],
+                progressive: route.progressive[0] + serverCurrent + route.progressive[1]
+            }
+            var source = {
+                server: server,
+                rtmp: {
+                    url: urlCurrent,
+                    streamname: streamnameCurrent
+                },
+                security: securityCurrent
+            }
+            console.log("Build H5Live Source!");
+            console.log(JSON.stringify(source));
+            return source;
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        initStreamnameInputs();
+    </script>
+</body>
+
+</html>
