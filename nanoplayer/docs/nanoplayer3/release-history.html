@@ -113,6 +113,31 @@
   </head>
   <body>  
     <h1 id="release-history">Release History</h1>
+<h1 id="-3-18-6-">[3.18.6]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved playback in desktop browsing mode on iPadOS </li>
+</ul>
+<h1 id="-3-18-5-">[3.18.5]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version patches the usage of the &#39;params&#39; object of the config source object. Now it isn&#39;t necessary to pass &#39;url&#39; &amp; &#39;stream&#39; if no &#39;source.h5live.rtmp&#39; object is present.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>remove check for rtmp queries &#39;url&#39; &amp; &#39;stream&#39; in &#39;params&#39; object of the source config</li>
+</ul>
+<h1 id="-3-18-4-">[3.18.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version fixes a small bug with buffer config validation. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>use &#39;hasOwnProperty&#39; in buffer config validation</li>
+</ul>
 <h1 id="-3-18-3-">[3.18.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version brings an improvement for the playback stability under higher cpu/gpu load influence like heavy load in browsers caused by complex WebGL animations. </p>
