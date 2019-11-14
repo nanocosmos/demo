@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.0.2
+NanoPlayer (H5Live) Public API Class 4.0.7
 
 **Kind**: global class  
-**Version**: 4.0.2  
+**Version**: 4.0.7  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -272,7 +272,7 @@ Updates the source of the player.
 
 **Example**  
 ```js
-var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',            hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'        },        // rtmp stream source (your live stream)        rtmp: {            url: 'rtmp://bintu-play.nanocosmos.de:80/live',            streamname: 'XXXXX-YYYYY'        }    },    security: {        token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',        expires: '1519819200',        options: '15',        tag: 'anyTag'    }}var options = {    method: 'server',    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: 'XXXXX-YYYYY'}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',            hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'        },        // rtmp stream source (your live stream)        rtmp: {            url: 'rtmp://bintu-play.nanocosmos.de:80/live',            streamname: 'XXXXX-YYYYY'        },        security: {            token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',            expires: '1519819200',            options: '15',            tag: 'anyTag'        }    }}var options = {    method: 'server',    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: 'XXXXX-YYYYY'}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onReady"></a>
 

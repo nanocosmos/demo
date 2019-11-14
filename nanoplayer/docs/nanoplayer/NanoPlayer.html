@@ -79,7 +79,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.0.2</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.0.7</p></div>
         
     
 </header>
@@ -168,7 +168,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.0.2</li>
+			<li>4.0.7</li>
 		</ul>
 	</dd>
 	
@@ -2613,7 +2613,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        // rtmp stream source (your live stream)        rtmp: {            url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,            streamname: &#x27;XXXXX-YYYYY&#x27;        }    },    security: {        token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,        expires: &#x27;1519819200&#x27;,        options: &#x27;15&#x27;,        tag: &#x27;anyTag&#x27;    }}var options = {    method: &#x27;server&#x27;,    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: &#x27;XXXXX-YYYYY&#x27;}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        // rtmp stream source (your live stream)        rtmp: {            url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,            streamname: &#x27;XXXXX-YYYYY&#x27;        },        security: {            token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,            expires: &#x27;1519819200&#x27;,            options: &#x27;15&#x27;,            tag: &#x27;anyTag&#x27;        }    }}var options = {    method: &#x27;server&#x27;,    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: &#x27;XXXXX-YYYYY&#x27;}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -3526,7 +3526,7 @@
                 </td>
             
 
-            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://%3Ca"><b>nanocosmos-blog</b></a>">www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/}</a> for more informations.</p></td>
+            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
         </tr>
 
     
@@ -5784,7 +5784,7 @@
 
             
 
-            <td class="description last"><p>The metrics object. <b>Only usable with valid account.</b> Configuring this object allows you to collect and analyse data via the 'nanoStream Cloud'. If not set, metrics are disabled. See our <a href="https://%3Ca"><b>nanocosmos / nanoStream documentation</b></a>">www.nanocosmos.de/v4/documentation/nanoplayer-h5live#nanostream\_cloud\_analytics\_and\_player\_metrics}</a> for more informations.</p>
+            <td class="description last"><p>The metrics object. <b>Only usable with valid account.</b> Configuring this object allows you to collect and analyse data via the 'nanoStream Cloud'. If not set, metrics are disabled. See our <a href="https://www.nanocosmos.de/v4/documentation/nanoplayer-h5live#nanostream_cloud_analytics_and_player_metrics"><b>nanocosmos / nanoStream documentation</b></a> for more informations.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -17011,9 +17011,9 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on Wed Sep 25th 2019
+		on Thu Nov 14th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

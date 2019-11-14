@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     
-    <title>doc</title>
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
     <style>
       /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
       pre code {
@@ -112,90 +113,38 @@
     </style>
   </head>
   <body>  
-    <h1 id="release-history">Release History</h1>
+    <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-0-7-">[4.0.7]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.
+Now playback stats will be correctly used for hls playback to indicate PLAYING and to control the buffer.
+This issue was introduced with the major player version 4 and doesn&#39;t effect older major versions (3 or less).
+Also a duplicated module declaration is removed to ensure stable builds and a small scope issue is fixed.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>iOS 10 playing state detection and buffer control for hls in general by correct registering play stats event in buffercontrol</li>
+<li>removed duplicated module declaration in mediasourcemanger</li>
+<li>correct scope issue in onUpdateSourceInit in h5live.js</li>
+</ul>
+<h1 id="-4-0-4-">[4.0.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for the detection of supported browser types and versions. 
+It furthermore contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved supported browser version detection </li>
+<li>improved playback in desktop browsing mode on iPadOS </li>
+<li>changes applied from 3.18.6/3.18.7</li>
+</ul>
 <h1 id="-4-0-2-">[4.0.2]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <h3 id="breaking-change">BREAKING CHANGE</h3>
 <p>The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old &#39;updateSource&#39; functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
-Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason &#39;playbackrestart&#39; and restart playback with the new source is removed except for iOS.
-In general we added a new &#39;options&#39; param to the &#39;updateSource&#39; promise to be able to configure the way of stream switching. The new options are:</p>
-<ul>
-<li>@param {string}  [options.method=server] - The update method. Possible values are &#39;server&#39; (default) and &#39;client&#39;.</li>
-<li>@param {boolean}  [options.pauseOnError=false] - If set the player stops if an error occure during the stream switch. Default is false.</li>
-<li>@param {boolean}  [options.forcePlay=true] - If set the player starts playback in case the player is paused. Default is true.</li>
-<li>@param {boolean}  [options.fastStart=false] - Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</li>
-<li>@param {number}  [options.timeout=10] - The timeout for the update source request in seconds. If reached the error 4006 will thrown in the &#39;onUpdateSourceFail&#39; event. Default is 10 seconds, valid range is between 5 and 30.</li>
-<li>@param {string}  [options.tag] - A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</li>
-</ul>
-<p>Example:</p>
-<pre><code> <span class="hljs-keyword">var</span> source = {
-     h5live: {
-         <span class="hljs-comment">// h5live server endpoint (not required to change)</span>
-         server: {
-             websocket: <span class="hljs-string">'wss://bintu-h5live.nanocosmos.de/h5live/stream'</span>,
-             hls: <span class="hljs-string">'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'</span>
-         },
-         <span class="hljs-comment">// rtmp stream source (your live stream)</span>
-         rtmp: {
-             url: <span class="hljs-string">'rtmp://bintu-play.nanocosmos.de:80/live'</span>,
-             streamname: <span class="hljs-string">'XXXXX-YYYYY'</span>
-         }
-     },
-     security: {
-         token: <span class="hljs-string">'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi'</span>,
-         expires: <span class="hljs-string">'1519819200'</span>,
-         options: <span class="hljs-string">'15'</span>,
-         tag: <span class="hljs-string">'anyTag'</span>
-     }
- }
- <span class="hljs-keyword">var</span> options = {
-     method: <span class="hljs-string">'server'</span>,
-     pauseOnError: <span class="hljs-literal">false</span>,
-     forcePlay: <span class="hljs-literal">true</span>,
-     fastStart: <span class="hljs-literal">false</span>,
-     timeout: <span class="hljs-number">10</span>,
-     tag: <span class="hljs-string">'XXXXX-YYYYY'</span>
- }
- <span class="hljs-comment">// player instance of NanoPlayer</span>
- player.updateSource(source, options).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
-     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config)));
- }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span> </span>{
-     <span class="hljs-built_in">console</span>.log(error);
- });
-</code></pre><p>To get more information about the update request start and completion we added four new public events related to the &#39;updateSource&#39; call:</p>
-<ul>
-<li>[events.onUpdateSourceInit] - Fires if the player has received an update source request.<ul>
-<li>@property {object} data.source - The source object given in the &#39;updateSource&#39; call.</li>
-<li>@property {object} data.options - The options object used for the &#39;updateSource&#39; call.</li>
-<li>@property {string} data.tag - The custom tag string given in the options object of the &#39;updateSource&#39; call. Is an empty string if not set.</li>
-<li>@property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
-</ul>
-</li>
-<li>[events.onUpdateSourceSuccess] - Fires if the player has successfully updated the source.<ul>
-<li>@property {string} data.tag - The custom tag string given in the options object of the &#39;updateSource&#39; call. Is an empty string if not set.</li>
-<li>@property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
-</ul>
-</li>
-<li>[events.onUpdateSourceFail] - Fires if the player has failed to update the source.<ul>
-<li>@property {object} data.code - The error code. Similar to the errorcodes.</li>
-<li>@property {object} data.message - The error message.</li>
-<li>@property {string} data.tag - The custom tag string given in the options object of the &#39;updateSource&#39; call. Is an empty string if not set.</li>
-<li>@property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
-</ul>
-</li>
-<li>[events.onUpdateSourceAbort] - Fires if the player aborted the update source request.<ul>
-<li>@property {string} data.reason - The options object used for the &#39;updateSource&#39; call. Possible values are &#39;equalsource&#39;, &#39;superseded&#39; and &#39;updatefrequency&#39;.</li>
-<li>@property {string} data.tag - The custom tag string given in the options object of the &#39;updateSource&#39; call. Is an empty string if not set.</li>
-<li>@property {number} data.count - The count of the update source request to identify the paired start and  completion event. The start event is &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
-</ul>
-</li>
-</ul>
-<p>Especially for the &#39;onUpdateSourceFail&#39; event we added two new errors that also will triggered in the &#39;onError&#39; event if &#39;options.pauseOnError&#39; is set to true:</p>
-<ul>
-<li>4005 - &#39;The requested source stream in the \&#39;updateSource\&#39; call has been stopped.&#39;</li>
-<li>4006 - &#39;The update source request was aborted by timeout.&#39;</li>
-</ul>
-<p>Please see documentation for further infos: <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/</a>.</p>
+Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason &#39;playbackrestart&#39; and restart playback with the new source is removed except for iOS.</p>
+<p>Please find more about the new feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="improved">Improved</h3>
 <ul>
@@ -207,6 +156,23 @@ In general we added a new &#39;options&#39; param to the &#39;updateSource&#39; 
 <h3 id="removed">Removed</h3>
 <ul>
 <li>pause/play update behaviour except for iOS</li>
+</ul>
+<h1 id="-3-18-7-">[3.18.7]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for the detection of supported browser types and versions. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved detection of supported browser types and versions </li>
+</ul>
+<h1 id="-3-18-6-">[3.18.6]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved playback in desktop browsing mode on iPadOS </li>
 </ul>
 <h1 id="-3-18-5-">[3.18.5]</h1>
 <h2 id="release-notes">Release Notes</h2>
