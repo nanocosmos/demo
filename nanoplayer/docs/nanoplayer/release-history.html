@@ -114,6 +114,17 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-0-8-">[4.0.8]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.
+It also contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher &#39;min&#39; values doesn&#39;t lead into unrecoverable buffering.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>‘Unhandled Promise Rejection’ error on iOS during play/pause interactions</li>
+<li>correctly detecting buffer underrun for MacOSX Mojave bug</li>
+<li>handle higher buffer tweak &#39;min&#39; values in buffercontrol</li>
+</ul>
 <h1 id="-4-0-7-">[4.0.7]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.

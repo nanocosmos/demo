@@ -1,5 +1,20 @@
 ﻿# NanoPlayer - Release History
 
+# [4.0.8]
+
+## Release Notes
+
+This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.
+It also contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher 'min' values doesn't lead into unrecoverable buffering.
+
+## Changelog
+
+### Fixed
+
+- ‘Unhandled Promise Rejection’ error on iOS during play/pause interactions
+- correctly detecting buffer underrun for MacOSX Mojave bug
+- handle higher buffer tweak 'min' values in buffercontrol
+
 # [4.0.7]
 
 ## Release Notes
