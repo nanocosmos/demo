@@ -4,16 +4,16 @@
 
 ## Release Notes
 
-This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.
-It also contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher 'min' values doesn't lead into unrecoverable buffering.
+This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions 
+are now being prevented. 
 
 ## Changelog
 
-### Fixed
+### Improved
 
-- ‘Unhandled Promise Rejection’ error on iOS during play/pause interactions
-- correctly detecting buffer underrun for MacOSX Mojave bug
-- handle higher buffer tweak 'min' values in buffercontrol
+- buffer state detection on Mac OS X Mojave and iOS
+- preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions
 
 # [4.0.7]
 
