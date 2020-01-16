@@ -1,5 +1,20 @@
 ﻿# NanoPlayer - Release History
 
+# [4.0.8]
+
+## Release Notes
+
+This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions 
+are now being prevented. 
+
+## Changelog
+
+### Improved
+
+- buffer state detection on Mac OS X Mojave and iOS
+- preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions
+
 # [4.0.7]
 
 ## Release Notes

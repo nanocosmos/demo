@@ -16,21 +16,39 @@ is strictly forbidden unless prior written permission is obtained from nanocosmo
 All modifications will remain property of nanocosmos.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>nanoplayer</title>
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
 </head>
+
 <body>
     <div id="container">
         <p class="normal">
             <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
             <strong id="demo-version"></strong>
         </p>
-        <div id="playerDiv" class="player">
-            <!---->
-            <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
+        <div class="row" style="display: flex; height: 400px">
+            <div class="col">
+                <div id="playerDiv" class="player">
+                    <!---->
+                    <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
+                </div>
+            </div>
+            <!-- <div class="col" style="flex: 1; height: 100%; padding-left: 20px">
+                <div id="chartWrapper"
+                    class="d-xl-flex col px-4 py-4 mt-4 mt-xl-4 mx-0 background--light card box-shadow__material"
+                    style="height: 100%">
+                    <div class="row mx-0 font-weight-medium title white--text">
+                        Buffer
+                    </div>
+                    <div class="flex-col flex-1 mt-4" style="overflow: hidden;height: 100%">
+                        <canvas id="bitrateChart"></canvas>
+                    </div>
+                </div>
+            </div> -->
         </div>
         <p class="normal">
             <span>
@@ -42,12 +60,25 @@ All modifications will remain property of nanocosmos.
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
-                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);" onchange="setVolume(this, value);" />
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
+                    onchange="setVolume(this, value);" />
                 <output for="fader" id="volume">100%</output>
             </span>
             <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
             <strong id="friendly-message"></strong>
         </p>
+        <p class="normal">
+            <strong>switch rule:&nbsp;</strong><span id="switch-rule"></span><span id="back-to-rule"></span>
+        </p>
+        <div class="col">
+            <div class="row">
+                <div class="col col-12">
+                    <h2>entries (qualities):</h2>
+                </div>
+            </div>
+            <div id="qualitiesWrapper" class="col">
+            </div>
+        </div>
         <p class="normal" id="warning-container" style="display:none">
             <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
         </p>
@@ -75,22 +106,34 @@ All modifications will remain property of nanocosmos.
             <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
         </p>
         <p class="normal">
-            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
+            <strong>play latency (avg/min/max/dev):&nbsp;</strong><span
+                id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span
+                id="bufferTimeDelayMax">0.0</span><span>/</span><span id="bufferTimeDelayDeviation">0.00</span><br />
         </p>
         <p class="normal">
             <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
         </p>
         <p class="normal">
-            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
+            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span
+                id="playTimeEnd">0.0</span>
         </p>
         <p class="normal">
-            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
+            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span
+                id="bufferTimeEnd">0.0</span>
         </p>
         <p class="normal">
-            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
+            <strong>bitrate (avg/min/max/dev):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span
+                id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span><span>/</span><span
+                id="bitrateDeviation">0 kBps</span>
         </p>
         <p class="normal">
-            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
+            <strong>framerate (current/avg/min/max/dev):&nbsp;</strong><span id="framerateCurrent">0
+                kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0
+                kBps</span><span>/</span><span id="framerateMax">0 kBps</span><span>/</span><span
+                id="framerateDeviation">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>deviationOfMean (dev):&nbsp;</strong><span id="adaptiveBufferTimeDelayDeviation">0.0</span>
         </p>
         <p class="normal" id="metadata-container" style="display:none">
             <strong>metadata:&nbsp;</strong><span id="metadata"></span>
@@ -98,21 +141,13 @@ All modifications will remain property of nanocosmos.
         <p class="normal" id="error-container" style="display:none">
             <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
         </p>
-        <p class="normal" id="h5live-server-container" style="display:none">
-            <strong>h5live server wss:&nbsp;</strong><span id="h5live-server-wss">???</span><br />
-            <strong>h5live server hls:&nbsp;</strong><span id="h5live-server-hls">???</span>
-        </p>
-        <p class="normal">
-        </p>
-        <p class="normal">
-            <strong>source:&nbsp;</strong><span id="url">???</span><span>&nbsp;&nbsp;&nbsp;</span><strong>tech:&nbsp;</strong><span id="tech">???</span>
-        </p>
         <div id="code-snippet-container" style="display:none">
             <strong>code snippet</strong>
             <pre id="code-snippet"></pre>
         </div>
         <p class="normal">
-            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">open api documentation</a>
+            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">open api
+                documentation</a>
         </p>
         <p class="normal">
             <strong>log:&nbsp;</strong><br />
@@ -137,10 +172,10 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.0.8.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.1.4.min.js"></script>
     <script>
 
-        var playerVersion = '4.0.8';
+        var playerVersion = '4.1.4';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
@@ -157,6 +192,153 @@ All modifications will remain property of nanocosmos.
         });
     </script>
     
+
+    <script>
+        function updateStreamQualityWrapper(streamInfo) {
+            if (config.source.entries) {
+
+                var streams = config.source.entries;
+                var qualitiesWrapper = document.getElementById("qualitiesWrapper");
+                var currentStreamname = extractStreamname(streamInfo.url);
+                var currentQualityIndex = getCurrentQualityIndex(currentStreamname);
+
+                removeAllChildNodes(qualitiesWrapper);
+
+                for (var i = 0; i < streams.length; i++) {
+                    var qualityWrapper = document.createElement("div");
+                    qualityWrapper.classList.add("streamQualityWrapper");
+                    qualityWrapper.style.cursor = 'pointer';
+                    var streamIndex = document.createElement("div");
+
+                    streamIndex.textContent = (i + 1) + ".";
+                    qualityWrapper.classList.add("row")
+                    qualityWrapper.appendChild(streamIndex);
+
+                    if (i === currentQualityIndex) {
+                        streamIndex.classList.add("streamIndex--active");
+                        var streamDetailsWrapper = document.createElement("div");
+                        streamDetailsWrapper.classList.add("col-12");
+
+                        // TITLE
+                        var streamDetailsTitle = document.createElement("div");
+                        streamDetailsTitle.classList.add("row");
+
+                        // add streamname
+                        var labelStreamname = document.createElement("div");
+                        labelStreamname.textContent = streams[i].h5live.rtmp.streamname;
+                        labelStreamname.classList.add("labelStreamname");
+                        labelStreamname.classList.add("labelStreamname--active");
+                        streamDetailsTitle.appendChild(labelStreamname);
+
+                        // SUBTITLE
+                        var streamDetailsSubtitle = document.createElement("div");
+                        streamDetailsSubtitle.classList.add("col");
+
+                        // add bitrate
+                        var labelBitrate = document.createElement("div");
+                        labelBitrate.textContent = "Bitrate: " + ((streams[i].info && streams[i].info.bitrate != 0) ? streams[i].info.bitrate : 0);
+                        labelBitrate.textContent += " kbit/s";
+                        labelBitrate.classList.add("labelBitrate");
+                        streamDetailsSubtitle.appendChild(labelBitrate);
+
+                        // add resolution
+                        if (streamInfo.videoInfo) {
+                            var labelResolution = document.createElement("div");
+                            labelResolution.textContent = "Resolution: " + streamInfo.videoInfo.width + "x" + streamInfo.videoInfo.height;
+                            labelResolution.classList.add("labelResolution");
+                            streamDetailsSubtitle.appendChild(labelResolution);
+                        }
+
+                        // add framerate
+                        if (streamInfo.videoInfo) {
+                            var labelFrameRate = document.createElement("div");
+                            labelFrameRate.textContent = "Framerate: " + streamInfo.videoInfo.frameRate + " fps";
+                            labelFrameRate.classList.add("labelFrameRate");
+                            streamDetailsSubtitle.appendChild(labelFrameRate);
+                        }
+
+                        streamDetailsWrapper.appendChild(streamDetailsTitle);
+                        streamDetailsWrapper.appendChild(streamDetailsSubtitle);
+                        qualityWrapper.appendChild(streamDetailsWrapper);
+                    } else {
+                        streamIndex.classList.add("streamIndex");
+                        var labelStreamname = document.createElement("div");
+                        labelStreamname.textContent = streams[i].h5live.rtmp.streamname;
+                        labelStreamname.classList.add("labelStreamname");
+                        qualityWrapper.appendChild(labelStreamname);
+                    }
+
+                    qualityWrapper.addEventListener('click', function (index) {
+                        if (player) {
+                            player.switchStream(index).then(function(_config){
+                                log('switchStream initialized');
+                            }, function error(_err) {
+                                log('switchStream aborted with error ' + _err.code + ': ' + _err.message);
+                            });
+                        }
+                    }.bind(null, i))
+
+                    qualitiesWrapper.appendChild(qualityWrapper);
+                }
+            }
+        }
+
+        function extractStreamname(streamInfoUrl) {
+            var prefix = "stream=";
+            var cutOff = streamInfoUrl.substring(streamInfoUrl.indexOf(prefix));
+            var streamname = cutOff.substring(prefix.length, cutOff.indexOf("&"));
+            return streamname;
+        }
+
+        function getCurrentQualityIndex(streamname) {
+            var currentQualityIndex = 0;
+
+            if (config.source.entries) {
+                var entries = config.source.entries;
+                for (var i = 0; i < entries.length; i++) {
+                    if (entries[i].h5live.rtmp.streamname === streamname) {
+                        currentQualityIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            return currentQualityIndex;
+        }
+
+        function getMaxQualityIndex() {
+            return config.source.entries ? config.source.entries.length - 1 : 0;
+        }
+
+        function removeAllChildNodes(element) {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        }
+
+        function setRule(rule) {
+            var oldRule = document.getElementById('switch-rule').textContent;
+            if (rule === 'none' && oldRule !== 'none' && oldRule.length > 0) {
+                var button = document.createElement('button');
+                button.textContent = 'back to rule \'' + oldRule + '\'';
+                button.style.marginLeft = '1em';
+                button.addEventListener('click', function () {
+                    if (player) {
+                        player.updateSource(config.source).then(function (_config) {
+                            log('updateSource initialized');
+                        }, function error(_err) {
+                            log('updateSource aborted with error ' + _err.code + ': ' + _err.message);
+                        });
+                    }
+                }.bind(null));
+                document.getElementById('back-to-rule').appendChild(button);
+            } else if (rule !== 'none' && document.getElementById('back-to-rule').firstChild) {
+                document.getElementById('back-to-rule').removeChild(document.getElementById('back-to-rule').firstChild);
+            }
+            document.getElementById('switch-rule').textContent = rule;
+        }
+
+    </script>
 
     <script>
 
@@ -207,7 +389,7 @@ All modifications will remain property of nanocosmos.
         function init() {
             document.querySelector('#faderVolume').value = 100;
             var doStartPlayer = getNanoPlayerParameters();
-            if(doStartPlayer) {
+            if (doStartPlayer) {
                 startPlayer(config);
             }
         }
@@ -285,13 +467,75 @@ All modifications will remain property of nanocosmos.
                 config.metrics = window.nanoPlayerMetricsConfig;
             }
 
+            var toString = Object.prototype.toString;
+            function deepCopy(obj) {
+                var rv;
+
+                switch (typeof obj) {
+                    case 'object':
+                        if (obj === null) {
+                            // null => null
+                            rv = null;
+                        }
+                        else {
+                            switch (toString.call(obj)) {
+                                case '[object Array]':
+                                    // It's an array, create a new array with
+                                    // deep copies of the entries
+                                    rv = obj.map(deepCopy);
+                                    break;
+                                case '[object Date]':
+                                    // Clone the date
+                                    rv = new Date(obj);
+                                    break;
+                                case '[object RegExp]':
+                                    // Clone the RegExp
+                                    rv = new RegExp(obj);
+                                    break;
+                                // ...probably a few others
+                                default:
+                                    // Some other kind of object, deep-copy its
+                                    // properties into a new object
+                                    rv = Object.keys(obj).reduce(function (prev, key) {
+                                        prev[key] = deepCopy(obj[key]);
+                                        return prev;
+                                    }, {});
+                                    break;
+                            }
+                        }
+                        break;
+                    default:
+                        // It's a primitive, copy via assignment
+                        rv = obj;
+                        break;
+                }
+                return rv;
+            }
+
+            // updateStreamQualityWrapper();
             player.setup(config).then(function (conf) {
                 setVolume(null, document.getElementById('faderVolume').value);
                 checkConfig(conf);
+                document.getElementById('switch-rule').textContent = conf.source.options.adaption.rule;
                 try {
                     conf = JSON.stringify(conf)
                 } catch (err) { }
                 log('setup ok: ' + conf);
+
+                player.on("StreamInfo", function (e) {
+                    var cutOff = e.data.streamInfo.url.substring(e.data.streamInfo.url.indexOf("stream="));
+                    console.log(cutOff)
+                    var streamname = cutOff.substring(7, cutOff.indexOf("&"))
+                    console.log(streamname)
+                    updateStreamQualityWrapper(e.data.streamInfo);
+                });
+                player.on("SwitchStreamInit", function (e) {
+                    setRule(e.data.rule);
+                });
+                player.on("UpdateSourceInit", function (e) {
+                    setRule(e.data.rule);
+                });
+
             }, function (error) {
                 if (error.message) {
                     error = error.message;
@@ -310,18 +554,6 @@ All modifications will remain property of nanocosmos.
         }
 
         function checkConfig(conf) {
-            if ((config.source.bintu && !config.source.h5live) || (conf.source.h5live && conf.source.h5live.server)) {
-                var container = document.getElementById('h5live-server-container');
-                var wssEl = document.getElementById('h5live-server-wss');
-                var hlsEl = document.getElementById('h5live-server-hls');
-                wssEl.innerText = conf.source.h5live.server.websocket;
-                wssEl.innerText += (conf.source.h5live.server.websocket === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
-                hlsEl.innerText = conf.source.h5live.server.hls;
-                hlsEl.innerText += (conf.source.h5live.server.hls === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
-                container.style.display = 'block';
-            }
-            document.getElementById('url').innerText = conf.url;
-            document.getElementById('tech').innerText = conf.type;
             if (document.getElementById('demo-version').innerText !== 'version ' + player.version) {
                 alert('The page has been updated during the last few minutes! Please empty your cache!');
             }

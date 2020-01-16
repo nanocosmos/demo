@@ -1,0 +1,189 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h1 id="-4-0-8-">[4.0.8]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS.
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions are now being prevented.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>buffer state detection on Mac OS X Mojave and iOS</li>
+<li>preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions</li>
+</ul>
+<h1 id="-4-0-7-">[4.0.7]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.
+Now playback stats will be correctly used for hls playback to indicate PLAYING and to control the buffer.
+This issue was introduced with the major player version 4 and doesn&#39;t effect older major versions (3 or less).
+Also a duplicated module declaration is removed to ensure stable builds and a small scope issue is fixed.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>iOS 10 playing state detection and buffer control for hls in general by correct registering play stats event in buffercontrol</li>
+<li>removed duplicated module declaration in mediasourcemanger</li>
+<li>correct scope issue in onUpdateSourceInit in h5live.js</li>
+</ul>
+<h1 id="-4-0-4-">[4.0.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for the detection of supported browser types and versions.
+It furthermore contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved supported browser version detection</li>
+<li>improved playback in desktop browsing mode on iPadOS</li>
+<li>changes applied from 3.18.6/3.18.7</li>
+</ul>
+<h1 id="-4-0-2-">[4.0.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<h3 id="breaking-change">BREAKING CHANGE</h3>
+<p>The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old &#39;updateSource&#39; functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
+Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason &#39;playbackrestart&#39; and restart playback with the new source is removed except for iOS.</p>
+<p>Please find more about the new feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>new &#39;updateSource&#39; methods &#39;server&#39; and &#39;client&#39; for smoother and faster behaviour</li>
+<li>&#39;updateSource&#39; options object as param</li>
+<li>new public events &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
+<li>new error codes 4005 and 4006</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>pause/play update behaviour except for iOS</li>
+</ul>
+<h1 id="release-package-download">Release Package Download</h1>
+<h2 id="release-package-4-0-8">Release Package 4.0.8</h2>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/CQz49RGtmgZC8ba">4.0.8</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h1 id="documentation">Documentation</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/">demo.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/">demo.nanocosmos.de (until version 3)</a></li>
+</ul>
+<h1 id="release-history">Release History</h1>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
+</ul>
+
+  </body>
+</html>
