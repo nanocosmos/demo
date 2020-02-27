@@ -311,3 +311,70 @@ pre {
         width: 750px;
     }
 }
+
+
+#streamsWrapper > div {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    border: 2px solid black;
+}
+
+#streamsWrapper > div > .streamsCurrent {
+    font-weight: 700;
+    color: #ed7d0e;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-12 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.streamQualityWrapper {
+    padding: 5px 0px;
+    align-items: flex-start;
+}
+
+.streamQualityWrapper > div, .streamQualityWrapper .row > div {
+    padding-right: 10px;
+}
+
+.streamIndex {
+    font-size: 12px;
+    color:#aaa;
+    font-weight: 500;
+}
+
+.streamIndex--active {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.labelStreamname {
+    font-size: 14px;
+    font-weight: 500;
+    color:#aaa;
+}
+
+.labelStreamname--active {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.labelBitrate, .labelResolution, .labelFrameRate {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ed7d0e;
+}

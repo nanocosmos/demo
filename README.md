@@ -1,4 +1,268 @@
-﻿# Release History
+﻿# NanoPlayer - Release History
+
+# [4.2.3]
+
+## Release Notes
+
+This version handles a timestamp offset caused by stream switching to make correct time operations.
+
+## Changelog
+
+### Fixed
+
+- note timestamp offset after stream switch
+
+# [4.2.2]
+
+## Release Notes
+
+This version comes with further ABR and internal improvements and also corrects switch related parts.
+
+## Changelog
+
+### Improved
+
+- ABR suggestion performance
+- overall internal optimizations
+
+### Fixed
+
+- always set new connection when updating source with new server
+- correct error object on initialization error when updating source
+
+# [4.2.1]
+
+## Release Notes
+
+This version communicates additional switchStream and updateSource API related data to the metrics service.
+Furthermore, the ABR prediction cycle is improved to reduce load.
+
+## Changelog
+
+### Improved
+
+- additional switchStream and updateSource API event data to metrics
+- optimize ABR prediction cycle
+
+# [4.2.0]
+
+## Release Notes
+
+This version implements the communication of switchStream and updateSource API events and data to the metrics service. 
+In addition the internal 'streamInfo' event flow is improved and detailed stream information propagated through the event object.
+
+Please find more about the stream switching & ABR feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+
+## Changelog
+
+### Added
+
+- communication of switchStream and updateSource API events and data to metrics service
+
+### Improved
+
+- internal 'streamInfo' event flow optimized 
+- propagate additional stream information with 'streamInfo' event
+
+# [4.1.4]
+
+## Release Notes
+
+This version contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher 'min' values doesn't lead into unrecoverable buffering.
+
+## Changelog
+
+### Fixed
+
+- handle higher buffer tweak 'min' values in buffercontrol
+
+# [4.1.3]
+
+## Release Notes
+
+This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause and updateSource/switchStream interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.
+
+## Changelog
+
+### Fixed
+
+- ‘Unhandled Promise Rejection’ error on iOS during play/pause and updateSource/switchStream interactions
+- correctly detecting buffer underrun for MacOSX Mojave bug
+
+# [4.1.2]
+
+## Release Notes
+
+This version implements a fix to support the regular config as well as an adaptive config to setup the player.
+
+## Changelog
+
+### Fixed
+
+- config assemble during player setup 
+
+# [4.1.1]
+
+## Release Notes
+
+This version implements fixes to support the initial switchUp on iOS devices.
+
+## Changelog
+
+### Fixed
+
+- handle pause reason 'playbackrestart' differently to fix initial switchUp on iOS 
+- set prediction block during initial switchUp
+
+# [4.1.0]
+
+## Release Notes
+
+This version introduces adaptive bitrate (ABR) playback where the player switches between a set of streams with different qualities to accommodate challenging network situations and avoid buffering and frame drops.
+A set of stream sources (entries) is expected inside the 'entries' array of the config's 'source' object. Each entry represents an indexed quality step starting with the highest quality at index 0. The 'startIndex' property sets the entry that should be used for inializing the playback.
+The config's 'source' object now holds an 'options' object to set the ABR 'rule' (algorithm) inside the 'adaption' object and the switch options inside the 'switch' object.
+To manually switch between entries the new 'switchStream' API is used which comes along with 4 new public events and error codes.
+
+Please find more about the stream switching & ABR feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+
+## Changelog
+
+### Improved
+
+- config object:
+    - entries: keeps a set of indexed stream sources which represent a quality step
+    - options: 
+        - adaption: set ABR rule
+        - switch: set switch settings
+    - startIndex: sets the entry used for inializing the playback
+- 'switchStream' API:
+  - use to switch between entries
+  - new public events: 'onSwitchStreamInit', 'onSwitchStreamSuccess', 'onSwitchStreamAbort' and 'onSwitchStreamFail'
+  - new error code:  
+    - 1010: in case an invalid entry index is given as parameter over 'switchStream'
+- 'updateSource' API: 
+  - use to set a new source (ex. with different entries, adaption/switch options)
+  - the updateSource method now uses the switch options set inside the config's source object instead of the parameters supplied via the method call
+
+# [4.0.8]
+
+## Release Notes
+
+This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions 
+are now being prevented. 
+
+## Changelog
+
+### Improved
+
+- Buffer state detection on Mac OS X Mojave and iOS
+- Preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions
+
+# [4.0.7]
+
+## Release Notes
+
+This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.
+Now playback stats will be correctly used for hls playback to indicate PLAYING and to control the buffer.
+This issue was introduced with the major player version 4 and doesn't effect older major versions (3 or less).
+Also a duplicated module declaration is removed to ensure stable builds and a small scope issue is fixed.
+
+## Changelog
+
+### Fixed
+
+- iOS 10 playing state detection and buffer control for hls in general by correct registering play stats event in buffercontrol
+- removed duplicated module declaration in mediasourcemanger
+- correct scope issue in onUpdateSourceInit in h5live.js
+
+# [4.0.4]
+
+## Release Notes
+
+This version contains an improvement for the detection of supported browser types and versions. 
+It furthermore contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. 
+
+## Changelog
+
+### Improved
+
+- improved supported browser version detection 
+- improved playback in desktop browsing mode on iPadOS 
+- changes applied from 3.18.6/3.18.7
+
+# [4.0.2]
+
+## Release Notes
+
+### BREAKING CHANGE
+The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old 'updateSource' functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
+Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason 'playbackrestart' and restart playback with the new source is removed except for iOS.
+
+Please find more about the new feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+
+## Changelog
+
+### Improved
+
+- new 'updateSource' methods 'server' and 'client' for smoother and faster behaviour
+- 'updateSource' options object as param
+- new public events 'onUpdateSourceInit', 'onUpdateSourceInit', 'onUpdateSourceFail' and 'onUpdateSourceAbort'
+- new error codes 4005 and 4006
+
+### Removed
+
+- pause/play update behaviour except for iOS
+
+# [3.18.7]
+
+## Release Notes
+
+This version contains an improvement for the detection of supported browser types and versions. 
+
+## Changelog
+
+### Improved
+
+- improved detection of supported browser types and versions 
+
+# [3.18.6]
+
+## Release Notes
+
+This version contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. 
+
+## Changelog
+
+### Improved
+
+- improved playback in desktop browsing mode on iPadOS 
+
+# [3.18.5]
+
+## Release Notes
+
+This version patches the usage of the 'params' object of the config source object. Now it isn't necessary to pass 'url' & 'stream' if no 'source.h5live.rtmp' object is present.
+
+## Changelog
+
+### Fixed
+
+- remove check for rtmp queries 'url' & 'stream' in 'params' object of the source config
+
+# [3.18.4]
+
+## Release Notes
+
+This version fixes a small bug with buffer config validation. 
+
+## Changelog
+
+### Fixed
+
+- use 'hasOwnProperty' in buffer config validation
 
 # [3.18.3]
 

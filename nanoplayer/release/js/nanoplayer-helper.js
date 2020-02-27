@@ -246,6 +246,8 @@ function getNanoPlayerParameters() {
         config.source.bintu.streamid = bintuQ.streamid;
         checkH5Live();
         checkSecurity();
+        checkEntries();
+        checkOptions();
         doStartPlayer = true;
     } else if (bintuQ.streamname) {
         config.source.h5live = config.source.h5live || {};
@@ -260,6 +262,8 @@ function getNanoPlayerParameters() {
         }
         checkH5Live();
         checkSecurity();
+        checkEntries();
+        checkOptions();
         doStartPlayer = true;
     }
     else if (bintuQ.group && bintuQ.apikey) {
@@ -281,7 +285,7 @@ function getNanoPlayerParameters() {
         var h5liveQ = {};
         h5liveQ.rtmp = {};
         h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
-        h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname');
+        h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname') || getHTTPParam('entries.streamname');
         if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
             config.source.h5live = config.source.h5live || {};
             config.source.h5live.rtmp = h5liveQ.rtmp;
@@ -298,8 +302,16 @@ function getNanoPlayerParameters() {
             config.source.dash = dash;
         }
         checkSecurity();
+        checkEntries();
+        checkOptions();
         doStartPlayer = true;
     }
+    if (config.source.entries.length) {
+        delete config.source.h5live;
+    }
+    var startIndex = parseInt(getHTTPParam('startIndex'));
+    config.source.startIndex = startIndex && !isNaN(startIndex) ? startIndex : 0;
+
     return doStartPlayer;
 }
 
@@ -424,6 +436,112 @@ function checkSecurity() {
     }
 }
 
+function checkEntries() {
+    var entries = [];
+    var paramBitrate, paramWidth, paramHeight, paramFramerate;
+    var streamnames = [], urls = [], servers = [];
+    var nums = ['', '2', '3', '4', '5', '6', '7', '8', '9'];
+    var index = 0;
+
+    while (nums.length) {
+        var num = nums.shift(); 
+        var name = getHTTPParam('entry' + num + '.rtmp.streamname');
+        if (name) {
+            streamnames.push(name);
+        } else {
+            break;
+        }
+        var url = getHTTPParam('entry' + num + '.rtmp.url');
+        if (url) {
+            urls.push(url);
+        } else {
+            urls.push("rtmp://bintu-play.nanocosmos.de:80/play");
+        }
+        var server = getHTTPParam('entry' + num + '.server')
+        if (server) {
+            var routes = {
+                secured: {
+                    websocket: ['wss://', ':443/h5live/stream.mp4'],
+                    hls: ['https://', ':443/h5live/http/playlist.m3u8'],
+                    progressive: ['https://', ':443/h5live/http/stream.mp4']
+                },
+                unsecured: {
+                    websocket: ['ws://', ':8181'],
+                    hls: ['http://', ':8180/playlist.m3u8'],
+                    progressive: ['http://', ':8180/stream.mp4']
+                }
+            }
+            var route = (document.location.protocol.indexOf('https') === 0) ? routes.secured : routes.unsecured;
+            servers.push({
+                websocket: route.websocket[0] + server + route.websocket[1],
+                hls: route.hls[0] + server + route.hls[1],
+                progressive: route.progressive[0] + server + route.progressive[1]
+            });
+        } else {
+            var wss = getHTTPParam('entry' + num + '.server.websocket');
+            var hls = getHTTPParam('entry' + num + '.server.hls');
+            servers.push({
+                websocket: wss || 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4',
+                hls: hls || 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8',
+                progressive: 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+            });
+        }
+
+        paramBitrate = parseInt(getHTTPParam(['entry' + num + '.info.bitrate']));
+        paramWidth = parseInt(getHTTPParam(['entry' + num + '.info.width']));
+        paramHeight = parseInt(getHTTPParam(['entry' + num + '.info.height']));
+        paramFramerate = parseInt(getHTTPParam(['entry' + num + '.info.framerate']));
+        entries.push(
+            {
+                'index': index,
+                'label': 'stream ' + (index + 1),
+                'tag': '',
+                'info': {
+                    'bitrate': !isNaN(paramBitrate) ? paramBitrate : 0,
+                    'width': !isNaN(paramWidth) ? paramWidth : 0,
+                    'height': !isNaN(paramHeight) ? paramHeight : 0,
+                    'framerate': !isNaN(paramFramerate) ? paramFramerate : 0
+                },
+                "hls": "",
+                "h5live": {
+                    "rtmp": {
+                        "url": urls[index],
+                        "streamname": streamnames[index]
+                    },
+                    "server": servers[index],
+                    "token": "",
+                    "security": {
+                        "token": getHTTPParam('entry' + num + '.security.token'),
+                        "expires": getHTTPParam('entry' + num + '.security.expires'),
+                        "options": getHTTPParam('entry' + num + '.security.options'),
+                        "tag": getHTTPParam('entry' + num + '.security.tag')
+                    }
+                },
+                "bintu": {}
+            }
+        )
+        index++;
+    }
+
+    config.source.entries = entries;
+}
+
+function checkOptions() {
+    config.source.options = {
+        "adaption": {},
+        "switch": {}
+    };
+
+    var rule = getHTTPParam('rule') || getHTTPParam('options.rule');
+    if (rule) {
+        config.source.options.adaption.rule = rule;
+    }
+}
+
+function isValidStreamIndex(value, maxValue) {
+    return !isNaN(value) && (value >= 0) && (value <= maxValue);
+}
+
 var logCount = 0;
 
 function log(e, consoleOnly) {
@@ -452,7 +570,6 @@ function warning(message) {
     document.getElementById('warning-container').style.display = 'block';
     log('Warning: ' + message);
 }
-
 
 function hideErrorWarning() {
     document.getElementById('error-container').style.display = 'none';

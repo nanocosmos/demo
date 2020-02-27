@@ -114,15 +114,132 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
-<h1 id="-4-0-8-">[4.0.8]</h1>
+<h1 id="-4-2-3-">[4.2.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
-Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions are now being prevented.</p>
+<p>This version handles a timestamp offset caused by stream switching to make correct time operations.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>note timestamp offset after stream switch</li>
+</ul>
+<h1 id="-4-2-2-">[4.2.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version comes with further ABR and internal improvements and also corrects switch related parts.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>buffer state detection on Mac OS X Mojave and iOS</li>
-<li>preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions</li>
+<li>ABR suggestion performance</li>
+<li>overall internal optimizations</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>always set new connection when updating source with new server</li>
+<li>correct error object on initialization error when updating source</li>
+</ul>
+<h1 id="-4-2-1-">[4.2.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version communicates additional switchStream and updateSource API related data to the metrics service.
+Furthermore, the ABR prediction cycle is improved to reduce load.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>additional switchStream and updateSource API event data to metrics</li>
+<li>optimize ABR prediction cycle</li>
+</ul>
+<h1 id="-4-2-0-">[4.2.0]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements the communication of switchStream and updateSource API events and data to the metrics service. 
+In addition the internal &#39;streamInfo&#39; event flow is improved and detailed stream information propagated through the event object.</p>
+<p>Please find more about the stream switching &amp; ABR feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>communication of switchStream and updateSource API events and data to metrics service</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>internal &#39;streamInfo&#39; event flow optimized </li>
+<li>propagate additional stream information with &#39;streamInfo&#39; event</li>
+</ul>
+<h1 id="-4-1-4-">[4.1.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher &#39;min&#39; values doesn&#39;t lead into unrecoverable buffering.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>handle higher buffer tweak &#39;min&#39; values in buffercontrol</li>
+</ul>
+<h1 id="-4-1-3-">[4.1.3]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause and updateSource/switchStream interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>‘Unhandled Promise Rejection’ error on iOS during play/pause and updateSource/switchStream interactions</li>
+<li>correctly detecting buffer underrun for MacOSX Mojave bug</li>
+</ul>
+<h1 id="-4-1-2-">[4.1.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements a fix to support the regular config as well as an adaptive config to setup the player.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>config assemble during player setup </li>
+</ul>
+<h1 id="-4-1-1-">[4.1.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements fixes to support the initial switchUp on iOS devices.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>handle pause reason &#39;playbackrestart&#39; differently to fix initial switchUp on iOS </li>
+<li>set prediction block during initial switchUp</li>
+</ul>
+<h1 id="-4-1-0-">[4.1.0]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version introduces adaptive bitrate (ABR) playback where the player switches between a set of streams with different qualities to accommodate challenging network situations and avoid buffering and frame drops.
+A set of stream sources (entries) is expected inside the &#39;entries&#39; array of the config&#39;s &#39;source&#39; object. Each entry represents an indexed quality step starting with the highest quality at index 0. The &#39;startIndex&#39; property sets the entry that should be used for inializing the playback.
+The config&#39;s &#39;source&#39; object now holds an &#39;options&#39; object to set the ABR &#39;rule&#39; (algorithm) inside the &#39;adaption&#39; object and the switch options inside the &#39;switch&#39; object.
+To manually switch between entries the new &#39;switchStream&#39; API is used which comes along with 4 new public events and error codes.</p>
+<p>Please find more about the stream switching &amp; ABR feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>config object:<ul>
+<li>entries: keeps a set of indexed stream sources which represent a quality step</li>
+<li>options: <ul>
+<li>adaption: set ABR rule</li>
+<li>switch: set switch settings</li>
+</ul>
+</li>
+<li>startIndex: sets the entry used for inializing the playback</li>
+</ul>
+</li>
+<li>&#39;switchStream&#39; API:<ul>
+<li>use to switch between entries</li>
+<li>new public events: &#39;onSwitchStreamInit&#39;, &#39;onSwitchStreamSuccess&#39;, &#39;onSwitchStreamAbort&#39; and &#39;onSwitchStreamFail&#39;</li>
+<li>new error code:  <ul>
+<li>1010: in case an invalid entry index is given as parameter over &#39;switchStream&#39;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#39;updateSource&#39; API: <ul>
+<li>use to set a new source (ex. with different entries, adaption/switch options)</li>
+<li>the updateSource method now uses the switch options set inside the config&#39;s source object instead of the parameters supplied via the method call</li>
+</ul>
+</li>
+</ul>
+<h1 id="-4-0-8-">[4.0.8]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions 
+are now being prevented. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>Buffer state detection on Mac OS X Mojave and iOS</li>
+<li>Preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions</li>
 </ul>
 <h1 id="-4-0-7-">[4.0.7]</h1>
 <h2 id="release-notes">Release Notes</h2>

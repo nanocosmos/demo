@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
 				<ul class="dropdown-menu inline">
-					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
+					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
 				</ul>
 			</li>
 			
@@ -225,7 +225,7 @@
     <pre class="sunlight-highlight-xml">
 &lt;!-- Example: load player with new video element into playerDiv --&gt;
 &lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
     var player;
     var config = {
@@ -307,7 +307,7 @@
             // loads the player ...
             // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.3.min&#x27;
             // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path
-            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js&#x27;
+            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.4.min.js&#x27;
         },
         waitSeconds: 20, // timeout for loading modules
     });
@@ -1499,7 +1499,7 @@ player.unmute();</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="updateSource"><span class="type-signature"></span>updateSource<span class="signature">(source)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
+    <h4 class="name" id="updateSource"><span class="type-signature"></span>updateSource<span class="signature">(source, <span class="optional">options</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
     
     
 </dt>
@@ -1530,6 +1530,8 @@ player.unmute();</pre>
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -1555,6 +1557,14 @@ player.unmute();</pre>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -2321,6 +2331,308 @@ player.unmute();</pre>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The object to configure the stream switch options like method etc.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    server
+                
+                </td>
+            
+
+            <td class="description last"><p>The update method. Possible values are 'server' (default) and 'client'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pauseOnError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>If set the player stops if an error occure during the stream switch. Default is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forcePlay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>If set the player starts playback in case the player is paused. Default is true.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fastStart</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Only if method is 'server'. Tries to accelerate the startup time of the new source. Default is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    10
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <code>'onUpdateSourceFail'</code> event. Default is 10 seconds, valid range is between 5 and 30.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A custom field that can be any string like 'stream-800k' or '720p'. This tag will be returned in any completion event of the 'updateSource' request like 'onUpdateSourceSuccess', 'onUpdateSourceFail' and 'onUpdateSourceAbort'.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -2421,8 +2733,16 @@ player.unmute();</pre>
         }
     }
 }
+var options = {
+    method: &#x27;server&#x27;,
+    pauseOnError: false,
+    forcePlay: true,
+    fastStart: false,
+    timeout: 10,
+    tag: &#x27;XXXXX-YYYYY&#x27;
+}
 // player instance of NanoPlayer
-player.updateSource(source).then(function (config) {
+player.updateSource(source, options).then(function (config) {
     console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));
 }, function (error) {
     console.log(error);
@@ -3339,7 +3659,7 @@ player.updateSource(source).then(function (config) {
                 </td>
             
 
-            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://%3Ca"><b>nanocosmos-blog</b></a>">www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/}</a> for more informations.</p></td>
+            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
         </tr>
 
     
@@ -5069,6 +5389,134 @@ player.updateSource(source).then(function (config) {
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>onUpdateSourceInit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Fires if the player has received an update source request.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onUpdateSourceSuccess</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Fires if the player has successfully updated the source.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onUpdateSourceFail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Fires if the player has failed to update the source.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onUpdateSourceAbort</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Fires if the player aborted the update source request.</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -5469,7 +5917,7 @@ player.updateSource(source).then(function (config) {
 
             
 
-            <td class="description last"><p>The metrics object. <b>Only usable with valid account.</b> Configuring this object allows you to collect and analyse data via the 'nanoStream Cloud'. If not set, metrics are disabled. See our <a href="https://%3Ca"><b>nanocosmos / nanoStream documentation</b></a>">www.nanocosmos.de/v4/documentation/nanoplayer-h5live#nanostream\_cloud\_analytics\_and\_player\_metrics}</a> for more informations.</p>
+            <td class="description last"><p>The metrics object. <b>Only usable with valid account.</b> Configuring this object allows you to collect and analyse data via the 'nanoStream Cloud'. If not set, metrics are disabled. See our <a href="https://www.nanocosmos.de/v4/documentation/nanoplayer-h5live#nanostream_cloud_analytics_and_player_metrics"><b>nanocosmos / nanoStream documentation</b></a> for more informations.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -6703,6 +7151,42 @@ var config = {
             
 
             <td class="description last"><p>Reconnection configuration invalid.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>4005</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The requested source stream in the 'updateSource' call has been stopped.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>4006</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The update source request was aborted by timeout.</p></td>
         </tr>
 
     
@@ -14814,6 +15298,1540 @@ player.setup(config).then(function (config) {
             
 <hr>
 <dt>
+    <h4 class="name" id="~event:onUpdateSourceAbort">onUpdateSourceAbort</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('updatefrequency'). This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Possible values are 'equalsource', 'superseded' and 'updatefrequency'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag string given in the options object of the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Is an empty string if not set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code>  and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onUpdateSourceAbort = function (event) {
+    console.log(&#x27;Update Source Abort with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));
+    console.log(&#x27;tag: &#x27; + event.data.tag);
+    console.log(&#x27;count: &#x27; + event.data.count);
+};
+config.events.onUpdateSourceAbort = onUpdateSourceAbort;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onUpdateSourceFail">onUpdateSourceFail</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the update source request is failed. Fired if an error occure during the update. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error code. Similar to the <a href="NanoPlayer.html#~errorcode"><code>errorcodes</code></a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error message.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag string given in the options object of the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Is an empty string if not set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onUpdateSourceFail = function (event) {
+    console.log(&#x27;Update Source Fail with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);
+    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);
+    console.log(&#x27;Update Source count: &#x27; + event.data.count);
+};
+config.events.onUpdateSourceFail = onUpdateSourceFail;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onUpdateSourceInit">onUpdateSourceInit</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the update source request is initialized. This is always the start event, an completion event will follow.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The source object given in the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag string given in the options object of the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Is an empty string if not set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the update source request to identify the paired start and  completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onUpdateSourceInit = function (event) {
+    console.log(&#x27;Update Source Init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));
+    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);
+    console.log(&#x27;Update Source count: &#x27; + event.data.count);
+};
+config.events.onUpdateSourceInit = onUpdateSourceInit;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onUpdateSourceSuccess">onUpdateSourceSuccess</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the update source request is succeeded. Fires if the source is updated. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag string given in the options object of the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Is an empty string if not set.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
+var onUpdateSourceSuccess = function (event) {
+    console.log(&#x27;Update Source Success with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);
+};
+config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;
+player.setup(config).then(function (config) {
+    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="~event:onVolumeChange">onVolumeChange</h4>
     
     
@@ -15488,9 +17506,9 @@ player.setup(config).then(function (config) {
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on Wed Oct 23rd 2019
+		on Mon Nov 18th 2019
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

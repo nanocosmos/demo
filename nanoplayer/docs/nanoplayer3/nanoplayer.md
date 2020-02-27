@@ -33,7 +33,7 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
 {}
 <!-- Example: load player with new video element into playerDiv -->
 <div id="playerDiv"></div>
-<script type="text/javascript" src="nanoplayer.3.min.js"></script>
+<script type="text/javascript" src="nanoplayer.4.min.js"></script>
 <script type="text/javascript">
     var player;
     var config = {
@@ -119,7 +119,7 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
             // loads the player ...
             // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.3.min'
             // if 'baseUrl' is defined a local path have to be relative to the base path
-            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/nanoplayer.3.min.js'
+            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/nanoplayer.4.min.js'
         },
         waitSeconds: 20, // timeout for loading modules
     });
@@ -275,7 +275,7 @@ player.setVolume(0.3);
 ```
 <a name="NanoPlayer+updateSource"></a>
 
-### nanoPlayer.updateSource(source) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+### nanoPlayer.updateSource(source, [options]) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
 Updates the source of the player.
 
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
@@ -346,6 +346,27 @@ Updates the source of the player.
     </tr><tr>
     <td>[source.hls]</td><td><code>string</code></td><td></td><td><p>An hls playout url as string.</p>
 </td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td></td><td><p>The object to configure the stream switch options like method etc.</p>
+</td>
+    </tr><tr>
+    <td>[options.method]</td><td><code>string</code></td><td><code>&quot;server&quot;</code></td><td><p>The update method. Possible values are &#39;server&#39; (default) and &#39;client&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[options.pauseOnError]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If set the player stops if an error occure during the stream switch. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>[options.forcePlay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
+</td>
+    </tr><tr>
+    <td>[options.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>[options.timeout]</td><td><code>number</code></td><td><code>10</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
+</td>
+    </tr><tr>
+    <td>[options.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</p>
+</td>
     </tr>  </tbody>
 </table>
 
@@ -371,8 +392,16 @@ var source = {
         }
     }
 }
+var options = {
+    method: 'server',
+    pauseOnError: false,
+    forcePlay: true,
+    fastStart: false,
+    timeout: 10,
+    tag: 'XXXXX-YYYYY'
+}
 // player instance of NanoPlayer
-player.updateSource(source).then(function (config) {
+player.updateSource(source, options).then(function (config) {
     console.log('update source ok with config: ' + JSON.stringify(config));
 }, function (error) {
     console.log(error);
@@ -1380,6 +1409,251 @@ player.setup(config).then(function (config) {
     console.log(error);
 });
 ```
+<a name="NanoPlayer..event_onUpdateSourceInit"></a>
+
+### "onUpdateSourceInit"
+The event to signal that the update source request is initialized. This is always the start event, an completion event will follow.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The source object given in the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call.</p>
+</td>
+    </tr><tr>
+    <td>data.options</td><td><code>object</code></td><td><p>The options object used for the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and  completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayer
+var onUpdateSourceInit = function (event) {
+    console.log('Update Source Init with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));
+    console.log('Update Source tag: ' + event.data.tag);
+    console.log('Update Source count: ' + event.data.count);
+};
+config.events.onUpdateSourceInit = onUpdateSourceInit;
+player.setup(config).then(function (config) {
+    console.log('setup ok with config: ' + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});
+```
+<a name="NanoPlayer..event_onUpdateSourceSuccess"></a>
+
+### "onUpdateSourceSuccess"
+The event to signal that the update source request is succeeded. Fires if the source is updated. This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayer
+var onUpdateSourceSuccess = function (event) {
+    console.log('Update Source Success with tag: ' + event.data.tag + ' and count: ' + event.data.count);
+};
+config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;
+player.setup(config).then(function (config) {
+    console.log('setup ok with config: ' + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});
+```
+<a name="NanoPlayer..event_onUpdateSourceFail"></a>
+
+### "onUpdateSourceFail"
+The event to signal that the update source request is failed. Fired if an error occure during the update. This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.code</td><td><code>object</code></td><td><p>The error code. Similar to the <a href="#NanoPlayer..errorcode">errorcodes</a>.</p>
+</td>
+    </tr><tr>
+    <td>data.message</td><td><code>object</code></td><td><p>The error message.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayer
+var onUpdateSourceFail = function (event) {
+    console.log('Update Source Fail with error code: ' + event.data.code + ' and error message: ' + event.data.message);
+    console.log('Update Source tag: ' + event.data.tag);
+    console.log('Update Source count: ' + event.data.count);
+};
+config.events.onUpdateSourceFail = onUpdateSourceFail;
+player.setup(config).then(function (config) {
+    console.log('setup ok with config: ' + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});
+```
+<a name="NanoPlayer..event_onUpdateSourceAbort"></a>
+
+### "onUpdateSourceAbort"
+The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('updatefrequency'). This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.reason</td><td><code>string</code></td><td><p>The options object used for the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Possible values are &#39;equalsource&#39;, &#39;superseded&#39; and &#39;updatefrequency&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a>  and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayer
+var onUpdateSourceAbort = function (event) {
+    console.log('Update Source Abort with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));
+    console.log('tag: ' + event.data.tag);
+    console.log('count: ' + event.data.count);
+};
+config.events.onUpdateSourceAbort = onUpdateSourceAbort;
+player.setup(config).then(function (config) {
+    console.log('setup ok with config: ' + JSON.stringify(config)));
+}, function (error) {
+    console.log(error);
+});
+```
 <a name="NanoPlayer..config"></a>
 
 ### NanoPlayer~config : <code>object</code>
@@ -1602,6 +1876,18 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>events.onDestroy</td><td><code>function</code></td><td></td><td><p>Fires if the player is destroyed.</p>
+</td>
+    </tr><tr>
+    <td>events.onUpdateSourceInit</td><td><code>function</code></td><td></td><td><p>Fires if the player has received an update source request.</p>
+</td>
+    </tr><tr>
+    <td>events.onUpdateSourceSuccess</td><td><code>function</code></td><td></td><td><p>Fires if the player has successfully updated the source.</p>
+</td>
+    </tr><tr>
+    <td>events.onUpdateSourceFail</td><td><code>function</code></td><td></td><td><p>Fires if the player has failed to update the source.</p>
+</td>
+    </tr><tr>
+    <td>events.onUpdateSourceAbort</td><td><code>function</code></td><td></td><td><p>Fires if the player aborted the update source request.</p>
 </td>
     </tr><tr>
     <td>tweaks</td><td><code>object</code></td><td></td><td><p>The object to tweak the player (only h5live).</p>
@@ -1951,6 +2237,12 @@ The possible error codes in a onError event.
 </td>
     </tr><tr>
     <td>4000-4999.4000-4099.4004</td><td></td><td><p>Reconnection configuration invalid.</p>
+</td>
+    </tr><tr>
+    <td>4000-4999.4000-4099.4005</td><td></td><td><p>The requested source stream in the &#39;updateSource&#39; call has been stopped.</p>
+</td>
+    </tr><tr>
+    <td>4000-4999.4000-4099.4006</td><td></td><td><p>The update source request was aborted by timeout.</p>
 </td>
     </tr><tr>
     <td>4000-4999.4100-4199</td><td><code>WebSocket</code></td><td></td>

@@ -75,16 +75,22 @@ events.onStats = function (e) {
     document.getElementById("bufferTimeDelay").textContent = stats.buffer.delay.avg.toFixed(1);
     document.getElementById("bufferTimeDelayMin").textContent = stats.buffer.delay.min.toFixed(1);
     document.getElementById("bufferTimeDelayMax").textContent = stats.buffer.delay.max.toFixed(1);
+    if (document.getElementById("bufferTimeDelayDeviation")) document.getElementById("bufferTimeDelayDeviation").textContent = stats.buffer.delay.deviation.toFixed(2);
     if (stats.bitrate) {
         document.getElementById("bitrateAvg").textContent = (stats.bitrate.avg / 1000).toFixed(0) + ' kbps';
         document.getElementById("bitrateMin").textContent = (stats.bitrate.min / 1000).toFixed(0) + ' kbps';
         document.getElementById("bitrateMax").textContent = (stats.bitrate.max / 1000).toFixed(0) + ' kbps';
+        if (document.getElementById("bitrateDeviation")) document.getElementById("bitrateDeviation").textContent = (stats.bitrate.deviation / 1000).toFixed(0) + ' kbps';
     }
     if (stats.framerate) {
         document.getElementById("framerateCurrent").textContent = stats.framerate.current + ' fps';
         document.getElementById("framerateAvg").textContent = (stats.framerate.avg).toFixed(1) + ' fps';
         document.getElementById("framerateMin").textContent = stats.framerate.min + ' fps';
         document.getElementById("framerateMax").textContent = stats.framerate.max + ' fps';
+        if (document.getElementById("framerateDeviation")) document.getElementById("framerateDeviation").textContent = stats.framerate.deviation.toFixed(2) + ' fps';
+    }
+    if (stats.adaptive && stats.adaptive.deviationOfMean && document.getElementById("adaptiveBufferTimeDelayDeviation")) {
+        document.getElementById("adaptiveBufferTimeDelayDeviation").textContent = stats.adaptive.deviationOfMean.buffer.delay.deviation.toFixed(2);
     }
 };
 events.onMute = function (e) {
@@ -152,6 +158,22 @@ events.onUpdateSourceAbort = function (e) {
         updateSourceAbortSuperseded.textContent = parseInt(updateSourceAbortSuperseded.textContent) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent) + 1;
     }
+};
+events.onSwitchStreamInit = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onSwitchStreamInit: ' + data);
+};
+events.onSwitchStreamSuccess = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onSwitchStreamSuccess: ' + data);
+};
+events.onSwitchStreamFail = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onSwitchStreamFail: ' + data);
+};
+events.onSwitchStreamAbort = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onSwitchStreamAbort: ' + data);
 };
 
 ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function (event) {

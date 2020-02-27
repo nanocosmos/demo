@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 nanoStream Player
-(c) 2018, nanocosmos gmbh
+(c) 2020, nanocosmos gmbh
 http://www.nanocosmos.de
 sales@nanocosmos.de
 
@@ -87,10 +87,10 @@ All modifications will remain property of nanocosmos.
             <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
         </p>
         <p class="normal">
-            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span>
+            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span><span>/</span>
         </p>
         <p class="normal">
-            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span>
+            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span><span>/</span>
         </p>
         <p class="normal" id="metadata-container" style="display:none">
             <strong>metadata:&nbsp;</strong><span id="metadata"></span>
@@ -137,15 +137,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.0.8.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.2.3.min.js"></script>
     <script>
 
-        var playerVersion = '4.0.8';
+        var playerVersion = '4.2.3';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200115';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200227';
         };
 
         var player;
@@ -207,7 +207,7 @@ All modifications will remain property of nanocosmos.
         function init() {
             document.querySelector('#faderVolume').value = 100;
             var doStartPlayer = getNanoPlayerParameters();
-            if(doStartPlayer) {
+            if (doStartPlayer) {
                 startPlayer(config);
             }
         }
@@ -283,6 +283,51 @@ All modifications will remain property of nanocosmos.
 
             if (window.nanoPlayerMetricsConfig) {
                 config.metrics = window.nanoPlayerMetricsConfig;
+            }
+
+            var toString = Object.prototype.toString;
+            function deepCopy(obj) {
+                var rv;
+
+                switch (typeof obj) {
+                    case 'object':
+                        if (obj === null) {
+                            // null => null
+                            rv = null;
+                        }
+                        else {
+                            switch (toString.call(obj)) {
+                                case '[object Array]':
+                                    // It's an array, create a new array with
+                                    // deep copies of the entries
+                                    rv = obj.map(deepCopy);
+                                    break;
+                                case '[object Date]':
+                                    // Clone the date
+                                    rv = new Date(obj);
+                                    break;
+                                case '[object RegExp]':
+                                    // Clone the RegExp
+                                    rv = new RegExp(obj);
+                                    break;
+                                    // ...probably a few others
+                                default:
+                                    // Some other kind of object, deep-copy its
+                                    // properties into a new object
+                                    rv = Object.keys(obj).reduce(function (prev, key) {
+                                        prev[key] = deepCopy(obj[key]);
+                                        return prev;
+                                    }, {});
+                                    break;
+                            }
+                        }
+                        break;
+                    default:
+                        // It's a primitive, copy via assignment
+                        rv = obj;
+                        break;
+                }
+                return rv;
             }
 
             player.setup(config).then(function (conf) {

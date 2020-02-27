@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.0.8
+NanoPlayer (H5Live) Public API Class 4.2.3
 
 **Kind**: global class  
-**Version**: 4.0.8  
+**Version**: 4.2.3  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -30,15 +30,15 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
 
 **Example**  
 ```xml
-{}<!-- Example: load player with new video element into playerDiv --><div id="playerDiv"></div><script type="text/javascript" src="nanoplayer.4.min.js"></script><script type="text/javascript">    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                    hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'                },                // rtmp stream source (your live stream)                rtmp: {                    url: 'rtmp://bintu-play.nanocosmos.de:80/live',                    streamname: 'XXXXX-YYYYY'                }            }        }    };    function initPlayer() {        player = new NanoPlayer('playerDiv');        player.setup(config).then(function (config) {            console.log('setup ok with config: ' + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    // load player from playerDiv    document.addEventListener('DOMContentLoaded', function () {        initPlayer();    });</script>
+{}<!-- Example: load player with new video element into playerDiv --><div id="playerDiv"></div><script type="text/javascript" src="nanoplayer.4.min.js"></script><script type="text/javascript">    var player;    var config = {        "source": {            "entries": [                    {                        "h5live": {                             // your rtmp stream                            "rtmp": {                                "url": "rtmp://bintu-play.nanocosmos.de/play",                                "streamname": "XXXXX-YYYYY"                            },                            "server": {                                "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                                "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                                "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer('playerDiv');        player.setup(config).then(function (config) {            console.log('setup ok with config: ' + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    // load player from playerDiv    document.addEventListener('DOMContentLoaded', function () {        initPlayer();    });</script>
 ```
 **Example**  
 ```xml
-{}<!-- Example: load player with existing html video element --><div id="playerDiv">    <video id="myPlayer"></video></div><script>    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                    hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'                },                // rtmp stream source (your live stream)                rtmp: {                    url: 'rtmp://bintu-play.nanocosmos.de:80/live',                    streamname: 'XXXXX-YYYYY'                }            }        },        playback: {            videoId: 'myPlayer'        }    };    function initPlayer() {        player = new NanoPlayer('playerDiv');        player.setup(config).then(function (config) {            console.log('setup ok with config: ' + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    document.addEventListener('DOMContentLoaded', function () {        initPlayer();    });</script>
+{}<!-- Example: load player with existing html video element --><div id="playerDiv">    <video id="myPlayer"></video></div><script>    var player;    var config = {        "source": {            "entries": [                    {                        "h5live": {                             // your rtmp stream                            "rtmp": {                                "url": "rtmp://bintu-play.nanocosmos.de/play",                                "streamname": "XXXXX-YYYYY"                            },                            "server": {                                "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                                "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                                "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                            }                        }                    }            ]        },        "playback": {            "videoId": "myPlayer"        }    };    function initPlayer() {        player = new NanoPlayer('playerDiv');        player.setup(config).then(function (config) {            console.log('setup ok with config: ' + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    document.addEventListener('DOMContentLoaded', function () {        initPlayer();    });</script>
 ```
 **Example**  
 ```xml
-{}<!-- Example: load player with require.js --><script type="text/javascript" src="require.js"></script><script type="text/javascript">    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.4.min'            // if 'baseUrl' is defined a local path have to be relative to the base path            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/nanoplayer.4.min.js'        },        waitSeconds: 20, // timeout for loading modules    });    require('nanoplayer', function() {        initPlayer();     });</script>
+{}<!-- Example: load player with require.js --><script type="text/javascript" src="require.js"></script><script type="text/javascript">    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.4.min'            // if 'baseUrl' is defined a local path have to be relative to the base path            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js'        },        waitSeconds: 20, // timeout for loading modules    });    require('nanoplayer', function() {        initPlayer();     });</script>
 ```
 <a name="NanoPlayer+version"></a>
 
@@ -78,7 +78,7 @@ The supported tech names of the player.
 **Kind**: instance constant of <code>[NanoPlayer](#NanoPlayer)</code>  
 <a name="NanoPlayer+setup"></a>
 
-### nanoPlayer.setup(config) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+### nanoPlayer.setup({[config]{@link) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
 Initializes the player with a given config object.
 
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
@@ -86,12 +86,12 @@ Initializes the player with a given config object.
 <table>
   <thead>
     <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
+      <th>Param</th><th>Description</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-    <td>config</td><td><code>config</code></td><td><p>The config object for the player including sources, events, styles.</p>
+    <td>{[config]{@link</td><td><p>NanoPlayer~config} config - The config object for the player including sources, events, styles.</p>
 </td>
     </tr>  </tbody>
 </table>
@@ -175,10 +175,11 @@ Sets the volume of the player.
 ```
 <a name="NanoPlayer+updateSource"></a>
 
-### nanoPlayer.updateSource(source, [options]) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+### nanoPlayer.updateSource(source) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
 Updates the source of the player.
 
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
 <table>
   <thead>
     <tr>
@@ -190,7 +191,43 @@ Updates the source of the player.
     <td>source</td><td><code>object</code></td><td></td><td><p>The object to configure the source to play, one of the following properties have to be set.</p>
 </td>
     </tr><tr>
-    <td>[source.h5live]</td><td><code>object</code></td><td></td><td><p>The h5live object to configure the h5live connection.</p>
+    <td>[source.entries]</td><td><code><a href="#NanoPlayer..entry">Array.&lt;entry&gt;</a></code></td><td></td><td><p>The source entries array for a set of streams. USE INSTEAD OF SOURCE.H5LIVE. Used to configure stream entries. Can have one to many &#39;entry&#39; objects. Only one existing entry is similar than a single source. In this case no entries options are needed.</p>
+</td>
+    </tr><tr>
+    <td>[source.startIndex]</td><td><code>string</code></td><td><code>0</code></td><td><p>The index of the entry to start playback with. Can be in the range from 0 to &#39;entries.length-1&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[source.options]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries options.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch]</td><td><code>object</code></td><td></td><td><p>The object to configure the stream switch options like method etc.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.method]</td><td><code>string</code></td><td><code>&quot;server&quot;</code></td><td><p>The update method. Possible values are &#39;server&#39; (default) and &#39;client&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.pauseOnError]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If set the player stops if an error occure during the stream switch. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.forcePlay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>10</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.* @param {object} [playback] - The object to configure the playback.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.adaption]</td><td><code>object</code></td><td></td><td><p>The object to set an adaption for switching.</p>
+</td>
+    </tr><tr>
+    <td>[source.options.adaption.rule]</td><td><code>string</code></td><td><code>&quot;none&quot;</code></td><td><p>The switch rule if multiple entries are defined. Possible values are &#39;deviationOfMean&#39; (ABR automatic) and&#39;none&#39; (default, means only manual stream switch via &#39;switchStream&#39; possible).</p>
+</td>
+    </tr><tr>
+    <td>[source.h5live]</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. The h5live object to configure the h5live connection.</p>
 </td>
     </tr><tr>
     <td>source.h5live.server</td><td><code>object</code></td><td></td><td><p>The h5live server object.</p>
@@ -235,7 +272,7 @@ Updates the source of the player.
     <td>[source.h5live.params]</td><td><code>object</code></td><td></td><td><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p>
 </td>
     </tr><tr>
-    <td>[source.bintu]</td><td><code>object</code></td><td></td><td><p>An bintu object to get sources.</p>
+    <td>[source.bintu]</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An bintu object to get sources.</p>
 </td>
     </tr><tr>
     <td>source.bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
@@ -244,35 +281,42 @@ Updates the source of the player.
     <td>[source.bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
 </td>
     </tr><tr>
-    <td>[source.hls]</td><td><code>string</code></td><td></td><td><p>An hls playout url as string.</p>
-</td>
-    </tr><tr>
-    <td>[options]</td><td><code>object</code></td><td></td><td><p>The object to configure the stream switch options like method etc.</p>
-</td>
-    </tr><tr>
-    <td>[options.method]</td><td><code>string</code></td><td><code>&quot;server&quot;</code></td><td><p>The update method. Possible values are &#39;server&#39; (default) and &#39;client&#39;.</p>
-</td>
-    </tr><tr>
-    <td>[options.pauseOnError]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If set the player stops if an error occure during the stream switch. Default is false.</p>
-</td>
-    </tr><tr>
-    <td>[options.forcePlay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
-</td>
-    </tr><tr>
-    <td>[options.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
-</td>
-    </tr><tr>
-    <td>[options.timeout]</td><td><code>number</code></td><td><code>10</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
-</td>
-    </tr><tr>
-    <td>[options.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</p>
+    <td>[source.hls]</td><td><code>string</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An hls playout url as string.</p>
 </td>
     </tr>  </tbody>
 </table>
 
 **Example**  
 ```js
-var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',            hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'        },        // rtmp stream source (your live stream)        rtmp: {            url: 'rtmp://bintu-play.nanocosmos.de:80/live',            streamname: 'XXXXX-YYYYY'        },        security: {            token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',            expires: '1519819200',            options: '15',            tag: 'anyTag'        }    }}var options = {    method: 'server',    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: 'XXXXX-YYYYY'}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+var source = {    "entries": [            {                "index": 0,                "label": "high",                "tag": "this is a high quality stream",                "info": {                    "bitrate": 1200,                    "width": 1280,                    "height": 720,                    "framerate": 30                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY1"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            },            {                "index": 1,                "label": "medium",                "tag": "this is a medium quality stream",                "info": {                    "bitrate": 800,                    "width": 864,                    "height": 480,                    "framerate": 30                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY2"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            },            {                "index": 2,                "label": "low",                "tag": "this is a low quality stream",                "info": {                    "bitrate": 400,                    "width": 426,                    "height": 240,                    "framerate": 15                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY3"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            }    ],    "options": {        "adaption": {            "rule": "deviationOfMean"        },        "switch": {            'method': 'server',            'pauseOnError': false,            'forcePlay': true,            'fastStart': false,            'timeout': 10,        }    },    "startIndex": 2 // lowest};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log('update source ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+```
+**Example**  
+```js
+var source = {    "entries": [            {                "index": 0,                "label": "high", // optional                "tag": "this is a high quality stream", // optional                "info": { // optional                    "bitrate": 1200,                    "width": 1280,                    "height": 720,                    "framerate": 30                },                "h5live": {                     // your rtmp stream                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYYY"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    // optional (secure token)                    "security": {                        "token": 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                        "expires": '1519819200',                        "options": '15',                        "tag": 'anyTag'                    }                }            }    ]};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log('update source initialized with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer+switchStream"></a>
+
+### nanoPlayer.switchStream(index) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+Switch to a stream given over source entries.
+
+**Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [entry](#NanoPlayer..entry)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>index</td><td><code>number</code></td><td><p>The index of the stream in the given stream set to switch to.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayerplayer.switchStream(1).then(function (config) {    console.log('switch stream initialized with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onReady"></a>
 
@@ -933,6 +977,15 @@ The stream info event to pass in the 'config.events' object at the setup call. F
     <td>data.streamInfo.url</td><td><code>string</code></td><td><p>The complete stream url with parameters.</p>
 </td>
     </tr><tr>
+    <td>data.streamInfo.rtmp</td><td><code>object</code></td><td><p>The rtmp stream object.</p>
+</td>
+    </tr><tr>
+    <td>data.streamInfo.rtmo.url</td><td><code>string</code></td><td><p>The rtmp stream url.</p>
+</td>
+    </tr><tr>
+    <td>data.streamInfo.rtmp.streamname</td><td><code>string</code></td><td><p>The rtmp streamname.</p>
+</td>
+    </tr><tr>
     <td>data.streamInfo.haveAudio</td><td><code>boolean</code></td><td><p>Indicates if the stream contains audio.</p>
 </td>
     </tr><tr>
@@ -1160,16 +1213,28 @@ The event to signal that the update source request is initialized. This is alway
     <td>data</td><td><code>object</code></td><td><p>The data object.</p>
 </td>
     </tr><tr>
-    <td>data.source</td><td><code>object</code></td><td><p>The source object given in the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call.</p>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
 </td>
     </tr><tr>
-    <td>data.options</td><td><code>object</code></td><td><p>The options object used for the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call.</p>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.options</td><td><code>object</code></td><td><p>The switch options object.</p>
 </td>
     </tr><tr>
     <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
 </td>
     </tr><tr>
-    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and  completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Here always &#39;update&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
 </td>
     </tr><tr>
     <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
@@ -1179,7 +1244,7 @@ The event to signal that the update source request is initialized. This is alway
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log('Update Source Init with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));    console.log('Update Source tag: ' + event.data.tag);    console.log('Update Source count: ' + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log('update source init with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceSuccess"></a>
 
@@ -1213,10 +1278,25 @@ The event to signal that the update source request is succeeded. Fires if the so
     <td>data</td><td><code>object</code></td><td><p>The data object.</p>
 </td>
     </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
     <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
 </td>
     </tr><tr>
-    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Here always &#39;update&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
 </td>
     </tr><tr>
     <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
@@ -1226,7 +1306,7 @@ The event to signal that the update source request is succeeded. Fires if the so
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log('Update Source Success with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log('update source success with entry: ' + JSON.stringify(event.data.entry) + ', with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceFail"></a>
 
@@ -1257,7 +1337,13 @@ The event to signal that the update source request is failed. Fired if an error 
     <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
 </td>
     </tr><tr>
-    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
 </td>
     </tr><tr>
     <td>data.code</td><td><code>object</code></td><td><p>The error code. Similar to the <a href="#NanoPlayer..errorcode">errorcodes</a>.</p>
@@ -1269,7 +1355,13 @@ The event to signal that the update source request is failed. Fired if an error 
     <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
 </td>
     </tr><tr>
-    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Here always &#39;update&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
 </td>
     </tr><tr>
     <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
@@ -1279,12 +1371,12 @@ The event to signal that the update source request is failed. Fired if an error 
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log('Update Source Fail with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('Update Source tag: ' + event.data.tag);    console.log('Update Source count: ' + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log('update source fail with entry: ' + JSON.stringify(event.data.entry) + ', with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceAbort"></a>
 
 ### "onUpdateSourceAbort"
-The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('updatefrequency'). This is an completion event that follows on an start event.
+The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('frequency'). This is an completion event that follows on an start event.
 
 **Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
 **See**: [config](#NanoPlayer..config)  
@@ -1313,13 +1405,28 @@ The event to signal that the update source request is aborted. Reasons can be an
     <td>data</td><td><code>object</code></td><td><p>The data object.</p>
 </td>
     </tr><tr>
-    <td>data.reason</td><td><code>string</code></td><td><p>The options object used for the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Possible values are &#39;equalsource&#39;, &#39;superseded&#39; and &#39;updatefrequency&#39;.</p>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.reason</td><td><code>string</code></td><td><p>The abort reason. Possible values are &#39;equalsource&#39;, &#39;superseded&#39; and &#39;frequency&#39;.</p>
 </td>
     </tr><tr>
     <td>data.tag</td><td><code>string</code></td><td><p>The custom tag string given in the options object of the <a href="#NanoPlayer+updateSource">&#39;updateSource&#39;</a> call. Is an empty string if not set.</p>
 </td>
     </tr><tr>
     <td>data.count</td><td><code>number</code></td><td><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a>  and completion events are <a href="NanoPlayer#~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Here always &#39;update&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onUpdateSourceInit">&#39;onUpdateSourceInit&#39;</a> and completion events are <a href="NanoPlayer~events:onUpdateSourceSuccess">&#39;onUpdateSourceSuccess&#39;</a>, <a href="NanoPlayer#~events:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and <a href="NanoPlayer#~events:onUpdateSourceAbort">&#39;onUpdateSourceAbort&#39;</a></p>
 </td>
     </tr><tr>
     <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
@@ -1329,7 +1436,264 @@ The event to signal that the update source request is aborted. Reasons can be an
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log('Update Source Abort with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log('update source abort with entry: ' + JSON.stringify(event.data.entry) + ' and reason: ' + event.data.reason);    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onSwitchStreamInit"></a>
+
+### "onSwitchStreamInit"
+The event to signal that an stream switch request is initialized. Can be triggered by an adaptive rule (ABR) request or via ['switchStream'](#NanoPlayer+switchStream). This is always the start event, an completion event will follow.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.options</td><td><code>object</code></td><td><p>The switch options object.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>A static string in format: {data.entry.h5live.rtmp.streamname} + &#39; streamSwitch &#39; + {data.id}.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Possible values are &#39;up&#39;, &#39;down&#39; (in case of adaptive stream switch) and &#39;direct&#39; (switch via <a href="#NanoPlayer+switchStream">&#39;switchStream&#39;</a>).</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log('switch stream init by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' and options: ' + JSON.stringify(event.data.options));    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onSwitchStreamSuccess"></a>
+
+### "onSwitchStreamSuccess"
+The event to signal that the switch stream request is succeeded. Fires if the source is updated. This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>A static string in format: {data.entry.h5live.rtmp.streamname} + &#39; streamSwitch &#39; + {data.id}.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Possible values are &#39;up&#39;, &#39;down&#39; (in case of adaptive stream switch) and &#39;direct&#39; (switch via <a href="#NanoPlayer+switchStream">&#39;switchStream&#39;</a>).</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log('switch stream success by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onSwitchStreamFail"></a>
+
+### "onSwitchStreamFail"
+The event to signal that the switch stream request is failed. Fired if an error occure during the update. This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.code</td><td><code>object</code></td><td><p>The error code. Similar to the <a href="#NanoPlayer..errorcode">errorcodes</a>.</p>
+</td>
+    </tr><tr>
+    <td>data.message</td><td><code>object</code></td><td><p>The error message.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>A static string in format: {data.entry.h5live.rtmp.streamname} + &#39; streamSwitch &#39; + {data.id}.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Possible values are &#39;up&#39;, &#39;down&#39; (in case of adaptive stream switch) and &#39;direct&#39; (switch via <a href="#NanoPlayer+switchStream">&#39;switchStream&#39;</a>).</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log('switch stream fail by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onSwitchStreamAbort"></a>
+
+### "onSwitchStreamAbort"
+The event to signal that the switch stream request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'switchStream' calls ('frequency'). This is an completion event that follows on an start event.
+
+**Kind**: event emitted by <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.source</td><td><code>object</code></td><td><p>The current source object.</p>
+</td>
+    </tr><tr>
+    <td>data.entry</td><td><code>object</code></td><td><p>The current source entry.</p>
+</td>
+    </tr><tr>
+    <td>data.rule</td><td><code>string</code></td><td><p>The adaption switch rule.</p>
+</td>
+    </tr><tr>
+    <td>data.reason</td><td><code>string</code></td><td><p>The abort reason. Possible values are &#39;equalsource&#39;, &#39;superseded&#39; and &#39;frequency&#39;.</p>
+</td>
+    </tr><tr>
+    <td>data.tag</td><td><code>string</code></td><td><p>A static string in format: {data.entry.h5live.rtmp.streamname} + &#39; streamSwitch &#39; + {data.id}.</p>
+</td>
+    </tr><tr>
+    <td>data.count</td><td><code>number</code></td><td><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer#~events:onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a>  and completion events are <a href="NanoPlayer#~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>data.type</td><td><code>string</code></td><td><p>The switch type. Possible values are &#39;up&#39;, &#39;down&#39; (in case of adaptive stream switch) and &#39;direct&#39; (switch via <a href="#NanoPlayer+switchStream">&#39;switchStream&#39;</a>).</p>
+</td>
+    </tr><tr>
+    <td>data.id</td><td><code>number</code></td><td><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="#NanoPlayer..event_onSwitchStreamInit">&#39;onSwitchStreamInit&#39;</a> and completion events are <a href="NanoPlayer~events:onSwitchStreamSuccess">&#39;onSwitchStreamSuccess&#39;</a>, <a href="NanoPlayer#~events:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> and <a href="NanoPlayer#~events:onSwitchStreamAbort">&#39;onSwitchStreamAbort&#39;</a></p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log('switch stream abort by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with reason: ' + event.data.reason));    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..config"></a>
 
@@ -1351,7 +1715,43 @@ The config object to pass as param for the 'setup' call.
     <td>source</td><td><code>object</code></td><td></td><td><p>The object to configure the source to play, one of the following properties have to be set.</p>
 </td>
     </tr><tr>
-    <td>source.h5live</td><td><code>object</code></td><td></td><td><p>The h5live object to configure the h5live connection.</p>
+    <td>source.entries</td><td><code><a href="#NanoPlayer..entry">Array.&lt;entry&gt;</a></code></td><td></td><td><p>The source entries array for a set of streams. USE INSTEAD OF SOURCE.H5LIVE. Used to configure stream entries. Can have one to many &#39;entry&#39; objects. Only one existing entry is similar than a single source. In this case no entries options are needed.</p>
+</td>
+    </tr><tr>
+    <td>source.startIndex</td><td><code>string</code></td><td><code>0</code></td><td><p>The index of the entry to start playback with. Can be in the range from 0 to &#39;entries.length-1&#39;.</p>
+</td>
+    </tr><tr>
+    <td>source.options</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries options.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch</td><td><code>object</code></td><td></td><td><p>The object to configure the stream switch options like method etc.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.method</td><td><code>string</code></td><td><code>&quot;server&quot;</code></td><td><p>The update method. Possible values are &#39;server&#39; (default) and &#39;client&#39;.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.pauseOnError</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If set the player stops if an error occure during the stream switch. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.forcePlay</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.fastStart</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.timeout</td><td><code>number</code></td><td><code>10</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and the <a href="NanoPlayer#~event:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
+</td>
+    </tr><tr>
+    <td>source.options.switch.tag</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.* @property {object} [playback] - The object to configure the playback.</p>
+</td>
+    </tr><tr>
+    <td>source.options.adaption</td><td><code>object</code></td><td></td><td><p>The object to set an adaption for switching.</p>
+</td>
+    </tr><tr>
+    <td>source.options.adaption.rule</td><td><code>string</code></td><td><code>&quot;none&quot;</code></td><td><p>The switch rule if multiple entries are defined. Possible values are &#39;deviationOfMean&#39; (ABR automatic) and &#39;none&#39; (default, means only manual stream switch via &#39;switchStream&#39; possible).</p>
+</td>
+    </tr><tr>
+    <td>source.h5live</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. The h5live object to configure the h5live connection.</p>
 </td>
     </tr><tr>
     <td>source.h5live.server</td><td><code>object</code></td><td></td><td><p>The h5live server object.</p>
@@ -1396,7 +1796,7 @@ The config object to pass as param for the 'setup' call.
     <td>source.h5live.params</td><td><code>object</code></td><td></td><td><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p>
 </td>
     </tr><tr>
-    <td>source.bintu</td><td><code>object</code></td><td></td><td><p>An bintu object to get sources.</p>
+    <td>source.bintu</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An bintu object to get sources.</p>
 </td>
     </tr><tr>
     <td>source.bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
@@ -1405,13 +1805,10 @@ The config object to pass as param for the 'setup' call.
     <td>source.bintu.apiurl</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
 </td>
     </tr><tr>
-    <td>source.hls</td><td><code>string</code></td><td></td><td><p>An hls playout url as string.</p>
+    <td>source.hls</td><td><code>string</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An hls playout url as string.</p>
 </td>
     </tr><tr>
-    <td>playback</td><td><code>object</code></td><td></td><td><p>The object to configure the playback.</p>
-</td>
-    </tr><tr>
-    <td>playback.autoplay</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
+    <td>playback</td><td><code>object</code></td><td></td><td><p>The object to configure the playback.* @property {boolean} [playback.autoplay=true] - Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
 </td>
     </tr><tr>
     <td>playback.automute</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p>
@@ -1625,19 +2022,127 @@ The config object to pass as param for the 'setup' call.
 
 **Example**  
 ```js
-var config = {    source: {        bintu: {            streamid: 'q23rf2tzw3h6754iretmft7irt'        }    }};
+var config = {    source: {        bintu: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY.            streamid: 'q23rf2tzw3h6754iretmft7irt'        }    }};
 ```
 **Example**  
 ```js
-// Complete config examplevar config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            // rtmp stream source (your live stream)            rtmp: {                url: 'rtmp://bintu-play.nanocosmos.de:80/live',                streamname: 'XXXXX-YYYYY'            },            // (optional) secure token            security: {                token: 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                expires: '1519819200',                options: '15',                tag: 'anyTag'            }        }    },    // playback is completely optional    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        height: '720px'    },    // optional buffer tweaks, use with care, usually not required    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    // metrics/analytics (requires account)    metrics: {        accountId: 'myId',        accountKey: 'sdfhe457zsjhnrtzd8',        userId: 'myUserId',        eventId: 'myEventId',        statsInterval: 10,        customField1: 'custom',        customField2: 42,        customField3: true    }};
+// Complete config examplevar config = {    "source" : {        "entries": [ // array of 'entry' objects                {                    "index": 0,                    "label": "high",                    "tag": "this is a high quality stream",                    "info": {                        "bitrate": 1200,                        "width": 1280,                        "height": 720,                        "framerate": 30                    },                    "hls": "",                    "h5live": {                        "rtmp": {                            "url": "rtmp://bintu-play.nanocosmos.de/play",                            "streamname": "XXXXX-YYYY1"                        },                        "server": {                            "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                            "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                            "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                        },                        "token": "",                        "security": {}                    },                    "bintu": {}                },                {                    "index": 1,                    "label": "medium",                    "tag": "this is a medium quality stream",                    "info": {                        "bitrate": 800,                        "width": 864,                        "height": 480,                        "framerate": 30                    },                    "hls": "",                    "h5live": {                        "rtmp": {                            "url": "rtmp://bintu-play.nanocosmos.de/play",                            "streamname": "XXXXX-YYYY2"                        },                        "server": {                            "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                            "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                            "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                        },                        "token": "",                        "security": {}                    },                    "bintu": {}                },                {                    "index": 2,                    "label": "low",                    "tag": "this is a low quality stream",                    "info": {                        "bitrate": 400,                        "width": 426,                        "height": 240,                        "framerate": 15                    },                    "hls": "",                    "h5live": {                        "rtmp": {                            "url": "rtmp://bintu-play.nanocosmos.de/play",                            "streamname": "XXXXX-YYYY3"                        },                        "server": {                            "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                            "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                            "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                        },                        "token": "",                        "security": {}                    },                    "bintu": {}                }        ],        "options": {            "adaption": {                "rule": "deviationOfMean"            },            "switch": {                'method': 'server',                'pauseOnError': false,                'forcePlay': true,                'fastStart': false,                'timeout': 10,            }        },        "startIndex": 2 // lowest    },    // playback is completely optional    "playback": {        "autoplay": false,        "metadata": true,        "keepConnection": true,        "reconnect": {            "minDelay": 2.5,            "maxDelay": 12.5,            "delaySteps": 6,            "maxRetries": 20        }    },    "events": {        "onWarning": function (e) {            console.log(e);        }    },    "style": {        "width": '1280px',        "height": '720px'    },    // optional buffer tweaks, use with care, usually not required    "tweaks": {        "buffer": {            "min": 0.2,            "start": 0.5,            "max": 8.0,            "target": 1.2,            "limit": 1.7        },        "bufferDynamic": {            "offsetThreshold": 2,            "offsetStep": 0.5,            "cooldownTime": 10        }    },    // metrics/analytics (requires account)    "metrics": {        "accountId": 'myId',        "accountKey": 'sdfhe457zsjhnrtzd8',        "userId": 'myUserId',        "eventId": 'myEventId',        "statsInterval": 10,        "customField1": 'custom',        "customField2": 42,        "customField3": true    }};
 ```
 **Example**  
 ```js
-// example with source url params and eventsvar config = {    source: {        h5live: {            server: {                websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            // rtmp stream source (your live stream)            params: {                url: 'rtmp://bintu-play.nanocosmos.de:80/live',                streamname: 'XXXXX-YYYYY'                custom_key: 'custom_value'            }        }    },    playback: {        autoplay: false,        videoId: 'myVideoTagId'    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: 'myId',        accountKey: 'sdfhe457zsjhnrtzd8'    }};
+// example with source url params and eventsvar config = {    "source": {        "h5live": { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY.            "server": {                "websocket": 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                "hls": 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            // rtmp stream source (your live stream)            "params": {                "url": 'rtmp://bintu-play.nanocosmos.de:80/live',                "streamname": 'XXXXX-YYYYY'                "custom_key": 'custom_value'            }        }    },    "playback": {        "autoplay": false,        "videoId": 'myVideoTagId'    },    "events": {        "onStats": function (e) {            console.log(e);        }    },    "style": {       view: false    },    "metrics": {        "accountId": 'myId',        "accountKey": 'sdfhe457zsjhnrtzd8'    }};
 ```
 **Example**  
 ```js
-var config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: 'wss://bintu-h5live.nanocosmos.de/h5live/stream',                hls: 'https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8'            },            // rtmp stream source (your live stream)            rtmp: {                url: 'rtmp://bintu-play.nanocosmos.de:80/live',                streamname: 'XXXXX-YYYYY'            }        },        token: "{\"type\":\"token1\",\"key\":\"exampleToken\"}"    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log('player ready with ' + JSON.stringify(e));        },        onPlay: function (e) {            console.log('playing');            console.log('play stats: ' + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log('pause');            if (e.data.reason !== 'normal') {                alert('Paused with reason: ' + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === '{}') {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: '1280px',        aspectratio: '16/9',        controls: false,        scaling: 'crop'    }};
+var config = {    "source" : {        "entries": [ // array of 'entry' objects, here only one is defined as single source                {                    "index": 0,                    "label": "high", // optional                    "tag": "this is a high quality stream", // optional                    "info": { // optional                        "bitrate": 1200,                        "width": 1280,                        "height": 720,                        "framerate": 30                    },                    "hls": "",                    "h5live": {                        "rtmp": {                            "url": "rtmp://bintu-play.nanocosmos.de/play",                            "streamname": "XXXXX-YYYYY"                        },                        "server": {                            "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                            "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                            "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                        },                        // (optional) secure token                        "security": {                            "token": 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                            "expires": '1519819200',                            "options": '15',                            "tag": 'anyTag'                        }                    }                }        ],        "options": { // optional            "adaption": {                "rule": "none"            }        },        "startIndex": 0 // optional    },    "playback": {        "autoplay": true,        "muted": true    },    "events": {        "onReady": function (e) {            console.log('player ready with ' + JSON.stringify(e));        },        "onPlay": function (e) {            console.log('playing');            console.log('play stats: ' + JSON.stringify(e.data.stats));        },        "onPause": function (e) {            console.log('pause');            if (e.data.reason !== 'normal') {                alert('Paused with reason: ' + e.data.reason);            }        },        "onError": function (e) {            try {                var err = JSON.stringify(e);                if (err === '{}') {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        "onMetaData": function (e) {            console.log(e);        },        "onStats": function (e) {            console.log(e);        },        "onStreamInfo": function (e) {            console.log(e);        },        "onDestroy": function (e) {            console.log(e);        }    },    "style": {        "width: '1280px',        "aspectratio": '16/9',        "controls": false,        "scaling": 'crop'    }};
+```
+<a name="NanoPlayer..entry"></a>
+
+### NanoPlayer~entry : <code>object</code>
+An entry object to pass stream parameters like h5live config, stream informations etc. in the 'config.source.entries' array
+
+**Kind**: inner typedef of <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>index</td><td><code>number</code></td><td></td><td><p>The index of the stream entry. Have to be the same as the position in the &#39;entries&#39; array. Begins with &#39;0&#39;.</p>
+</td>
+    </tr><tr>
+    <td>label</td><td><code>string</code></td><td></td><td><p>A custom label for the stream e.g. &#39;high&#39;.</p>
+</td>
+    </tr><tr>
+    <td>tag</td><td><code>string</code></td><td></td><td><p>Custom informations about the stream entry.</p>
+</td>
+    </tr><tr>
+    <td>info</td><td><code>object</code></td><td></td><td><p>The info object to set stream meta data.</p>
+</td>
+    </tr><tr>
+    <td>info.bitrate</td><td><code>number</code></td><td><code>0</code></td><td><p>The stream bitrate.</p>
+</td>
+    </tr><tr>
+    <td>info.width</td><td><code>number</code></td><td><code>0</code></td><td><p>The stream width.</p>
+</td>
+    </tr><tr>
+    <td>info.height</td><td><code>number</code></td><td><code>0</code></td><td><p>The stream height.</p>
+</td>
+    </tr><tr>
+    <td>info.framerate</td><td><code>number</code></td><td><code>0</code></td><td><p>The stream framerate.</p>
+</td>
+    </tr><tr>
+    <td>hls</td><td><code>string</code></td><td></td><td><p>An hls playout url as string.</p>
+</td>
+    </tr><tr>
+    <td>h5live</td><td><code>object</code></td><td></td><td><p>The h5live object to configure the h5live connection.</p>
+</td>
+    </tr><tr>
+    <td>h5live.server</td><td><code>object</code></td><td></td><td><p>The h5live server object.</p>
+</td>
+    </tr><tr>
+    <td>h5live.server.websocket</td><td><code>string</code></td><td></td><td><p>The h5live websocket url.</p>
+</td>
+    </tr><tr>
+    <td>h5live.server.progressive</td><td><code>string</code></td><td></td><td><p>The h5live progressive download url.</p>
+</td>
+    </tr><tr>
+    <td>h5live.server.hls</td><td><code>string</code></td><td></td><td><p>The h5live hls url. Have to be set for playback on iOS 10 or higher. iOS 9 or lower is not supported.</p>
+</td>
+    </tr><tr>
+    <td>h5live.token</td><td><code>string</code></td><td></td><td><p>The h5live server token.</p>
+</td>
+    </tr><tr>
+    <td>h5live.rtmp</td><td><code>object</code></td><td></td><td><p>The rtmp playout object for h5live playback.</p>
+</td>
+    </tr><tr>
+    <td>h5live.rtmp.url</td><td><code>string</code></td><td></td><td><p>The rtmp playout url. Have to include the domain, port and application e.g. &#39;rtmp://example.com:80/live&#39;.</p>
+</td>
+    </tr><tr>
+    <td>h5live.rtmp.streamname</td><td><code>string</code></td><td></td><td><p>The rtmp streamname.</p>
+</td>
+    </tr><tr>
+    <td>h5live.security</td><td><code>object</code></td><td></td><td><p>The h5live security object for h5live playback.</p>
+</td>
+    </tr><tr>
+    <td>h5live.security.token</td><td><code>string</code></td><td></td><td><p>The security service token.</p>
+</td>
+    </tr><tr>
+    <td>h5live.security.expires</td><td><code>string</code></td><td></td><td><p>The time the token expires (system time).</p>
+</td>
+    </tr><tr>
+    <td>h5live.security.options</td><td><code>string</code></td><td></td><td><p>The security options.</p>
+</td>
+    </tr><tr>
+    <td>h5live.security.tag</td><td><code>string</code></td><td></td><td><p>The custom tag to decrypt the token.</p>
+</td>
+    </tr><tr>
+    <td>h5live.params</td><td><code>object</code></td><td></td><td><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p>
+</td>
+    </tr><tr>
+    <td>bintu</td><td><code>object</code></td><td></td><td><p>An bintu object to get sources.</p>
+</td>
+    </tr><tr>
+    <td>bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
+</td>
+    </tr><tr>
+    <td>bintu.apiurl</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+var source = {    "entries": [            {                "index": 0,                "label": "high",                "tag": "this is a high quality stream",                "info": {                    "bitrate": 1200,                    "width": 1280,                    "height": 720,                    "framerate": 30                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY1"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            },            {                "index": 1,                "label": "medium",                "tag": "this is a medium quality stream",                "info": {                    "bitrate": 800,                    "width": 864,                    "height": 480,                    "framerate": 30                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY2"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            },            {                "index": 2,                "label": "low",                "tag": "this is a low quality stream",                "info": {                    "bitrate": 400,                    "width": 426,                    "height": 240,                    "framerate": 15                },                "hls": "",                "h5live": {                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYY3"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    "token": "",                    "security": {}                },                "bintu": {}            }    ],    "options": {        "adaption": {            "rule": "deviationOfMean"        },        "switch": {            'method': 'server',            'pauseOnError': false,            'forcePlay': true,            'fastStart': false,            'timeout': 10,        }    },    "startIndex": 2 // lowest};
+```
+**Example**  
+```js
+var source = {    "entries": [            {                "index": 0,                "label": "high", // optional                "tag": "this is a high quality stream", // optional                "info": { // optional                    "bitrate": 1200,                    "width": 1280,                    "height": 720,                    "framerate": 30                },                "h5live": {                     // your rtmp stream                    "rtmp": {                        "url": "rtmp://bintu-play.nanocosmos.de/play",                        "streamname": "XXXXX-YYYYY"                    },                    "server": {                        "websocket": "wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4",                        "hls": "https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8",                        "progressive": "https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4"                    },                    // optional (secure token)                    "security": {                        "token": 'awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi',                        "expires": '1519819200',                        "options": '15',                        "tag": 'anyTag'                    }                }            }    ]};
 ```
 <a name="NanoPlayer..errorcode"></a>
 
@@ -1683,6 +2188,9 @@ The possible error codes in a onError event.
 </td>
     </tr><tr>
     <td>1000-1999.1009</td><td></td><td><p>Playback failed because the player was in visibility state &#39;hidden&#39; at load start.</p>
+</td>
+    </tr><tr>
+    <td>1000-1999.1010</td><td></td><td><p>The given stream entry index is not valid. (see <a href="NanoPlayer~switchStream">switchStream</a>)</p>
 </td>
     </tr><tr>
     <td>2000-2999</td><td><code>StreamError</code></td><td></td>
@@ -1744,10 +2252,10 @@ The possible error codes in a onError event.
     <td>4000-4999.4000-4099.4004</td><td></td><td><p>Reconnection configuration invalid.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4005</td><td></td><td><p>The requested source stream in the &#39;updateSource&#39; call has been stopped.</p>
+    <td>4000-4999.4000-4099.4005</td><td></td><td><p>The requested source stream has been stopped.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4006</td><td></td><td><p>The update source request was aborted by timeout.</p>
+    <td>4000-4999.4000-4099.4006</td><td></td><td><p>The source request was aborted by timeout.</p>
 </td>
     </tr><tr>
     <td>4000-4999.4100-4199</td><td><code>WebSocket</code></td><td></td>
