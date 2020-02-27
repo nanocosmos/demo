@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 nanoStream Player
-(c) 2018, nanocosmos gmbh
+(c) 2020, nanocosmos gmbh
 http://www.nanocosmos.de
 sales@nanocosmos.de
 
@@ -164,6 +164,7 @@ All modifications will remain property of nanocosmos.
         var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
 
     </script>
+    <script src="./js/nanoplayer-custom-config.js"></script>
     <script src="./js/nanoplayer-helper.js"></script>
     <script src="./js/nanoplayer-helper-events.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
@@ -172,15 +173,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.1.4.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.2.4.min.js"></script>
     <script>
 
-        var playerVersion = '4.1.4';
+        var playerVersion = '4.2.4';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200115';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200227';
         };
 
         var player;
@@ -199,7 +200,7 @@ All modifications will remain property of nanocosmos.
 
                 var streams = config.source.entries;
                 var qualitiesWrapper = document.getElementById("qualitiesWrapper");
-                var currentStreamname = extractStreamname(streamInfo.url);
+                var currentStreamname = streamInfo.rtmp ? streamInfo.rtmp.streamname : extractStreamname(streamInfo.url);
                 var currentQualityIndex = getCurrentQualityIndex(currentStreamname);
 
                 removeAllChildNodes(qualitiesWrapper);
@@ -287,7 +288,7 @@ All modifications will remain property of nanocosmos.
             var prefix = "stream=";
             var cutOff = streamInfoUrl.substring(streamInfoUrl.indexOf(prefix));
             var streamname = cutOff.substring(prefix.length, cutOff.indexOf("&"));
-            return streamname;
+            return window.decodeURIComponent(streamname);
         }
 
         function getCurrentQualityIndex(streamname) {
@@ -444,27 +445,10 @@ All modifications will remain property of nanocosmos.
                 player = new NanoPlayer('playerDiv');
             }
             config = config || this.config;
-            createCodeSippet(this.config);
-            //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);
-            //config.playback.autoplay = (!mobile && config.playback.autoplay);
-            if (forceAutoplay !== null) {
-                config.playback.autoplay = forceAutoplay;
-            }
-            if (forceMuted !== null) {
-                config.playback.muted = forceMuted;
-            }
-            var buttonMute = document.getElementById('buttonMute');
-            buttonMute.dataset.muted = config.playback.muted;
-            buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
-
             for (var event in events) {
                 if (events.hasOwnProperty(event)) {
                     player.on(event.substr(2), events[event]);
                 }
-            }
-
-            if (window.nanoPlayerMetricsConfig) {
-                config.metrics = window.nanoPlayerMetricsConfig;
             }
 
             var toString = Object.prototype.toString;
@@ -512,8 +496,30 @@ All modifications will remain property of nanocosmos.
                 return rv;
             }
 
+            if (typeof customConfig !== 'undefined') {
+                this.config = customConfig;
+            } else if (typeof config !== 'undefined') {
+                //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);
+                //config.playback.autoplay = (!mobile && config.playback.autoplay);
+                if (forceAutoplay !== null) {
+                    config.playback.autoplay = forceAutoplay;
+                }
+                if (forceMuted !== null) {
+                    config.playback.muted = forceMuted;
+                }
+                this.config = config;
+            }
+            if (window.nanoPlayerMetricsConfig) {
+                this.config.metrics = window.nanoPlayerMetricsConfig;
+            }
+            var _config = deepCopy(this.config);
+            var buttonMute = document.getElementById('buttonMute');
+            buttonMute.dataset.muted = _config.playback.muted;
+            buttonMute.innerText = _config.playback.muted ? 'unmute' : 'mute';
+            createCodeSippet(_config);
+
             // updateStreamQualityWrapper();
-            player.setup(config).then(function (conf) {
+            player.setup(_config).then(function (conf) {
                 setVolume(null, document.getElementById('faderVolume').value);
                 checkConfig(conf);
                 document.getElementById('switch-rule').textContent = conf.source.options.adaption.rule;
@@ -594,6 +600,8 @@ All modifications will remain property of nanocosmos.
             if (!player) {
                 return;
             }
+            config.source.entries.length > 2 && (config.source.entries[2].h5live.rtmp.streamname += 'x');
+            config.source.entries.length > 2 && (config.source.startIndex = 2);
             player.updateSource(config.source).then(function (conf) {
                 checkConfig(conf);
                 try {

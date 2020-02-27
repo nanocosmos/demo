@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
 				<ul class="dropdown-menu inline">
-					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
+					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamAbort">NanoPlayer~event:onSwitchStreamAbort</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamFail">NanoPlayer~event:onSwitchStreamFail</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamInit">NanoPlayer~event:onSwitchStreamInit</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamSuccess">NanoPlayer~event:onSwitchStreamSuccess</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
 				</ul>
 			</li>
 			
@@ -79,7 +79,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.0.8</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.2.4</p></div>
         
     
 </header>
@@ -168,7 +168,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.0.8</li>
+			<li>4.2.4</li>
 		</ul>
 	</dd>
 	
@@ -222,11 +222,11 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                    hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;                },                // rtmp stream source (your live stream)                rtmp: {                    url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                    streamname: &#x27;XXXXX-YYYYY&#x27;                }            }        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        source: {            h5live: {                // h5live server endpoint (not required to change)                server: {                    websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                    hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;                },                // rtmp stream source (your live stream)                rtmp: {                    url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                    streamname: &#x27;XXXXX-YYYYY&#x27;                }            }        },        playback: {            videoId: &#x27;myPlayer&#x27;        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: &quot;myPlayer&quot;        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));        }, function (error) {            console.log(error);        });     }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();     });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();     });&lt;/script&gt;</pre>
 
 
     
@@ -1020,7 +1020,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="setup"><span class="type-signature"></span>setup<span class="signature">(config)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
+    <h4 class="name" id="setup"><span class="type-signature"></span>setup<span class="signature">({{@link)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
     
     
 </dt>
@@ -1063,16 +1063,10 @@
 
         <tr>
             
-                <td class="name"><code>config</code></td>
+                <td class="name"><code>{{@link</code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">config</span>
-
-
-
             
             </td>
 
@@ -1080,7 +1074,7 @@
 
             
 
-            <td class="description last"><p>The config object for the player including sources, events, styles.</p></td>
+            <td class="description last"><p>NanoPlayer~config} config - The config object for the player including sources, events, styles.</p></td>
         </tr>
 
     
@@ -1315,6 +1309,167 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="switchStream"><span class="type-signature"></span>switchStream<span class="signature">(index)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Switch to a stream given over source entries.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The index of the stream in the given stream set to switch to.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~entry"><code>entry</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;(config|error)></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.switchStream(1).then(function (config) {    console.log(&#x27;switch stream initialized with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="unmute"><span class="type-signature"></span>unmute<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
@@ -1399,7 +1554,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="updateSource"><span class="type-signature"></span>updateSource<span class="signature">(source, <span class="optional">options</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
+    <h4 class="name" id="updateSource"><span class="type-signature"></span>updateSource<span class="signature">(source)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
     
     
 </dt>
@@ -1430,8 +1585,6 @@
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
         
 
@@ -1458,629 +1611,10 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
             <td class="description last"><p>The object to configure the source to play, one of the following properties have to be set.</p>
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>h5live</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live object to configure the h5live connection.</p>
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>server</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live server object.</p>
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Argument</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>websocket</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live websocket url.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>progressive</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live progressive download url.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>hls</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live hls url. Have to be set for playback on iOS 10 or higher. iOS 9 or lower is not supported.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live server token.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>rtmp</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The rtmp playout object for h5live playback.</p>
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>url</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The rtmp playout url. Have to include the domain, port and application e.g. 'rtmp://example.com:80/live'.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>streamname</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The rtmp streamname.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>security</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The h5live security object for h5live playback.</p>
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The security service token.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>expires</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The time the token expires (system time).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The security options.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tag</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The custom tag to decrypt the token.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>params</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bintu</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>An bintu object to get sources.</p>
                 <h6 class="method-params-label method-subparams-label">Properties</h6>
                 
 
@@ -2110,13 +1644,13 @@
 
         <tr>
             
-                <td class="name"><code>streamid</code></td>
+                <td class="name"><code>entries</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;<a href="NanoPlayer.html#~entry">NanoPlayer~entry</a>></span>
 
 
 
@@ -2125,6 +1659,8 @@
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 
@@ -2139,14 +1675,14 @@
                 </td>
             
 
-            <td class="description last"><p>The bintu stream id.</p></td>
+            <td class="description last"><p>The source entries array for a set of streams. USE INSTEAD OF SOURCE.H5LIVE. Used to configure stream entries. Can have one to many 'entry' objects. Only one existing entry is similar than a single source. In this case no entries options are needed.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>apiurl</code></td>
+                <td class="name"><code>startIndex</code></td>
             
 
             <td class="type">
@@ -2174,60 +1710,12 @@
             
                 <td class="default">
                 
-                    "https://bintu.nanocosmos.de"
+                    0
                 
                 </td>
             
 
-            <td class="description last"><p>The bintu api url.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>hls</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>An hls playout url as string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The index of the entry to start playback with. Can be in the range from 0 to 'entries.length-1'.</p></td>
         </tr>
 
     
@@ -2235,6 +1723,65 @@
         <tr>
             
                 <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The object to configure the source entries options.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>switch</code></td>
             
 
             <td class="type">
@@ -2522,7 +2069,867 @@
                 </td>
             
 
-            <td class="description last"><p>A custom field that can be any string like 'stream-800k' or '720p'. This tag will be returned in any completion event of the 'updateSource' request like 'onUpdateSourceSuccess', 'onUpdateSourceFail' and 'onUpdateSourceAbort'.</p></td>
+            <td class="description last"><p>A custom field that can be any string like 'stream-800k' or '720p'. This tag will be returned in any completion event of the 'updateSource' request like 'onUpdateSourceSuccess', 'onUpdateSourceFail' and 'onUpdateSourceAbort'.* @param {object} [playback] - The object to configure the playback.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adaption</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The object to set an adaption for switching.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    none
+                
+                </td>
+            
+
+            <td class="description last"><p>The switch rule if multiple entries are defined. Possible values are 'deviationOfMean' (ABR automatic) and'none' (default, means only manual stream switch via 'switchStream' possible).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h5live</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. The h5live object to configure the h5live connection.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>server</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live server object.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>websocket</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live websocket url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>progressive</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live progressive download url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live hls url. Have to be set for playback on iOS 10 or higher. iOS 9 or lower is not supported.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live server token.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The rtmp playout object for h5live playback.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp playout url. Have to include the domain, port and application e.g. 'rtmp://example.com:80/live'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>streamname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp streamname.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>security</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live security object for h5live playback.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The security service token.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expires</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The time the token expires (system time).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The security options.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag to decrypt the token.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bintu</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. An bintu object to get sources.</p>
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>streamid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The bintu stream id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>apiurl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "https://bintu.nanocosmos.de"
+                
+                </td>
+            
+
+            <td class="description last"><p>The bintu api url.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. An hls playout url as string.</p></td>
         </tr>
 
     
@@ -2573,6 +2980,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -2611,9 +3025,11 @@
         
 
     
-        <h5>Example</h5>
+        <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var source = {    h5live: {        // h5live server endpoint (not required to change)        server: {            websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,            hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;        },        // rtmp stream source (your live stream)        rtmp: {            url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,            streamname: &#x27;XXXXX-YYYYY&#x27;        },        security: {            token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,            expires: &#x27;1519819200&#x27;,            options: &#x27;15&#x27;,            tag: &#x27;anyTag&#x27;        }    }}var options = {    method: &#x27;server&#x27;,    pauseOnError: false,    forcePlay: true,    fastStart: false,    timeout: 10,    tag: &#x27;XXXXX-YYYYY&#x27;}// player instance of NanoPlayerplayer.updateSource(source, options).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;,                &quot;tag&quot;: &quot;this is a high quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 1,                &quot;label&quot;: &quot;medium&quot;,                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 800,                    &quot;width&quot;: 864,                    &quot;height&quot;: 480,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 2,                &quot;label&quot;: &quot;low&quot;,                &quot;tag&quot;: &quot;this is a low quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 400,                    &quot;width&quot;: 426,                    &quot;height&quot;: 240,                    &quot;framerate&quot;: 15                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            }    ],    &quot;options&quot;: {        &quot;adaption&quot;: {            &quot;rule&quot;: &quot;deviationOfMean&quot;        },        &quot;switch&quot;: {            &#x27;method&#x27;: &#x27;server&#x27;,            &#x27;pauseOnError&#x27;: false,            &#x27;forcePlay&#x27;: true,            &#x27;fastStart&#x27;: false,            &#x27;timeout&#x27;: 10,        }    },    &quot;startIndex&quot;: 2 // lowest};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
+
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;, // optional                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                &quot;info&quot;: { // optional                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;h5live&quot;: {                     // your rtmp stream                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    // optional (secure token)                    &quot;security&quot;: {                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                        &quot;expires&quot;: &#x27;1519819200&#x27;,                        &quot;options&quot;: &#x27;15&#x27;,                        &quot;tag&quot;: &#x27;anyTag&#x27;                    }                }            }    ]};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log(&#x27;update source initialized with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -2725,12 +3141,537 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="NanoPlayer.html#~entry">NanoPlayer~entry</a>></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The source entries array for a set of streams. USE INSTEAD OF SOURCE.H5LIVE. Used to configure stream entries. Can have one to many 'entry' objects. Only one existing entry is similar than a single source. In this case no entries options are needed.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>startIndex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The index of the entry to start playback with. Can be in the range from 0 to 'entries.length-1'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The object to configure the source entries options.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>switch</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The object to configure the stream switch options like method etc.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    server
+                
+                </td>
+            
+
+            <td class="description last"><p>The update method. Possible values are 'server' (default) and 'client'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pauseOnError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>If set the player stops if an error occure during the stream switch. Default is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forcePlay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>If set the player starts playback in case the player is paused. Default is true.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fastStart</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Only if method is 'server'. Tries to accelerate the startup time of the new source. Default is false.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    10
+                
+                </td>
+            
+
+            <td class="description last"><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <code>'onUpdateSourceFail'</code> and the <code>'onSwitchStreamFail'</code> event. Default is 10 seconds, valid range is between 5 and 30.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>A custom field that can be any string like 'stream-800k' or '720p'. This tag will be returned in any completion event of the 'updateSource' request like 'onUpdateSourceSuccess', 'onUpdateSourceFail' and 'onUpdateSourceAbort'.* @property {object} [playback] - The object to configure the playback.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>adaption</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The object to set an adaption for switching.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    none
+                
+                </td>
+            
+
+            <td class="description last"><p>The switch rule if multiple entries are defined. Possible values are 'deviationOfMean' (ABR automatic) and 'none' (default, means only manual stream switch via 'switchStream' possible).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
     
 
         <tr>
@@ -2759,8 +3700,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>The h5live object to configure the h5live connection.</p>
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. The h5live object to configure the h5live connection.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -3293,8 +4238,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>An bintu object to get sources.</p>
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. An bintu object to get sources.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -3426,8 +4375,12 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>An hls playout url as string.</p></td>
+            <td class="description last"><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE 'ENTRY' IS DEFINED IN 'ENTRIES' ARRAY. An hls playout url as string.</p></td>
         </tr>
 
     
@@ -3466,7 +4419,7 @@
 
             
 
-            <td class="description last"><p>The object to configure the playback.</p>
+            <td class="description last"><p>The object to configure the playback.* @property {boolean} [playback.autoplay=true] - Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -3491,44 +4444,6 @@
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>autoplay</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-
-            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
-        </tr>
-
     
 
         <tr>
@@ -6083,13 +6998,1096 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: {            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }};</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">// Complete config examplevar config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            rtmp: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;            },            // (optional) secure token            security: {                token: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                expires: &#x27;1519819200&#x27;,                options: &#x27;15&#x27;,                tag: &#x27;anyTag&#x27;            }        }    },    // playback is completely optional    playback: {        autoplay: false,        metadata: true,        keepConnection: true,        reconnect: {            minDelay: 2.5,            maxDelay: 12.5,            delaySteps: 6,            maxRetries: 20        }    },    events: {        onWarning: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        height: &#x27;720px&#x27;    },    // optional buffer tweaks, use with care, usually not required    tweaks: {        buffer: {            min: 0.2,            start: 0.5,            max: 8.0,            target: 1.2,            limit: 1.7        },        bufferDynamic: {            offsetThreshold: 2,            offsetStep: 0.5,            cooldownTime: 10        }    },    // metrics/analytics (requires account)    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;,        userId: &#x27;myUserId&#x27;,        eventId: &#x27;myEventId&#x27;,        statsInterval: 10,        customField1: &#x27;custom&#x27;,        customField2: 42,        customField3: true    }};</pre>
+    <pre class="sunlight-highlight-javascript">// Complete config examplevar config = {    &quot;source&quot; : {        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects                {                    &quot;index&quot;: 0,                    &quot;label&quot;: &quot;high&quot;,                    &quot;tag&quot;: &quot;this is a high quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 1200,                        &quot;width&quot;: 1280,                        &quot;height&quot;: 720,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                },                {                    &quot;index&quot;: 1,                    &quot;label&quot;: &quot;medium&quot;,                    &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 800,                        &quot;width&quot;: 864,                        &quot;height&quot;: 480,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                },                {                    &quot;index&quot;: 2,                    &quot;label&quot;: &quot;low&quot;,                    &quot;tag&quot;: &quot;this is a low quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 400,                        &quot;width&quot;: 426,                        &quot;height&quot;: 240,                        &quot;framerate&quot;: 15                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                }        ],        &quot;options&quot;: {            &quot;adaption&quot;: {                &quot;rule&quot;: &quot;deviationOfMean&quot;            },            &quot;switch&quot;: {                &#x27;method&#x27;: &#x27;server&#x27;,                &#x27;pauseOnError&#x27;: false,                &#x27;forcePlay&#x27;: true,                &#x27;fastStart&#x27;: false,                &#x27;timeout&#x27;: 10,            }        },        &quot;startIndex&quot;: 2 // lowest    },    // playback is completely optional    &quot;playback&quot;: {        &quot;autoplay&quot;: false,        &quot;metadata&quot;: true,        &quot;keepConnection&quot;: true,        &quot;reconnect&quot;: {            &quot;minDelay&quot;: 2.5,            &quot;maxDelay&quot;: 12.5,            &quot;delaySteps&quot;: 6,            &quot;maxRetries&quot;: 20        }    },    &quot;events&quot;: {        &quot;onWarning&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {        &quot;width&quot;: &#x27;1280px&#x27;,        &quot;height&quot;: &#x27;720px&#x27;    },    // optional buffer tweaks, use with care, usually not required    &quot;tweaks&quot;: {        &quot;buffer&quot;: {            &quot;min&quot;: 0.2,            &quot;start&quot;: 0.5,            &quot;max&quot;: 8.0,            &quot;target&quot;: 1.2,            &quot;limit&quot;: 1.7        },        &quot;bufferDynamic&quot;: {            &quot;offsetThreshold&quot;: 2,            &quot;offsetStep&quot;: 0.5,            &quot;cooldownTime&quot;: 10        }    },    // metrics/analytics (requires account)    &quot;metrics&quot;: {        &quot;accountId&quot;: &#x27;myId&#x27;,        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;,        &quot;userId&quot;: &#x27;myUserId&#x27;,        &quot;eventId&quot;: &#x27;myEventId&#x27;,        &quot;statsInterval&quot;: 10,        &quot;customField1&quot;: &#x27;custom&#x27;,        &quot;customField2&quot;: 42,        &quot;customField3&quot;: true    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">// example with source url params and eventsvar config = {    source: {        h5live: {            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            params: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;                custom_key: &#x27;custom_value&#x27;            }        }    },    playback: {        autoplay: false,        videoId: &#x27;myVideoTagId&#x27;    },    events: {        onStats: function (e) {            console.log(e);        }    },    style: {       view: false    },    metrics: {        accountId: &#x27;myId&#x27;,        accountKey: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
+    <pre class="sunlight-highlight-javascript">// example with source url params and eventsvar config = {    &quot;source&quot;: {        &quot;h5live&quot;: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.            &quot;server&quot;: {                &quot;websocket&quot;: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                &quot;hls&quot;: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            &quot;params&quot;: {                &quot;url&quot;: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                &quot;streamname&quot;: &#x27;XXXXX-YYYYY&#x27;                &quot;custom_key&quot;: &#x27;custom_value&#x27;            }        }    },    &quot;playback&quot;: {        &quot;autoplay&quot;: false,        &quot;videoId&quot;: &#x27;myVideoTagId&#x27;    },    &quot;events&quot;: {        &quot;onStats&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {       view: false    },    &quot;metrics&quot;: {        &quot;accountId&quot;: &#x27;myId&#x27;,        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {    source: {        h5live: {            // h5live server endpoint (not required to change)            server: {                websocket: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                hls: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            rtmp: {                url: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                streamname: &#x27;XXXXX-YYYYY&#x27;            }        },        token: &quot;{\&quot;type\&quot;:\&quot;token1\&quot;,\&quot;key\&quot;:\&quot;exampleToken\&quot;}&quot;    },    playback: {        autoplay: true,        muted: true    },    events: {        onReady: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        onPlay: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        onPause: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        onError: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        onMetaData: function (e) {            console.log(e);        },        onStats: function (e) {            console.log(e);        },        onStreamInfo: function (e) {            console.log(e);        },        onDestroy: function (e) {            console.log(e);        }    },    style: {        width: &#x27;1280px&#x27;,        aspectratio: &#x27;16/9&#x27;,        controls: false,        scaling: &#x27;crop&#x27;    }};</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    &quot;source&quot; : {        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects, here only one is defined as single source                {                    &quot;index&quot;: 0,                    &quot;label&quot;: &quot;high&quot;, // optional                    &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                    &quot;info&quot;: { // optional                        &quot;bitrate&quot;: 1200,                        &quot;width&quot;: 1280,                        &quot;height&quot;: 720,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        // (optional) secure token                        &quot;security&quot;: {                            &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                            &quot;expires&quot;: &#x27;1519819200&#x27;,                            &quot;options&quot;: &#x27;15&#x27;,                            &quot;tag&quot;: &#x27;anyTag&#x27;                        }                    }                }        ],        &quot;options&quot;: { // optional            &quot;adaption&quot;: {                &quot;rule&quot;: &quot;none&quot;            }        },        &quot;startIndex&quot;: 0 // optional    },    &quot;playback&quot;: {        &quot;autoplay&quot;: true,        &quot;muted&quot;: true    },    &quot;events&quot;: {        &quot;onReady&quot;: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        &quot;onPlay&quot;: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        &quot;onPause&quot;: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        &quot;onError&quot;: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        &quot;onMetaData&quot;: function (e) {            console.log(e);        },        &quot;onStats&quot;: function (e) {            console.log(e);        },        &quot;onStreamInfo&quot;: function (e) {            console.log(e);        },        &quot;onDestroy&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {        &quot;width: &#x27;1280px&#x27;,        &quot;aspectratio&quot;: &#x27;16/9&#x27;,        &quot;controls&quot;: false,        &quot;scaling&quot;: &#x27;crop&#x27;    }};</pre>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="~entry">
+    <h4>entry</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>An entry object to pass stream parameters like h5live config, stream informations etc. in the 'config.source.entries' array</p>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The index of the stream entry. Have to be the same as the position in the 'entries' array. Begins with '0'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>A custom label for the stream e.g. 'high'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Custom informations about the stream entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>info</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The info object to set stream meta data.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>bitrate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The stream bitrate.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The stream width.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>height</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The stream height.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>framerate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last"><p>The stream framerate.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An hls playout url as string.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>h5live</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live object to configure the h5live connection.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>server</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live server object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>websocket</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live websocket url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>progressive</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live progressive download url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hls</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live hls url. Have to be set for playback on iOS 10 or higher. iOS 9 or lower is not supported.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live server token.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The rtmp playout object for h5live playback.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp playout url. Have to include the domain, port and application e.g. 'rtmp://example.com:80/live'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>streamname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp streamname.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>security</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The h5live security object for h5live playback.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The security service token.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>expires</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The time the token expires (system time).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The security options.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The custom tag to decrypt the token.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The params object to pass custom query parameters over the h5live server connection. Parameters can be passed as key/value pairs.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bintu</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An bintu object to get sources.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>streamid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The bintu stream id.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>apiurl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "https://bintu.nanocosmos.de"
+                
+                </td>
+            
+
+            <td class="description last"><p>The bintu api url.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;,                &quot;tag&quot;: &quot;this is a high quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 1,                &quot;label&quot;: &quot;medium&quot;,                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 800,                    &quot;width&quot;: 864,                    &quot;height&quot;: 480,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 2,                &quot;label&quot;: &quot;low&quot;,                &quot;tag&quot;: &quot;this is a low quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 400,                    &quot;width&quot;: 426,                    &quot;height&quot;: 240,                    &quot;framerate&quot;: 15                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            }    ],    &quot;options&quot;: {        &quot;adaption&quot;: {            &quot;rule&quot;: &quot;deviationOfMean&quot;        },        &quot;switch&quot;: {            &#x27;method&#x27;: &#x27;server&#x27;,            &#x27;pauseOnError&#x27;: false,            &#x27;forcePlay&#x27;: true,            &#x27;fastStart&#x27;: false,            &#x27;timeout&#x27;: 10,        }    },    &quot;startIndex&quot;: 2 // lowest};</pre>
+
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;, // optional                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                &quot;info&quot;: { // optional                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;h5live&quot;: {                     // your rtmp stream                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    // optional (secure token)                    &quot;security&quot;: {                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                        &quot;expires&quot;: &#x27;1519819200&#x27;,                        &quot;options&quot;: &#x27;15&#x27;,                        &quot;tag&quot;: &#x27;anyTag&#x27;                    }                }            }    ]};</pre>
 
 
     
@@ -6351,6 +8349,24 @@
             
 
             <td class="description last"><p>Playback failed because the player was in visibility state 'hidden' at load start.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>1010</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The given stream entry index is not valid. (see <code>switchStream</code>)</p></td>
         </tr>
 
     
@@ -6863,7 +8879,7 @@
 
             
 
-            <td class="description last"><p>The requested source stream in the 'updateSource' call has been stopped.</p></td>
+            <td class="description last"><p>The requested source stream has been stopped.</p></td>
         </tr>
 
     
@@ -6881,7 +8897,7 @@
 
             
 
-            <td class="description last"><p>The update source request was aborted by timeout.</p></td>
+            <td class="description last"><p>The source request was aborted by timeout.</p></td>
         </tr>
 
     
@@ -13511,6 +15527,78 @@
 
         <tr>
             
+                <td class="name"><code>rtmp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp stream object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmo.url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp stream url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmp.streamname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp streamname.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>haveAudio</code></td>
             
 
@@ -14568,6 +16656,1905 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="~event:onSwitchStreamAbort">onSwitchStreamAbort</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'switchStream' calls ('frequency'). This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The abort reason. Possible values are 'equalsource', 'superseded' and 'frequency'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <code>'onSwitchStreamInit'</code>  and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log(&#x27;switch stream abort by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with reason: &#x27; + event.data.reason));    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamFail">onSwitchStreamFail</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is failed. Fired if an error occure during the update. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error code. Similar to the <a href="NanoPlayer.html#~errorcode"><code>errorcodes</code></a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error message.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log(&#x27;switch stream fail by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamInit">onSwitchStreamInit</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that an stream switch request is initialized. Can be triggered by an adaptive rule (ABR) request or via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>. This is always the start event, an completion event will follow.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch options object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log(&#x27;switch stream init by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamSuccess">onSwitchStreamSuccess</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is succeeded. Fires if the source is updated. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log(&#x27;switch stream success by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="~event:onUnmute">onUnmute</h4>
     
     
@@ -14871,7 +18858,7 @@
 
     
     <div class="description">
-        <p>The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('updatefrequency'). This is an completion event that follows on an start event.</p>
+        <p>The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('frequency'). This is an completion event that follows on an start event.</p>
     </div>
     
 
@@ -15056,6 +19043,78 @@
 
         <tr>
             
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>reason</code></td>
             
 
@@ -15073,7 +19132,7 @@
 
             
 
-            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Possible values are 'equalsource', 'superseded' and 'updatefrequency'.</p></td>
+            <td class="description last"><p>The abort reason. Possible values are 'equalsource', 'superseded' and 'frequency'.</p></td>
         </tr>
 
     
@@ -15122,6 +19181,54 @@
             
 
             <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code>  and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -15220,7 +19327,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log(&#x27;Update Source Abort with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log(&#x27;update source abort with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and reason: &#x27; + event.data.reason);    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -15381,7 +19488,7 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>data.source</code></td>
             
 
             <td class="type">
@@ -15398,32 +19505,62 @@
 
             
 
-            <td class="description last"><p>The data object.</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
 
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>code</code></td>
+                <td class="name"><code>data.entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.code</code></td>
             
 
             <td class="type">
@@ -15447,7 +19584,7 @@
 
         <tr>
             
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>data.message</code></td>
             
 
             <td class="type">
@@ -15471,7 +19608,7 @@
 
         <tr>
             
-                <td class="name"><code>tag</code></td>
+                <td class="name"><code>data.tag</code></td>
             
 
             <td class="type">
@@ -15495,7 +19632,7 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>data.count</code></td>
             
 
             <td class="type">
@@ -15512,14 +19649,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>data.type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -15611,7 +19789,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log(&#x27;Update Source Fail with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);    console.log(&#x27;Update Source count: &#x27; + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log(&#x27;update source fail with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -15831,7 +20009,55 @@
 
             
 
-            <td class="description last"><p>The source object given in the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
         </tr>
 
     
@@ -15855,7 +20081,7 @@
 
             
 
-            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+            <td class="description last"><p>The switch options object.</p></td>
         </tr>
 
     
@@ -15903,7 +20129,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and  completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -16002,7 +20276,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log(&#x27;Update Source Init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);    console.log(&#x27;Update Source count: &#x27; + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log(&#x27;update source init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -16205,6 +20479,78 @@
 
         <tr>
             
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>tag</code></td>
             
 
@@ -16246,7 +20592,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -16345,7 +20739,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log(&#x27;Update Source Success with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log(&#x27;update source success with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -16616,7 +21010,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			<li><p>[config]<a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
 			</ul>
 	</dd>
 	
@@ -16935,7 +21329,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			<li><p>[config]<a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
 			</ul>
 	</dd>
 	
@@ -17007,13 +21401,13 @@
 
 
 	<span class="copyright">
-	Copyright (c) 2018 nanocosmos IT GmbH. All rights reserved.
+	Copyright (c) 2020 nanocosmos IT GmbH. All rights reserved.
 	</span>
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on Wed Jan 15th 2020
+		on Thu Feb 27th 2020
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
