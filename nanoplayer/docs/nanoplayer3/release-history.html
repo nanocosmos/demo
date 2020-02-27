@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>doc</title>
+    <title>NanoPlayer Releases</title>
     <link rel="stylesheet" href="release-styles.css"/>
     <style>
       /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
@@ -113,7 +113,50 @@
     </style>
   </head>
   <body>  
-    <h1 id="release-history">Release History</h1>
+    <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-0-7-">[4.0.7]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.
+Now playback stats will be correctly used for hls playback to indicate PLAYING and to control the buffer.
+This issue was introduced with the major player version 4 and doesn&#39;t effect older major versions (3 or less).
+Also a duplicated module declaration is removed to ensure stable builds and a small scope issue is fixed.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>iOS 10 playing state detection and buffer control for hls in general by correct registering play stats event in buffercontrol</li>
+<li>removed duplicated module declaration in mediasourcemanger</li>
+<li>correct scope issue in onUpdateSourceInit in h5live.js</li>
+</ul>
+<h1 id="-4-0-4-">[4.0.4]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains an improvement for the detection of supported browser types and versions. 
+It furthermore contains an improvement for playback in iPadOS desktop browsing mode,
+to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved supported browser version detection </li>
+<li>improved playback in desktop browsing mode on iPadOS </li>
+<li>changes applied from 3.18.6/3.18.7</li>
+</ul>
+<h1 id="-4-0-2-">[4.0.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<h3 id="breaking-change">BREAKING CHANGE</h3>
+<p>The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old &#39;updateSource&#39; functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
+Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason &#39;playbackrestart&#39; and restart playback with the new source is removed except for iOS.</p>
+<p>Please find more about the new feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>new &#39;updateSource&#39; methods &#39;server&#39; and &#39;client&#39; for smoother and faster behaviour</li>
+<li>&#39;updateSource&#39; options object as param</li>
+<li>new public events &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceInit&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;</li>
+<li>new error codes 4005 and 4006</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li>pause/play update behaviour except for iOS</li>
+</ul>
 <h1 id="-3-18-7-">[3.18.7]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version contains an improvement for the detection of supported browser types and versions. </p>

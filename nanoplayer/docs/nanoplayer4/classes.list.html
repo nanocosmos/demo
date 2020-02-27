@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
 				<ul class="dropdown-menu inline">
-					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
+					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamAbort">NanoPlayer~event:onSwitchStreamAbort</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamFail">NanoPlayer~event:onSwitchStreamFail</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamInit">NanoPlayer~event:onSwitchStreamInit</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamSuccess">NanoPlayer~event:onSwitchStreamSuccess</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
 				</ul>
 			</li>
 			
@@ -4823,6 +4823,78 @@
 
         <tr>
             
+                <td class="name"><code>rtmp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp stream object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmo.url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp stream url.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rtmp.streamname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The rtmp streamname.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>haveAudio</code></td>
             
 
@@ -5880,6 +5952,1905 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="~event:onSwitchStreamAbort">onSwitchStreamAbort</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'switchStream' calls ('frequency'). This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reason</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The abort reason. Possible values are 'equalsource', 'superseded' and 'frequency'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <code>'onSwitchStreamInit'</code>  and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log(&#x27;switch stream abort by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with reason: &#x27; + event.data.reason));    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamFail">onSwitchStreamFail</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is failed. Fired if an error occure during the update. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error code. Similar to the <a href="NanoPlayer.html#~errorcode"><code>errorcodes</code></a>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error message.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log(&#x27;switch stream fail by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamInit">onSwitchStreamInit</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that an stream switch request is initialized. Can be triggered by an adaptive rule (ABR) request or via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>. This is always the start event, an completion event will follow.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch options object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log(&#x27;switch stream init by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onSwitchStreamSuccess">onSwitchStreamSuccess</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event to signal that the switch stream request is succeeded. Fires if the source is updated. This is an completion event that follows on an start event.</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>A static string in format: {data.entry.h5live.rtmp.streamname} + ' streamSwitch ' + {data.id}.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The count of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Possible values are 'up', 'down' (in case of adaptive stream switch) and 'direct' (switch via <a href="NanoPlayer.html#switchStream"><code>'switchStream'</code></a>).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the switch stream request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onSwitchStreamInit"><code>'onSwitchStreamInit'</code></a> and completion events are <code>'onSwitchStreamSuccess'</code>, <code>'onSwitchStreamFail'</code> and <code>'onSwitchStreamAbort'</code></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~state">NanoPlayer~state</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log(&#x27;switch stream success by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="~event:onUnmute">onUnmute</h4>
     
     
@@ -6183,7 +8154,7 @@
 
     
     <div class="description">
-        <p>The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('updatefrequency'). This is an completion event that follows on an start event.</p>
+        <p>The event to signal that the update source request is aborted. Reasons can be an equal source ('equalsource'), a superseding ('superseded') or an to less time range between two 'updateSource' calls ('frequency'). This is an completion event that follows on an start event.</p>
     </div>
     
 
@@ -6368,6 +8339,78 @@
 
         <tr>
             
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>reason</code></td>
             
 
@@ -6385,7 +8428,7 @@
 
             
 
-            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call. Possible values are 'equalsource', 'superseded' and 'updatefrequency'.</p></td>
+            <td class="description last"><p>The abort reason. Possible values are 'equalsource', 'superseded' and 'frequency'.</p></td>
         </tr>
 
     
@@ -6434,6 +8477,54 @@
             
 
             <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code>  and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -6532,7 +8623,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log(&#x27;Update Source Abort with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log(&#x27;update source abort with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and reason: &#x27; + event.data.reason);    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -6693,7 +8784,7 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>data.source</code></td>
             
 
             <td class="type">
@@ -6710,32 +8801,62 @@
 
             
 
-            <td class="description last"><p>The data object.</p>
-                <h6>Properties</h6>
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
 
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>code</code></td>
+                <td class="name"><code>data.entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.code</code></td>
             
 
             <td class="type">
@@ -6759,7 +8880,7 @@
 
         <tr>
             
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>data.message</code></td>
             
 
             <td class="type">
@@ -6783,7 +8904,7 @@
 
         <tr>
             
-                <td class="name"><code>tag</code></td>
+                <td class="name"><code>data.tag</code></td>
             
 
             <td class="type">
@@ -6807,7 +8928,7 @@
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>data.count</code></td>
             
 
             <td class="type">
@@ -6824,14 +8945,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>data.type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data.id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -6923,7 +9085,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log(&#x27;Update Source Fail with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);    console.log(&#x27;Update Source count: &#x27; + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log(&#x27;update source fail with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -7143,7 +9305,55 @@
 
             
 
-            <td class="description last"><p>The source object given in the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
         </tr>
 
     
@@ -7167,7 +9377,7 @@
 
             
 
-            <td class="description last"><p>The options object used for the <a href="NanoPlayer.html#updateSource"><code>'updateSource'</code></a> call.</p></td>
+            <td class="description last"><p>The switch options object.</p></td>
         </tr>
 
     
@@ -7215,7 +9425,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and  completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -7314,7 +9572,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log(&#x27;Update Source Init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;Update Source tag: &#x27; + event.data.tag);    console.log(&#x27;Update Source count: &#x27; + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log(&#x27;update source init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -7517,6 +9775,78 @@
 
         <tr>
             
+                <td class="name"><code>source</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current source entry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rule</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption switch rule.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>tag</code></td>
             
 
@@ -7558,7 +9888,55 @@
 
             
 
-            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <code>'onUpdateSourceInit'</code> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+            <td class="description last"><p>The count of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The switch type. Here always 'update'.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the update source request to identify the paired start and completion event. The start event is <a href="NanoPlayer.html#~event:onUpdateSourceInit"><code>'onUpdateSourceInit'</code></a> and completion events are <code>'onUpdateSourceSuccess'</code>, <code>'onUpdateSourceFail'</code> and <code>'onUpdateSourceAbort'</code></p></td>
         </tr>
 
     
@@ -7657,7 +10035,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log(&#x27;Update Source Success with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log(&#x27;update source success with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config)));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -8319,13 +10697,13 @@
 
 
 	<span class="copyright">
-	Copyright (c) 2018 nanocosmos IT GmbH. All rights reserved.
+	Copyright (c) 2020 nanocosmos IT GmbH. All rights reserved.
 	</span>
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on Wed Jan 15th 2020
+		on Thu Feb 27th 2020
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
