@@ -1,6 +1,20 @@
 # NanoPlayer - Release Overview
 
-Please find more about the stream switching & ABR feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+## Please find more about the **stream switching & ABR** feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+
+# [4.2.5]
+
+## Release Notes
+
+This version handles the usage of metrics with the old deprecated single stream configuration over 'config.source.h5live'.
+
+See [here](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
+
+## Changelog
+
+### Fixed
+
+- handle deprecated 'config.source.h5live' notation for correct metrics
 
 # [4.2.4]
 
@@ -158,9 +172,9 @@ Please find more about the stream switching & ABR feature in our [documentation]
   - use to set a new source (ex. with different entries, adaption/switch options)
   - the updateSource method now uses the switch options set inside the config's source object instead of the parameters supplied via the method call
 
-## Release Package 4.2.4
+## Release Package 4.2.5
 
-* [4.2.4](https://files.nanocosmos.de/index.php/s/fN8bL7Wg3K8k8fM)
+* [4.2.5](https://files.nanocosmos.de/index.php/s/fSQPSkm9mEMdFEN)
 * [latest 4.x](https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6)
 * [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
 

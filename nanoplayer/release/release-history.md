@@ -1,5 +1,19 @@
 ﻿# NanoPlayer - Release History
 
+# [4.2.5]
+
+## Release Notes
+
+This version handles the usage of metrics with the old deprecated single stream configuration over 'config.source.h5live'.
+
+See [here](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
+
+## Changelog
+
+### Fixed
+
+- handle deprecated 'config.source.h5live' notation for correct metrics
+
 # [4.2.4]
 
 ## Release Notes
