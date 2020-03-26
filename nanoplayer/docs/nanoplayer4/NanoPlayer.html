@@ -79,7 +79,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.2.5</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.3.1</p></div>
         
     
 </header>
@@ -168,7 +168,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.2.5</li>
+			<li>4.3.1</li>
 		</ul>
 	</dd>
 	
@@ -1020,7 +1020,148 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="setup"><span class="type-signature"></span>setup<span class="signature">({{@link)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
+    <h4 class="name" id="setAdaption"><span class="type-signature"></span>setAdaption<span class="signature">(adaption)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Set a desired adaption rule or disable adaption on the fly.</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>adaption</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The adaption object similar than the object 'config.source.options.adaption'.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar adaption = {    &quot;rule&quot;: &quot;deviationOfMean&quot;}if (!useAdaption) {    adaption.rule = &quot;none&quot;;}player.setAdaption(adaption);</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setup"><span class="type-signature"></span>setup<span class="signature">(config)</span><span class="type-signature"> &rarr; {Promise.&lt;(config|error)>}</span></h4>
     
     
 </dt>
@@ -1063,10 +1204,16 @@
 
         <tr>
             
-                <td class="name"><code>{{@link</code></td>
+                <td class="name"><code>config</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="NanoPlayer.html#~config">NanoPlayer~config</a></span>
+
+
+
             
             </td>
 
@@ -1074,7 +1221,7 @@
 
             
 
-            <td class="description last"><p>NanoPlayer~config} config - The config object for the player including sources, events, styles.</p></td>
+            <td class="description last"><p>The config object for the player including sources, events, styles.</p></td>
         </tr>
 
     
@@ -4419,7 +4566,7 @@
 
             
 
-            <td class="description last"><p>The object to configure the playback.* @property {boolean} [playback.autoplay=true] - Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
+            <td class="description last"><p>The object to configure the playback.</p>
                 <h6>Properties</h6>
 
 <table class="props table table-striped">
@@ -4444,6 +4591,44 @@
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>autoplay</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -21010,7 +21195,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><p>[config]<a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
 			</ul>
 	</dd>
 	
@@ -21329,7 +21514,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><p>[config]<a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
 			</ul>
 	</dd>
 	
@@ -21407,7 +21592,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on Mon Mar 2nd 2020
+		on Thu Mar 26th 2020
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
