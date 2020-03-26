@@ -11,7 +11,7 @@ events.onPlay = function (e) {
     hideErrorWarning();
 };
 events.onPause = function (e) {
-    var reason = (e.data.reason !== 'normal') ? ' ($reason$)'.replace('$reason$', e.data.reason) : '';
+    var reason = (e.data.reason !== 'normal') ? ' (%reason%)'.replace('%reason%', e.data.reason) : '';
     log('pause' + reason);
     document.getElementById('status').innerText = 'paused' + reason;
 };
