@@ -1,5 +1,50 @@
 ﻿# NanoPlayer - Release History
 
+# [4.3.2]
+
+## Release Notes
+
+This version introduces the 'setAdaption' API to switch between adaption rules (ex. enable/disable ABR). 
+Furthermore, this version implements optimizations for the ABR feature and minor internal, config and metrics adjustments. Additionally, this version prevents non-critical console errors during initialization and fixes a timeout error during client-side switchStream/updateSource.
+
+Please find more about setAdaption API [here](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor).
+
+## Changelog
+
+### Added
+
+- 'setAdaption' API:
+ - use to switch between adaption rules (ex. enable/disable ABR)
+
+### Improved
+
+- ABR:
+ - initial switch up for oscillating source streams
+ - handle continuous buffering events
+- config:
+ - adjust switchStream event registration
+ - enable bintu multi-stream configuration
+- minor metrics improvement
+- prevent non-critical console errors during initialization in 'hidden' state
+
+### Fixed
+
+- timeout error during client-side switchStream/updateSource
+
+# [4.2.5]
+
+## Release Notes
+
+This version handles the usage of metrics with the old deprecated single stream configuration over 'config.source.h5live'.
+
+See [here](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
+
+## Changelog
+
+### Fixed
+
+- handle deprecated 'config.source.h5live' notation for correct metrics
+
 # [4.2.4]
 
 ## Release Notes
