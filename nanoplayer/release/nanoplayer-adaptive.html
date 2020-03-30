@@ -68,7 +68,10 @@ All modifications will remain property of nanocosmos.
             <strong id="friendly-message"></strong>
         </p>
         <p class="normal">
-            <strong>switch rule:&nbsp;</strong><span id="switch-rule"></span><span id="back-to-rule"></span>
+            <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);">
+                <option value="none">none</option>
+                <option value="deviationOfMean">deviationOfMean</option>
+            </select>
         </p>
         <div class="col">
             <div class="row">
@@ -173,15 +176,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.2.5.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.3.2.min.js"></script>
     <script>
 
-        var playerVersion = '4.2.5';
+        var playerVersion = '4.3.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200302';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200330';
         };
 
         var player;
@@ -196,9 +199,9 @@ All modifications will remain property of nanocosmos.
 
     <script>
         function updateStreamQualityWrapper(streamInfo) {
-            if (config.source.entries) {
+            if (this.config.source.entries) {
 
-                var streams = config.source.entries;
+                var streams = this.config.source.entries;
                 var qualitiesWrapper = document.getElementById("qualitiesWrapper");
                 var currentStreamname = streamInfo.rtmp ? streamInfo.rtmp.streamname : extractStreamname(streamInfo.url);
                 var currentQualityIndex = getCurrentQualityIndex(currentStreamname);
@@ -294,8 +297,8 @@ All modifications will remain property of nanocosmos.
         function getCurrentQualityIndex(streamname) {
             var currentQualityIndex = 0;
 
-            if (config.source.entries) {
-                var entries = config.source.entries;
+            if (this.config.source.entries) {
+                var entries = this.config.source.entries;
                 for (var i = 0; i < entries.length; i++) {
                     if (entries[i].h5live.rtmp.streamname === streamname) {
                         currentQualityIndex = i;
@@ -317,26 +320,16 @@ All modifications will remain property of nanocosmos.
             }
         }
 
-        function setRule(rule) {
-            var oldRule = document.getElementById('switch-rule').textContent;
-            if (rule === 'none' && oldRule !== 'none' && oldRule.length > 0) {
-                var button = document.createElement('button');
-                button.textContent = 'back to rule \'' + oldRule + '\'';
-                button.style.marginLeft = '1em';
-                button.addEventListener('click', function () {
-                    if (player) {
-                        player.updateSource(config.source).then(function (_config) {
-                            log('updateSource initialized');
-                        }, function error(_err) {
-                            log('updateSource aborted with error ' + _err.code + ': ' + _err.message);
-                        });
-                    }
-                }.bind(null));
-                document.getElementById('back-to-rule').appendChild(button);
-            } else if (rule !== 'none' && document.getElementById('back-to-rule').firstChild) {
-                document.getElementById('back-to-rule').removeChild(document.getElementById('back-to-rule').firstChild);
+        function onSetAdaption(e) {
+            var select = document.getElementById('switch-rule');
+            var rule = select.options[select.selectedIndex].value;
+            if (player) {
+                player.setAdaption({ 'rule': rule });
             }
-            document.getElementById('switch-rule').textContent = rule;
+        }
+
+        function setAdaption(_rule) {
+            document.querySelector('#switch-rule option[value="' + _rule + '"]').selected = true;
         }
 
     </script>
@@ -520,9 +513,10 @@ All modifications will remain property of nanocosmos.
 
             // updateStreamQualityWrapper();
             player.setup(_config).then(function (conf) {
+                this.config.source = conf.source;
                 setVolume(null, document.getElementById('faderVolume').value);
                 checkConfig(conf);
-                document.getElementById('switch-rule').textContent = conf.source.options.adaption.rule;
+                document.querySelector('#switch-rule option[value="' + conf.source.options.adaption.rule + '"]').selected = true;
                 try {
                     conf = JSON.stringify(conf)
                 } catch (err) { }
@@ -536,13 +530,13 @@ All modifications will remain property of nanocosmos.
                     updateStreamQualityWrapper(e.data.streamInfo);
                 });
                 player.on("SwitchStreamInit", function (e) {
-                    setRule(e.data.rule);
+                    setAdaption(e.data.rule);
                 });
                 player.on("UpdateSourceInit", function (e) {
-                    setRule(e.data.rule);
+                    setAdaption(e.data.rule);
                 });
 
-            }, function (error) {
+            }.bind(this), function (error) {
                 if (error.message) {
                     error = error.message;
                 } else {
@@ -600,15 +594,14 @@ All modifications will remain property of nanocosmos.
             if (!player) {
                 return;
             }
-            config.source.entries.length > 2 && (config.source.entries[2].h5live.rtmp.streamname += 'x');
-            config.source.entries.length > 2 && (config.source.startIndex = 2);
-            player.updateSource(config.source).then(function (conf) {
+            player.updateSource(this.config.source).then(function (conf) {
+                this.config.source = conf;
                 checkConfig(conf);
                 try {
                     conf = JSON.stringify(conf);
                 } catch (err) { }
                 log('update source ok: ' + conf);
-            }, function (error) {
+            }.bind(this), function (error) {
                 if (error.message) {
                     error = error.message;
                 } else {

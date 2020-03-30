@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.2.5
+NanoPlayer (H5Live) Public API Class 4.3.2
 
 **Kind**: global class  
-**Version**: 4.2.5  
+**Version**: 4.3.2  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -78,7 +78,7 @@ The supported tech names of the player.
 **Kind**: instance constant of <code>[NanoPlayer](#NanoPlayer)</code>  
 <a name="NanoPlayer+setup"></a>
 
-### nanoPlayer.setup({[config]{@link) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
+### nanoPlayer.setup(config) ⇒ <code>Promise.&lt;(config\|error)&gt;</code>
 Initializes the player with a given config object.
 
 **Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
@@ -86,12 +86,12 @@ Initializes the player with a given config object.
 <table>
   <thead>
     <tr>
-      <th>Param</th><th>Description</th>
+      <th>Param</th><th>Type</th><th>Description</th>
     </tr>
   </thead>
   <tbody>
 <tr>
-    <td>{[config]{@link</td><td><p>NanoPlayer~config} config - The config object for the player including sources, events, styles.</p>
+    <td>config</td><td><code><a href="#NanoPlayer..config">config</a></code></td><td><p>The config object for the player including sources, events, styles.</p>
 </td>
     </tr>  </tbody>
 </table>
@@ -317,6 +317,30 @@ Switch to a stream given over source entries.
 **Example**  
 ```js
 // player instance of NanoPlayerplayer.switchStream(1).then(function (config) {    console.log('switch stream initialized with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer+setAdaption"></a>
+
+### nanoPlayer.setAdaption(adaption)
+Set a desired adaption rule or disable adaption on the fly.
+
+**Kind**: instance method of <code>[NanoPlayer](#NanoPlayer)</code>  
+**See**: [config](#NanoPlayer..config)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>adaption</td><td><code>object</code></td><td><p>The adaption object similar than the object &#39;config.source.options.adaption&#39;.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar adaption = {    "rule": "deviationOfMean"}if (!useAdaption) {    adaption.rule = "none";}player.setAdaption(adaption);
 ```
 <a name="NanoPlayer..event_onReady"></a>
 
@@ -1808,7 +1832,10 @@ The config object to pass as param for the 'setup' call.
     <td>source.hls</td><td><code>string</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An hls playout url as string.</p>
 </td>
     </tr><tr>
-    <td>playback</td><td><code>object</code></td><td></td><td><p>The object to configure the playback.* @property {boolean} [playback.autoplay=true] - Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
+    <td>playback</td><td><code>object</code></td><td></td><td><p>The object to configure the playback.</p>
+</td>
+    </tr><tr>
+    <td>playback.autoplay</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
 </td>
     </tr><tr>
     <td>playback.automute</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p>
