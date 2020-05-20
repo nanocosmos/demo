@@ -439,25 +439,22 @@ function checkSecurity() {
 function checkEntries() {
     var entries = [];
     var paramBitrate, paramWidth, paramHeight, paramFramerate;
-    var streamnames = [], urls = [], servers = [];
+    var streamnames = [], urls = [], servers = [], bintustreamids = [], bintuurl= [];
     var nums = ['', '2', '3', '4', '5', '6', '7', '8', '9'];
     var index = 0;
 
     while (nums.length) {
         var num = nums.shift(); 
         var name = getHTTPParam('entry' + num + '.rtmp.streamname');
-        if (name) {
-            streamnames.push(name);
-        } else {
+        var streamid = getHTTPParam('entry' + num + '.bintu.streamid');
+        if (!name && !streamid) {
             break;
         }
         var url = getHTTPParam('entry' + num + '.rtmp.url');
-        if (url) {
-            urls.push(url);
-        } else {
-            urls.push("rtmp://bintu-play.nanocosmos.de:80/play");
+        if (!url) {
+            url = "rtmp://bintu-play.nanocosmos.de:80/play";
         }
-        var server = getHTTPParam('entry' + num + '.server')
+        var server = getHTTPParam('entry' + num + '.server');
         if (server) {
             var routes = {
                 secured: {
@@ -472,20 +469,21 @@ function checkEntries() {
                 }
             }
             var route = (document.location.protocol.indexOf('https') === 0) ? routes.secured : routes.unsecured;
-            servers.push({
+            server = {
                 websocket: route.websocket[0] + server + route.websocket[1],
                 hls: route.hls[0] + server + route.hls[1],
                 progressive: route.progressive[0] + server + route.progressive[1]
-            });
+            };
         } else {
             var wss = getHTTPParam('entry' + num + '.server.websocket');
             var hls = getHTTPParam('entry' + num + '.server.hls');
-            servers.push({
+            server = {
                 websocket: wss || 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4',
                 hls: hls || 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8',
                 progressive: 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
-            });
+            };
         }
+        var apiurl = getHTTPParam('entry' + num + '.bintu.apiurl');
 
         paramBitrate = parseInt(getHTTPParam(['entry' + num + '.info.bitrate']));
         paramWidth = parseInt(getHTTPParam(['entry' + num + '.info.width']));
@@ -505,10 +503,10 @@ function checkEntries() {
                 "hls": "",
                 "h5live": {
                     "rtmp": {
-                        "url": urls[index],
-                        "streamname": streamnames[index]
+                        "url": url,
+                        "streamname": name
                     },
-                    "server": servers[index],
+                    "server": server,
                     "token": "",
                     "security": {
                         "token": getHTTPParam('entry' + num + '.security.token'),
@@ -517,7 +515,10 @@ function checkEntries() {
                         "tag": getHTTPParam('entry' + num + '.security.tag')
                     }
                 },
-                "bintu": {}
+                "bintu": {
+                    "apiurl": apiurl,
+                    "streamid": streamid
+                }
             }
         )
         index++;
@@ -553,7 +554,7 @@ function log(e, consoleOnly) {
     e = new Date().toLocaleTimeString() + ": " + e;
     console.log(e);
     if (!consoleOnly) {
-        if (logCount > 100) {
+        if (logCount > 1000) {
             document.getElementById('log').innerText = "";
             logCount = 0;
         }

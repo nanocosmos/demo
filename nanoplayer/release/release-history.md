@@ -1,5 +1,29 @@
 ﻿# NanoPlayer - Release History
 
+# [4.4.3]
+
+## Release Notes
+
+This version implements seamless stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
+In special use cases where existing video tags should be used for playback an array of maximal two element Ids can be provided via the `playback.videoId` config property. 
+Additionally, this version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. Furthermore, the `style.displayMutedAutoplay` config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
+The `style.displayMutedAutoplay` option can be disabled to maintain the recent behaviour. 
+
+## Changelog
+
+### Added
+
+- seamless stream switching for iOS devices
+
+### Improved
+
+- iOS & iPadOS seamless stream switching  needs 2 video elements internally. So for special use cases where existing video tags need to be used for playback an array of maximal two element Ids can be provided via the `playback.videoId` config property (NOT mandatory)
+  - if 0 Ids are provided 2 video elements will be created internally
+  - if 1 Id is provided the other video element will be created internally
+- set the default timeout for the update source request to 20 seconds to improve the overall switching behavior 
+  - can be configured via the `source.options.switch.timeout` config property (we advise to use default value)
+- re-enabled `style.displayMutedAutoplay` config property to show a muted audio symbol in case of muted autoplay
+
 # [4.3.2]
 
 ## Release Notes

@@ -1,0 +1,164 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h2 id="please-find-more-about-the-stream-switching-abr-feature-in-our-documentation-">Please find more about the <strong>stream switching &amp; ABR</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</h2>
+<h1 id="-4-4-3-">[4.4.3]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements seamless stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
+In special use cases where existing video tags should be used for playback an array of maximal two element Ids can be provided via the <code>playback.videoId</code> config property. 
+Additionally, this version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. Furthermore, the <code>style.displayMutedAutoplay</code> config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
+The <code>style.displayMutedAutoplay</code> option can be disabled to maintain the recent behaviour. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>seamless stream switching for iOS devices</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>iOS &amp; iPadOS seamless stream switching  needs 2 video elements internally. So for special use cases where existing video tags need to be used for playback an array of maximal two element Ids can be provided via the <code>playback.videoId</code> config property (NOT mandatory)<ul>
+<li>if 0 Ids are provided 2 video elements will be created internally</li>
+<li>if 1 Id is provided the other video element will be created internally</li>
+</ul>
+</li>
+<li>set the default timeout for the update source request to 20 seconds to improve the overall switching behavior <ul>
+<li>can be configured via the <code>source.options.switch.timeout</code> config property (we advise to use default value)</li>
+</ul>
+</li>
+<li>re-enabled <code>style.displayMutedAutoplay</code> config property to show a muted audio symbol in case of muted autoplay</li>
+</ul>
+<h2 id="release-package-4-4-3">Release Package 4.4.3</h2>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/Btn88GAoGic57Sg">4.4.3</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h1 id="documentation">Documentation</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/">demo.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/">demo.nanocosmos.de (until version 3)</a></li>
+</ul>
+<h1 id="feature-description">Feature Description</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">stream switching &amp; ABR</a></li>
+</ul>
+<h1 id="release-history">Release History</h1>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
+</ul>
+
+  </body>
+</html>
