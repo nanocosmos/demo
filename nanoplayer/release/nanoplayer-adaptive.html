@@ -30,7 +30,7 @@ All modifications will remain property of nanocosmos.
             <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
             <strong id="demo-version"></strong>
         </p>
-        <div class="row" style="display: flex; height: 400px">
+        <div class="row" style="display: flex">
             <div class="col">
                 <div id="playerDiv" class="player">
                     <!---->
@@ -56,7 +56,6 @@ All modifications will remain property of nanocosmos.
                 <button id="buttonPlay" onclick="play();">play</button>
                 <button id="buttonPause" onclick="pause();">pause</button>
                 <button id="buttonReset" onclick="startPlayer();">reset</button>
-                <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
@@ -176,15 +175,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.3.2.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.4.3.min.js"></script>
     <script>
 
-        var playerVersion = '4.3.2';
+        var playerVersion = '4.4.3';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200330';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200520';
         };
 
         var player;
@@ -203,7 +202,7 @@ All modifications will remain property of nanocosmos.
 
                 var streams = this.config.source.entries;
                 var qualitiesWrapper = document.getElementById("qualitiesWrapper");
-                var currentStreamname = streamInfo.rtmp ? streamInfo.rtmp.streamname : extractStreamname(streamInfo.url);
+                var currentStreamname = streamInfo.rtmp.streamname;
                 var currentQualityIndex = getCurrentQualityIndex(currentStreamname);
 
                 removeAllChildNodes(qualitiesWrapper);
@@ -357,7 +356,7 @@ All modifications will remain property of nanocosmos.
             },
             events: {},
             style: {
-                displayMutedAutoplay: false
+                displayMutedAutoplay: true
             }
         };
         events = events || {};
@@ -424,12 +423,6 @@ All modifications will remain property of nanocosmos.
                 startPlayer();
             } else {
                 updateSource();
-            }
-        }
-
-        function destroyPlayer() {
-            if (player) {
-                player.destroy();
             }
         }
 
@@ -523,10 +516,8 @@ All modifications will remain property of nanocosmos.
                 log('setup ok: ' + conf);
 
                 player.on("StreamInfo", function (e) {
-                    var cutOff = e.data.streamInfo.url.substring(e.data.streamInfo.url.indexOf("stream="));
-                    console.log(cutOff)
-                    var streamname = cutOff.substring(7, cutOff.indexOf("&"))
-                    console.log(streamname)
+                    var streamname = e.data.streamInfo.rtmp.streamname;
+                    console.log(streamname);
                     updateStreamQualityWrapper(e.data.streamInfo);
                 });
                 player.on("SwitchStreamInit", function (e) {

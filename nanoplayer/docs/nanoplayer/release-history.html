@@ -114,6 +114,30 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-4-3-">[4.4.3]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements seamless stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
+In special use cases where existing video tags should be used for playback an array of maximal two element Ids can be provided via the <code>playback.videoId</code> config property. 
+Additionally, this version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. Furthermore, the <code>style.displayMutedAutoplay</code> config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
+The <code>style.displayMutedAutoplay</code> option can be disabled to maintain the recent behaviour. </p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>seamless stream switching for iOS devices</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>iOS &amp; iPadOS seamless stream switching  needs 2 video elements internally. So for special use cases where existing video tags need to be used for playback an array of maximal two element Ids can be provided via the <code>playback.videoId</code> config property (NOT mandatory)<ul>
+<li>if 0 Ids are provided 2 video elements will be created internally</li>
+<li>if 1 Id is provided the other video element will be created internally</li>
+</ul>
+</li>
+<li>set the default timeout for the update source request to 20 seconds to improve the overall switching behavior <ul>
+<li>can be configured via the <code>source.options.switch.timeout</code> config property (we advise to use default value)</li>
+</ul>
+</li>
+<li>re-enabled <code>style.displayMutedAutoplay</code> config property to show a muted audio symbol in case of muted autoplay</li>
+</ul>
 <h1 id="-4-3-2-">[4.3.2]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version introduces the &#39;setAdaption&#39; API to switch between adaption rules (ex. enable/disable ABR). 
