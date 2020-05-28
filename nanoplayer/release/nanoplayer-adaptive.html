@@ -70,6 +70,7 @@ All modifications will remain property of nanocosmos.
             <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);">
                 <option value="none">none</option>
                 <option value="deviationOfMean">deviationOfMean</option>
+                <option value="deviationOfMean2">deviationOfMean2</option>
             </select>
         </p>
         <div class="col">
@@ -175,15 +176,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.4.3.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.5.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.4.3';
+        var playerVersion = '4.5.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200520';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200528';
         };
 
         var player;
