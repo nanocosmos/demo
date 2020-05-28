@@ -1,19 +1,26 @@
 ﻿# NanoPlayer - Release History
 
-# [4.4.3]
+# [4.5.1]
 
 ## Release Notes
 
-This version implements seamless stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
-In special use cases where existing video tags should be used for playback an array of maximal two element Ids can be provided via the `playback.videoId` config property. 
-Additionally, this version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. Furthermore, the `style.displayMutedAutoplay` config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
+This version implements seamless ABR and stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
+In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the `playback.videoId` config property. 
+
+The new ABR mode, adaption rule, 'deviationOfMean2' has been added. The new rule is slightly less strict and especially recommended  for streams that are already more volatile on the source/ingest side.  
+
+This version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. 
+
+The `style.displayMutedAutoplay` config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
 The `style.displayMutedAutoplay` option can be disabled to maintain the recent behaviour. 
+The handling of mute states and autoplay has been improved.
 
 ## Changelog
 
 ### Added
 
-- seamless stream switching for iOS devices
+- seamless ABR and stream switching for iOS and iPadOS devices
+- new adaption rule 'deviationOfMean2'
 
 ### Improved
 
@@ -23,6 +30,7 @@ The `style.displayMutedAutoplay` option can be disabled to maintain the recent b
 - set the default timeout for the update source request to 20 seconds to improve the overall switching behavior 
   - can be configured via the `source.options.switch.timeout` config property (we advise to use default value)
 - re-enabled `style.displayMutedAutoplay` config property to show a muted audio symbol in case of muted autoplay
+- handling of mute states and autoplay
 
 # [4.3.2]
 
