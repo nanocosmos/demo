@@ -1,11 +1,24 @@
 ﻿# NanoPlayer - Release History
 
+# [4.5.2]
+
+## Release Notes
+
+This version contains a minor internal metrics adjustment.
+
+## Changelog
+
+### Improved
+
+- minor metrics adjustment
+
 # [4.5.1]
 
 ## Release Notes
 
 This version implements seamless ABR and stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
 In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the `playback.videoId` config property. 
+**Important note:** On iOS devices the default z-index of the video layer had to be changed from 0 to 1. In case of using custom controls or overlays please make sure to use a z-index > 1.
 
 The new ABR mode, adaption rule, 'deviationOfMean2' has been added. The new rule is slightly less strict and especially recommended  for streams that are already more volatile on the source/ingest side.  
 
