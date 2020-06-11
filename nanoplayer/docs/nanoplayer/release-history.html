@@ -114,10 +114,19 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-5-2-">[4.5.2]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version contains a minor internal metrics adjustment.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>minor metrics adjustment</li>
+</ul>
 <h1 id="-4-5-1-">[4.5.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version implements seamless ABR and stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
-In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the <code>playback.videoId</code> config property. </p>
+In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the <code>playback.videoId</code> config property. 
+<strong>Important note:</strong> On iOS devices the default z-index of the video layer had to be changed from 0 to 1. In case of using custom controls or overlays please make sure to use a z-index &gt; 1.</p>
 <p>The new ABR mode, adaption rule, &#39;deviationOfMean2&#39; has been added. The new rule is slightly less strict and especially recommended  for streams that are already more volatile on the source/ingest side.  </p>
 <p>This version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. </p>
 <p>The <code>style.displayMutedAutoplay</code> config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
