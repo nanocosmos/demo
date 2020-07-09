@@ -2,7 +2,7 @@
 
 ## Please find more about the **stream switching & ABR** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
 
-# [4.5.2]
+# [4.5.6]
 
 ## Release Notes
 
@@ -18,9 +18,17 @@ The `style.displayMutedAutoplay` config property is re-enabled which shows a mut
 The `style.displayMutedAutoplay` option can be disabled to maintain the recent behaviour. 
 The handling of mute states and autoplay has been improved.
 
-Version 4.5.2 is adding a minor internal metrics adjustment.
+Version 4.5.6 is adding internal improvements for stream swiching and connection handling on iOS.
 
 ## Changelog
+
+### [4.5.6]
+
+### Improved
+
+- stability of general stream switching
+- validation of buffering metrics
+- connection flags setting
 
 ### [4.5.2]
 
@@ -45,9 +53,9 @@ Version 4.5.2 is adding a minor internal metrics adjustment.
 - re-enabled `style.displayMutedAutoplay` config property to show a muted audio symbol in case of muted autoplay
 - handling of mute states and autoplay
 
-## Release Package 4.5.2
+## Release Package 4.5.6
 
-* [4.5.2](https://files.nanocosmos.de/index.php/s/iBy9bNJbqFwscxs)
+* [4.5.6](https://files.nanocosmos.de/index.php/s/oAxiYa5eB2N3HeA)
 * [latest 4.x](https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6)
 * [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
 
