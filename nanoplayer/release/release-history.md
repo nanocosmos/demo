@@ -1,5 +1,19 @@
 ﻿# NanoPlayer - Release History
 
+# [4.5.6]
+
+## Release Notes
+
+This version is adding internal improvements for stream swiching and connection handling on iOS.
+
+## Changelog
+
+### Improved
+
+- stability of general stream switching
+- validation of buffering metrics
+- connection flags setting
+
 # [4.5.2]
 
 ## Release Notes
