@@ -1,11 +1,14 @@
-﻿var responseText, response, streamObj, streamObjs = [], streamObjsOld = [];
+/* eslint-disable no-undef, no-console, no-unused-vars */
+var responseText, response, streamObj, streamObjs = [], streamObjsOld = [];
 
 var searchStreams = function () {
     var group = getHTTPParam('bintu.group');
-    var streamFilter = new BintuStreamFilter();
-    streamFilter.setState(BintuStreamFilter.STATE.LIVE);
+    var streamFilter = new Bintu.StreamFilter();
+    streamFilter.setState(Bintu.StreamFilter.STATE.LIVE);
     streamFilter.addTags(['group:' + group]);
-    bintu.getStreams(streamFilter, onGetStreamsSuccess.bind(this), onGetStreamsError.bind(this));
+    bintu.getStreams(streamFilter)
+        .then(onGetStreamsSuccess)
+        .catch(onGetStreamsError);
 };
 
 var onGetStreamsSuccess = function (request) {
@@ -14,7 +17,8 @@ var onGetStreamsSuccess = function (request) {
         response = JSON.parse(responseText);
         console.log('success - get streams');
         console.log(response);
-    } catch (err) {
+    }
+    catch (err) {
         response = [];
         console.error(err);
     }
@@ -24,11 +28,11 @@ var onGetStreamsSuccess = function (request) {
         streamObjs = [];
     }
 
-    var i, responseLen = response.length;
+    var i, select, value, responseLen = response.length;
     for (i = 0; i < responseLen; i += 1) {
         var streamObjTemp = getStreamFromResponse(response[i]);
 
-        if (!!streamObjTemp) {
+        if (streamObjTemp) {
             streamObjs.push(streamObjTemp);
         }
     }
@@ -36,41 +40,44 @@ var onGetStreamsSuccess = function (request) {
     if (JSON.stringify(streamObjsOld.sort()) === JSON.stringify(streamObjs.sort())) {
         console.log('no change');
         return;
-    } else {
+    }
+    else {
         streamObjsOld = streamObjs;
     }
 
     for (i = 0; i < streamObjs.length; i += 1) {
-        var streamObjTemp = streamObjs[i];
-            // Add new streams to stream-select, if needed
-            var select = document.getElementById('stream-select');
-            var j, selectLen = select.options.length, exists = false;
-            for (j = 0; j < selectLen; j += 1) {
-                var value = select.options[j].value;
-                if (value === streamObjTemp.streamname)
-                    exists = true;
-            }
-            if (!exists) {
-                var text = streamObjTemp.streamname + ' ' + streamObjTemp.bitrate;
-                var value = streamObjTemp.streamname;
-                select.options[select.options.length] = new Option(text, value);
-            }
+        streamObjTemp = streamObjs[i];
+        // Add new streams to stream-select, if needed
+        select = document.getElementById('stream-select');
+        var j, selectLen = select.options.length, exists = false;
+        for (j = 0; j < selectLen; j += 1) {
+            value = select.options[j].value;
+            if (value === streamObjTemp.streamname)
+                exists = true;
+        }
+        if (!exists) {
+            var text = streamObjTemp.streamname + ' ' + streamObjTemp.bitrate;
+            value = streamObjTemp.streamname;
+            select.options[select.options.length] = new Option(text, value);
+        }
     }
 
     // Remove finished streams from stream-select, if needed
-    var select = document.getElementById('stream-select');
-    var i, selectLen = select.options.length;
+    select = document.getElementById('stream-select');
+    selectLen = select.options.length;
     if (selectLen > 1) {
         for (i = 1; i < selectLen; i += 1) {
-            var value = select.options[i].value;
-            if (streamObjs.findIndex(function (x) { return x.streamname === value }) === -1) {
+            value = select.options[i].value;
+            if (streamObjs.findIndex(function (x) {
+                return x.streamname === value;
+            }) === -1) {
                 select.remove(i);
                 i += 1;
             }
         }
     }
 
-    var count = streamObjs.length
+    var count = streamObjs.length;
     var group = getHTTPParam('bintu.group');
     document.getElementById('group').innerText = group + ' - ' + count + ' stream(s)';
 
@@ -97,17 +104,19 @@ getStreamFromResponse = function (response) {
     var streamName = h5live.rtmp.streamname;
     var server = h5live.server;
 
+    var group, bitrate = 'NaN';
+
     var tags = response.tags;
     if (tags && tags.push) {
         var i, len = tags.length;
         for (i = 0; i < len; i += 1) {
             if (tags[i].indexOf('group') !== -1) {
-                var group = tags[i];
+                group = tags[i];
                 group = group.replace(/ /g, '').replace('group:', '');
             }
 
             if (tags[i].indexOf('bitrate') !== -1) {
-                var bitrate = tags[i];
+                bitrate = tags[i];
                 bitrate = bitrate.replace(/ /g, '').replace('bitrate:', '');
             }
         }
@@ -115,12 +124,12 @@ getStreamFromResponse = function (response) {
 
     if (!!id & !!url & !!streamName & !!group & !!bitrate) {
         return {
-            'id': id,
-            'url': url,
-            'streamname': streamName,
-            'group': group,
-            'bitrate': bitrate,
-            'server': server
+            'id'         : id,
+            'url'        : url,
+            'streamname' : streamName,
+            'group'      : group,
+            'bitrate'    : bitrate,
+            'server'     : server
         };
     }
 

@@ -1,15 +1,15 @@
 'use strict';
-
-(function(factory) {
+/*eslint-disable*/
+(function (factory) {
     if (typeof module === 'object' && typeof module.exports === 'object') {
-        module.exports = function(_) {
+        module.exports = function (_) {
             factory(_);
         };
-    } else {
+    }
+    else {
         factory(_);
     }
-}(function(_) {
-
+})(function (_) {
     var _detect_timeout;
     var _subjects = [];
     var _observables = [];
@@ -29,55 +29,55 @@
         Object.freeze &&
         Object.preventExtensions);
 
-    function ObservableArray(subject) {
+    function ObservableArray (subject) {
         var _first_bind = true;
         var _old_subject = [];
         var _handlers = {
-            generic: [],
-            create: [],
-            update: [],
-            'delete': []
+            'generic' : [],
+            'create'  : [],
+            'update'  : [],
+            'delete'  : []
         };
 
-        function reset() {
+        function reset () {
             callGenericSubscribers();
             _old_subject = JSON.parse(JSON.stringify(subject));
         }
 
 
-        function callGenericSubscribers() {
-            _.each(_handlers.generic, function(f) {
+        function callGenericSubscribers () {
+            _.each(_handlers.generic, function (f) {
                 f(subject, _old_subject);
             });
         }
 
 
-        function callCreateSubscribers(new_item, item_index) {
-            _.each(_handlers.create, function(f) {
+        function callCreateSubscribers (new_item, item_index) {
+            _.each(_handlers.create, function (f) {
                 f(new_item, item_index);
             });
         }
 
 
-        function callUpdateSubscribers(new_item, old_item, item_index) {
-            _.each(_handlers.update, function(f) {
+        function callUpdateSubscribers (new_item, old_item, item_index) {
+            _.each(_handlers.update, function (f) {
                 f(new_item, old_item, item_index);
             });
         }
 
 
-        function callDeleteSubscribers(deleted_item, item_index) {
-            _.each(_handlers['delete'], function(f) {
+        function callDeleteSubscribers (deleted_item, item_index) {
+            _.each(_handlers.delete, function (f) {
                 f(deleted_item, item_index);
             });
         }
 
 
-        function detectChanges() {
+        function detectChanges () {
             var old_length = _old_subject.length;
             var new_length = subject.length;
 
-            if (old_length !== new_length || JSON.stringify(_old_subject) !==  JSON.stringify(subject)) {
+            if (old_length !== new_length || JSON.stringify(_old_subject) !== JSON.stringify(subject)) {
                 var max = Math.max(new_length, old_length) - 1;
 
                 for (var i = max; i >= 0; i--) {
@@ -85,9 +85,11 @@
                     var new_item = subject[i];
                     if (i > old_length - 1) {
                         callCreateSubscribers(new_item, i);
-                    } else if (i > new_length - 1) {
+                    }
+                    else if (i > new_length - 1) {
                         callDeleteSubscribers(old_item, i);
-                    } else if (!_.isEqual(new_item, old_item)) {
+                    }
+                    else if (!_.isEqual(new_item, old_item)) {
                         callUpdateSubscribers(new_item, old_item, i);
                     }
                 }
@@ -102,14 +104,15 @@
         ################################################################ */
 
 
-        function overrideMethod(name, f) {
+        function overrideMethod (name, f) {
             // Use Object.defineProperty to prevent methods from appearing in
             // the subject's for in loop
             if (_es5_object_supported) {
                 Object.defineProperty(subject, name, {
-                    value: f
+                    'value': f
                 });
-            } else {
+            }
+            else {
                 subject[name] = f;
             }
         }
@@ -121,7 +124,7 @@
         // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array#Mutator_methods
 
         // pop: Removes the last element from an array and returns that element.
-        overrideMethod('pop', function() {
+        overrideMethod('pop', function () {
             detectChanges();
             var deleted_item = Array.prototype.pop.apply(this, arguments);
             var item_index = this.length;
@@ -133,7 +136,7 @@
 
         // push: Adds one or more elements to the end of an array and returns
         // the new length of the array.
-        overrideMethod('push', function() {
+        overrideMethod('push', function () {
             detectChanges();
             var new_item = arguments[0];
             var new_length = Array.prototype.push.apply(this, arguments);
@@ -145,7 +148,7 @@
 
         // reverse: Reverses the order of the elements of an array -- the first
         // becomes the last, and the last becomes the first.
-        overrideMethod('reverse', function() {
+        overrideMethod('reverse', function () {
             detectChanges();
             // Always use reverse loops when deleting stuff based on index
             for (var j = this.length - 1; j >= 0; j--) {
@@ -160,7 +163,7 @@
 
         // shift: Removes the first element from an array and returns that
         // element.
-        overrideMethod('shift', function() {
+        overrideMethod('shift', function () {
             detectChanges();
             var deleted_item = Array.prototype.shift.apply(this, arguments);
             callDeleteSubscribers(deleted_item, 0);
@@ -170,7 +173,7 @@
 
 
         // sort: Sorts the elements of an array.
-        overrideMethod('sort', function() {
+        overrideMethod('sort', function () {
             detectChanges();
             // Always use reverse loops when deleting stuff based on index
             for (var j = this.length - 1; j >= 0; j--) {
@@ -184,7 +187,7 @@
 
 
         // splice: Adds and/or removes elements from an array.
-        overrideMethod('splice', function(i /*, length , insert */) {
+        overrideMethod('splice', function (i /*, length , insert */) {
             detectChanges();
             var insert = Array.prototype.slice.call(arguments, 2);
             var deleted = Array.prototype.splice.apply(this, arguments);
@@ -192,7 +195,7 @@
             for (var j = deleted.length - 1; j >= 0; j--) {
                 callDeleteSubscribers(deleted[j], i + j);
             }
-            _.each(insert, function(new_item, k) {
+            _.each(insert, function (new_item, k) {
                 callCreateSubscribers(new_item, i + k);
             });
             reset();
@@ -202,10 +205,10 @@
 
         // unshift: Adds one or more elements to the front of an array and
         // returns the new length of the array.
-        overrideMethod('unshift', function() {
+        overrideMethod('unshift', function () {
             detectChanges();
             var new_length = Array.prototype.unshift.apply(this, arguments);
-            _.each(arguments, function(new_item, i) {
+            _.each(arguments, function (new_item, i) {
                 callCreateSubscribers(new_item, i);
             });
             reset();
@@ -218,29 +221,32 @@
 
 
         return {
-            detectChanges: detectChanges,
-            unbind: function(type, handler) {
+            'detectChanges' : detectChanges,
+            'unbind'        : function (type, handler) {
                 if (_.isUndefined(type) && _.isUndefined(handler)) {
-                    _.each(_handlers, function(handler) {
+                    _.each(_handlers, function (handler) {
                         handler.length = 0;
                     });
-                } else if (_.isString(type) && _.isUndefined(handler)) {
+                }
+                else if (_.isString(type) && _.isUndefined(handler)) {
                     _handlers[type].length = 0;
-                } else if (_.isFunction(type) && _.isUndefined(handler)) {
+                }
+                else if (_.isFunction(type) && _.isUndefined(handler)) {
                     handler = type;
                     type = 'generic';
                     _handlers[type] = _.without(_handlers[type], handler);
-                } else if (_.isString(type) && _.isFunction(handler)) {
+                }
+                else if (_.isString(type) && _.isFunction(handler)) {
                     _handlers[type] = _.without(_handlers[type], handler);
                 }
-
             },
-            bind: function(type, handler) {
+            'bind': function (type, handler) {
                 _handlers[type].push(handler);
                 if (type === 'generic') {
                     handler(subject, _old_subject);
-                } else if (type === 'create') {
-                    _.each(subject, function(item, index) {
+                }
+                else if (type === 'create') {
+                    _.each(subject, function (item, index) {
                         // Don't do this, it will add the current array as an
                         // extra argument:
                         //_.each(subject, handler);
@@ -254,12 +260,11 @@
                 }
             }
         };
-
     }
 
 
     _.mixin({
-        observe: function(subject, type, f) {
+        'observe': function (subject, type, f) {
             if (!_.isArray(subject)) {
                 throw 'subject should be a array';
             }
@@ -283,10 +288,10 @@
         },
 
 
-        unobserve: function(subject, type, f) {
+        'unobserve': function (subject, type, f) {
             if (!arguments.length) {
                 // _.unobserve() removes all observers
-                _.each(_observables, function(observable) {
+                _.each(_observables, function (observable) {
                     observable.unbind();
                 });
                 _subjects.length = 0;
@@ -309,13 +314,13 @@
     });
 
 
-    function detectAllChanges() {
+    function detectAllChanges () {
         if (!_observables.length) {
             _detect_timeout = null;
             return;
         }
 
-        _.each(_observables, function(observable) {
+        _.each(_observables, function (observable) {
             observable.detectChanges();
         });
 
@@ -323,11 +328,10 @@
     }
 
 
-    function scheduleDetectAllChanges() {
+    function scheduleDetectAllChanges () {
         if (_detect_timeout) {
             clearTimeout(_detect_timeout);
         }
         _detect_timeout = setTimeout(detectAllChanges, 250);
     }
-
-}));
+});

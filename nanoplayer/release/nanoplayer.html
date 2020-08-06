@@ -137,15 +137,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.5.6.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.6.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.5.6';
+        var playerVersion = '4.6.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200708';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200806';
         };
 
         var player;
@@ -241,7 +241,17 @@ All modifications will remain property of nanocosmos.
             h5liveQ.server.hls = streamObj.server.hls;
             h5liveQ.server.progressive = streamObj.server.progressive;
 
-            config.source.h5live = h5liveQ;
+            config.source = config.source || {};
+            config.source.entries = [
+                {
+                    'h5live': h5liveQ
+                }
+            ]
+            config.source.options = {
+                'switch': {
+                    forcePlay: true
+                }
+            }
 
             checkSecurity();
             if (!player) {
@@ -276,7 +286,7 @@ All modifications will remain property of nanocosmos.
             buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
 
             for (var event in events) {
-                if (events.hasOwnProperty(event)) {
+                if (Object.prototype.hasOwnProperty.call(events, event)) {
                     player.on(event.substr(2), events[event]);
                 }
             }
