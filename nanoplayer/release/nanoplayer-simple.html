@@ -55,7 +55,7 @@ All modifications will remain property of nanocosmos.
     <script type="text/javascript" src="//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js"></script>
     <script type="text/javascript">
 
-        var playerVersion = '4.5.6';
+        var playerVersion = '4.6.1';
         console.log('nanoplayer html version: ' + playerVersion);
         var player;
 
@@ -355,24 +355,6 @@ All modifications will remain property of nanocosmos.
                 }
                 checkSecurity();
                 startPlayer(config);
-            }
-
-            var group = getHTTPParam('bintu.group');
-            var apiKey = getHTTPParam('bintu.apikey');
-            var apiUrl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
-            if (!!group & !!apiKey & !!apiUrl) {
-                bintu = new Bintu(apiUrl, apiKey);
-                searchStreams();
-                searchRefreshInterval = setInterval(searchStreams.bind(this), 8000);
-
-                var count = streamObjs.length
-                document.getElementById('group').innerText = group + ' - ' + count + ' stream(s)';
-
-                var groupContainer = document.getElementById('group-container');
-                groupContainer.style.display = 'block';
-
-                var streamsContainer = document.getElementById('streams-container');
-                streamsContainer.style.display = 'block';
             }
         }
         

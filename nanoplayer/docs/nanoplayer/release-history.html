@@ -114,6 +114,26 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-6-1-">[4.6.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>By enabling the <code>source.options.switch.forcePlay</code> config property a paused playback starts after the execution of a &#39;switchStream&#39; or &#39;updateSource&#39; request. This obviates the need for an additional play call.
+To improve the overall switching behavior paused switch completion has been added, meaning a pending &#39;switchStream&#39; or &#39;updateSource&#39; request will be completed as the player enters the paused state. 
+The related completion event either &#39;switchStreamSuccess&#39; or &#39;updateSourceSuccess&#39; will be emitted to the application level.</p>
+<p>This version prevents an occasional CPU load issue on Firefox.
+To provide additional information to the client metrics the new public event &#39;onServerInfo&#39; has been added.
+Version 4.6.1 implements an updated version of the Bintu-Client API internally.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>paused switch completion to complete pending &#39;switchStream&#39; or &#39;updateSource&#39; request as player enters paused state</li>
+<li>public event &#39;onServerInfo&#39;</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li><code>source.options.switch.forcePlay</code> config property starts a paused playback after &#39;switchStream&#39; or &#39;updateSource&#39; request execution</li>
+<li>prevent an occasional CPU load issue on Firefox</li>
+<li>implement updated version of Bintu-Client API</li>
+</ul>
 <h1 id="-4-5-6-">[4.5.6]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version contains improvements for stream swiching, buffering metrics validation and connection flags.</p>

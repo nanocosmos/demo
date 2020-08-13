@@ -55,7 +55,7 @@ All modifications will remain property of nanocosmos.
                 <strong>controls:&nbsp;</strong>
                 <button id="buttonPlay" onclick="play();">play</button>
                 <button id="buttonPause" onclick="pause();">pause</button>
-                <button id="buttonReset" onclick="startPlayer();">reset</button>
+                <button id="buttonReset" onclick="startPlayer(null, true);">reset</button>
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
@@ -176,15 +176,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.5.6.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.6.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.5.6';
+        var playerVersion = '4.6.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200708';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200806';
         };
 
         var player;
@@ -360,7 +360,12 @@ All modifications will remain property of nanocosmos.
                 displayMutedAutoplay: true
             }
         };
-        events = events || {};
+        events = events || {};      
+        events.onReady = function (e) {
+            log('onReady');
+            var source = e.data.config.source;
+            updateStreamQualityWrapper(source.entries[+source.startIndex].h5live);
+        };
         events.onMute = function (e) {
             log('onMute');
             var buttonMute = document.getElementById('buttonMute');
@@ -427,13 +432,13 @@ All modifications will remain property of nanocosmos.
             }
         }
 
-        function startPlayer(config) {
+        function startPlayer(config, reset) {
             if (!player) {
                 player = new NanoPlayer('playerDiv');
             }
             config = config || this.config;
             for (var event in events) {
-                if (events.hasOwnProperty(event)) {
+                if (Object.prototype.hasOwnProperty.call(events, event)) {
                     player.on(event.substr(2), events[event]);
                 }
             }
@@ -500,49 +505,61 @@ All modifications will remain property of nanocosmos.
                 this.config.metrics = window.nanoPlayerMetricsConfig;
             }
             var _config = deepCopy(this.config);
-            var buttonMute = document.getElementById('buttonMute');
-            buttonMute.dataset.muted = _config.playback.muted;
-            buttonMute.innerText = _config.playback.muted ? 'unmute' : 'mute';
-            createCodeSippet(_config);
+            
+            if (reset && getHTTPParam('reset') === 'update') {
+                player.updateSource(_config.source)
+                    .then(function (__config) {
+                        log('UpdateSource Call Success');
+                    })
+                    .catch(function (error) {
+                        log('UpdateSource Error: ' + JSON.stringify(error));
+                    });
+            }
+            else {
+                var buttonMute = document.getElementById('buttonMute');
+                buttonMute.dataset.muted = _config.playback.muted;
+                buttonMute.innerText = _config.playback.muted ? 'unmute' : 'mute';
+                createCodeSippet(_config);
 
-            // updateStreamQualityWrapper();
-            player.setup(_config).then(function (conf) {
-                this.config.source = conf.source;
-                setVolume(null, document.getElementById('faderVolume').value);
-                checkConfig(conf);
-                document.querySelector('#switch-rule option[value="' + conf.source.options.adaption.rule + '"]').selected = true;
-                try {
-                    conf = JSON.stringify(conf)
-                } catch (err) { }
-                log('setup ok: ' + conf);
-
-                player.on("StreamInfo", function (e) {
-                    var streamname = e.data.streamInfo.rtmp.streamname;
-                    console.log(streamname);
-                    updateStreamQualityWrapper(e.data.streamInfo);
-                });
-                player.on("SwitchStreamInit", function (e) {
-                    setAdaption(e.data.rule);
-                });
-                player.on("UpdateSourceInit", function (e) {
-                    setAdaption(e.data.rule);
-                });
-
-            }.bind(this), function (error) {
-                if (error.message) {
-                    error = error.message;
-                } else {
+                // updateStreamQualityWrapper();
+                player.setup(_config).then(function (conf) {
+                    this.config.source = conf.source;
+                    setVolume(null, document.getElementById('faderVolume').value);
+                    checkConfig(conf);
+                    document.querySelector('#switch-rule option[value="' + conf.source.options.adaption.rule + '"]').selected = true;
                     try {
-                        var err = JSON.stringify(error);
-                        if (err === '{}') {
-                            err = error.message;
-                        }
-                        error = err;
+                        conf = JSON.stringify(conf)
                     } catch (err) { }
-                }
-                log('Setup Error: ' + error);
-                document.getElementById('status').innerText = 'Setup Error: ' + error;
-            });
+                    log('setup ok: ' + conf);
+
+                    player.on("StreamInfo", function (e) {
+                        var streamname = e.data.streamInfo.rtmp.streamname;
+                        console.log(streamname);
+                        updateStreamQualityWrapper(e.data.streamInfo);
+                    });
+                    player.on("SwitchStreamInit", function (e) {
+                        setAdaption(e.data.rule);
+                    });
+                    player.on("UpdateSourceInit", function (e) {
+                        setAdaption(e.data.rule);
+                    });
+
+                }.bind(this), function (error) {
+                    if (error.message) {
+                        error = error.message;
+                    } else {
+                        try {
+                            var err = JSON.stringify(error);
+                            if (err === '{}') {
+                                err = error.message;
+                            }
+                            error = err;
+                        } catch (err) { }
+                    }
+                    log('Setup Error: ' + error);
+                    document.getElementById('status').innerText = 'Setup Error: ' + error;
+                });
+            }
         }
 
         function checkConfig(conf) {
