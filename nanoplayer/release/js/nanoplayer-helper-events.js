@@ -179,6 +179,16 @@ events.onSwitchStreamAbort = function (e) {
     var data = JSON.stringify(e.data);
     log('onSwitchStreamAbort: ' + data);
 };
+events.onFullscreenChange = function (e) {
+    ___isFullscreen___ = e.data.entered;
+    var data = JSON.stringify(e.data);
+    log('onFullscreenChange: ' + data);
+};
+events.onFullscreenError = function (e) {
+    ___isFullscreen___ = false;
+    var data = JSON.stringify(e.data);
+    log('onFullscreenError: ' + data);
+};
 events.onServerInfo = function (e) {
     var serverInfo = JSON.stringify(e.data.serverInfo);
     log('onServerInfo: ' + serverInfo);

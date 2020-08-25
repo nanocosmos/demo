@@ -114,6 +114,20 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history">NanoPlayer - Release History</h1>
+<h1 id="-4-7-1-">[4.7.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements the fullscreen API which enables to request and exit the player&#39;s fullscreen mode. The new public event &#39;onFullscreenChange&#39; indicates that the fullscreen mode has been changed.</p>
+<p>The animations and icons in the center of the player can now be independently enabled or disabled by setting the new <code>style.centerView</code> config property to either true or false.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>fullscreen API<ul>
+<li>new public methods: &#39;requestFullscreen()&#39; , &#39;exitFullscreen()&#39;</li>
+<li>new public event: &#39;onFullscreenChange&#39;</li>
+</ul>
+</li>
+<li>enable / disable animations and icons in the center of the player independently with <code>style.centerView</code> config property</li>
+</ul>
 <h1 id="-4-6-1-">[4.6.1]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>By enabling the <code>source.options.switch.forcePlay</code> config property a paused playback starts after the execution of a &#39;switchStream&#39; or &#39;updateSource&#39; request. This obviates the need for an additional play call.
@@ -732,7 +746,7 @@ The second feature is the new public event &#39;onDestroy&#39;. This event is fi
 </li>
 </ul>
 <pre><code>      player.updateSource(source).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config)));
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config));
       }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span> </span>{
           <span class="hljs-built_in">console</span>.log(error);
       });

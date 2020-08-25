@@ -1,5 +1,61 @@
 ﻿# NanoPlayer - Release History
 
+# [4.7.1]
+
+## Release Notes
+
+This version implements the fullscreen API which enables to request and exit the player's fullscreen mode. The new public event 'onFullscreenChange' indicates that the fullscreen mode has been changed.
+
+The animations and icons in the center of the player can now be independently enabled or disabled by setting the new `style.centerView` config property to either true or false.
+
+## Changelog
+
+### Added
+
+- fullscreen API
+  - new public methods: 'requestFullscreen()' , 'exitFullscreen()'
+  - new public event: 'onFullscreenChange'
+- enable / disable animations and icons in the center of the player independently with `style.centerView` config property
+
+# [4.6.1]
+
+## Release Notes
+
+By enabling the `source.options.switch.forcePlay` config property a paused playback starts after the execution of a 'switchStream' or 'updateSource' request. This obviates the need for an additional play call.
+To improve the overall switching behavior paused switch completion has been added, meaning a pending 'switchStream' or 'updateSource' request will be completed as the player enters the paused state. 
+The related completion event either 'switchStreamSuccess' or 'updateSourceSuccess' will be emitted to the application level.
+
+This version prevents an occasional CPU load issue on Firefox.
+To provide additional information to the client metrics the new public event 'onServerInfo' has been added.
+Version 4.6.1 implements an updated version of the Bintu-Client API internally.
+
+## Changelog
+
+### Added
+
+- paused switch completion to complete pending 'switchStream' or 'updateSource' request as player enters paused state
+- public event 'onServerInfo'
+
+### Improved
+
+- `source.options.switch.forcePlay` config property starts a paused playback after 'switchStream' or 'updateSource' request execution
+- prevent an occasional CPU load issue on Firefox
+- implement updated version of Bintu-Client API
+
+# [4.5.6]
+
+## Release Notes
+
+This version contains improvements for stream swiching, buffering metrics validation and connection flags.
+
+## Changelog
+
+### Improved
+
+- stability of general stream switching
+- validation of buffering metrics
+- connection flags setting
+
 # [4.5.2]
 
 ## Release Notes
@@ -725,7 +781,7 @@ This version brings a new feature. Now it's possible to change the source withou
 
 ~~~~
       player.updateSource(source).then(function (config) {
-          console.log('update source ok with config: ' + JSON.stringify(config)));
+          console.log('update source ok with config: ' + JSON.stringify(config));
       }, function (error) {
           console.log(error);
       });

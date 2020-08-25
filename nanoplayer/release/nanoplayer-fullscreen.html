@@ -33,6 +33,9 @@ All modifications will remain property of nanocosmos.
         <div class="row" style="display: flex">
             <div class="col">
                 <div id="playerDiv" class="player">
+                    <div id="fullscreenOverlay" style="display: none;position: absolute; top: 50px; left: 50px;z-index: 99999">
+                        <button onclick="exitFullscreenPlayer();" style="cursor: pointer;height: 100px; width: 100px; font-size: 50px;">&times;</button>
+                    </div>
                     <!---->
                     <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
                 </div>
@@ -56,7 +59,8 @@ All modifications will remain property of nanocosmos.
                 <button id="buttonPlay" onclick="play();">play</button>
                 <button id="buttonPause" onclick="pause();">pause</button>
                 <button id="buttonReset" onclick="startPlayer(null, true);">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">fullscreen</button>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">requestFullscreen</button>
+                <button id="buttonFullscreenExit" onclick="exitFullscreenPlayer();">exitFullscreen</button>
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
@@ -68,7 +72,7 @@ All modifications will remain property of nanocosmos.
             <strong id="friendly-message"></strong>
         </p>
         <p class="normal">
-            <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);">
+            <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);" style="position: unset;">
                 <option value="none">none</option>
                 <option value="deviationOfMean">deviationOfMean</option>
                 <option value="deviationOfMean2">deviationOfMean2</option>
@@ -241,16 +245,15 @@ All modifications will remain property of nanocosmos.
 
                         // add bitrate
                         var labelBitrate = document.createElement("div");
-                        var bitrate = streams[i] && streams[i].info && streams[i].info.bitrate ? streams[i].info.bitrate : "N/A";
-                        labelBitrate.textContent = "Bitrate: " + bitrate + (bitrate != "N/A" ? " kbit/s" : "");
+                        labelBitrate.textContent = "Bitrate: " + ((streams[i].info && streams[i].info.bitrate != 0) ? streams[i].info.bitrate : 0);
+                        labelBitrate.textContent += " kbit/s";
                         labelBitrate.classList.add("labelBitrate");
                         streamDetailsSubtitle.appendChild(labelBitrate);
 
                         // add resolution
                         if (streamInfo.videoInfo) {
                             var labelResolution = document.createElement("div");
-                            var resolution = streamInfo.videoInfo.width && streamInfo.videoInfo.height ? (streamInfo.videoInfo.width + "x" + streamInfo.videoInfo.height) : (streams[i] && streams[i].info && streams[i].info.width && streams[i].info.height ? (streams[i].info.width + "x" + streams[i].info.height) : "N/A");
-                            labelResolution.textContent = "Resolution: " + resolution;
+                            labelResolution.textContent = "Resolution: " + streamInfo.videoInfo.width + "x" + streamInfo.videoInfo.height;
                             labelResolution.classList.add("labelResolution");
                             streamDetailsSubtitle.appendChild(labelResolution);
                         }
@@ -258,8 +261,7 @@ All modifications will remain property of nanocosmos.
                         // add framerate
                         if (streamInfo.videoInfo) {
                             var labelFrameRate = document.createElement("div");
-                            var frameRate = streamInfo.videoInfo.frameRate ? streamInfo.videoInfo.frameRate : (streams[i] && streams[i].info && streams[i].info.frameRate ? streams[i].info.frameRate : "N/A");
-                            labelFrameRate.textContent = "Framerate: " + frameRate + (frameRate != "N/A" ? " fps" : "");
+                            labelFrameRate.textContent = "Framerate: " + streamInfo.videoInfo.frameRate + " fps";
                             labelFrameRate.classList.add("labelFrameRate");
                             streamDetailsSubtitle.appendChild(labelFrameRate);
                         }
@@ -350,6 +352,7 @@ All modifications will remain property of nanocosmos.
         var forceMuted = null;
 
         var searchRefreshInterval = 0;
+        var isFullscreen;
 
         var config = {
             source: {},
@@ -546,6 +549,14 @@ All modifications will remain property of nanocosmos.
                     player.on("UpdateSourceInit", function (e) {
                         setAdaption(e.data.rule);
                     });
+                    player.on("FullscreenChange", function (e) {
+                        isFullscreen = e.data.entered;
+                        if (isFullscreen) {
+                            showFullscreenOverlay();
+                        } else {
+                            hideFullscreenOverlay();
+                        }
+                    });
 
                 }.bind(this), function (error) {
                     if (error.message) {
@@ -568,12 +579,24 @@ All modifications will remain property of nanocosmos.
         function requestFullscreenPlayer() {
             if (player) {
                 player.requestFullscreen()
-                    .then(function (){
-                        log('requestFullscreen resolved');
-                    })
-                    .catch(function(err) {
-                        log('requestFullscreen rejected: ' + err.reason);
-                    });
+                .then(function (){
+                    log('requestFullscreen resolved');
+                })
+                .catch(function(err) {
+                    log('requestFullscreen rejected: ' + err.reason);
+                });
+            }
+        }
+
+        function exitFullscreenPlayer() {
+            if (player) {
+                player.exitFullscreen()
+                .then(function (){
+                    log('exitFullscreen resolved');
+                })
+                .catch(function(err) {
+                    log('exitFullscreen rejected: ' + err.reason);
+                });
             }
         }
 
@@ -666,6 +689,22 @@ All modifications will remain property of nanocosmos.
             line += '<\/script>\r\n';
             pre.appendChild(document.createTextNode(line));
             document.getElementById('code-snippet-container').style.display = "block";
+        }
+
+        function hideFullscreenOverlay() {
+            var fullscreenOverlay = document.getElementById("fullscreenOverlay");
+            if (fullscreenOverlay) {
+                fullscreenOverlay.style.display = "none";
+                log("hide fullscreen overlay");
+            }
+        }
+
+        function showFullscreenOverlay() {
+            var fullscreenOverlay = document.getElementById("fullscreenOverlay");
+            if (fullscreenOverlay) {
+                fullscreenOverlay.style.display = "block";
+                log("show fullscreen overlay");
+            }
         }
     </script>
 </body>
