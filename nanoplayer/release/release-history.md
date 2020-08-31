@@ -1,5 +1,22 @@
 ﻿# NanoPlayer - Release History
 
+# [4.7.1]
+
+## Release Notes
+
+This version implements the fullscreen API which enables to request and exit the player's fullscreen mode. The new public event 'onFullscreenChange' indicates that the fullscreen mode has been changed.
+
+The animations and icons in the center of the player can now be independently enabled or disabled by setting the new `style.centerView` config property to either true or false.
+
+## Changelog
+
+### Added
+
+- fullscreen API
+  - new public methods: 'requestFullscreen()' , 'exitFullscreen()'
+  - new public event: 'onFullscreenChange'
+- enable / disable animations and icons in the center of the player independently with `style.centerView` config property
+
 # [4.6.1]
 
 ## Release Notes
@@ -764,7 +781,7 @@ This version brings a new feature. Now it's possible to change the source withou
 
 ~~~~
       player.updateSource(source).then(function (config) {
-          console.log('update source ok with config: ' + JSON.stringify(config)));
+          console.log('update source ok with config: ' + JSON.stringify(config));
       }, function (error) {
           console.log(error);
       });

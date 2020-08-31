@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.6.1
+NanoPlayer (H5Live) Public API Class 4.7.1
 
 **Kind**: global class  
-**Version**: 4.6.1  
+**Version**: 4.7.1  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -60,7 +60,7 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
     function initPlayer() {
         player = new NanoPlayer('playerDiv');
         player.setup(config).then(function (config) {
-            console.log('setup ok with config: ' + JSON.stringify(config)));
+            console.log('setup ok with config: ' + JSON.stringify(config));
         }, function (error) {
             console.log(error);
         });
@@ -108,7 +108,7 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
     function initPlayer() {
         player = new NanoPlayer('playerDiv');
         player.setup(config).then(function (config) {
-            console.log('setup ok with config: ' + JSON.stringify(config)));
+            console.log('setup ok with config: ' + JSON.stringify(config));
         }, function (error) {
             console.log(error);
         });
@@ -197,7 +197,7 @@ Initializes the player with a given config object.
 
 **Example**  
 ```js
-// player instance of NanoPlayerplayer.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayerplayer.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer+destroy"></a>
 
@@ -441,6 +441,26 @@ Set a desired adaption rule or disable adaption on the fly.
 ```js
 // player instance of NanoPlayervar adaption = {    "rule": "deviationOfMean"}if (!useAdaption) {    adaption.rule = "none";}player.setAdaption(adaption);
 ```
+<a name="NanoPlayer+requestFullscreen"></a>
+
+### nanoPlayer.requestFullscreen() ⇒ <code>Promise.&lt;(undefined\|error)&gt;</code>
+Request fullscreen mode for the player if not entered.
+
+**Kind**: instance method of [<code>NanoPlayer</code>](#NanoPlayer)  
+**Example**  
+```js
+// player instance of NanoPlayerplayer.requestFullscreen()   .then(function (){       console.log('requestFullscreen resolved');   })   .catch(function(err) {       // error reasons can be 'denied' or 'disabled' (e.g. in audio player mode)       console.log('requestFullscreen rejected: ' + err.reason);   });
+```
+<a name="NanoPlayer+exitFullscreen"></a>
+
+### nanoPlayer.exitFullscreen() ⇒ <code>Promise.&lt;(undefined\|error)&gt;</code>
+Exit fullscreen mode if entered.
+
+**Kind**: instance method of [<code>NanoPlayer</code>](#NanoPlayer)  
+**Example**  
+```js
+// player instance of NanoPlayerplayer.exitFullscreen()   .then(function (){       console.log('exitFullscreen resolved');   })   .catch(function(err) {       // error reasons can be 'denied' or 'disabled' (e.g. in audio player mode)       console.log('exitFullscreen rejected: ' + err.reason);   });
+```
 <a name="NanoPlayer..event_onReady"></a>
 
 ### "onReady"
@@ -483,7 +503,7 @@ The ready event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onReady = function (event) {    console.log('Ready: ' + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onReady = function (event) {    console.log('Ready: ' + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onPlay"></a>
 
@@ -545,7 +565,7 @@ The play event to pass in the 'config.events' object at the setup call. Fires if
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onPlay = function (event) {    console.log('Playing');    console.log('play stats: ' + JSON.stringify(event.data.stats));};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onPlay = function (event) {    console.log('Playing');    console.log('play stats: ' + JSON.stringify(event.data.stats));};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onPause"></a>
 
@@ -589,7 +609,7 @@ The pause event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onPause = function (event) {    console.log('Pause');    if (event.data.reason !== 'normal') {         alert('Paused with reason: ' + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onPause = function (event) {    console.log('Pause');    if (event.data.reason !== 'normal') {         alert('Paused with reason: ' + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onLoading"></a>
 
@@ -633,7 +653,7 @@ The load event to pass in the 'config.events' object at the setup call. Fires if
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onLoading = function (event) {    console.log('Loading with delay of ' + event.data.connectDelay + ' milliseconds');};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onLoading = function (event) {    console.log('Loading with delay of ' + event.data.connectDelay + ' milliseconds');};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStartBuffering"></a>
 
@@ -674,7 +694,7 @@ The start buffering event to pass in the 'config.events' object at the setup cal
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onStartBuffering = function (event) {    console.log('Buffering');};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onStartBuffering = function (event) {    console.log('Buffering');};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStopBuffering"></a>
 
@@ -715,7 +735,7 @@ The stop buffering event to pass in the 'config.events' object at the setup call
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onStopBuffering = function (event) {    console.log('Resume');};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onStopBuffering = function (event) {    console.log('Resume');};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onError"></a>
 
@@ -762,7 +782,7 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onError = function (event) {    alert('Error: ' + event.data.code + ' ' + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onError = function (event) {    alert('Error: ' + event.data.code + ' ' + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStats"></a>
 
@@ -890,7 +910,7 @@ The stats event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onStats = function (event) {    console.log('Stats: ' + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onStats = function (event) {    console.log('Stats: ' + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onMetaData"></a>
 
@@ -937,7 +957,7 @@ The metadata event to pass in the 'config.events' object at the setup call. The 
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onMetaData = function (event) {    console.log('MetaData: ' + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onMetaData = function (event) {    console.log('MetaData: ' + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onMute"></a>
 
@@ -978,7 +998,7 @@ The mute event to pass in the 'config.events' object at the setup call. Fires if
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onMute = function (event) {    console.log('Muted with volume: ' + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onMute = function (event) {    console.log('Muted with volume: ' + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUnmute"></a>
 
@@ -1019,7 +1039,7 @@ The unmute event to pass in the 'config.events' object at the setup call. Fires 
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUnmute = function (event) {    console.log('Unmuted with volume: ' + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUnmute = function (event) {    console.log('Unmuted with volume: ' + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onVolumeChange"></a>
 
@@ -1060,7 +1080,7 @@ The volume change event to pass in the 'config.events' object at the setup call.
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log('Volume: ' + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log('Volume: ' + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStreamInfo"></a>
 
@@ -1143,7 +1163,7 @@ The stream info event to pass in the 'config.events' object at the setup call. F
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onStreamInfo = function (event) {    console.log('StreamInfo: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onStreamInfo = function (event) {    console.log('StreamInfo: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStreamInfoUpdate"></a>
 
@@ -1217,7 +1237,7 @@ The stream info event to pass in the 'config.events' object at the setup call. F
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    console.log('StreamInfo updated: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    console.log('StreamInfo updated: ' + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onWarning"></a>
 
@@ -1261,7 +1281,7 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onWarning = function (event) {    console.log('Warning: ' + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onWarning = function (event) {    console.log('Warning: ' + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onDestroy"></a>
 
@@ -1302,7 +1322,7 @@ The destroy event to pass in the 'config.events' object at the setup call. Fires
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onDestroy = function (event) {    console.log('player destroy');};config.events.onDestroy = onDestroy;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onDestroy = function (event) {    console.log('player destroy');};config.events.onDestroy = onDestroy;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceInit"></a>
 
@@ -1367,7 +1387,7 @@ The event to signal that the update source request is initialized. This is alway
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log('update source init with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log('update source init with source: ' + JSON.stringify(event.data.source) + ' and options: ' + JSON.stringify(event.data.options));    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceSuccess"></a>
 
@@ -1429,7 +1449,7 @@ The event to signal that the update source request is succeeded. Fires if the so
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log('update source success with entry: ' + JSON.stringify(event.data.entry) + ', with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log('update source success with entry: ' + JSON.stringify(event.data.entry) + ', with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceFail"></a>
 
@@ -1494,7 +1514,7 @@ The event to signal that the update source request is failed. Fired if an error 
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log('update source fail with entry: ' + JSON.stringify(event.data.entry) + ', with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log('update source fail with entry: ' + JSON.stringify(event.data.entry) + ', with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('update source tag: ' + event.data.tag);    console.log('update source count: ' + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onUpdateSourceAbort"></a>
 
@@ -1559,7 +1579,7 @@ The event to signal that the update source request is aborted. Reasons can be an
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log('update source abort with entry: ' + JSON.stringify(event.data.entry) + ' and reason: ' + event.data.reason);    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log('update source abort with entry: ' + JSON.stringify(event.data.entry) + ' and reason: ' + event.data.reason);    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onSwitchStreamInit"></a>
 
@@ -1624,7 +1644,7 @@ The event to signal that an stream switch request is initialized. Can be trigger
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log('switch stream init by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' and options: ' + JSON.stringify(event.data.options));    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log('switch stream init by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' and options: ' + JSON.stringify(event.data.options));    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onSwitchStreamSuccess"></a>
 
@@ -1686,7 +1706,7 @@ The event to signal that the switch stream request is succeeded. Fires if the so
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log('switch stream success by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log('switch stream success by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with tag: ' + event.data.tag + ' and count: ' + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onSwitchStreamFail"></a>
 
@@ -1751,7 +1771,7 @@ The event to signal that the switch stream request is failed. Fired if an error 
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log('switch stream fail by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log('switch stream fail by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with error code: ' + event.data.code + ' and error message: ' + event.data.message);    console.log('switch stream tag: ' + event.data.tag);    console.log('switch stream count: ' + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onSwitchStreamAbort"></a>
 
@@ -1816,7 +1836,7 @@ The event to signal that the switch stream request is aborted. Reasons can be an
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log('switch stream abort by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with reason: ' + event.data.reason));    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log('switch stream abort by rule ' + event.data.rule + ' from type ' + event.data.type + 'with entry: ' + JSON.stringify(event.data.entry) + ' with reason: ' + event.data.reason));    console.log('tag: ' + event.data.tag);    console.log('count: ' + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onServerInfo"></a>
 
@@ -1866,7 +1886,51 @@ The server info event to pass in the 'config.events' object at the setup call. F
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onServerInfo = function (event) {    console.log('ServerInfo: ' + JSON.stringify(event.data.serverInfo));};config.events.onServerInfo = onServerInfo;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config)));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onServerInfo = function (event) {    console.log('ServerInfo: ' + JSON.stringify(event.data.serverInfo));};config.events.onServerInfo = onServerInfo;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onFullscreenChange"></a>
+
+### "onFullscreenChange"
+The fullscreen change event to pass in the 'config.events' object at the setup call. Fires if the fullscreen mode of the player has changed.
+
+**Kind**: event emitted by [<code>NanoPlayer</code>](#NanoPlayer)  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.entered</td><td><code>boolean</code></td><td><p>Indicates if the player has entered fullscreen mode.</p>
+</td>
+    </tr><tr>
+    <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onFullscreenChange = function (event) {    console.log('FullscreenChange');    if (event.data.entered === true) {         console.log('Fullscreen Mode Entered');    }};config.events.onFullscreenChange = onFullscreenChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..config"></a>
 
@@ -2080,6 +2144,9 @@ The config object to pass as param for the 'setup' call.
     <td>[style.backgroundColor]</td><td><code>string</code></td><td><code>&quot;black&quot;</code></td><td><p>Sets the background color of the video element - possible values: html colors (&quot;red&quot;, &quot;blue&quot;, ...), hex color codes (&quot;#FACAFD&quot;, &quot;#FCEC66&quot;, ...) and rgba color values (&quot;rgba(255,0,0,1)&quot;, &quot;rgba(0,255,0,0.7)&quot;, ...).</p>
 </td>
     </tr><tr>
+    <td>[style.centerView]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable the animations and icons in the center of the player&#39;s view.</p>
+</td>
+    </tr><tr>
     <td>[events]</td><td><code>object</code></td><td></td><td><p>The object to set handlers to the player events.</p>
 </td>
     </tr><tr>
@@ -2144,6 +2211,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[events.onServerInfo]</td><td><code>function</code></td><td></td><td><p>Fires if h5live server info is available.</p>
+</td>
+    </tr><tr>
+    <td>[events.onFullscreenChange]</td><td><code>function</code></td><td></td><td><p>Fires if the fullscreen mode of the player has changed.</p>
 </td>
     </tr><tr>
     <td>[tweaks]</td><td><code>object</code></td><td></td><td><p>The object to tweak the player (only h5live).</p>
@@ -2345,236 +2415,236 @@ The possible error codes in a onError event.
 <tr>
     <td>1000-1999</td><td><code>PlayerError</code></td><td></td>
     </tr><tr>
-    <td>1000-1999.1001</td><td></td><td><p>No rtmp url set.</p>
+    <td>1001</td><td></td><td><p>No rtmp url set.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1002</td><td></td><td><p>No server set.</p>
+    <td>1002</td><td></td><td><p>No server set.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1003</td><td></td><td><p>Could not play because player has not been configured.</p>
+    <td>1003</td><td></td><td><p>Could not play because player has not been configured.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1004</td><td></td><td><p>Could not pause because player was not in playing state before.</p>
+    <td>1004</td><td></td><td><p>Could not pause because player was not in playing state before.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1005</td><td></td><td><p>Playback must be initialized by user gesture.</p>
+    <td>1005</td><td></td><td><p>Playback must be initialized by user gesture.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1006</td><td></td><td><p>Buffer config is invalid.</p>
+    <td>1006</td><td></td><td><p>Buffer config is invalid.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1007</td><td></td><td><p>Playback suspended by external reason.</p>
+    <td>1007</td><td></td><td><p>Playback suspended by external reason.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1008</td><td></td><td><p>Playback error.</p>
+    <td>1008</td><td></td><td><p>Playback error.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1009</td><td></td><td><p>Playback failed because the player was in visibility state &#39;hidden&#39; at load start.</p>
+    <td>1009</td><td></td><td><p>Playback failed because the player was in visibility state &#39;hidden&#39; at load start.</p>
 </td>
     </tr><tr>
-    <td>1000-1999.1010</td><td></td><td><p>The given stream entry index is not valid. (see <a href="NanoPlayer~switchStream">switchStream</a>)</p>
+    <td>1010</td><td></td><td><p>The given stream entry index is not valid. (see <a href="NanoPlayer~switchStream">switchStream</a>)</p>
 </td>
     </tr><tr>
     <td>2000-2999</td><td><code>StreamError</code></td><td></td>
     </tr><tr>
-    <td>2000-2999.2001</td><td></td><td><p>The requested stream can not be found.</p>
+    <td>2001</td><td></td><td><p>The requested stream can not be found.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2002</td><td></td><td><p>No media available.</p>
+    <td>2002</td><td></td><td><p>No media available.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2003</td><td></td><td><p>Not enough media data received. The stream was already connected and the stream info event was fired.</p>
+    <td>2003</td><td></td><td><p>Not enough media data received. The stream was already connected and the stream info event was fired.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2004</td><td></td><td><p>The source stream has been stopped.</p>
+    <td>2004</td><td></td><td><p>The source stream has been stopped.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2011</td><td></td><td><p>Received metadata with wrong index.</p>
+    <td>2011</td><td></td><td><p>Received metadata with wrong index.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2012</td><td></td><td><p>Received metadata with invalid json string.</p>
+    <td>2012</td><td></td><td><p>Received metadata with invalid json string.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2013</td><td></td><td><p>Received metadata but no start index.</p>
+    <td>2013</td><td></td><td><p>Received metadata but no start index.</p>
 </td>
     </tr><tr>
-    <td>2000-2999.2014</td><td></td><td><p>Received metadata with start index but currently process another.</p>
+    <td>2014</td><td></td><td><p>Received metadata with start index but currently process another.</p>
 </td>
     </tr><tr>
     <td>3000-3999</td><td><code>MediaError</code></td><td></td>
     </tr><tr>
-    <td>3000-3999.3001</td><td></td><td><p>A fetching process of the media aborted by user.</p>
+    <td>3001</td><td></td><td><p>A fetching process of the media aborted by user.</p>
 </td>
     </tr><tr>
-    <td>3000-3999.3002</td><td></td><td><p>An error occurred when downloading media.</p>
+    <td>3002</td><td></td><td><p>An error occurred when downloading media.</p>
 </td>
     </tr><tr>
-    <td>3000-3999.3003</td><td></td><td><p>An error occurred when decoding media.</p>
+    <td>3003</td><td></td><td><p>An error occurred when decoding media.</p>
 </td>
     </tr><tr>
-    <td>3000-3999.3004</td><td></td><td><p>The received audio/video is not supported.</p>
+    <td>3004</td><td></td><td><p>The received audio/video is not supported.</p>
 </td>
     </tr><tr>
-    <td>3000-3999.3100</td><td></td><td><p>The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</p>
+    <td>3100</td><td></td><td><p>The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</p>
 </td>
     </tr><tr>
     <td>4000-4999</td><td><code>NetworkError</code></td><td></td>
     </tr><tr>
-    <td>4000-4999.4000-4099</td><td><code>General</code></td><td></td>
+    <td>4000-4099</td><td><code>General</code></td><td></td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4001</td><td></td><td><p>Could not establish connection. Maybe wrong protocol or path.</p>
+    <td>4001</td><td></td><td><p>Could not establish connection. Maybe wrong protocol or path.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4002</td><td></td><td><p>Connection error.</p>
+    <td>4002</td><td></td><td><p>Connection error.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4003</td><td></td><td><p>Maximum number of reconnection tries reached.</p>
+    <td>4003</td><td></td><td><p>Maximum number of reconnection tries reached.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4004</td><td></td><td><p>Reconnection configuration invalid.</p>
+    <td>4004</td><td></td><td><p>Reconnection configuration invalid.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4005</td><td></td><td><p>The requested source stream has been stopped.</p>
+    <td>4005</td><td></td><td><p>The requested source stream has been stopped.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4000-4099.4006</td><td></td><td><p>The source request was aborted by timeout.</p>
+    <td>4006</td><td></td><td><p>The source request was aborted by timeout.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199</td><td><code>WebSocket</code></td><td></td>
+    <td>4100-4199</td><td><code>WebSocket</code></td><td></td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4101</td><td></td><td><p>An endpoint is &quot;going away&quot;, such as a server going down or a browser having navigated away from a page.</p>
+    <td>4101</td><td></td><td><p>An endpoint is &quot;going away&quot;, such as a server going down or a browser having navigated away from a page.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4102</td><td></td><td><p>An endpoint is terminating the connection due to a protocol error. Reconnect possible.</p>
+    <td>4102</td><td></td><td><p>An endpoint is terminating the connection due to a protocol error. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4103</td><td></td><td><p>An endpoint is terminating the connection because it has received a type of data it cannot accept (e.g., an endpoint that understands only text data MAY send this if it receives a binary message). Reconnect possible.</p>
+    <td>4103</td><td></td><td><p>An endpoint is terminating the connection because it has received a type of data it cannot accept (e.g., an endpoint that understands only text data MAY send this if it receives a binary message). Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4104</td><td></td><td><p>Reserved. The specific meaning might be defined in the future.</p>
+    <td>4104</td><td></td><td><p>Reserved. The specific meaning might be defined in the future.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4105</td><td></td><td><p>No status code was actually present. Reconnect possible.</p>
+    <td>4105</td><td></td><td><p>No status code was actually present. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4106</td><td></td><td><p>Maybe no network, wrong url or server down. Reconnect possible.</p>
+    <td>4106</td><td></td><td><p>Maybe no network, wrong url or server down. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4107</td><td></td><td><p>An endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [<a href="http://tools.ietf.org/html/rfc3629%5D">http://tools.ietf.org/html/rfc3629]</a> data within a text message). Reconnect possible.</p>
+    <td>4107</td><td></td><td><p>An endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [<a href="http://tools.ietf.org/html/rfc3629%5D">http://tools.ietf.org/html/rfc3629]</a> data within a text message). Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4108</td><td></td><td><p>An endpoint is terminating the connection because it has received a message that &quot;violates its policy&quot;. This reason is given either if there is no other sutible reason, or if there is a need to hide specific details about the policy. Reconnect possible.</p>
+    <td>4108</td><td></td><td><p>An endpoint is terminating the connection because it has received a message that &quot;violates its policy&quot;. This reason is given either if there is no other sutible reason, or if there is a need to hide specific details about the policy. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4109</td><td></td><td><p>An endpoint is terminating the connection because it has received a message that is too big for it to process. Reconnect possible.</p>
+    <td>4109</td><td></td><td><p>An endpoint is terminating the connection because it has received a message that is too big for it to process. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4110</td><td></td><td><p>An endpoint (client) is terminating the connection because it has expected the server to negotiate one or more extension, but the server didn&#39;t return them in the response message of the WebSocket handshake.</p>
+    <td>4110</td><td></td><td><p>An endpoint (client) is terminating the connection because it has expected the server to negotiate one or more extension, but the server didn&#39;t return them in the response message of the WebSocket handshake.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4111</td><td></td><td><p>A server is terminating the connection because it encountered an unexpected condition that prevented it from fulfilling the request. Reconnect possible.</p>
+    <td>4111</td><td></td><td><p>A server is terminating the connection because it encountered an unexpected condition that prevented it from fulfilling the request. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4100-4199.4115</td><td></td><td><p>The connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can&#39;t be verified). Reconnect possible.</p>
+    <td>4115</td><td></td><td><p>The connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can&#39;t be verified). Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4400-4499</td><td><code>Http</code></td><td></td>
+    <td>4400-4499</td><td><code>Http</code></td><td></td>
     </tr><tr>
-    <td>4000-4999.4400-4499.4400</td><td></td><td><p>Bad request. Maybe stream parameters are missing or malformed.</p>
+    <td>4400</td><td></td><td><p>Bad request. Maybe stream parameters are missing or malformed.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4400-4499.4403</td><td></td><td><p>Access denied. The authentication token is missing or invalid.</p>
+    <td>4403</td><td></td><td><p>Access denied. The authentication token is missing or invalid.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4400-4499.4500</td><td></td><td><p>The connection has been rejected due an internal server error. Reconnect possible.</p>
+    <td>4500</td><td></td><td><p>The connection has been rejected due an internal server error. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4400-4499.4503</td><td></td><td><p>The requested service is currently unavailable. Reconnect possible.</p>
+    <td>4503</td><td></td><td><p>The requested service is currently unavailable. Reconnect possible.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4900-4999</td><td><code>Security</code></td><td></td>
+    <td>4900-4999</td><td><code>Security</code></td><td></td>
     </tr><tr>
-    <td>4000-4999.4900-4999.4900</td><td></td><td><p>The security service has been rejected due an internal server error.</p>
+    <td>4900</td><td></td><td><p>The security service has been rejected due an internal server error.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4900-4999.4901</td><td></td><td><p>The security service denied access. The authentication token is invalid.</p>
+    <td>4901</td><td></td><td><p>The security service denied access. The authentication token is invalid.</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4900-4999.4903</td><td></td><td><p>The security service denied access. The url is expired or a token parameter is missing (expires, token, or options).</p>
+    <td>4903</td><td></td><td><p>The security service denied access. The url is expired or a token parameter is missing (expires, token, or options).</p>
 </td>
     </tr><tr>
-    <td>4000-4999.4900-4999.4904</td><td></td><td><p>The security service can not be found.</p>
+    <td>4904</td><td></td><td><p>The security service can not be found.</p>
 </td>
     </tr><tr>
     <td>5000-5999</td><td><code>SetupError</code></td><td></td>
     </tr><tr>
-    <td>5000-5999.5000-5099</td><td><code>General</code></td><td></td>
+    <td>5000-5099</td><td><code>General</code></td><td></td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5001</td><td></td><td><p>An exception was thrown during setup.</p>
+    <td>5001</td><td></td><td><p>An exception was thrown during setup.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5002</td><td></td><td><p>A forced tech is not supported by your browser.</p>
+    <td>5002</td><td></td><td><p>A forced tech is not supported by your browser.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5003</td><td></td><td><p>The players source configuration is malformed or missing.</p>
+    <td>5003</td><td></td><td><p>The players source configuration is malformed or missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5004</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
+    <td>5004</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5005</td><td></td><td><p>Configuration error. Could not create/update player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>
+    <td>5005</td><td></td><td><p>Configuration error. Could not create/update player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5006</td><td></td><td><p>Configuration error. Could not create/update player, with this configuration an security token is required. Add an token to the configuration.</p>
+    <td>5006</td><td></td><td><p>Configuration error. Could not create/update player, with this configuration an security token is required. Add an token to the configuration.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5007</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration is missing.</p>
+    <td>5007</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration is missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5008</td><td></td><td><p>Configuration error. Could not create/update player, the hls server configuration is missing.</p>
+    <td>5008</td><td></td><td><p>Configuration error. Could not create/update player, the hls server configuration is missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5009</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration for metadata is missing.</p>
+    <td>5009</td><td></td><td><p>Configuration error. Could not create/update player, the websocket server configuration for metadata is missing.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5000-5099.5010</td><td></td><td><p>Could not embed player.</p>
+    <td>5010</td><td></td><td><p>Could not embed player.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5100-5199</td><td><code>Bintu</code></td><td></td>
+    <td>5100-5199</td><td><code>Bintu</code></td><td></td>
     </tr><tr>
-    <td>5000-5999.5100-5199.5101</td><td></td><td><p>Could not find bintu stream. The stream is not live.</p>
+    <td>5101</td><td></td><td><p>Could not find bintu stream. The stream is not live.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5100-5199.5102</td><td></td><td><p>No bintu stream id passed.</p>
+    <td>5102</td><td></td><td><p>No bintu stream id passed.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5100-5199.5103</td><td></td><td><p>Bintu service rejected.</p>
+    <td>5103</td><td></td><td><p>Bintu service rejected.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299</td><td><code>Metrics</code></td><td></td>
+    <td>5200-5299</td><td><code>Metrics</code></td><td></td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5201</td><td></td><td><p>Metrics configuration error. No metrics config object passed.</p>
+    <td>5201</td><td></td><td><p>Metrics configuration error. No metrics config object passed.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5202</td><td></td><td><p>Metrics configuration error. Metrics config is not from type &#39;object&#39;.</p>
+    <td>5202</td><td></td><td><p>Metrics configuration error. Metrics config is not from type &#39;object&#39;.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5203</td><td></td><td><p>Metrics configuration error. Metrics config is empty.</p>
+    <td>5203</td><td></td><td><p>Metrics configuration error. Metrics config is empty.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5204</td><td></td><td><p>Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
+    <td>5204</td><td></td><td><p>Metrics configuration error. A custom property has no valid index number, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5205</td><td></td><td><p>Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
+    <td>5205</td><td></td><td><p>Metrics configuration error. A custom property  is not indexed correctly, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5206</td><td></td><td><p>Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
+    <td>5206</td><td></td><td><p>Metrics configuration error. A custom property has an index out of range, the range is 1 to 10 e.g.&#39;customField1&#39;.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5207</td><td></td><td><p>Metrics configuration error. A property is not valid.</p>
+    <td>5207</td><td></td><td><p>Metrics configuration error. A property is not valid.</p>
 </td>
     </tr><tr>
-    <td>5000-5999.5200-5299.5208</td><td></td><td><p>Metrics configuration error. No credentials passed.</p>
+    <td>5208</td><td></td><td><p>Metrics configuration error. No credentials passed.</p>
 </td>
     </tr>  </tbody>
 </table>

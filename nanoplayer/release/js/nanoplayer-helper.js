@@ -220,6 +220,11 @@ function getNanoPlayerParameters () {
         config.style = config.style || {};
         config.style.fullScreenControl = (fullScreenControl === 'true' || fullScreenControl === '1');
     }
+    var centerView = getHTTPParam('centerView') || getHTTPParam('style.centerView');
+    if (centerView) {
+        config.style = config.style || {};
+        config.style.centerView = (centerView === 'true' || centerView === '1');
+    }
     var controls = getHTTPParam('controls') || getHTTPParam('style.controls');
     if (controls) {
         config.style = config.style || {};

@@ -38,6 +38,7 @@ All modifications will remain property of nanocosmos.
                 <button id="buttonPlay" onclick="play();">play</button>
                 <button id="buttonPause" onclick="pause();">pause</button>
                 <button id="buttonReset" onclick="startPlayer();">reset</button>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">fullscreen</button>
                 <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
             </span>
             <span style="float:right">
@@ -137,15 +138,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.6.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.7.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.6.1';
+        var playerVersion = '4.7.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200806';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200819';
         };
 
         var player;
@@ -362,6 +363,18 @@ All modifications will remain property of nanocosmos.
                 log('Setup Error: ' + error);
                 document.getElementById('status').innerText = 'Setup Error: ' + error;
             });
+        }
+
+        function requestFullscreenPlayer() {
+            if (player) {
+                player.requestFullscreen()
+                    .then(function (){
+                        log('requestFullscreen resolved');
+                    })
+                    .catch(function(err) {
+                        log('requestFullscreen rejected: ' + err.reason);
+                    });
+            }
         }
 
         function checkConfig(conf) {
