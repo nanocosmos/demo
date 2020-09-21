@@ -1,0 +1,213 @@
+<!--
+nanoStream Player
+(c) 2015-2020, nanocosmos gmbh
+https://www.nanocosmos.de
+sales@nanocosmos.de
+
+LEGAL NOTICE:
+This material is subject to the terms and conditions defined in
+separate license conditions ('LICENSE.txt' or nanocosmos.de/terms)
+All information contained herein is, and remains the property
+of nanocosmos GmbH and its suppliers if any. The intellectual and technical concepts
+contained herein are proprietary to nanocosmos GmbH, and are protected by trade secret
+or copyright law. Dissemination of this information or reproduction of this material
+is strictly forbidden unless prior written permission is obtained from nanocosmos.
+All modifications will remain property of nanocosmos.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,700|Material+Icons" rel="stylesheet"
+        type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link rel="stylesheet" href="css/fontstyles.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/default.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="./js/jquery/jquery.min.js"></script>
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="./js/chartjs/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.min.js"></script>
+</head>
+
+<body class="background--dark">
+    <div id="contentWrapper" class="container-fluid px-0 align-items-center">
+        <div class="flex-col col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 px-1 px-lg-4 px-xl-0">
+            <!-- TITLE -->
+            <div class="row mx-0 flex-1">
+                <div class="flex-col col-12 pb-4 pt-5 flex-1">
+                    <div class="pa-0 pb-1 mb-0 title accent--text font-weight-medium text-center text-uppercase">
+                        nanoStream H5Live Player
+                    </div>
+                    <h1 class="ma-0 display-3 font-weight-bold white--text text-center">
+                        Adaptive Bitrate Streaming
+                    </h1>
+                    <div class="ma-0 headline secondary--text font-weight-light text-center">
+                        The dynamic switching of the video quality
+                    </div>
+                </div>
+            </div>
+            <div id="mainWrapper" class="row flex-wrap px-0 mx-0 mt-xs-2 mt-lg-3 mt-xl-3 pb-4 justify-content-center">
+                <div id="playerWrapper" class="flex-col col-sm-12 col-md-7 col-lg-7 col-xl-7 px-0 mx-0 pr-lg-4 pr-xl-4">
+                    <div class="mx-0 corners--round box-shadow__material section--background__light border--active">
+                        <div id="playerDiv" class="">
+                            <div id="playerControlsBottom" class="d-flex align-items-end pb-2">
+                                <div class="col text-left align-items-center">
+                                    <button type="button" id="controlBtnPause" class="btn white--text flat">
+                                        <i id="controlIconPause" style="display: none" class="fa fa-pause"></i>
+                                        <i id="controlIconPlay" class="fa fa-play"></i>
+                                    </button>
+                                    <button type="button" class="btn white--text flat" id="controlsBtnVolumeIcon">
+                                        <i id="controlsIconVolumeUp" class="fas fa-volume-up" style="display: none"></i>
+                                        <i id="controlsIconVolumeMute" class="fas fa-volume-mute"></i>
+                                    </button>
+                                    <div id="controlsVolumeSliderTrack" class="mr-3 width__hidden">
+                                        <div id="controlsVolumeSliderPosition"></div>
+                                    </div>
+                                    <span id="controlsPlayoutTime" class="font-weight-medium white--text">0:00</span>
+                                </div>
+                                <div class="col text-right align-items-center">
+                                    <button type="button" class="btn white--text flat" id="controlsBtnFullscreen"
+                                            tooltip-title="Fullscreen">
+                                        <i class="fas fa-expand"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="playerStatsWrapperInside"
+                         class="d-flex px-lg-3 px-xl-4 mx-0 mt-4 mt-xl-4 justify-content-between corners--round box-shadow__material border--active section--background__light">
+                        <div class="flex-col flex-1 d-flex align-items-start justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Latency
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsLatency" class="font-weight-bold title">0.3</span>
+                                    s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col flex-1 d-flex align-items-start justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Bitrate
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsBitrate" class="font-weight-bold title">0.3</span>
+                                    kbit/s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col flex-1 d-flex align-items-start justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Framerate
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsFrameRate" class="font-weight-bold title">0.3</span>
+                                    s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col flex-1 d-flex align-items-start justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Resolution
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsResolution" class="font-weight-bold title">1280x720</span>
+                                    px
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="playerStatsWrapperOutside"
+                     class="flex-col col-xs-12 col-sm-12 px-2 py-2 mt-3 corners--round box-shadow__material border--active section--background__light">
+                    <div class="row flex-lg-wrap mx-0 align-items-center justify-content-center">
+                        <div class="font-weight-bold headline white--text text-center">
+                            Stats
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap mx-0 justify-content-between">
+                        <div class="flex-col align-items-center justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Latency
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsLatency" class="font-weight-bold subtitle-1">0.3</span>
+                                    s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col align-items-center justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Bitrate
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-2 white--text">
+                                    <span id="statsBitrate" class="font-weight-bold subtitle-1">0.3</span>
+                                    kbit/s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col align-items-center justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Framerate
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-1 white--text">
+                                    <span id="statsFrameRate" class="font-weight-bold subtitle-1">0.3</span>
+                                    s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-col align-items-center justify-content-center px-0 py-3">
+                            <div class="row mx-0 d-flex">
+                                <div class="font-weight-regular subtitle-2 secondary--text">
+                                    Resolution
+                                </div>
+                            </div>
+                            <div class="row mx-0 mt-0 d-flex justify-content-left">
+                                <div class="font-weight-regular subtitle-1 white--text">
+                                    <span id="statsResolution" class="font-weight-bold subtitle-1">1280x720</span>
+                                    px
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../api/release/nanoplayer.4.1.3.min.js"></script>
+    <script src="./js/app/helperFunctions.js"></script>
+    <script src="./js/app/paramModule.js"></script>
+    <script src="./js/app/configModule.js"></script>
+    <script src="./js/app/statsModule.js"></script>
+    <script src="./js/app/controlsOverlayModule.js"></script>
+    <script src="./js/app/switchModule.js"></script>
+    <script src="./js/app/chartModule.js"></script>
+    <script src="./js/app/playerModule.js"></script>
+</body>
+
+</html>
