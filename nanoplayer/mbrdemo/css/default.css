@@ -1,0 +1,52 @@
+.font-size__inherit {
+    font-size: inherit !important;
+}
+
+.align-items__center {
+    display: flex;
+    align-items: center;
+}
+
+.align-items__end {
+    display: flex;
+    align-items: flex-end;
+}
+
+.line-height__reset {
+    line-height: unset !important;
+}
+
+.justify-content__center {
+    display: flex;
+    justify-content: center;
+}
+
+.justify-content__space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.width__hidden {
+    width: 0 !important;
+}
+
+.visbility__hidden {
+    visibility: hidden !important;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-0 {
+    flex: 0;
+}
