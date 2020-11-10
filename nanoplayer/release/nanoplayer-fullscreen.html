@@ -61,6 +61,9 @@ All modifications will remain property of nanocosmos.
                 <button id="buttonReset" onclick="startPlayer(null, true);">reset</button>
                 <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">requestFullscreen</button>
                 <button id="buttonFullscreenExit" onclick="exitFullscreenPlayer();">exitFullscreen</button>
+                <br>
+                <button id="buttonFullscreenIntervalStart" onclick="fullscreenIntervalStart()">Start Fullscreen Interval</button>
+                <button id="buttonFullscreenIntervalStop" onclick="fullscreenIntervalStop()">Stop Fullscreen Interval</button>
             </span>
             <span style="float:right">
                 <span>&nbsp;</span>
@@ -181,15 +184,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.7.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.7.6.min.js"></script>
     <script>
 
-        var playerVersion = '4.7.1';
+        var playerVersion = '4.7.6';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20200819';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20201021';
         };
 
         var player;
@@ -352,7 +355,7 @@ All modifications will remain property of nanocosmos.
         var forceMuted = null;
 
         var searchRefreshInterval = 0;
-        var isFullscreen;
+        var isFullscreen, fullscreenInterval;
 
         var config = {
             source: {},
@@ -706,6 +709,22 @@ All modifications will remain property of nanocosmos.
                 log("show fullscreen overlay");
             }
         }
+
+        function fullscreenIntervalStart() {
+            if (fullscreenInterval) clearInterval(fullscreenInterval);
+            fullscreenInterval = setInterval(function() {
+                if (isFullscreen) {
+                    exitFullscreenPlayer();
+                } else {
+                    requestFullscreenPlayer();
+                }
+            }, 5000);
+        }
+
+        function fullscreenIntervalStop() {
+            if (fullscreenInterval) clearInterval(fullscreenInterval);
+        }
+        
     </script>
 </body>
 

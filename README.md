@@ -1,5 +1,22 @@
 ﻿# NanoPlayer - Release History
 
+# [4.7.6]
+
+## Release Notes
+
+This version implements minor internal improvements for config validation and playback start. 
+It also contains a fix related to playback suspension on iOS devices running Safari with activated desktop mode.
+
+Furthermore, the default overlay controls are displayed properly on smaller screen widths.
+
+## Changelog
+
+### Improved
+
+- config validation and playback start
+- playback suspension on iOS devices and Safari with activated desktop mode
+- display of default overlay controls on smaller screen widths
+
 # [4.7.1]
 
 ## Release Notes
