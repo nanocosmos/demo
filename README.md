@@ -1,4 +1,19 @@
-﻿# NanoPlayer - Release History
+﻿# NanoPlayer - Release Overview
+
+## Please find more about the **fullscreen API** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/).
+
+# [4.7.8]
+
+## Release Notes
+
+This version patches minor issues. One patch adresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.
+
+## Changelog
+
+### Improved
+
+- check for WebSocket event listener manipulation, use default 'on' syntax internally
+- improved internal iframe handling on iOS in case of unavailibility
 
 # [4.7.6]
 

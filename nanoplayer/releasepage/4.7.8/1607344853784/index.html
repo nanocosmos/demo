@@ -1,0 +1,175 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h2 id="please-find-more-about-the-fullscreen-api-feature-in-our-documentation-">Please find more about the <strong>fullscreen API</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/">documentation</a>.</h2>
+<h1 id="-4-7-8-">[4.7.8]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version patches minor issues. One patch adresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>check for WebSocket event listener manipulation, use default &#39;on&#39; syntax internally</li>
+<li>improved internal iframe handling on iOS in case of unavailibility</li>
+</ul>
+<h1 id="-4-7-6-">[4.7.6]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements minor internal improvements for config validation and playback start.
+It also contains a fix related to playback suspension on iOS devices running Safari with activated desktop mode.</p>
+<p>Furthermore, the default overlay controls are displayed properly on smaller screen widths.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>config validation and playback start</li>
+<li>playback suspension on iOS devices and Safari with activated desktop mode</li>
+<li>display of default overlay controls on smaller screen widths</li>
+</ul>
+<h1 id="-4-7-1-">[4.7.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version implements the fullscreen API which enables to request and exit the player&#39;s fullscreen mode. The new public event &#39;onFullscreenChange&#39; indicates that the fullscreen mode has been changed.</p>
+<p>The animations and icons in the center of the player can now be independently enabled or disabled by setting the new <code>style.centerView</code> config property to either true or false.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="added">Added</h3>
+<ul>
+<li>fullscreen API<ul>
+<li>new public methods: &#39;requestFullscreen()&#39; , &#39;exitFullscreen()&#39;</li>
+<li>new public event: &#39;onFullscreenChange&#39;</li>
+</ul>
+</li>
+<li>enable / disable animations and icons in the center of the player independently with <code>style.centerView</code> config property</li>
+</ul>
+<h2 id="release-package-4-7-8">Release Package 4.7.8</h2>
+<ul>
+<li><a href="https://nextcloud.nanocosmos.de/index.php/s/QCwfjNbEgggNBeF">4.7.8</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h1 id="documentation">Documentation</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/">demo.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/">demo.nanocosmos.de (until version 3)</a></li>
+</ul>
+<h1 id="feature-description">Feature Description</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/">fullscreen API</a></li>
+</ul>
+<h1 id="release-history">Release History</h1>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a> </li>
+</ul>
+
+  </body>
+</html>
