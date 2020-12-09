@@ -6,7 +6,7 @@
 
 ## Release Notes
 
-This version patches minor issues. One patch adresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.
+This version patches minor issues. One patch addresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.
 
 ## Changelog
 
