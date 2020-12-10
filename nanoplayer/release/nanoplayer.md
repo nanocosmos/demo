@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.7.8
+NanoPlayer (H5Live) Public API Class 4.8.0
 
 **Kind**: global class  
-**Version**: 4.7.8  
+**Version**: 4.8.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2486,6 +2486,9 @@ The possible error codes in a onError event.
 </td>
     </tr><tr>
     <td>3100</td><td></td><td><p>The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</p>
+</td>
+    </tr><tr>
+    <td>3200</td><td></td><td><p>An unspecific media error occurred.</p>
 </td>
     </tr><tr>
     <td>4000-4999</td><td><code>NetworkError</code></td><td></td>

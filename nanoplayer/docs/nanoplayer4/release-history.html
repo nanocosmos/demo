@@ -114,10 +114,19 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h1 id="-4-8-0-">[4.8.0]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version introduces a new error code. In case the media element fires an error event without a specifc error code the new player error code <code>3200</code> with the message <code>An unspecific media error occurred.</code> will be passed in the <code>onError</code> event. Furthermore a WebSocket prototype polyfill is removed completely. This finally solves a compatibility issue with connection handling with angular/zone.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>add new error code <code>3200</code> - <code>An unspecific media error occurred.</code></li>
+<li>removed WebSocket prototype polyfill</li>
+</ul>
 <h2 id="please-find-more-about-the-fullscreen-api-feature-in-our-documentation-">Please find more about the <strong>fullscreen API</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/">documentation</a>.</h2>
 <h1 id="-4-7-8-">[4.7.8]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version patches minor issues. One patch adresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.</p>
+<p>This version patches minor issues. One patch addresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="improved">Improved</h3>
 <ul>
@@ -617,7 +626,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 </ul>
 <h1 id="-3-15-6-">[3.15.6]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version adresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
+<p>This version addresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
@@ -746,7 +755,7 @@ The second feature is the new public event &#39;onDestroy&#39;. This event is fi
 </ul>
 <h1 id="-3-13-3-">[3.13.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>This version adresses an issue with mimetype changes on &#39;updateSource&#39;. Now it can be switched between different mimetypes e.g. video/audio and video only.</p>
+<p>This version addresses an issue with mimetype changes on &#39;updateSource&#39;. Now it can be switched between different mimetypes e.g. video/audio and video only.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
@@ -791,7 +800,7 @@ The second feature is the new public event &#39;onDestroy&#39;. This event is fi
 </ul>
 <h1 id="-3-12-3-">[3.12.3]</h1>
 <h2 id="release-notes">Release Notes</h2>
-<p>One part of this release adresses the correct indication of an audio symbol in case of muted autoplay or audio only. The second issue that is adressed handles the muted state on reset after an unsuccessful (denied) muted autoplay (automuted) on iOS. The last improvement is related to the behaviour in case of multiple destroy calls.</p>
+<p>One part of this release addresses the correct indication of an audio symbol in case of muted autoplay or audio only. The second issue that is adressed handles the muted state on reset after an unsuccessful (denied) muted autoplay (automuted) on iOS. The last improvement is related to the behaviour in case of multiple destroy calls.</p>
 <h2 id="changelog">Changelog</h2>
 <h3 id="fixed">Fixed</h3>
 <ul>
