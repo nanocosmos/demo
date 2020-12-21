@@ -1,5 +1,17 @@
 # NanoPlayer - Release Overview
 
+# [4.8.1]
+
+## Release Notes
+
+This version improves the compatibility of the player. The 'toLocaleTimeString' functionality was replaced to avoid potential issues with javascript polyfills.
+
+## Changelog
+
+### Improved
+
+- remove 'toLocaleTimeString' usage
+
 # [4.8.0]
 
 ## Release Notes
@@ -13,9 +25,9 @@ This version introduces a new error code. In case the media element fires an err
 - add new error code '3200' - 'An unspecific media error occurred.'
 - removed WebSocket prototype polyfill
 
-## Release Package 4.8.0
+## Release Package 4.8.1
 
-* [4.8.0](https://nextcloud.nanocosmos.de/index.php/s/DE2ZZLT28F4qPND)
+* [4.8.1](https://files.nanocosmos.de/index.php/s/3QDttrE3fA44NF5)
 * [latest 4.x](https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6)
 * [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
 

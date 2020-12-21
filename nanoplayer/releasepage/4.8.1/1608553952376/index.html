@@ -1,0 +1,152 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h1 id="-4-8-1-">[4.8.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version improves the compatibility of the player. The &#39;toLocaleTimeString&#39; functionality was replaced to avoid potential issues with javascript polyfills.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>remove &#39;toLocaleTimeString&#39; usage</li>
+</ul>
+<h1 id="-4-8-0-">[4.8.0]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version introduces a new error code. In case the media element fires an error event without a specifc error code the new player error code &#39;3200&#39; with the message &#39;An unspecific media error occurred.&#39; will be passed in the &#39;onError&#39; event. Furthermore a WebSocket prototype polyfill is removed completely. This finally solves a compatibility issue with connection handling with angular/zone.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>add new error code &#39;3200&#39; - &#39;An unspecific media error occurred.&#39;</li>
+<li>removed WebSocket prototype polyfill</li>
+</ul>
+<h2 id="release-package-4-8-1">Release Package 4.8.1</h2>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/3QDttrE3fA44NF5">4.8.1</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h1 id="documentation">Documentation</h1>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/">demo.nanocosmos.de</a></li>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/">demo.nanocosmos.de (until version 3)</a></li>
+</ul>
+<h1 id="release-history">Release History</h1>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a> </li>
+</ul>
+
+  </body>
+</html>

@@ -587,7 +587,7 @@ function log (e, consoleOnly) {
         }
         catch (err) { }
     }
-    e = new Date().toLocaleTimeString() + ': ' + e;
+    e = new Date().toTimeString().split(' ')[0] + ': ' + e;
     console.log(e);
     if (!consoleOnly) {
         if (logCount > 1000) {

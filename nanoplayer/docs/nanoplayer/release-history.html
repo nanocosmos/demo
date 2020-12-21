@@ -114,6 +114,14 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
+<h1 id="-4-8-1-">[4.8.1]</h1>
+<h2 id="release-notes">Release Notes</h2>
+<p>This version improves the compatibility of the player. The &#39;toLocaleTimeString&#39; functionality was replaced to avoid potential issues with javascript polyfills.</p>
+<h2 id="changelog">Changelog</h2>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>remove &#39;toLocaleTimeString&#39; usage</li>
+</ul>
 <h1 id="-4-8-0-">[4.8.0]</h1>
 <h2 id="release-notes">Release Notes</h2>
 <p>This version introduces a new error code. In case the media element fires an error event without a specifc error code the new player error code <code>3200</code> with the message <code>An unspecific media error occurred.</code> will be passed in the <code>onError</code> event. Furthermore a WebSocket prototype polyfill is removed completely. This finally solves a compatibility issue with connection handling with angular/zone.</p>

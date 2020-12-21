@@ -744,7 +744,7 @@ var streamobj = [];
                 catch (err) { }
             }
         }
-        e = new Date().toLocaleTimeString() + ': ' + e;
+        e = new Date().toTimeString().split(' ')[0] + ': ' + e;
         console.log(e);
     };
 
