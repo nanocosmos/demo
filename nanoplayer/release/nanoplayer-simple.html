@@ -55,7 +55,7 @@ All modifications will remain property of nanocosmos.
     <script type="text/javascript" src="//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js"></script>
     <script type="text/javascript">
 
-        var playerVersion = '4.8.0';
+        var playerVersion = '4.9.1';
         console.log('nanoplayer html version: ' + playerVersion);
         var player;
 
@@ -285,7 +285,7 @@ All modifications will remain property of nanocosmos.
             var audioPlayer = getHTTPParam('audioPlayer') || getHTTPParam('style.audioPlayer');
             if (audioPlayer) {
                 config.style = config.style || {};
-                config.style.audioPlayer = (audioPlayer === 'true' || audioPlayer === '1');;
+                config.style.audioPlayer = (audioPlayer === 'true' || audioPlayer === '1');
             }
             var controls = getHTTPParam('controls') || getHTTPParam('style.controls');
             if (controls) {
@@ -545,7 +545,7 @@ All modifications will remain property of nanocosmos.
                     e = JSON.stringify(e);
                 } catch (err) { }
             }
-            e = new Date().toLocaleTimeString() + ": " + e;
+            e = new Date().toTimeString().split(' ')[0] + ": " + e;
             console.log(e);
         }
 

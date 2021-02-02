@@ -1,5 +1,63 @@
 ﻿# NanoPlayer - Release Overview
 
+# [4.9.1]
+
+## Release Notes
+
+This version introduces a redesign of the player internal icons and control bar appearance including customizable colors and transparency.
+The default color scheme is providing a more modern and familiar look and feel.
+The symbol color can be customized via the `config.style.symbolColor` parameter (default: "rgba(244,233,233,1)").
+The control bar background color can be customized via the `config.style.controlBarColor` parameter (default: "rgba(0,0,0,0.5)").
+The given color string can be a valid css (case insensitive) keyword, hex code with/without alpha, rgb, rgba, hsl or hsla. Example values: "white", "#ffffff", "rgba(237,125,14,0.5)".
+The highlighting of the clickable buttons can be disabled via `config.style.buttonHighlighting=false`. The animation of the clickable buttons can be disabled via `config.style.buttonAnimation=false`.
+Also the cursor at button mouseover (default: "pointer") can be customized over `config.style.buttonCursor` by passing a valid css cursor keyword or url.
+
+Furthermore support for poster images has been added. Poster images can be applied via the config.style.poster parameter.
+The string has to be a relative or absolute path to a valid "img" element source like "./assets/poster.png" or "https://[YOURDOMAIN]/assets/poster.gif".
+
+## Changelog
+
+### Added
+
+- redesign of the player internal icons and control bar appearance
+- customizable icon and control bar background colors and transparency
+- customizable button behaviour
+- support for poster images
+
+### Improved
+
+- iOS desktop mode detection and handling in Safari and Chrome
+
+### Fixed
+
+- setVolume method not applying the value 0/zero
+- use 'parentNode' instead of 'parentElement'
+
+# [4.8.1]
+
+## Release Notes
+
+This version improves the compatibility of the player. The 'toLocaleTimeString' functionality was replaced to avoid potential issues with javascript polyfills.
+
+## Changelog
+
+### Improved
+
+- remove 'toLocaleTimeString' usage
+
+# [4.8.0]
+
+## Release Notes
+
+This version introduces a new error code. In case the media element fires an error event without a specifc error code the new player error code ````3200```` with the message ````An unspecific media error occurred.```` will be passed in the ````onError```` event. Furthermore a WebSocket prototype polyfill is removed completely. This finally solves a compatibility issue with connection handling with angular/zone.
+
+## Changelog
+
+### Improved
+
+- add new error code ````3200```` - ````An unspecific media error occurred.````
+- removed WebSocket prototype polyfill
+
 ## Please find more about the **fullscreen API** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/).
 
 # [4.7.8]
@@ -638,7 +696,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 
 ## Release Notes
 
-This version adresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute 'allowfullscreen="allowfullscreen|true"]' or just 'allowfullscreen'. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.
+This version addresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute 'allowfullscreen="allowfullscreen|true"]' or just 'allowfullscreen'. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.
 
 ## Changelog
 
@@ -786,7 +844,7 @@ This version improves the demo page. One part is to use 'updateSource' for bintu
 
 ## Release Notes
 
-This version adresses an issue with mimetype changes on 'updateSource'. Now it can be switched between different mimetypes e.g. video/audio and video only.
+This version addresses an issue with mimetype changes on 'updateSource'. Now it can be switched between different mimetypes e.g. video/audio and video only.
 
 ## Changelog
 
@@ -848,7 +906,7 @@ In this version an issue with the loading icon is handled. The loading icon didn
 
 ## Release Notes
 
-One part of this release adresses the correct indication of an audio symbol in case of muted autoplay or audio only. The second issue that is adressed handles the muted state on reset after an unsuccessful (denied) muted autoplay (automuted) on iOS. The last improvement is related to the behaviour in case of multiple destroy calls.
+One part of this release addresses the correct indication of an audio symbol in case of muted autoplay or audio only. The second issue that is adressed handles the muted state on reset after an unsuccessful (denied) muted autoplay (automuted) on iOS. The last improvement is related to the behaviour in case of multiple destroy calls.
 
 ## Changelog
 
