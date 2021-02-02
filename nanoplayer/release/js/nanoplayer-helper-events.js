@@ -181,6 +181,13 @@ events.onSwitchStreamAbort = function (e) {
 };
 events.onFullscreenChange = function (e) {
     ___isFullscreen___ = e.data.entered;
+    var selects = document.querySelectorAll('select');
+    for (var i = 0; i < selects.length; i++) {
+        var item = selects[i];
+        if (item && item.style) {
+            item.style.visibility = ___isFullscreen___ ? 'hidden' : 'visible';
+        }
+    }
     var data = JSON.stringify(e.data);
     log('onFullscreenChange: ' + data);
 };

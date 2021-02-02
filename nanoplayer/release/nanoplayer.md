@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.8.1
+NanoPlayer (H5Live) Public API Class 4.9.1
 
 **Kind**: global class  
-**Version**: 4.8.1  
+**Version**: 4.9.1  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2145,6 +2145,24 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[style.centerView]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable the animations and icons in the center of the player&#39;s view.</p>
+</td>
+    </tr><tr>
+    <td>[style.symbolColor]</td><td><code>string</code></td><td><code>&quot;rgba(244,233,233,1)&quot;</code></td><td><p>Sets the color of the symbols used in centerView and controls - The given color string can be a valid css (case insensitive) keyword, hex code with/without alpha, rgb, rgba, hsl or hsla. Example values: &quot;white&quot;, &quot;#ffffff&quot;, &quot;rgba(237,125,14,0.5)&quot;.</p>
+</td>
+    </tr><tr>
+    <td>[style.controlBarColor]</td><td><code>string</code></td><td><code>&quot;rgba(0,0,0,0.5)&quot;</code></td><td><p>Sets the color of the control bar - The given color string can be a valid css (case insensitive) keyword, hex code with/without alpha, rgb, rgba, hsl or hsla. Example values: &quot;white&quot;, &quot;#ffffff&quot;, &quot;rgba(237,125,14,0.5)&quot;.</p>
+</td>
+    </tr><tr>
+    <td>[style.buttonAnimation]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true all buttons have short animations at &#39;mouseover&#39; and &#39;click&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[style.buttonHighlighting]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true all buttons are slightly highlighted at hover.</p>
+</td>
+    </tr><tr>
+    <td>[style.buttonCursor]</td><td><code>string</code></td><td><code>&quot;pointer&quot;</code></td><td><p>Sets the cursor of all buttons. Possible values are valid css cursor values like &#39;default&#39; or &#39;pointer&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[style.poster]</td><td><code>string</code></td><td></td><td><p>Sets a poster image to the player that is visible before and after playback. That can be every valid source of an IMG element. Valid sources are e.g. &#39;./assets/poster.png&#39; or &#39;https://[YOURDOMAIN]/assets/poster.gif&#39;. The poster will be displayed &#39;letterbox&#39;.</p>
 </td>
     </tr><tr>
     <td>[events]</td><td><code>object</code></td><td></td><td><p>The object to set handlers to the player events.</p>

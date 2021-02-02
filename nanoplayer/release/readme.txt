@@ -1,5 +1,5 @@
 ﻿nanoStream Player
-(c) 2014-2020, nanocosmos gmbh
+(c) 2014-2021, nanocosmos gmbh
 http://www.nanocosmos.de
 sales@nanocosmos.de
 

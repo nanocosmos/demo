@@ -172,20 +172,21 @@ All modifications will remain property of nanocosmos.
     <script src="./js/nanoplayer-helper.js"></script>
     <script src="./js/nanoplayer-helper-events.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
+    <script src="./js/nanoplayer-helper-codesnippet.js"></script>
     <script src="./js/nanoplayer-metrics-config.js"></script>
     <script src="./js/multi/nano.bintu.js"></script>
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.8.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.9.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.8.1';
+        var playerVersion = '4.9.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20201221';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210127';
         };
 
         var player;
@@ -642,31 +643,7 @@ All modifications will remain property of nanocosmos.
             });
         }
 
-        function createCodeSippet(config) {
-            var conf = JSON.parse(JSON.stringify(config));
-            delete conf.events;
-            conf.playback = conf.playback || {};
-            conf.playback.flashplayer = '//demo.nanocosmos.de/nanoplayer/nano.player.swf';
-            var pre = document.getElementById('code-snippet');
-            pre.innerHTML = '';
-            var line = '<div id="playerDiv"></div>\r\n';
-            line += '<script src="' + getPlayerLocation() + '"><\/script>\r\n';
-            line += '<script>\r\n';
-            line += 'var player;\r\n';
-            line += 'var config = ' + JSON.stringify(conf, undefined, 4) + ';\r\n';
-            line += 'document.addEventListener(\'DOMContentLoaded\', function () {\r\n';
-            line += '    player = new NanoPlayer("playerDiv");\r\n';
-            line += '    player.setup(config).then(function (config) {\r\n';
-            line += '        console.log("setup success");\r\n';
-            line += '        console.log("config: " + JSON.stringify(config, undefined, 4));\r\n';
-            line += '    }, function (error) {\r\n';
-            line += '        alert(error.message);\r\n';
-            line += '    });\r\n';
-            line += '});\r\n';
-            line += '<\/script>\r\n';
-            pre.appendChild(document.createTextNode(line));
-            document.getElementById('code-snippet-container').style.display = "block";
-        }
+        
     </script>
 </body>
 

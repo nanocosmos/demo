@@ -230,6 +230,41 @@ function getNanoPlayerParameters () {
         config.style = config.style || {};
         config.style.controls = (controls === 'true' || controls === '1');
     }
+    var symbolColor = getHTTPParam('symbolColor') || getHTTPParam('style.symbolColor');
+    if (symbolColor) {
+        config.style = config.style || {};
+        config.style.symbolColor = symbolColor;
+    }
+    var controlBarColor = getHTTPParam('controlBarColor') || getHTTPParam('style.controlBarColor');
+    if (controlBarColor) {
+        config.style = config.style || {};
+        config.style.controlBarColor = controlBarColor;
+    }
+    var buttonAnimation = getHTTPParam('buttonAnimation') || getHTTPParam('style.buttonAnimation');
+    if (buttonAnimation) {
+        config.style = config.style || {};
+        config.style.buttonAnimation = (buttonAnimation === 'true' || buttonAnimation === '1');
+    }
+    var buttonHighlighting = getHTTPParam('buttonHighlighting') || getHTTPParam('style.buttonHighlighting');
+    if (buttonHighlighting) {
+        config.style = config.style || {};
+        config.style.buttonHighlighting = (buttonHighlighting === 'true' || buttonHighlighting === '1');
+    }
+    var buttonCursor = getHTTPParam('buttonCursor') || getHTTPParam('style.buttonCursor');
+    if (buttonCursor) {
+        config.style = config.style || {};
+        config.style.buttonCursor = buttonCursor;
+    }
+    var optionsControl = getHTTPParam('optionsControl') || getHTTPParam('style.optionsControl');
+    if (optionsControl) {
+        config.style = config.style || {};
+        config.style.optionsControl = (optionsControl === 'true' || optionsControl === '1');
+    }
+    var poster = getHTTPParam('poster') || getHTTPParam('style.poster');
+    if (poster) {
+        config.style = config.style || {};
+        config.style.poster = poster;
+    }
     var width = getHTTPParam('width') || getHTTPParam('style.width');
     if (width) {
         config.style = config.style || {};
@@ -240,6 +275,10 @@ function getNanoPlayerParameters () {
         config.style = config.style || {};
         config.style.height = isNaN(height) ? height : height + 'px';
     }
+
+    var asArray = getHTTPParam('codeSnippetAsArray');
+    window.asArray = !(asArray === 'false' || asArray === '0');
+
     var bintuQ = getHTTPParam('bintu');
     if (bintuQ) {
         bintuQ = JSON.parse(bintuQ);
@@ -512,38 +551,40 @@ function checkEntries () {
         paramWidth = parseInt(getHTTPParam(['entry' + num + '.info.width']), 10);
         paramHeight = parseInt(getHTTPParam(['entry' + num + '.info.height']), 10);
         paramFramerate = parseInt(getHTTPParam(['entry' + num + '.info.framerate']), 10);
-        entries.push(
-            {
-                'index' : index,
-                'label' : 'stream ' + (index + 1),
-                'tag'   : '',
-                'info'  : {
-                    'bitrate'   : !isNaN(paramBitrate) ? paramBitrate : 0,
-                    'width'     : !isNaN(paramWidth) ? paramWidth : 0,
-                    'height'    : !isNaN(paramHeight) ? paramHeight : 0,
-                    'framerate' : !isNaN(paramFramerate) ? paramFramerate : 0
-                },
-                'hls'    : '',
-                'h5live' : {
-                    'rtmp': {
-                        'url'        : url,
-                        'streamname' : name
-                    },
-                    'server'   : server,
-                    'token'    : '',
-                    'security' : {
-                        'token'   : getHTTPParam('entry' + num + '.security.token'),
-                        'expires' : getHTTPParam('entry' + num + '.security.expires'),
-                        'options' : getHTTPParam('entry' + num + '.security.options'),
-                        'tag'     : getHTTPParam('entry' + num + '.security.tag')
-                    }
-                },
-                'bintu': {
-                    'apiurl'   : apiurl,
-                    'streamid' : streamid
-                }
+        var entry = {
+            'index' : index,
+            'label' : 'stream ' + (index + 1),
+            'tag'   : '',
+            'info'  : {
+                'bitrate'   : !isNaN(paramBitrate) ? paramBitrate : 0,
+                'width'     : !isNaN(paramWidth) ? paramWidth : 0,
+                'height'    : !isNaN(paramHeight) ? paramHeight : 0,
+                'framerate' : !isNaN(paramFramerate) ? paramFramerate : 0
             }
-        );
+        };
+        if (streamid) {
+            entry.bintu = {
+                'apiurl'   : apiurl,
+                'streamid' : streamid
+            };
+        }
+        else {
+            entry.h5live = {
+                'rtmp': {
+                    'url'        : url,
+                    'streamname' : name
+                },
+                'server'   : server,
+                'token'    : '',
+                'security' : {
+                    'token'   : getHTTPParam('entry' + num + '.security.token'),
+                    'expires' : getHTTPParam('entry' + num + '.security.expires'),
+                    'options' : getHTTPParam('entry' + num + '.security.options'),
+                    'tag'     : getHTTPParam('entry' + num + '.security.tag')
+                }
+            };
+        }
+        entries.push(entry);
         index++;
     }
 
@@ -551,26 +592,30 @@ function checkEntries () {
 }
 
 function checkOptions () {
-    config.source.options = {
-        'adaption' : {},
-        'switch'   : {}
-    };
+    if (config.source.entries && config.source.entries.length > 1) {
+        config.source.options = {
+            'adaption': {
+                'rule': 'deviationOfMean2'
+            },
+            'switch': {}
+        };
 
-    var rule = getHTTPParam('rule') || getHTTPParam('options.rule');
-    if (rule) {
-        config.source.options.adaption.rule = rule;
-    }
-    var forcePlay = getHTTPParam('forcePlay') || getHTTPParam('options.switch.forcePlay');
-    if (forcePlay) {
-        config.source.options.switch.forcePlay = !!(forcePlay === '1' || forcePlay === 'true');
-    }
-    var pauseOnError = getHTTPParam('pauseOnError') || getHTTPParam('options.switch.pauseOnError');
-    if (pauseOnError) {
-        config.source.options.switch.pauseOnError = !!(pauseOnError === '1' || pauseOnError === 'true');
-    }
-    var method = getHTTPParam('method') || getHTTPParam('options.switch.method');
-    if (method) {
-        config.source.options.switch.method = method;
+        var rule = getHTTPParam('rule') || getHTTPParam('options.rule');
+        if (rule) {
+            config.source.options.adaption.rule = rule;
+        }
+        var forcePlay = getHTTPParam('forcePlay') || getHTTPParam('options.switch.forcePlay');
+        if (forcePlay) {
+            config.source.options.switch.forcePlay = !!(forcePlay === '1' || forcePlay === 'true');
+        }
+        var pauseOnError = getHTTPParam('pauseOnError') || getHTTPParam('options.switch.pauseOnError');
+        if (pauseOnError) {
+            config.source.options.switch.pauseOnError = !!(pauseOnError === '1' || pauseOnError === 'true');
+        }
+        var method = getHTTPParam('method') || getHTTPParam('options.switch.method');
+        if (method) {
+            config.source.options.switch.method = method;
+        }
     }
 }
 
