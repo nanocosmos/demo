@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.9.1
+NanoPlayer (H5Live) Public API Class 4.9.2
 
 **Kind**: global class  
-**Version**: 4.9.1  
+**Version**: 4.9.2  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2126,7 +2126,7 @@ The config object to pass as param for the 'setup' call.
     <td>[style.scaling]</td><td><code>string</code></td><td><code>&quot;letterbox&quot;</code></td><td><p>Set&#39;s the display mode for the video inside the player - possible values: &quot;letterbox&quot;, &quot;fill&quot;, &quot;crop&quot;, &quot;original&quot;, &quot;resize&quot;.</p>
 </td>
     </tr><tr>
-    <td>[style.keepFrame]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If true the last played frame will be displayed after a pause.</p>
+    <td>[style.keepFrame]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true the last played frame will be displayed after a pause.</p>
 </td>
     </tr><tr>
     <td>[style.displayAudioOnly]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true a audio symbol will be shown in case of a stream with audio only.</p>
