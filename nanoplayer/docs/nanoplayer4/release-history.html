@@ -113,9 +113,26 @@
     </style>
   </head>
   <body>  
-    <h1 id="nanoplayer-release-overview">NanoPlayer - Release Overview</h1>
-<h1 id="-4-9-1-">[4.9.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+    <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="-4-9-2-"><strong>[4.9.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version comes with several small improvements and fixes. An infinite loop related to error code <code>1004</code> is now prevented. It occurred if play or pause was triggered before the player setup was finished. This non-critical error <code>1004</code> has been changed now to a warning. Further providing the correct Mac OS X version for player metrics has been improved and a wrong detection of unsupported Chromium browsers on Mac OS X has been fixed (introduced in 4.9.1). Also an error on iOS with the <code>keepConnection</code> option enabled has been fixed.</p>
+<p>For the view a small fix for the style option <code>config.style.audioPlayer</code> related to the displayed height on mobile devices has been done.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>change non-critical error <code>1004</code> to warning <code>&quot;A pause call has been ignored since the player has not been set up successfully.&quot;</code></li>
+<li>provide correct Mac OS X version to player metrics</li>
+<li>correct player height on mobile devices if <code>config.style.audioPlayer</code> set to <code>true</code></li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>prevent infinite loop related to error code <code>1004</code> in case of play/pause before player is ready</li>
+<li>unsupported browser detection for Chromium on Mac OS X if codecs not present (introduced in 4.9.1)</li>
+<li>playback starts on iOS with <code>config.playback.keepConnection</code> set to <code>true</code></li>
+</ul>
+<h2 id="-4-9-1-"><strong>[4.9.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version introduces a redesign of the player internal icons and control bar appearance including customizable colors and transparency.
 The default color scheme is providing a more modern and familiar look and feel.
 The symbol color can be customized via the <code>config.style.symbolColor</code> parameter (default: &quot;rgba(244,233,233,1)&quot;).
@@ -124,8 +141,8 @@ The given color string can be a valid css (case insensitive) keyword, hex code w
 The highlighting of the clickable buttons can be disabled via <code>config.style.buttonHighlighting=false</code>. The animation of the clickable buttons can be disabled via <code>config.style.buttonAnimation=false</code>.
 Also the cursor at button mouseover (default: &quot;pointer&quot;) can be customized over <code>config.style.buttonCursor</code> by passing a valid css cursor keyword or url.</p>
 <p>Furthermore support for poster images has been added. Poster images can be applied via the config.style.poster parameter.
-The string has to be a relative or absolute path to a valid &quot;img&quot; element source like &quot;./assets/poster.png&quot; or &quot;https://[YOURDOMAIN]/assets/poster.gif&quot;.</p>
-<h2 id="changelog">Changelog</h2>
+The string has to be a relative or absolute path to a valid &quot;img&quot; element source like &quot;./assets/poster.png&quot; or &quot;<a href="https://[YOURDOMAIN">https://[YOURDOMAIN</a>]**/assets/poster.gif&quot;.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>redesign of the player internal icons and control bar appearance</li>
@@ -142,50 +159,50 @@ The string has to be a relative or absolute path to a valid &quot;img&quot; elem
 <li>setVolume method not applying the value 0/zero</li>
 <li>use &#39;parentNode&#39; instead of &#39;parentElement&#39;</li>
 </ul>
-<h1 id="-4-8-1-">[4.8.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-8-1-"><strong>[4.8.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version improves the compatibility of the player. The &#39;toLocaleTimeString&#39; functionality was replaced to avoid potential issues with javascript polyfills.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>remove &#39;toLocaleTimeString&#39; usage</li>
 </ul>
-<h1 id="-4-8-0-">[4.8.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-8-0-"><strong>[4.8.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version introduces a new error code. In case the media element fires an error event without a specifc error code the new player error code <code>3200</code> with the message <code>An unspecific media error occurred.</code> will be passed in the <code>onError</code> event. Furthermore a WebSocket prototype polyfill is removed completely. This finally solves a compatibility issue with connection handling with angular/zone.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>add new error code <code>3200</code> - <code>An unspecific media error occurred.</code></li>
 <li>removed WebSocket prototype polyfill</li>
 </ul>
-<h2 id="please-find-more-about-the-fullscreen-api-feature-in-our-documentation-">Please find more about the <strong>fullscreen API</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/">documentation</a>.</h2>
-<h1 id="-4-7-8-">[4.7.8]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="please-find-more-about-the-fullscreen-api-feature-in-our-documentation-https-docs-nanocosmos-de-docs-nanoplayer-nanoplayer_feature_fullscreen_api-">Please find more about the <strong>fullscreen API</strong> feature in our [documentation]**(<a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/</a>)</h2>
+<h2 id="-4-7-8-"><strong>[4.7.8]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version patches minor issues. One patch addresses a compatibility issue with angular zone.js. The other one improves the behaviour of internal iframe handling on iOS in case of unavailability.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>check for WebSocket event listener manipulation, use default &#39;on&#39; syntax internally</li>
 <li>improved internal iframe handling on iOS in case of unavailibility</li>
 </ul>
-<h1 id="-4-7-6-">[4.7.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version implements minor internal improvements for config validation and playback start. 
+<h2 id="-4-7-6-"><strong>[4.7.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version implements minor internal improvements for config validation and playback start.
 It also contains a fix related to playback suspension on iOS devices running Safari with activated desktop mode.</p>
 <p>Furthermore, the default overlay controls are displayed properly on smaller screen widths.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>config validation and playback start</li>
 <li>playback suspension on iOS devices and Safari with activated desktop mode</li>
 <li>display of default overlay controls on smaller screen widths</li>
 </ul>
-<h1 id="-4-7-1-">[4.7.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-7-1-"><strong>[4.7.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version implements the fullscreen API which enables to request and exit the player&#39;s fullscreen mode. The new public event &#39;onFullscreenChange&#39; indicates that the fullscreen mode has been changed.</p>
 <p>The animations and icons in the center of the player can now be independently enabled or disabled by setting the new <code>style.centerView</code> config property to either true or false.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>fullscreen API<ul>
@@ -195,15 +212,15 @@ It also contains a fix related to playback suspension on iOS devices running Saf
 </li>
 <li>enable / disable animations and icons in the center of the player independently with <code>style.centerView</code> config property</li>
 </ul>
-<h1 id="-4-6-1-">[4.6.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-6-1-"><strong>[4.6.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>By enabling the <code>source.options.switch.forcePlay</code> config property a paused playback starts after the execution of a &#39;switchStream&#39; or &#39;updateSource&#39; request. This obviates the need for an additional play call.
-To improve the overall switching behavior paused switch completion has been added, meaning a pending &#39;switchStream&#39; or &#39;updateSource&#39; request will be completed as the player enters the paused state. 
+To improve the overall switching behavior paused switch completion has been added, meaning a pending &#39;switchStream&#39; or &#39;updateSource&#39; request will be completed as the player enters the paused state.
 The related completion event either &#39;switchStreamSuccess&#39; or &#39;updateSourceSuccess&#39; will be emitted to the application level.</p>
 <p>This version prevents an occasional CPU load issue on Firefox.
 To provide additional information to the client metrics the new public event &#39;onServerInfo&#39; has been added.
 Version 4.6.1 implements an updated version of the Bintu-Client API internally.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>paused switch completion to complete pending &#39;switchStream&#39; or &#39;updateSource&#39; request as player enters paused state</li>
@@ -215,35 +232,35 @@ Version 4.6.1 implements an updated version of the Bintu-Client API internally.<
 <li>prevent an occasional CPU load issue on Firefox</li>
 <li>implement updated version of Bintu-Client API</li>
 </ul>
-<h1 id="-4-5-6-">[4.5.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-5-6-"><strong>[4.5.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains improvements for stream swiching, buffering metrics validation and connection flags.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>stability of general stream switching</li>
 <li>validation of buffering metrics</li>
 <li>connection flags setting</li>
 </ul>
-<h1 id="-4-5-2-">[4.5.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-5-2-"><strong>[4.5.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains a minor internal metrics adjustment.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>minor metrics adjustment</li>
 </ul>
-<h1 id="-4-5-1-">[4.5.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version implements seamless ABR and stream switching for iOS and iPadOS devices which works with 2 video elements internally. 
-In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the <code>playback.videoId</code> config property. 
+<h2 id="-4-5-1-"><strong>[4.5.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version implements seamless ABR and stream switching for iOS and iPadOS devices which works with 2 video elements internally.
+In special use cases where external video elements are used for playback an array of maximal two external video element IDs can be provided via the <code>playback.videoId</code> config property.
 <strong>Important note:</strong> On iOS devices the default z-index of the video layer had to be changed from 0 to 1. In case of using custom controls or overlays please make sure to use a z-index &gt; 1.</p>
 <p>The new ABR mode, adaption rule, &#39;deviationOfMean2&#39; has been added. The new rule is slightly less strict and especially recommended  for streams that are already more volatile on the source/ingest side.  </p>
-<p>This version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior. </p>
-<p>The <code>style.displayMutedAutoplay</code> config property is re-enabled which shows a muted audio symbol in case of muted autoplay. 
-The <code>style.displayMutedAutoplay</code> option can be disabled to maintain the recent behaviour. 
+<p>This version adjusts the default timeout for the update source request to 20 seconds to improve the overall switching behavior.</p>
+<p>The <code>style.displayMutedAutoplay</code> config property is re-enabled which shows a muted audio symbol in case of muted autoplay.
+The <code>style.displayMutedAutoplay</code> option can be disabled to maintain the recent behaviour.
 The handling of mute states and autoplay has been improved.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>seamless ABR and stream switching for iOS and iPadOS devices</li>
@@ -256,38 +273,32 @@ The handling of mute states and autoplay has been improved.</p>
 <li>if 1 Id is provided the other video element will be created internally</li>
 </ul>
 </li>
-<li>set the default timeout for the update source request to 20 seconds to improve the overall switching behavior <ul>
+<li>set the default timeout for the update source request to 20 seconds to improve the overall switching behavior<ul>
 <li>can be configured via the <code>source.options.switch.timeout</code> config property (we advise to use default value)</li>
 </ul>
 </li>
 <li>re-enabled <code>style.displayMutedAutoplay</code> config property to show a muted audio symbol in case of muted autoplay</li>
 <li>handling of mute states and autoplay</li>
 </ul>
-<h1 id="-4-3-2-">[4.3.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version introduces the &#39;setAdaption&#39; API to switch between adaption rules (ex. enable/disable ABR). 
+<h2 id="-4-3-2-"><strong>[4.3.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version introduces the &#39;setAdaption&#39; API to switch between adaption rules (ex. enable/disable ABR).
 Furthermore, this version implements optimizations for the ABR feature and minor internal, config and metrics adjustments. Additionally, this version prevents non-critical console errors during initialization and fixes a timeout error during client-side switchStream/updateSource.</p>
-<p>Please find more about setAdaption API <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor">here</a>.</p>
-<h2 id="changelog">Changelog</h2>
+<p>Please find more about setAdaption API [here]**(<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor)</a>.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
-<li>&#39;setAdaption&#39; API:<ul>
+<li>&#39;setAdaption&#39; API:</li>
 <li>use to switch between adaption rules (ex. enable/disable ABR)</li>
-</ul>
-</li>
 </ul>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>ABR:<ul>
+<li>ABR:</li>
 <li>initial switch up for oscillating source streams</li>
 <li>handle continuous buffering events</li>
-</ul>
-</li>
-<li>config:<ul>
+<li>config:</li>
 <li>adjust switchStream event registration</li>
 <li>enable bintu multi-stream configuration</li>
-</ul>
-</li>
 <li>minor metrics improvement</li>
 <li>prevent non-critical console errors during initialization in &#39;hidden&#39; state</li>
 </ul>
@@ -295,35 +306,35 @@ Furthermore, this version implements optimizations for the ABR feature and minor
 <ul>
 <li>timeout error during client-side switchStream/updateSource</li>
 </ul>
-<h1 id="-4-2-5-">[4.2.5]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-2-5-"><strong>[4.2.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version handles the usage of metrics with the old deprecated single stream configuration over &#39;config.source.h5live&#39;.</p>
-<p>See <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration">here</a> for detailed information about the new stream configuration.</p>
-<h2 id="changelog">Changelog</h2>
+<p>See [here]**(<a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration</a>) for detailed information about the new stream configuration.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>handle deprecated &#39;config.source.h5live&#39; notation for correct metrics</li>
 </ul>
-<h1 id="-4-2-4-">[4.2.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-2-4-"><strong>[4.2.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version removes a warning in case only a single stream is configured.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>remove adaption rule warning if only one entry configured</li>
 </ul>
-<h1 id="-4-2-3-">[4.2.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-2-3-"><strong>[4.2.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version handles a timestamp offset caused by stream switching to make correct time operations.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>note timestamp offset after stream switch</li>
 </ul>
-<h1 id="-4-2-2-">[4.2.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-2-2-"><strong>[4.2.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version comes with further ABR and internal improvements and also corrects switch related parts.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>ABR suggestion performance</li>
@@ -334,78 +345,78 @@ Furthermore, this version implements optimizations for the ABR feature and minor
 <li>always set new connection when updating source with new server</li>
 <li>correct error object on initialization error when updating source</li>
 </ul>
-<h1 id="-4-2-1-">[4.2.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-2-1-"><strong>[4.2.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version communicates additional switchStream and updateSource API related data to the metrics service.
 Furthermore, the ABR prediction cycle is improved to reduce load.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>additional switchStream and updateSource API event data to metrics</li>
 <li>optimize ABR prediction cycle</li>
 </ul>
-<h1 id="-4-2-0-">[4.2.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version implements the communication of switchStream and updateSource API events and data to the metrics service. 
+<h2 id="-4-2-0-"><strong>[4.2.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version implements the communication of switchStream and updateSource API events and data to the metrics service.
 In addition the internal &#39;streamInfo&#39; event flow is improved and detailed stream information propagated through the event object.</p>
-<p>Please find more about the stream switching &amp; ABR feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
-<h2 id="changelog">Changelog</h2>
+<p>Please find more about the stream switching &amp; ABR feature in our [documentation]**( <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)</a>.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>communication of switchStream and updateSource API events and data to metrics service</li>
 </ul>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>internal &#39;streamInfo&#39; event flow optimized </li>
+<li>internal &#39;streamInfo&#39; event flow optimized</li>
 <li>propagate additional stream information with &#39;streamInfo&#39; event</li>
 </ul>
-<h1 id="-4-1-4-">[4.1.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-1-4-"><strong>[4.1.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains a fix for an buffering state error on iOS if static buffer tweaks are set. Now higher &#39;min&#39; values doesn&#39;t lead into unrecoverable buffering.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>handle higher buffer tweak &#39;min&#39; values in buffercontrol</li>
 </ul>
-<h1 id="-4-1-3-">[4.1.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-1-3-"><strong>[4.1.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version implements a fix for an ‘Unhandled Promise Rejection’ error on iOS in the context of play/pause and updateSource/switchStream interactions. Furthermore, this version fixes a bug on MacOSX Mojave during buffer underrun where the playing state is not changed to ‘buffering’ which then breaks the playback.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>‘Unhandled Promise Rejection’ error on iOS during play/pause and updateSource/switchStream interactions</li>
 <li>correctly detecting buffer underrun for MacOSX Mojave bug</li>
 </ul>
-<h1 id="-4-1-2-">[4.1.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-1-2-"><strong>[4.1.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version implements a fix to support the regular config as well as an adaptive config to setup the player.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>config assemble during player setup </li>
+<li>config assemble during player setup</li>
 </ul>
-<h1 id="-4-1-1-">[4.1.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-1-1-"><strong>[4.1.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version implements fixes to support the initial switchUp on iOS devices.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>handle pause reason &#39;playbackrestart&#39; differently to fix initial switchUp on iOS </li>
+<li>handle pause reason &#39;playbackrestart&#39; differently to fix initial switchUp on iOS</li>
 <li>set prediction block during initial switchUp</li>
 </ul>
-<h1 id="-4-1-0-">[4.1.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-1-0-"><strong>[4.1.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version introduces adaptive bitrate (ABR) playback where the player switches between a set of streams with different qualities to accommodate challenging network situations and avoid buffering and frame drops.
 A set of stream sources (entries) is expected inside the &#39;entries&#39; array of the config&#39;s &#39;source&#39; object. Each entry represents an indexed quality step starting with the highest quality at index 0. The &#39;startIndex&#39; property sets the entry that should be used for inializing the playback.
 The config&#39;s &#39;source&#39; object now holds an &#39;options&#39; object to set the ABR &#39;rule&#39; (algorithm) inside the &#39;adaption&#39; object and the switch options inside the &#39;switch&#39; object.
 To manually switch between entries the new &#39;switchStream&#39; API is used which comes along with 4 new public events and error codes.</p>
-<p>Please find more about the stream switching &amp; ABR feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
-<h2 id="changelog">Changelog</h2>
+<p>Please find more about the stream switching &amp; ABR feature in our [documentation]**( <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)</a>.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>config object:<ul>
 <li>entries: keeps a set of indexed stream sources which represent a quality step</li>
-<li>options: <ul>
+<li>options:<ul>
 <li>adaption: set ABR rule</li>
 <li>switch: set switch settings</li>
 </ul>
@@ -422,55 +433,55 @@ To manually switch between entries the new &#39;switchStream&#39; API is used wh
 </li>
 </ul>
 </li>
-<li>&#39;updateSource&#39; API: <ul>
+<li>&#39;updateSource&#39; API:<ul>
 <li>use to set a new source (ex. with different entries, adaption/switch options)</li>
 <li>the updateSource method now uses the switch options set inside the config&#39;s source object instead of the parameters supplied via the method call</li>
 </ul>
 </li>
 </ul>
-<h1 id="-4-0-8-">[4.0.8]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS. 
-Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions 
-are now being prevented. </p>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-4-0-8-"><strong>[4.0.8]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version contains an improvement of the buffer state detection on Mac OS X Mojave and iOS.
+Non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions
+are now being prevented.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>Buffer state detection on Mac OS X Mojave and iOS</li>
 <li>Preventing non critical ‘Unhandled Promise Rejection’ logs on iOS during play/pause interactions</li>
 </ul>
-<h1 id="-4-0-7-">[4.0.7]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-0-7-"><strong>[4.0.7]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version patches an issue with iOS 10 playing state detection and the buffer control for hls playback in general.
 Now playback stats will be correctly used for hls playback to indicate PLAYING and to control the buffer.
 This issue was introduced with the major player version 4 and doesn&#39;t effect older major versions (3 or less).
 Also a duplicated module declaration is removed to ensure stable builds and a small scope issue is fixed.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>iOS 10 playing state detection and buffer control for hls in general by correct registering play stats event in buffercontrol</li>
 <li>removed duplicated module declaration in mediasourcemanger</li>
 <li>correct scope issue in onUpdateSourceInit in h5live.js</li>
 </ul>
-<h1 id="-4-0-4-">[4.0.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version contains an improvement for the detection of supported browser types and versions. 
+<h2 id="-4-0-4-"><strong>[4.0.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version contains an improvement for the detection of supported browser types and versions.
 It furthermore contains an improvement for playback in iPadOS desktop browsing mode,
-to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
-<h2 id="changelog">Changelog</h2>
+to correctly detect H5Live MSE or LL-HLS modes for playback.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>improved supported browser version detection </li>
-<li>improved playback in desktop browsing mode on iPadOS </li>
+<li>improved supported browser version detection</li>
+<li>improved playback in desktop browsing mode on iPadOS</li>
 <li>changes applied from 3.18.6/3.18.7</li>
 </ul>
-<h1 id="-4-0-2-">[4.0.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-4-0-2-"><strong>[4.0.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <h3 id="breaking-change">BREAKING CHANGE</h3>
 <p>The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old &#39;updateSource&#39; functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
 Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason &#39;playbackrestart&#39; and restart playback with the new source is removed except for iOS.</p>
-<p>Please find more about the new feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a>.</p>
-<h2 id="changelog">Changelog</h2>
+<p>Please find more about the new feature in our [documentation]**( <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)">https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)</a>.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>new &#39;updateSource&#39; methods &#39;server&#39; and &#39;client&#39; for smoother and faster behaviour</li>
@@ -482,76 +493,78 @@ Now the switch to another source is much more smoother and faster. The old behav
 <ul>
 <li>pause/play update behaviour except for iOS</li>
 </ul>
-<h1 id="-3-18-7-">[3.18.7]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version contains an improvement for the detection of supported browser types and versions. </p>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-18-7-"><strong>[3.18.7]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version contains an improvement for the detection of supported browser types and versions.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>improved detection of supported browser types and versions </li>
+<li>improved detection of supported browser types and versions</li>
 </ul>
-<h1 id="-3-18-6-">[3.18.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-18-6-"><strong>[3.18.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains an improvement for playback in iPadOS desktop browsing mode,
-to correctly detect H5Live MSE or LL-HLS modes for playback. </p>
-<h2 id="changelog">Changelog</h2>
+to correctly detect H5Live MSE or LL-HLS modes for playback.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>improved playback in desktop browsing mode on iPadOS </li>
+<li>improved playback in desktop browsing mode on iPadOS</li>
 </ul>
-<h1 id="-3-18-5-">[3.18.5]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-18-5-"><strong>[3.18.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version patches the usage of the &#39;params&#39; object of the config source object. Now it isn&#39;t necessary to pass &#39;url&#39; &amp; &#39;stream&#39; if no &#39;source.h5live.rtmp&#39; object is present.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>remove check for rtmp queries &#39;url&#39; &amp; &#39;stream&#39; in &#39;params&#39; object of the source config</li>
 </ul>
-<h1 id="-3-18-4-">[3.18.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version fixes a small bug with buffer config validation. </p>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-18-4-"><strong>[3.18.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version fixes a small bug with buffer config validation.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>use &#39;hasOwnProperty&#39; in buffer config validation</li>
 </ul>
-<h1 id="-3-18-3-">[3.18.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version brings an improvement for the playback stability under higher cpu/gpu load influence like heavy load in browsers caused by complex WebGL animations. </p>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-18-3-"><strong>[3.18.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version brings an improvement for the playback stability under higher cpu/gpu load influence like heavy load in browsers caused by complex WebGL animations.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>optimized playback stability in case of high general cpu/gpu load</li>
 </ul>
-<h1 id="-3-18-2-">[3.18.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This release is adding two configuration options to the config.style section. 
-style.backgroundColor allows custom background colors via the config. 
+<h2 id="-3-18-2-"><strong>[3.18.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release is adding two configuration options to the config.style section.
+style.backgroundColor allows custom background colors via the config.
 style.fullScreenControl allows to show/hide the full-screen button in the inline player controls.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new config parameter &#39;style.backgroundColor&#39; to enable custom background colors in the player div</li>
 <li>new config parameter &#39;style.fullScreenControl&#39; to show or hide the full-screen button in the inline player controls</li>
 </ul>
-<pre><code>        config<span class="hljs-class">.style</span><span class="hljs-class">.backgroundColor</span> = <span class="hljs-string">'black'</span>
-        config<span class="hljs-class">.style</span><span class="hljs-class">.fullScreenControl</span> = true
-</code></pre><h3 id="improved">Improved</h3>
+<pre><code class="lang-javascript">config.style.backgroundColor = <span class="hljs-string">'black'</span>
+config.style.fullScreenControl = <span class="hljs-literal">true</span>
+</code></pre>
+<h3 id="improved">Improved</h3>
 <ul>
 <li>browser version detection for Safari macOS</li>
 </ul>
-<h1 id="-3-18-1-">[3.18.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-18-1-"><strong>[3.18.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release brings the possibility to allow H5Live low latency HLS playback as fallback for Safari on Mac OS X. If enabled the player will decide for Safari Mac OS X the playback method and utilize H5Live low latency HLS if appropriate.
 Another feature is that we added the quality stats to the metrics stats event. Also several little patches are included in this release. Now for bintu sources without explicit &#39;h5live&#39; playout object in the response the rtmp object will be choosen and a missing server object in the h5live config will be catched.
 An &#39;undefined&#39; error at destroy is fixed too. Now also playback will always be recovered on Edge if frames are dropped and the player is visible.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new config parameter &#39;playback.allowSafariHlsFallback&#39; to enable selecting the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate (default:false)</li>
 </ul>
-<pre><code>        config<span class="hljs-class">.playback</span><span class="hljs-class">.allowSafariHlsFallback</span> = true
-</code></pre><ul>
+<pre><code class="lang-javascript">config.playback.allowSafariHlsFallback = <span class="hljs-literal">true</span>
+</code></pre>
+<ul>
 <li>send quality values in metrics stats event</li>
 </ul>
 <h3 id="fixed">Fixed</h3>
@@ -561,26 +574,26 @@ An &#39;undefined&#39; error at destroy is fixed too. Now also playback will alw
 <li>fix &#39;undefined&#39; error at destroy</li>
 <li>always recover playback on Edge at frame dropping if player is visible</li>
 </ul>
-<h1 id="-3-17-4-">[3.17.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-17-4-"><strong>[3.17.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release improves and stabilizes the metrics play event stats collection, the playback stats collection and the general metrics event error handling. There are some checks added to avoid playback interupts in case of metrics collection errors.
 Further the stats object in the flash fallback is updated with all possible properties. Before this resulted in an error at metrics collection.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>catch errors in metrics module </li>
+<li>catch errors in metrics module</li>
 <li>check play event stats and playback stats in metrics module for consistancy</li>
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>update stats object for flash fallback with all possible properties</li>
 </ul>
-<h1 id="-3-17-3-">[3.17.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-17-3-"><strong>[3.17.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release contains several patches. One patch fixes a potential problem with autoplay policies regarding the play promise implementation of certain browsers. The main problem were side effects with the promise wrapper of the player and some third party libs which manipulate promises. In this cases the promise always resolved, also in case of an play start error.
 Another patch addresses a bug in Microsoft Edge 18. We removed the &#39;MediaSource.isTypeSupported&#39; check for all Edge versions because of an inconsistancy in Edge 18.
 Further a bug in the &#39;updateSource&#39; function for iOS is fixed. Also now the full screen icon on Chrome changes correctly.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>change media play promise wrapping to avoid side effects of promise manipulating third party libs</li>
@@ -588,23 +601,23 @@ Further a bug in the &#39;updateSource&#39; function for iOS is fixed. Also now 
 <li>fix &#39;type undefined&#39; error in &#39;updateSource&#39; for iOS</li>
 <li>fix full screen icon change on Chrome</li>
 </ul>
-<h1 id="-3-17-2-">[3.17.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-17-2-"><strong>[3.17.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release patches an issue with metrics fields type. Now the fields &#39;accountId&#39;, &#39;accountKey&#39;, &#39;userId&#39;, &#39;eventId&#39;, and &#39;customField1&#39; - &#39;customField10&#39; must be of type String. If one of the mentioned fields has a different type, it will be silently converted to String.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>convert metrics fields to String, if necessary</li>
 </ul>
-<h1 id="-3-17-1-">[3.17.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-17-1-"><strong>[3.17.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release comes a new feature. We added new error codes and pause reasons. The errors that can occure during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state are now more specific regarding the root cause.
 We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is &#39;visibilityhidden&#39;.
 Further not only error 2001 &#39;stream not found&#39; can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is &#39;notenoughdata&#39;.
 Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during &#39;loading&#39;, &#39;buffering&#39; and &#39;playing&#39; state and results in a pause with reason &#39;sourcestreamstopped&#39;. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it&#39;s state to &#39;ended&#39;. The pause reason is &#39;playbackerror&#39;.
-For further informations see the definitions for &#39;errorcode&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>) and &#39;pausereason&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor)</a>.
+For further informations see the definitions for &#39;errorcode&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>) and &#39;pausereason&#39; (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor</a>).
 In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don&#39;t try to replay automatically.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new error codes:<ul>
@@ -629,23 +642,24 @@ In addition we improved the h5live support detection and fixed with the behaviou
 <ul>
 <li>don&#39;t restart on error code 3003 MEDIA_DECODE_ERROR</li>
 </ul>
-<h1 id="-3-16-0-">[3.16.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-16-0-"><strong>[3.16.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release introduces new features and several patches. Now it&#39;s possible to configure playback timeouts via the new &#39;config.playback.timeouts&#39; object. You can set timeouts for &#39;loading&#39; and &#39;buffering&#39; in a range of 10-60 seconds (default: 20) and for &#39;connecting&#39; in a range of 5-30 seconds (default: 5). If the timeouts are reached, an error will be thrown and the player stops.
 Another feature addresses the metrics. Now also the &#39;LOADING&#39; event will be sent. Furthermore if the player restarts in case of &#39;updateSource&#39; while in playing state the pause event will be triggered with the new pause reason &#39;playbackrestart&#39; before the replay attempt.
 The new version includes patches for the full screen functionality in general and for Internet Explorer (IE) in special. General the full screen icon changes now if exited by ESC and for IE the size is now correctly measured. Another patch fixes the volume change by the controls in IE.
 Two patches address the bintu service. The first one fixes a bug if the view is disabled and the bintu stream is not live or the services rejects. Now no view will be created in case of an bintu error. The other one enables to use &#39;updateSource&#39; with a bintu source. In general now within the &#39;updateSource&#39; promise the error handling is improved too. Further there are patches for displaying muted autoplay correctly and hiding the playbutton in the middle if switching streams using &#39;updateSource&#39; while playing.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new object &#39;config.playback.timeouts&#39; to configure the timeouts for &#39;loading&#39;, &#39;buffering&#39; and &#39;connecting&#39; in seconds</li>
 </ul>
-<pre><code><span class="hljs-attribute">        config.playback.timeouts </span>=<span class="hljs-string"> {
-            loading: 20,
-            buffering: 20,
-            connecting: 5
-        }</span>
-</code></pre><ul>
+<pre><code class="lang-javascript">config.playback.timeouts = {
+    loading: <span class="hljs-number">20</span>,
+    buffering: <span class="hljs-number">20</span>,
+    connecting: <span class="hljs-number">5</span>
+}
+</code></pre>
+<ul>
 <li>the LOADING event will be sent through metrics</li>
 <li>new pause reason &#39;playbackrestart&#39; in case of a pause for update source in playing state</li>
 <li>updateSource error handling</li>
@@ -660,37 +674,37 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 <li>hide middle playbutton in case of a playback restart via &#39;updateSource&#39;</li>
 <li>display muted autoplay icon till first &#39;unmute&#39;</li>
 </ul>
-<h1 id="-3-15-6-">[3.15.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version addresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-15-6-"><strong>[3.15.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version addresses an issue with the full screen functionality on iOS Safari. The player now can go full screen within nested iframes. NOTE: The iframe(s) must have the attribute &#39;allowfullscreen=&quot;allowfullscreen|true&quot;]**&#39; or just &#39;allowfullscreen&#39;. Another issue adressed is the handling of stable playback after viewport lost on IE/Edge. Here the detection is improved to prevent misbehaviour in case of not related framedropping.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>enable full screen on iOS within nested iframe(s)</li>
 <li>detection of IE/Edge viewport issue for stable playback</li>
 </ul>
-<h1 id="-3-15-5-">[3.15.5]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-15-5-"><strong>[3.15.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release patches an issue with the config handling. Now a copy of the config will be used for the setup instead of pointer.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>use only a copy of passed config object for setup</li>
 </ul>
-<h1 id="-3-15-4-">[3.15.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-15-4-"><strong>[3.15.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release patches an issue with bintu sources. Now after a successful bintu call the parsed rtmp config will be passed correctly. This issue was introduced in version 3.15.3.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>pass rtmp settings correctly in modified config object if bintu source is used</li>
 </ul>
-<h1 id="-3-15-3-">[3.15.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)</a>. Also a warnings will be fired if config properties are not valid or from wrong type. 
+<h2 id="-3-15-3-"><strong>[3.15.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type.
 The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:sales@nanocosmos.de">sales@nanocosmos.de</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>fire &#39;onError&#39; if an error occure during setup<ul>
@@ -718,7 +732,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>5208: Metrics configuration error. No credentials passed.</li>
 </ul>
 </li>
-<li>this codes will also be passed as property &#39;code&#39; in the reject error object </li>
+<li>this codes will also be passed as property &#39;code&#39; in the reject error object</li>
 <li>see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a></li>
 </ul>
 </li>
@@ -729,20 +743,21 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>disabled by default</li>
 <li>for more information contact our sales team: mailto:<a href="mailto:sales@nanocosmos.de">sales@nanocosmos.de</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
-<li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!<pre><code>  config.metrics = {
-      accountId: <span class="hljs-string">'myId'</span>,
-      accountKey: <span class="hljs-string">'sdfhe457zsjhnrtzd8'</span>,
-      userId: <span class="hljs-string">'myUserId'</span>,
-      eventId: <span class="hljs-string">'myEventId'</span>,
-      statsInterval: <span class="hljs-number">10</span>,
-      customField1: <span class="hljs-string">'custom'</span>,
-      customField2: <span class="hljs-number">42</span>,
-      customField3: <span class="hljs-literal">true</span>
-  }
-</code></pre></li>
+<li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!</li>
 </ul>
 </li>
 </ul>
+<pre><code class="lang-javascript">config.metrics = {
+    accountId: <span class="hljs-string">'myId'</span>,
+    accountKey: <span class="hljs-string">'sdfhe457zsjhnrtzd8'</span>,
+    userId: <span class="hljs-string">'myUserId'</span>,
+    eventId: <span class="hljs-string">'myEventId'</span>,
+    statsInterval: <span class="hljs-number">10</span>,
+    customField1: <span class="hljs-string">'custom'</span>,
+    customField2: <span class="hljs-number">42</span>,
+    customField3: <span class="hljs-literal">true</span>
+}
+</code></pre>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>stable resume playback on IE/edge if video was out of viewport</li>
@@ -750,57 +765,58 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>detect Windows 10</li>
 <li>pause on &#39;Destroy&#39; only if playing</li>
 </ul>
-<h1 id="-3-14-1-">[3.14.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-14-1-"><strong>[3.14.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version comes with some new features. The first one addresses the public &#39;onPlay&#39; event. Now some startup stats will be passed in the event object. These values represent the different states during startup from &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39; and at least &#39;playing&#39;, the total startup time.
 The second feature is the new public event &#39;onDestroy&#39;. This event is fired when the player is destroyed. In relation to that new feature we introduced the new pause reason &#39;destroy&#39;. If the player is playing on destroy, the player will be paused with this new reason.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
-<li><p>add startup stats to the public &#39;onPlay&#39; event</p>
-<ul>
+<li>add startup stats to the public &#39;onPlay&#39; event<ul>
 <li>subobject &#39;stats&#39; in &#39;event.data&#39;</li>
 <li>keys: &#39;connecting&#39;, &#39;connected&#39;, &#39;firstFragmentReceived&#39;, &#39;firstFrameRendered&#39;, &#39;playable&#39;, &#39;playing&#39;</li>
 <li>times in milliseconds relative to &#39;connecting&#39;</li>
 <li>see &#39;<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay&#39;">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay&#39;</a></li>
-<li>an example &#39;event.data.stats&#39; object:<pre><code>  {
-      "<span class="hljs-attribute">stats</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">connecting</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
-          "<span class="hljs-attribute">connected</span>": <span class="hljs-value"><span class="hljs-number">267</span></span>,
-          "<span class="hljs-attribute">firstFragmentReceived</span>": <span class="hljs-value"><span class="hljs-number">1865</span></span>,
-          "<span class="hljs-attribute">firstFrameRendered</span>": <span class="hljs-value"><span class="hljs-number">2028</span></span>,
-          "<span class="hljs-attribute">playable</span>": <span class="hljs-value"><span class="hljs-number">2029</span></span>,
-          "<span class="hljs-attribute">playing</span>": <span class="hljs-value"><span class="hljs-number">2448</span>
-      </span>}
-  </span>}
-</code></pre></li>
+<li>an example &#39;event.data.stats&#39; object:</li>
 </ul>
 </li>
-<li><p>new public event &#39;onDestroy&#39;</p>
-</li>
 </ul>
-<h1 id="-3-13-5-">[3.13.5]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<pre><code class="lang-javascript">{
+    <span class="hljs-string">"stats"</span>: {
+        <span class="hljs-string">"connecting"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-string">"connected"</span>: <span class="hljs-number">267</span>,
+        <span class="hljs-string">"firstFragmentReceived"</span>: <span class="hljs-number">1865</span>,
+        <span class="hljs-string">"firstFrameRendered"</span>: <span class="hljs-number">2028</span>,
+        <span class="hljs-string">"playable"</span>: <span class="hljs-number">2029</span>,
+        <span class="hljs-string">"playing"</span>: <span class="hljs-number">2448</span>
+    }
+}
+</code></pre>
+<ul>
+<li>new public event &#39;onDestroy&#39;</li>
+</ul>
+<h2 id="-3-13-5-"><strong>[3.13.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version improves the demo page. One part is to use &#39;updateSource&#39; for bintu multistream functionality.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>clean up demo ui</li>
 <li>use &#39;updateSource&#39; for bintu multistream switch</li>
 <li>update player only if streams changed</li>
 </ul>
-<h1 id="-3-13-3-">[3.13.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-13-3-"><strong>[3.13.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version addresses an issue with mimetype changes on &#39;updateSource&#39;. Now it can be switched between different mimetypes e.g. video/audio and video only.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>enable format (mimetype) changes for &#39;updateSource&#39;, e.g. switch between v/a and video only</li>
 </ul>
-<h1 id="-3-13-2-">[3.13.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-13-2-"><strong>[3.13.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings a new feature. Now it&#39;s possible to change the source without call setup again. The new feature is available over the new public function &#39;player.updateSource&#39;, which is a Promise.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>add new public function &#39;updateSource&#39;<ul>
@@ -812,67 +828,68 @@ The second feature is the new public event &#39;onDestroy&#39;. This event is fi
 </ul>
 </li>
 </ul>
-<pre><code>      player.updateSource(source).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
-          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config));
-      }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span> </span>{
-          <span class="hljs-built_in">console</span>.log(error);
-      });
-</code></pre><h1 id="-3-12-5-">[3.12.5]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<pre><code class="lang-javascript">player.updateSource(source).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'update source ok with config: '</span> + <span class="hljs-built_in">JSON</span>.stringify(config));
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(error);
+});
+</code></pre>
+<h2 id="-3-12-5-"><strong>[3.12.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version corrects two small issues. The playback wasn&#39;t stopped on iOS on tab change. Now on every &#39;focus lost&#39; on mobile devices the playback will be paused with reason &#39;playbacksuspended&#39;. The second fix addresses the &#39;playback started&#39; detection on iOS.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>pause with reason &#39;playbacksuspended&#39; if focus lost during tab change on iOS</li>
 <li>playback started detection on iOS</li>
 </ul>
-<h1 id="-3-12-4-">[3.12.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-12-4-"><strong>[3.12.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>In this version an issue with the loading icon is handled. The loading icon didn&#39;t disappear on play of video only streams. The issue was introduced with the previous version and only affected video only streams.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>hide loading icon on play for video only streams</li>
 </ul>
-<h1 id="-3-12-3-">[3.12.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-12-3-"><strong>[3.12.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>One part of this release addresses the correct indication of an audio symbol in case of muted autoplay or audio only. The second issue that is adressed handles the muted state on reset after an unsuccessful (denied) muted autoplay (automuted) on iOS. The last improvement is related to the behaviour in case of multiple destroy calls.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>display audio symbol correct in case of audio only and muted autoplay</li>
 <li>fire unmute on iOS on reset after not allowed muted autoplay (automuted)</li>
 <li>fix destroy functionality if called multiple times in uninitialized state</li>
 </ul>
-<h1 id="-3-12-2-">[3.12.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-12-2-"><strong>[3.12.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes the default value of the new config option &#39;playback.automute&#39;. It is disabled by default.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>set &#39;config.playback.automute&#39; to &#39;false&#39; by default</li>
 </ul>
-<h1 id="-3-12-1-">[3.12.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-12-1-"><strong>[3.12.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes an issue related to repeated setup calls without destroy calls in between. Now during the setup call a destroy/clean up will be performed internally if required.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>destroy player at begining of setup call</li>
 <li>clean destroy</li>
 </ul>
-<h1 id="-3-12-0-">[3.12.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-12-0-"><strong>[3.12.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings a new feature for autoplay. There is a new option &#39;config.playback.automute&#39; (disabled by default) which enables muted autoplay on browsers with autoplay policies. In case the play call is rejected by a policy the player will be muted to autoplay.
 Another feature is the option &#39;config.style.displayMutedAutoplay&#39; (enabled by default) which shows a muted symbol if playback was started with autoplay and muted. There is also a small fix for detecting playing state on iOS.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
-<li>enable auto muted playback with autoplay set in case of browser autoplay policy restriction <ul>
+<li>enable auto muted playback with autoplay set in case of browser autoplay policy restriction<ul>
 <li>can be set via &#39;config.playback.automute&#39;, default: false</li>
 </ul>
 </li>
-<li>enable displaying a muted symbol on muted autoplay <ul>
+<li>enable displaying a muted symbol on muted autoplay<ul>
 <li>can be set via &#39;config.style.displayMutedAutoplay&#39;, default: true</li>
 </ul>
 </li>
@@ -881,55 +898,52 @@ Another feature is the option &#39;config.style.displayMutedAutoplay&#39; (enabl
 <ul>
 <li>playing state detection on iOS</li>
 </ul>
-<h1 id="-3-11-0-">[3.11.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-11-0-"><strong>[3.11.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version introduces a new event &#39;onStreamInfoUpdate&#39; to indicate stream format changes. The event object is the same like in &#39;onStreamInfo&#39; with the changed values</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new h5live event &#39;onStreamInfoUpdate&#39; to indicate stream format changes</li>
 </ul>
-<h1 id="-3-10-3-">[3.10.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-10-3-"><strong>[3.10.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes a small bug with building the capabilities array.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>capabilities array</li>
 </ul>
-<h1 id="-3-10-2-">[3.10.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-10-2-"><strong>[3.10.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes a small bug with es6 syntax.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>remove es6 syntax</li>
 </ul>
-<h1 id="-3-10-1-">[3.10.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-10-1-"><strong>[3.10.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version improves the config handling and enables setting rtmp values over the params object.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>enable rtmp settings over &#39;config.source.h5live.params&#39; without the &#39;config.source.h5live.rtmp&#39; object</li>
 <li>config handling</li>
 </ul>
-<h1 id="-3-10-0-">[3.10.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-10-0-"><strong>[3.10.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings a new config option. It&#39;s now possible to add custom query params to the connection string. For this there is the new object &#39;config.source.h5live.params&#39;. Parameters can be added as key/value pair e.g.:</p>
-<pre><code>
-config.source.h5live.<span class="hljs-keyword">params</span> = {
+<pre><code class="lang-javascript">config.source.h5live.params = {
     <span class="hljs-string">'url'</span>: <span class="hljs-string">'rtmp://bintu-play.nanocosmos.de'</span>,
     <span class="hljs-string">'stream'</span>: <span class="hljs-string">'dtHSa-aEWRT'</span>,
     <span class="hljs-string">'custom_param'</span>: <span class="hljs-string">'very_custom'</span>
 }
-
-</code></pre><p>In this example we pass directly the rtmp settings, &#39;url&#39; and &#39;stream&#39;. If a &#39;config.source.h5live.rtmp&#39; object is declared, it will be overwritten. This will result for websocket in a connection string like this:</p>
-<pre><code>
-<span class="hljs-keyword">wss</span>://bintu-play.nanocosmos.de/h5live/stream/?url=rtmp<span class="hljs-number">%3</span>A<span class="hljs-number">%2</span>F<span class="hljs-number">%2</span>Fbintu-play.nanocosmos.de<span class="hljs-number">%3</span>A80<span class="hljs-number">%2</span>Fplay&amp;stream=dtHSa-aEWRT&amp;custom_param=very_custom&amp;cid=405498&amp;pid=43377944190
-
-</code></pre><p>This version also contains fixes for a wrong buffering state detection on iOS and one for the view. In the view now a configured &#39;scaling&#39; mode will be keeped over the whole lifetime of the player.</p>
-<h2 id="changelog">Changelog</h2>
+</code></pre>
+<p>In this example we pass directly the rtmp settings, &#39;url&#39; and &#39;stream&#39;. If a &#39;config.source.h5live.rtmp&#39; object is declared, it will be overwritten. This will result for websocket in a connection string like this:</p>
+<p><code>wss://bintu-play.nanocosmos.de/h5live/stream/?url=rtmp%3A%2F%2Fbintu-play.nanocosmos.de%3A80%2Fplay&amp;stream=dtHSa-aEWRT&amp;custom_param=very_custom&amp;cid=405498&amp;pid=43377944190</code></p>
+<p>This version also contains fixes for a wrong buffering state detection on iOS and one for the view. In the view now a configured &#39;scaling&#39; mode will be keeped over the whole lifetime of the player.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new h5live source object &#39;params&#39; to pass custom comnnection query parameters<ul>
@@ -937,32 +951,31 @@ config.source.h5live.<span class="hljs-keyword">params</span> = {
 </ul>
 </li>
 </ul>
-<pre><code>
-config.source.h5live.<span class="hljs-keyword">params</span> = {
+<pre><code class="lang-javascript">config.source.h5live.params = {
     <span class="hljs-string">'url'</span>: <span class="hljs-string">'rtmp://bintu-play.nanocosmos.de'</span>,
     <span class="hljs-string">'stream'</span>: <span class="hljs-string">'dtHSa-aEWRT'</span>,
     <span class="hljs-string">'custom_param'</span>: <span class="hljs-string">'very_custom'</span>
 }
-
-</code></pre><h3 id="fixed">Fixed</h3>
+</code></pre>
+<h3 id="fixed">Fixed</h3>
 <ul>
 <li>buffering state detection on iOS</li>
 <li>keep scaling mode at players lifetime</li>
 </ul>
-<h1 id="-3-9-7-">[3.9.7]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-9-7-"><strong>[3.9.7]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes a bug for secured playback on iOS. In case of an error the pause reason now will be correct.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>correct pause reason for secured streams on iOS</li>
 </ul>
-<h1 id="-3-9-6-">[3.9.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-9-6-"><strong>[3.9.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings several improvements and some fixes. Improvements are a better error message in case of an unsupported browser and the re-enabeling of buffer increase automation
 in case of significant frame dropping in Firefox to reach stable playback. Fixed are occasionally stream start problems in Firefox with streams encoded by the Open Broadcaster Software Studio
 and a wrong object path of the quality object as part of the stats event object.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>optimize setup error message in case that no supported tech is found</li>
@@ -973,28 +986,28 @@ and a wrong object path of the quality object as part of the stats event object.
 <li>occasionally start problems in Firefox with streams encoded by the OBS (Open Broadcaster Software Studio)</li>
 <li>fix path of the quality object in the stats event object</li>
 </ul>
-<h1 id="-3-9-2-">[3.9.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-9-2-"><strong>[3.9.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes a bug for Microsoft IE and Edge. Now connection errors will be parsed correctly.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>correct connection error codes for Microsoft IE and Edge</li>
 </ul>
-<h1 id="-3-9-1-">[3.9.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-9-1-"><strong>[3.9.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version fixes a bug in Safari Mac OS X. Now black blinking on startup will be prevented.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>prevent black blinking at playback start for Safari Mac OS X</li>
 </ul>
-<h1 id="-3-9-0-">[3.9.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-9-0-"><strong>[3.9.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings a new security option. It&#39;s now possible to secure streams and play them back savely with the NanoPlayer.
 After a stream is marked as secured, it&#39;s only possible to playback by giving the credentials via &#39;config.h5live.security&#39;.
 New errors will thrown if the token is invalid/mismatching (4901), the service is rejected (4900), the credentials are incomplete or expired (4903) and the service is not found (4904).</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>enable stream security for h5live playback<ul>
@@ -1010,18 +1023,19 @@ New errors will thrown if the token is invalid/mismatching (4901), the service i
 </ul>
 </li>
 </ul>
-<pre><code>      <span class="hljs-tag">security</span>: {
-          <span class="hljs-attribute">token</span>: <span class="hljs-string">'ewr6tzv345zw4z7ezuw4cf3c'</span>, <span class="hljs-comment">// The security service token.</span>
-          <span class="hljs-attribute">expires</span>: <span class="hljs-string">'1519819200'</span>, <span class="hljs-comment">// The time the token expires (system time).</span>
-          <span class="hljs-attribute">options</span>: <span class="hljs-string">'15'</span>, <span class="hljs-comment">// The security options.</span>
-          <span class="hljs-attribute">tag</span>: <span class="hljs-string">'anyTag'</span> <span class="hljs-comment">// The custom tag to decrypt the token.</span>
-      }
-</code></pre><h1 id="-3-8-2-">[3.8.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<pre><code class="lang-javascript">security: {
+    token: <span class="hljs-string">'ewr6tzv345zw4z7ezuw4cf3c'</span>, <span class="hljs-comment">// The security service token.</span>
+    expires: <span class="hljs-string">'1519819200'</span>, <span class="hljs-comment">// The time the token expires (system time).</span>
+    options: <span class="hljs-string">'15'</span>, <span class="hljs-comment">// The security options.</span>
+    tag: <span class="hljs-string">'anyTag'</span> <span class="hljs-comment">// The custom tag to decrypt the token.</span>
+}
+</code></pre>
+<h2 id="-3-8-2-"><strong>[3.8.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings a new feature and several patches. We now enable adaptive buffer handling. This can be enabled by setting the new &#39;config.tweaks.buffewrDynamic&#39;.
 In case of short time bufferings the buffer will be stabilized. If stable playback is reached after a defined cooldown time, it will be tried to decrease the buffer till the original values. Please see documentation for further informations.
 The patches bring improvements for Microsoft Edge / IE and iOS. Also network related fixes are included.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>enable adaptive buffer handling (iOS already has one)<ul>
@@ -1032,12 +1046,13 @@ The patches bring improvements for Microsoft Edge / IE and iOS. Also network rel
 </ul>
 </li>
 </ul>
-<pre><code>      <span class="hljs-tag">bufferDynamic</span>: {
-          <span class="hljs-attribute">offsetThreshold</span>: <span class="hljs-number">2</span>, <span class="hljs-comment">//  The threshold time between two bufferings in seconds. If the measured value is lower, the buffer will be increased by offsetStep.</span>
-          <span class="hljs-attribute">offsetStep</span>: <span class="hljs-number">0.5</span>, <span class="hljs-comment">// The step to increase in seconds. Also the step to decrease in cooldown.</span>
-          <span class="hljs-attribute">cooldownTime</span>: <span class="hljs-number">10</span> <span class="hljs-comment">// The time to check stable playback. If stable playback is detected, the buffer values will be decreased till original buffer values are reached.</span>
-      }
-</code></pre><h3 id="fixed">Fixed</h3>
+<pre><code class="lang-javascript">bufferDynamic: {
+    offsetThreshold: <span class="hljs-number">2</span>, <span class="hljs-comment">//  The threshold time between two bufferings in seconds. If the measured value is lower, the buffer will be increased by offsetStep.</span>
+    offsetStep: <span class="hljs-number">0.5</span>, <span class="hljs-comment">// The step to increase in seconds. Also the step to decrease in cooldown.</span>
+    cooldownTime: <span class="hljs-number">10</span> <span class="hljs-comment">// The time to check stable playback. If stable playback is detected, the buffer values will be decreased till original buffer values are reached.</span>
+}
+</code></pre>
+<h3 id="fixed">Fixed</h3>
 <ul>
 <li>reconnectable network error handling</li>
 <li>buffer issue with Microsoft Surface</li>
@@ -1048,28 +1063,28 @@ The patches bring improvements for Microsoft Edge / IE and iOS. Also network rel
 <li>try restart on media decode error only</li>
 <li>hls stats collecting and buffer controlling</li>
 </ul>
-<h1 id="-3-7-2-">[3.7.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-7-2-"><strong>[3.7.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version patches a bug. It fixes a loading timeout on second play call.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>fix loading timeout on second play call</li>
 </ul>
-<h1 id="-3-7-1-">[3.7.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-7-1-"><strong>[3.7.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version patches a bug on iOS. It fixes the pausing in the case that the player losts it&#39;s focus.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>pausing on lost focus for iOS</li>
 </ul>
-<h1 id="-3-7-0-">[3.7.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-7-0-"><strong>[3.7.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version brings new features. A new member variable is added, &#39;player.id&#39;. Its a unique string of 11 characters to identify the player instance.
 Additionally this player id will be passed through the event object of all public events as &#39;event.id&#39;. Now the player version will be passed as &#39;event.version&#39; too.
 In the stream info event additionally the stream url will be passed as &#39;event.data.streamInfo.url&#39;.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new player member variable &#39;player.id&#39;, a unique string created on instantiation</li>
@@ -1080,24 +1095,24 @@ In the stream info event additionally the stream url will be passed as &#39;even
 <ul>
 <li>fire pause normal only once</li>
 </ul>
-<h1 id="-3-6-7-">[3.6.7]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-6-7-"><strong>[3.6.7]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains a patch for the reconnection functionality. A reconnect will be done after a calculated delay.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>fix start reconnect after given delay </li>
+<li>fix start reconnect after given delay</li>
 </ul>
-<h1 id="-3-6-6-">[3.6.6]</h1>
-<h2 id="release-notes">Release Notes</h2>
-<p>This version contains patches for mobile playback, especially for iOS. 
-A potentially performance impairing issue in the internal processing 
-on iOS has been removed. 
-If config.playback.forceTech is set to &#39;h5live&#39;, 
+<h2 id="-3-6-6-"><strong>[3.6.6]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version contains patches for mobile playback, especially for iOS.
+A potentially performance impairing issue in the internal processing
+on iOS has been removed.
+If config.playback.forceTech is set to &#39;h5live&#39;,
 h5live playback will now be forced for all platforms including iOS.
 The nanocosmos logo has been removed from the flash fallback module.
 Automatic pausing on lost focus has been added for Android too.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>handle &#39;playback suspended&#39; also on Android (iOS since 2.7.1) in case of lost focus / menu by pausing the player</li>
@@ -1116,24 +1131,24 @@ Automatic pausing on lost focus has been added for Android too.</p>
 <li>disable play recovering for mobile</li>
 <li>fix forcing tech &#39;h5live&#39; on iOS</li>
 </ul>
-<h1 id="-3-5-2-">[3.5.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-5-2-"><strong>[3.5.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains a patch for the full screen functionality.
 Now full screen will only be exited, if the full screen element is the player instance.
 Before it exited every full screen on destroy without a check.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>full screen handling</li>
 </ul>
-<h1 id="-3-5-1-">[3.5.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-5-1-"><strong>[3.5.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release brings new features. There are new statistics available via the &#39;onStats&#39; event. Now the bitrate in Bit/s will be measured and also the network framerate in fps.
 For both it will be measured the current value over one second and the minimum, maximum and average over the last 10 seconds. They are accessable over the &#39;event.data.stats.bitrate&#39;
 and the &#39;event.data.stats.framerate&#39; objects. This feature is not available on iOS and the values are always &#39;0&#39; in this case.
 Another feature is auto rotation for mobile streams from our
 nanoStream Mobile Apps. Its enabled if &#39;playback.metadata&#39; is set to true.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>new stats objects &#39;bitrate&#39; and &#39;framerate&#39; (network framerate) in &#39;onStats&#39; event (NOT AVAILABLE FOR IOS)</li>
@@ -1143,10 +1158,10 @@ nanoStream Mobile Apps. Its enabled if &#39;playback.metadata&#39; is set to tru
 <ul>
 <li>remove unwanted currentTarget from &#39;event.data&#39; object</li>
 </ul>
-<h1 id="-3-4-1-">[3.4.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-4-1-"><strong>[3.4.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version contains patches for iOS full screen functionality if meta tag &#39;viewport&#39; is set and the autoplay policy of Safari 11, where only muted autoplay is allowed.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>handle autoplay policy of Safari 11 by checking user gesture requirement (muted autoplay allowed)</li>
@@ -1155,35 +1170,35 @@ nanoStream Mobile Apps. Its enabled if &#39;playback.metadata&#39; is set to tru
 <ul>
 <li>iOS full screen functionality if meta tag &#39;viewport&#39; is set</li>
 </ul>
-<h1 id="-3-4-0-">[3.4.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-4-0-"><strong>[3.4.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <h3 id="highly-recommended">HIGHLY RECOMMENDED</h3>
 <p>This version contains improved connectivity and latency for iOS 11 compared to iOS 10, and a workaround for an internal iOS11 system issue.
 It is highly recommended to use this version to avoid potentially higher network load and degraded user experience for iOS 11 users.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>connectivity and latency for iOS 11</li>
 </ul>
-<h1 id="-3-3-4-">[3.3.4]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-3-4-"><strong>[3.3.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version includes a fix for the muted state of the player, if the player will be set up muted. The state wasn&#39;t changed and no event was fired.
 Now the &#39;onMuted&#39; event fires immediately with the setuo promise.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>change muted state and &#39;onMuted&#39; event firing within the setup promise</li>
 </ul>
-<h1 id="-3-3-3-">[3.3.3]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-3-3-"><strong>[3.3.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version includes a fix for the flash fallback. It fixes an undefined error  on setuo if container div id is different than &#39;playerDiv&#39;.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>undefined error with flash fallback player on setuo if container div id is different then &#39;playerDiv&#39;</li>
 </ul>
-<h1 id="-3-3-2-">[3.3.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-3-2-"><strong>[3.3.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release brings many features. We introduce the new &#39;keepConnection&#39; functionality (supported with h5live server 1.8.0.0 and higher).
 This enables to have always a connection to the h5live server (websocket only), also if the player is not playing.
 Another main feature is the new reconnect logic. It enables reconnects to the h5live server in case of recoverable network errors. If the player is playing, the playback resumes after a successful reconnect.
@@ -1191,7 +1206,7 @@ Related to the reconnect we added the value &#39;connectDelay&#39; to the event 
 Also now the network error 4503: service unavailable will be dispatched and passed through the &#39;onError&#39; event.
 For diagnostics of the websocket connection we now use &#39;performance.mark()&#39; to log different states of the connection with timestamps.
 In this release are also several fixes. There are fixes for the scaling functionality, the h5live source parsing with bintu rtmp playout object only and at least we removed flash test embed on player load.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>enable always keep connected for websocket to the h5live server (h5live server 1.8.0.0 and higher)<ul>
@@ -1206,27 +1221,28 @@ In this release are also several fixes. There are fixes for the scaling function
 </ul>
 </li>
 </ul>
-<pre><code>      <span class="hljs-tag">reconnect</span>: {
-          <span class="hljs-attribute">minDelay</span>: <span class="hljs-number">2</span>, <span class="hljs-comment">//  The minimum time to reconnect in seconds. The lowest possible value is 1 sec.</span>
-          <span class="hljs-attribute">maxDelay</span>: <span class="hljs-number">10</span>, <span class="hljs-comment">// The maximum time to reconnect in seconds.</span>
-          <span class="hljs-attribute">delaySteps</span>: <span class="hljs-number">10</span>, <span class="hljs-comment">// This number of steps till the maximum delay should reached.</span>
-          <span class="hljs-attribute">maxRetries</span>: <span class="hljs-number">10</span> <span class="hljs-comment">// The maximum count of reconnect tries. If set to zero no reconnect will be done.</span>
-      }
-</code></pre><ul>
+<pre><code class="lang-javascript">reconnect: {
+    minDelay: <span class="hljs-number">2</span>, <span class="hljs-comment">//  The minimum time to reconnect in seconds. The lowest possible value is 1 sec.</span>
+    maxDelay: <span class="hljs-number">10</span>, <span class="hljs-comment">// The maximum time to reconnect in seconds.</span>
+    delaySteps: <span class="hljs-number">10</span>, <span class="hljs-comment">// This number of steps till the maximum delay should reached.</span>
+    maxRetries: <span class="hljs-number">10</span> <span class="hljs-comment">// The maximum count of reconnect tries. If set to zero no reconnect will be done.</span>
+}
+</code></pre>
+<ul>
 <li>add property &#39;connectDelay&#39; to the &#39;event.data&#39; object of &#39;onLoading&#39;<ul>
 <li>the delay in milliseconds before start connecting to the server</li>
 <li>positive if a reconnect is imminent, otherwise zero</li>
 </ul>
 </li>
 <li>dispatch network error 4503: service unavailable</li>
-<li>add performance marks with timestamps (see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks)">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks)</a>,
+<li>add performance marks with timestamps (see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks</a>),
 the middle part of the name string is the elementId of the player container (not supported on Safari 11 OSX and iOS):<ul>
-<li>&#39;nano.[playerDivId].connecting&#39;</li>
-<li>&#39;nano.[playerDivId].connected&#39;</li>
-<li>&#39;nano.[playerDivId].disconnected&#39;</li>
-<li>&#39;nano.[playerDivId].resuming&#39;</li>
-<li>&#39;nano.[playerDivId].firstFragmentReceived&#39;</li>
-<li>&#39;nano.[playerDivId].firstFrameRendered&#39;</li>
+<li>&#39;nano.[playerDivId]**.connecting&#39;</li>
+<li>&#39;nano.[playerDivId]**.connected&#39;</li>
+<li>&#39;nano.[playerDivId]**.disconnected&#39;</li>
+<li>&#39;nano.[playerDivId]**.resuming&#39;</li>
+<li>&#39;nano.[playerDivId]**.firstFragmentReceived&#39;</li>
+<li>&#39;nano.[playerDivId]**.firstFrameRendered&#39;</li>
 </ul>
 </li>
 <li>new public event &#39;onWarning&#39; with a warning message</li>
@@ -1237,25 +1253,25 @@ the middle part of the name string is the elementId of the player container (not
 <li>enable h5live source with bintu rtmp playout object only</li>
 <li>fix missing scaling config property</li>
 </ul>
-<h1 id="-3-2-2-">[3.2.2]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-2-2-"><strong>[3.2.2]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>start logic for IE/Edge</li>
 </ul>
-<h1 id="-3-2-1-">[3.2.1]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-2-1-"><strong>[3.2.1]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>buffer removal check</li>
 </ul>
-<h1 id="-3-2-0-">[3.2.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-2-0-"><strong>[3.2.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>In this release we added the opportunity to create an audio player without video functionality.
 This can be enabled by setting in the style object of the config the new property &#39;audioPlayer&#39; to &#39;true&#39;,
 for example &#39;config.style.audioPlayer = true&#39;.
 Controls can be enabled/disabled. The size can be customized via &#39;width&#39; and &#39;height&#39;. Default is 640px * 51px.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>enable the creation of an audio player without video functionality via &#39;config.style.audioPlayer = true&#39;<ul>
@@ -1265,28 +1281,28 @@ Controls can be enabled/disabled. The size can be customized via &#39;width&#39;
 </ul>
 </li>
 </ul>
-<h1 id="-3-1-0-">[3.1.0]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-1-0-"><strong>[3.1.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release comes improvements for the playback on iOS devices.
-We introduce an adaptive buffer control depending on the buffer requirements of the iOS video element 
-to achieve smooth playback while attempting to keep the latency as low possible. 
-The adaptive buffer control is enabled by default for iOS clients. 
+We introduce an adaptive buffer control depending on the buffer requirements of the iOS video element
+to achieve smooth playback while attempting to keep the latency as low possible.
+The adaptive buffer control is enabled by default for iOS clients.
 There is a direct correlation between the integrity of the rtmp source stream and the buffer requirements.</p>
 <p>The second improvement is that it&#39;s now possible to configure the buffer settings also for iOS devices directly.
 If the buffer tweaks will be set via config,
 the adaptive buffer control will be disabled and the given value will be used as discret values.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>adaptive buffer control related to the buffer requirements on iOS</li>
 <li>enable setting buffer tweaks via config for iOS as discret values</li>
 <li>buffering detection for iOS</li>
 </ul>
-<h1 id="-3-0-11-">[3.0.11]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-0-11-"><strong>[3.0.11]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>The main improvements of this release are getting more stability
 in play detection and pausing behaviour.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>user gesture required detection for mobile</li>
@@ -1294,61 +1310,62 @@ in play detection and pausing behaviour.</p>
 <li>enable usage of event handler functions without defining an event object parameter</li>
 <li>video tag destroy</li>
 </ul>
-<h1 id="-3-0-10-">[3.0.10]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-0-10-"><strong>[3.0.10]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>remove source correctly on pause to disable multiple stream connections (iOS)</li>
 <li>check media source for mime type support</li>
 <li>fix playback suspension with video only streams in Chrome &gt; 57 on lost page focus</li>
 </ul>
-<h1 id="-3-0-9-">[3.0.9]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-0-9-"><strong>[3.0.9]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>The main improvements of this release are getting more stability
 for resuming after pause.</p>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>stable playback resuming after pause</li>
 <li>resume playback also if PLAY is called while pausing</li>
 <li>replace deprecated unescape/escape with decodeURIComponent/encodeURIComponent</li>
 </ul>
-<h1 id="-3-0-4-">[3.0.4]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-0-4-"><strong>[3.0.4]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="improved">Improved</h3>
 <ul>
 <li>stream start</li>
 </ul>
-<h1 id="-3-0-3-">[3.0.3]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-3-0-3-"><strong>[3.0.3]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
 <li>preventing the stream position from moving back in time on iOS devices</li>
 <li>signalling of pause state reasons</li>
 </ul>
-<h1 id="-3-0-2-">[3.0.2]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-3-0-2-"><strong>[3.0.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <h3 id="breaking-change">BREAKING CHANGE</h3>
-<p>The automatic fallback to the nanoStream Cloud h5live server has been removed. 
-As a result providing the h5live.server configuration object is now mandatory, 
-except if the server configuration is done through the bintu API by providing a bintu source. 
-For playback from the nanoStream Cloud without the bintu API the following values have to be set. </p>
-<pre><code>source.h5live.<span class="hljs-keyword">server</span>.websocket = <span class="hljs-string">'wss://bintu-h5live.nanocosmos.de:443/h5live/stream'</span>;
-source.h5live.<span class="hljs-keyword">server</span>.hls = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8'</span>;
-source.h5live.<span class="hljs-keyword">server</span>.progressive = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'</span>;
-</code></pre><p>For the On-Premise setup this server values have to be replaced with the own server urls.</p>
+<p>The automatic fallback to the nanoStream Cloud h5live server has been removed.
+As a result providing the h5live.server configuration object is now mandatory,
+except if the server configuration is done through the bintu API by providing a bintu source.
+For playback from the nanoStream Cloud without the bintu API the following values have to be set.</p>
+<pre><code class="lang-javascript">source.h5live.server.websocket = <span class="hljs-string">'wss://bintu-h5live.nanocosmos.de:443/h5live/stream'</span>;
+source.h5live.server.hls = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8'</span>;
+source.h5live.server.progressive = <span class="hljs-string">'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'</span>;
+</code></pre>
+<p>For the On-Premise setup this server values have to be replaced with the own server urls.</p>
 <h3 id="breaking-change">BREAKING CHANGE</h3>
-<p>The seperate configuration of the rtmp url for the fallback to flash player, 
-the source.rtmp object, has been removed. Instead the rtmp url and stream name 
+<p>The seperate configuration of the rtmp url for the fallback to flash player,
+the source.rtmp object, has been removed. Instead the rtmp url and stream name
 from the source.h5live.rtmp object will be used in this case.</p>
-<p>Since this version the last video frame can be kept displayed after pausing the player, 
-instead of displaying a black frame. The related configuration option is 
-&#39;style.keepFrame&#39; = [true/false], which is enabled by default.</p>
-<p>Support for playback of audio only streams has been added (at least server version 1.7 required). 
-An audio symbol can be displayed during the playback of an audio only stream. 
-The related configuration option is 
-&#39;style.displayAudioOnly&#39; = [true/false], which is enabled by default.</p>
-<h2 id="changelog">Changelog</h2>
+<p>Since this version the last video frame can be kept displayed after pausing the player,
+instead of displaying a black frame. The related configuration option is
+&#39;style.keepFrame&#39; = [true/false]**, which is enabled by default.</p>
+<p>Support for playback of audio only streams has been added (at least server version 1.7 required).
+An audio symbol can be displayed during the playback of an audio only stream.
+The related configuration option is
+&#39;style.displayAudioOnly&#39; = [true/false]**, which is enabled by default.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>add audio only support</li>
@@ -1372,8 +1389,8 @@ The related configuration option is
 <li>frame drop handling only for Firefox</li>
 <li>destroy player on new setup call</li>
 </ul>
-<h1 id="-2-8-1-">[2.8.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-2-8-1-"><strong>[2.8.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>The main changes of this release are adding quality metrics for firefox
 to detect frame dropping and handling by buffer increasing.
 Fixed is the user gesture error on playback start by tapping
@@ -1387,7 +1404,7 @@ Fixed is the playback start on start buffer.</p>
 <li><p>Fixed is the playback start on start buffer.</p>
 </li>
 </ul>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>quality handler with quality measuring and frame drop detection/handling (Firefox)</li>
@@ -1398,8 +1415,8 @@ Fixed is the playback start on start buffer.</p>
 <li>removed deprecated single/double tap logic</li>
 <li>added simple click event</li>
 </ul>
-<h1 id="-2-7-1-">[2.7.1]</h1>
-<h2 id="release-notes">Release Notes</h2>
+<h2 id="-2-7-1-"><strong>[2.7.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>The main changes of this release are improvements for playback on safari.
 The stream does not stops anymore in case of large gaps in buffer
 or unexpected pause calls. It is added a handling to keep low latency playback
@@ -1410,7 +1427,7 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li><p>Added a handling to seek over buffer gaps to keep low latency playback. This does not apply for iOS.</p>
 </li>
 </ul>
-<h2 id="changelog">Changelog</h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>handle &#39;playback suspended&#39; on iOS in case of lost focus / menu by pausing the player</li>
@@ -1421,16 +1438,16 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <ul>
 <li>google map parsing in multiplayer demo</li>
 </ul>
-<h1 id="-2-4-1-">[2.4.1]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-2-4-1-"><strong>[2.4.1]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>google maps to nanoplayer-multi demo</li>
 <li>player capabilities</li>
 <li>enable video tag re-use</li>
 </ul>
-<h1 id="-2-3-8-">[2.3.8]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-2-3-8-"><strong>[2.3.8]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>remove doubleclick interaction</li>
@@ -1439,8 +1456,8 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li>disable mobile autoplay in demo</li>
 <li>buffer value change for stable playback on IE/Edge, framerate dependent</li>
 </ul>
-<h1 id="-2-3-4-">[2.3.4]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-2-3-4-"><strong>[2.3.4]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>add multiplayer</li>
@@ -1479,8 +1496,8 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li>default server error</li>
 <li>seek instead of increase speed in buffer control for IE/Edge</li>
 </ul>
-<h1 id="-2-0-3-">[2.0.3]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-2-0-3-"><strong>[2.0.3]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>scaling<ul>
@@ -1508,8 +1525,8 @@ in case of multiple buffered ranges by a seek over buffer gaps (exclude iOS).</p
 <li>scaling iOS</li>
 <li>interaction touch/left mouse only</li>
 </ul>
-<h1 id="-1-5-4-">[1.5.4]</h1>
-<h2 id="changelog">Changelog</h2>
+<h2 id="-1-5-4-"><strong>[1.5.4]</strong></h2>
+<h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
 <li>ios 10 metadata</li>
