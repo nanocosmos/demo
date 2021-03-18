@@ -2,7 +2,7 @@
  * Created by user on 3/22/2017.
  */
 define([], function () {
-    function random(length, capitals, minuscules, numbers) {
+    function random (length, capitals, minuscules, numbers) {
         if (capitals === undefined) capitals = true;
         if (minuscules === undefined) minuscules = true;
         if (numbers === undefined) numbers = true;
@@ -23,7 +23,7 @@ define([], function () {
         return product;
     }
 
-    function interpolate(start, end) {
+    function interpolate (start, end) {
         var product = '';
 
         for (var i = start; i <= end; ++i) {
@@ -34,6 +34,6 @@ define([], function () {
     }
 
     return {
-        random: random
+        'random': random
     };
 });

@@ -35,15 +35,19 @@ define([
         ];
 
         var emitterListeners = [
-            {type: uiEvents.SELECT_FORM,    listener: onSelectForm},
-            {type: uiEvents.APPLY_FORM,     listener: onApplyForm},
-            {type: uiEvents.SPLIT_CUSTOM,   listener: onSplitCustom}
+            { 'type'     : uiEvents.SELECT_FORM,
+                'listener' : onSelectForm },
+            { 'type'     : uiEvents.APPLY_FORM,
+                'listener' : onApplyForm },
+            { 'type'     : uiEvents.SPLIT_CUSTOM,
+                'listener' : onSplitCustom }
         ];
 
-        function init() {
-            listenerManager.add({target: emitter,       listeners: emitterListeners});
+        function init () {
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : emitterListeners });
 
-            validate1.concat(validate2).concat(validate3).forEach(function(id){
+            validate1.concat(validate2).concat(validate3).forEach(function (id) {
                 if (localStorage) {
                     $(id).val(localStorage.getItem(id));
                 }
@@ -53,8 +57,9 @@ define([
             validate();
         }
 
-        function destroy() {
-            listenerManager.remove({target: emitter,    listeners: emitterListeners});
+        function destroy () {
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : emitterListeners });
         }
 
         function onSelectForm (e) {
@@ -69,7 +74,7 @@ define([
             }
         }
 
-        function onSplitCustom(e) {
+        function onSplitCustom (e) {
             $(elementIds.INPUT_BINTU_APIURL).val(e.data.apiurl).trigger('blur');
             $(elementIds.INPUT_BINTU_STREAMID).val(e.data.streamid).trigger('blur');
             $(elementIds.INPUT_SERVER_WSS).val(e.data.wss).trigger('blur');
@@ -96,7 +101,7 @@ define([
                 valid = valid && !!$(element).val();
             });
 
-            validateArr = [validate2[0],validate2[1]];
+            validateArr = [validate2[0], validate2[1]];
             validateArr.forEach(function (element) {
                 valid = valid && !!((!$(element).val() && $(validate2[2]).val()) || $(element).val());
             });
@@ -108,12 +113,13 @@ define([
                 }
             }
 
-            emitter.emit(uiEvents.FORM_VALIDATED, { formId: formId, valid: valid });
+            emitter.emit(uiEvents.FORM_VALIDATED, { 'formId' : formId,
+                'valid'  : valid });
         }
 
-        function getConfiguration() {
+        function getConfiguration () {
             var config = {
-                source: {}
+                'source': {}
             };
 
             var bintuApiUrl = $(elementIds.INPUT_BINTU_APIURL).val();
@@ -127,34 +133,35 @@ define([
 
             if (bintuStreamId) {
                 config.source = {
-                    bintu: {
-                        apiurl: bintuApiUrl ? bintuApiUrl : 'https://c-t5-bintu.nanocosmos.de',
-                        streamid: bintuStreamId
+                    'bintu': {
+                        'apiurl'   : bintuApiUrl ? bintuApiUrl : 'https://c-t5-bintu.nanocosmos.de',
+                        'streamid' : bintuStreamId
                     }
                 };
                 bintu.setup(config).then(function (_config) {
                     delete _config.source.bintu;
                     setConfig(_config);
                 });
-            } else {
+            }
+            else {
                 config.source = {
-                    h5live: {
-                        rtmp: {
-                            url: url,
-                            streamname: streamname
+                    'h5live': {
+                        'rtmp': {
+                            'url'        : url,
+                            'streamname' : streamname
                         }
                     }
-                }
+                };
                 setConfig(config);
             }
 
-            function setConfig(config) {
+            function setConfig (config) {
                 if (wss && hls) {
                     config.source.h5live = config.source.h5live || {};
                     config.source.h5live.server = {
-                        websocket: wss,
-                        hls: hls
-                    }
+                        'websocket' : wss,
+                        'hls'       : hls
+                    };
                 }
 
                 if (token && token.length) {
@@ -163,12 +170,12 @@ define([
 
                 if (tweaks && tweaks.length) {
                     config.tweaks = {
-                        buffer: {}
+                        'buffer': {}
                     };
                     tweaks = tweaks.replace(/\s/g, '').replace(/;|:/g, ',').split(',');
 
                     var keys = ['min', 'start', 'target', 'limit', 'max'];
-                    for (var i = 0, len = Math.min(tweaks.length, keys.length) ; i < len; i += 1) {
+                    for (var i = 0, len = Math.min(tweaks.length, keys.length); i < len; i += 1) {
                         if (!isNaN(tweaks[i])) config.tweaks.buffer[keys[i]] = parseFloat(tweaks[i]);
                     }
                 }
@@ -179,11 +186,11 @@ define([
         init();
 
         return {
-            destroy: destroy
-        }
+            'destroy': destroy
+        };
     }
 
     return {
-        create: create
+        'create': create
     };
 });

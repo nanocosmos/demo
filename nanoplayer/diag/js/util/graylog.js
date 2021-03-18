@@ -1,9 +1,9 @@
-﻿/**
+/**
  * Created by nandor.kostyo on 8/21/2017.
  */
 define([], function () {
-    function log(data) {
-        var url = 'https://glog1.nanocosmos.de/gelf/hfgwj472649fkjah'
+    function log (data) {
+        var url = 'https://glog1.nanocosmos.de/gelf/hfgwj472649fkjah';
         var request = new XMLHttpRequest();
         request.open('POST', url, true);
         for (var a in self.header) {
@@ -47,7 +47,7 @@ define([], function () {
         else {
             request.send();
         }
-    };
+    }
 
     return {
         'log': log

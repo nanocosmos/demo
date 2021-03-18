@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2016 nanocosmos IT GmbH. All rights reserved.
  * http://www.nanocosmos.de
  * Bintu Release Version 0.5
@@ -30,9 +30,10 @@ define([], function () {
      */
     var Bintu = function (apiUrl, apiKey, playerKey, keyMode) {
         if (!(apiUrl.length > 0 && (typeof apiUrl === 'string' || apiUrl instanceof String))) {
-            throw new Error("The param 'apiUrl' must be of type 'string' and also may not be empty string.");
+            throw new Error('The param \'apiUrl\' must be of type \'string\' and also may not be empty string.');
             return;
-        } else {
+        }
+        else {
             this.apiUrl = apiUrl;
         }
         if (!!apiKey && (typeof apiKey === 'string' || apiKey instanceof String)) {
@@ -44,8 +45,9 @@ define([], function () {
         if (!!keyMode && (typeof keyMode === 'string' || keyMode instanceof String)) {
             if (keyMode === 'api' || keyMode === 'player') {
                 this.keyMode = keyMode;
-            } else {
-                throw new Error("The param 'keyMode' must be 'api', 'player' or undefined");
+            }
+            else {
+                throw new Error('The param \'keyMode\' must be \'api\', \'player\' or undefined');
                 return;
             }
         }
@@ -163,7 +165,7 @@ define([], function () {
     var Request = function (method, url, header, async, success, error) {
         var self = this;
         self.method = method || 'GET';
-        self.url = url || "http://localhost:8088";
+        self.url = url || 'http://localhost:8088';
         self.header = header || {};
         self.async = async || true;
         self.onSuccess = success || function (request) { };
@@ -176,35 +178,51 @@ define([], function () {
             }
             request.onreadystatechange = function () {
                 if (request.readyState === 4 && request.status === 200) {
-                    "function" === typeof self.onSuccess && self.onSuccess(request);
-                } else if (request.readyState === 4 && request.status !== 200) {
-                    "function" === typeof self.onError && self.onError({ "error": "onstatuserror", request: request });
+                    'function' === typeof self.onSuccess && self.onSuccess(request);
                 }
-            }
-            request.onabort = function () { "function" === typeof self.onError && self.onError({ "error": "onabort", request: request }); };
-            request.onerror = function () { "function" === typeof self.onError && self.onError({ "error": "onerror", request: request }); };
-            request.ontimeout = function () { "function" === typeof self.onError && self.onError({ "error": "ontimeout", request: request }); };
-            if (typeof data !== "undefined") {
+                else if (request.readyState === 4 && request.status !== 200) {
+                    'function' === typeof self.onError && self.onError({ 'error'   : 'onstatuserror',
+                        'request' : request });
+                }
+            };
+            request.onabort = function () {
+                'function' === typeof self.onError && self.onError({ 'error'   : 'onabort',
+                    'request' : request });
+            };
+            request.onerror = function () {
+                'function' === typeof self.onError && self.onError({ 'error'   : 'onerror',
+                    'request' : request });
+            };
+            request.ontimeout = function () {
+                'function' === typeof self.onError && self.onError({ 'error'   : 'ontimeout',
+                    'request' : request });
+            };
+            if (typeof data !== 'undefined') {
                 if (typeof data === 'string') {
                     try {
                         data = JSON.parse(data);
-                    } catch (e) {
+                    }
+                    catch (e) {
                         data = null;
-                        "function" === typeof self.onError && self.onError({ "error": "invalid json string", request: request });
+                        'function' === typeof self.onError && self.onError({ 'error'   : 'invalid json string',
+                            'request' : request });
                     }
                 }
                 if (typeof data === 'object') {
                     try {
                         data = JSON.stringify(data);
                         request.send(data);
-                    } catch (e) {
-                        "function" === typeof self.onError && self.onError({ "error": "invalid json object", request: request });
+                    }
+                    catch (e) {
+                        'function' === typeof self.onError && self.onError({ 'error'   : 'invalid json object',
+                            'request' : request });
                     }
                 }
-            } else {
+            }
+            else {
                 request.send();
             }
-        }
+        };
     };
 
     /**
@@ -297,26 +315,32 @@ define([], function () {
      */
     proto.createStream = function (tags, success, error) {
         if (!this.apiUrl) {
-            return "function" === typeof error && error({ "error": "no api url set", request: { responseText: "no response error" } });
-        } else if (!this.apiKey) {
-            return "function" === typeof error && error({ "error": "no api key set", request: { responseText: "no response error" } });
-        } else if (this.keyMode !== 'api') {
-            return "function" === typeof error && error({ "error": "wrong key mode set", request: { responseText: "no response error" } });
+            return 'function' === typeof error && error({ 'error'   : 'no api url set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (!this.apiKey) {
+            return 'function' === typeof error && error({ 'error'   : 'no api key set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (this.keyMode !== 'api') {
+            return 'function' === typeof error && error({ 'error'   : 'wrong key mode set',
+                'request' : { 'responseText': 'no response error' } });
         }
         var request = new Request('POST', this.apiUrl + '/stream');
         request.header = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-BINTU-APIKEY': this.apiKey
+            'Accept'         : 'application/json',
+            'Content-Type'   : 'application/json',
+            'X-BINTU-APIKEY' : this.apiKey
         };
         request.onSuccess = success;
         request.onError = error;
         if (typeof tags === 'object' && typeof tags.push === 'function' && tags.length > 0 && (typeof tags[0] === 'string' || tags[0] instanceof String)) {
-            request.Send({ tags: tags });
-        } else {
+            request.Send({ 'tags': tags });
+        }
+        else {
             request.Send();
         }
-    }
+    };
 
     /**
      * @alias getStream
@@ -359,23 +383,26 @@ define([], function () {
      */
     proto.getStream = function (streamId, success, error) {
         if (!this.apiUrl) {
-            return "function" === typeof error && error({ "error": "no api url set", request: { responseText: "no response error" } });
-        } else if (!this.apiKey && this.keyMode === 'api') {
-            return "function" === typeof error && error({ "error": "no api key set", request: { responseText: "no response error" } });
+            return 'function' === typeof error && error({ 'error'   : 'no api url set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (!this.apiKey && this.keyMode === 'api') {
+            return 'function' === typeof error && error({ 'error'   : 'no api key set',
+                'request' : { 'responseText': 'no response error' } });
         }
         var request = new Request('GET', this.apiUrl + '/stream/' + streamId);
         request.header = (this.keyMode === 'api' && this.apiKey) ? {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-BINTU-APIKEY': this.apiKey
+            'Accept'         : 'application/json',
+            'Content-Type'   : 'application/json',
+            'X-BINTU-APIKEY' : this.apiKey
         } : {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; charset=utf-8'
+            'Accept'       : 'application/json',
+            'Content-Type' : 'application/json; charset=utf-8'
         };
         request.onSuccess = success;
         request.onError = error;
         request.Send();
-    }
+    };
 
     /**
      * @alias getStreams
@@ -442,34 +469,40 @@ define([], function () {
      */
     proto.getStreams = function (filter, success, error) {
         if (!this.apiUrl) {
-            return "function" === typeof error && error({ "error": "no api url set", request: { responseText: "no response error" } });
-        } else if (!this.apiKey && this.keyMode === 'api') {
-            return "function" === typeof error && error({ "error": "no api key set", request: { responseText: "no response error" } });
-        } else if (!this.playerKey && this.keyMode === 'player') {
-            return "function" === typeof error && error({ "error": "no player key set", request: { responseText: "no response error" } });
+            return 'function' === typeof error && error({ 'error'   : 'no api url set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (!this.apiKey && this.keyMode === 'api') {
+            return 'function' === typeof error && error({ 'error'   : 'no api key set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (!this.playerKey && this.keyMode === 'player') {
+            return 'function' === typeof error && error({ 'error'   : 'no player key set',
+                'request' : { 'responseText': 'no response error' } });
         }
         var request = new Request('GET', this.apiUrl + '/stream/' + streamId);
         var url = this.apiUrl + '/stream';
         if (filter instanceof BintuStreamFilter) {
             if (filter.tags.length === 0 && this.keyMode === 'player') {
-                return "function" === typeof error && error({ "error": "no tags set", request: { responseText: "no response error" } });
+                return 'function' === typeof error && error({ 'error'   : 'no tags set',
+                    'request' : { 'responseText': 'no response error' } });
             }
             url += filter.getQueryString();
         }
         var request = new Request('GET', url);
         request.header = (this.keyMode === 'api') ? {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-BINTU-APIKEY': this.apiKey
+            'Accept'         : 'application/json',
+            'Content-Type'   : 'application/json',
+            'X-BINTU-APIKEY' : this.apiKey
         } : {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-BINTU-PLAYERKEY': this.playerKey
-        }
+            'Accept'            : 'application/json',
+            'Content-Type'      : 'application/json',
+            'X-BINTU-PLAYERKEY' : this.playerKey
+        };
         request.onSuccess = success;
         request.onError = error;
         request.Send();
-    }
+    };
 
     /**
      * @alias tagStream
@@ -522,29 +555,35 @@ define([], function () {
      */
     proto.tagStream = function (streamId, tags, success, error) {
         if (!this.apiUrl) {
-            return "function" === typeof error && error({ "error": "no api url set", request: { responseText: "no response error" } });
-        } else if (!this.apiKey) {
-            return "function" === typeof error && error({ "error": "no api key set", request: { responseText: "no response error" } });
-        } else if (this.keyMode !== 'api') {
-            return "function" === typeof error && error({ "error": "wrong key mode set", request: { responseText: "no response error" } });
+            return 'function' === typeof error && error({ 'error'   : 'no api url set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (!this.apiKey) {
+            return 'function' === typeof error && error({ 'error'   : 'no api key set',
+                'request' : { 'responseText': 'no response error' } });
+        }
+        else if (this.keyMode !== 'api') {
+            return 'function' === typeof error && error({ 'error'   : 'wrong key mode set',
+                'request' : { 'responseText': 'no response error' } });
         }
         if (!streamId) {
-            return "function" === typeof error && error({ "error": "no stream id set" });
+            return 'function' === typeof error && error({ 'error': 'no stream id set' });
         }
         var request = new Request('PUT', this.apiUrl + '/stream/' + streamId + '/tag');
         request.header = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-BINTU-APIKEY': this.apiKey
+            'Accept'         : 'application/json',
+            'Content-Type'   : 'application/json',
+            'X-BINTU-APIKEY' : this.apiKey
         };
         request.onSuccess = success;
         request.onError = error;
         if (typeof tags === 'object' && typeof tags.push === 'function' && tags.length > 0 && (typeof tags[0] === 'string' || tags[0] instanceof String)) {
-            request.Send({ tags: tags });
-        } else {
+            request.Send({ 'tags': tags });
+        }
+        else {
             request.Send();
         }
-    }
+    };
 
     return Bintu;
 });

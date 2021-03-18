@@ -1,4 +1,4 @@
-﻿/*
+/*
 nanoStream Player
 (c) 2016, nanocosmos gmbh
 http://www.nanocosmos.de
@@ -23,10 +23,10 @@ define([
     emptyConfig,
     Bintu,
     BintuStreamFilter
-    ) {
+) {
     'use strict';
 
-    function setup(config) {
+    function setup (config) {
         var bintu, bintuInterval = 0, bintuIntervalTime = 20, bintuChecked = true;
         return new Promise(function (resolve, reject) {
             if (config.source.bintu) {
@@ -39,7 +39,7 @@ define([
                 bintuChecked = false;
                 bintuIntervalTime = 500;
                 bintu = new Bintu(config.source.bintu.apiurl, null, null, 'player');
-                bintu.getStream(config.source.bintu.streamid, function success(request) {
+                bintu.getStream(config.source.bintu.streamid, function success (request) {
                     try {
                         var response = JSON.parse(request.responseText);
                         var id = response.id;
@@ -49,8 +49,9 @@ define([
                         var hls = playout.hls;
                         var h5live = playout.h5live;
                         if ((rtmp && !rtmp.length && !h5live) || (h5live && !h5live.length)) {
-                            reject(Error("Could not find stream. The stream is not live."))
-                        } else {
+                            reject(Error('Could not find stream. The stream is not live.'));
+                        }
+                        else {
                             if (hls && hls.length) {
                                 var hlsurl = hls[0].url;
                                 config.source.hls = hlsurl;
@@ -66,15 +67,16 @@ define([
                             }
                         }
                         bintuChecked = true;
-                    } catch (err) {
+                    }
+                    catch (err) {
                         bintuChecked = true;
-                        var message = err.message || "unknown error";
+                        var message = err.message || 'unknown error';
                         reject(Error(message));
                     }
-                }, function error(err) {
+                }, function error (err) {
                     bintuChecked = true;
-                    var message = err.error || "unknown error";
-                    message += " - " + err.request.responseText;
+                    var message = err.error || 'unknown error';
+                    message += ' - ' + err.request.responseText;
                     reject(Error(message));
                 });
             }
@@ -86,10 +88,10 @@ define([
                 }
             }, bintuIntervalTime);
         });
-    };
+    }
 
     return {
-        setup: setup,
-        emptyConfig: emptyConfig
+        'setup'       : setup,
+        'emptyConfig' : emptyConfig
     };
 });

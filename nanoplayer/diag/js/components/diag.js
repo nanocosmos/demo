@@ -14,36 +14,43 @@ define([
 ) {
     var log = logger.create('diag');
 
-    function create(emitter) {
+    function create (emitter) {
         var currentTime = -1;
         var profileChart, bufferChart, bitrateChart, qualityChart;
         var delays = [], bitrates = [], times = [];
         var droppedFrames = [], corruptedFrames = [];
         var startupProfile = {
-            connection: [],
-            transmission: [],
-            processing: [],
-            buffering: [],
-            starting: []
+            'connection'   : [],
+            'transmission' : [],
+            'processing'   : [],
+            'buffering'    : [],
+            'starting'     : []
         };
 
         var emitterListeners = [
-            {type: playerEvents.DESTROY,    listener: onResetChart},
-            {type: playerEvents.LOADING,    listener: onResetChart}
+            { 'type'     : playerEvents.DESTROY,
+                'listener' : onResetChart },
+            { 'type'     : playerEvents.LOADING,
+                'listener' : onResetChart }
         ];
 
         var startupListeners = [
-            {type: playerEvents.PLAYING,    listener: parsePerformanceMarks}
+            { 'type'     : playerEvents.PLAYING,
+                'listener' : parsePerformanceMarks }
         ];
 
         var statsListeners = [
-            {type: playerEvents.STATS,      listener: onPlayerStats}
+            { 'type'     : playerEvents.STATS,
+                'listener' : onPlayerStats }
         ];
 
         function init () {
-            listenerManager.add({target: emitter,       listeners: emitterListeners});
-            listenerManager.add({target: emitter,       listeners: startupListeners});
-            listenerManager.add({ target: emitter,      listeners: statsListeners });
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : emitterListeners });
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : startupListeners });
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : statsListeners });
             createProfileChart();
             createBufferChart();
             createBitrateChart();
@@ -51,25 +58,31 @@ define([
         }
 
         function destroy () {
-            listenerManager.remove({target: emitter,    listeners: emitterListeners});
-            listenerManager.remove({target: emitter,    listeners: startupListeners});
-            listenerManager.remove({target: emitter,    listeners: statsListeners});
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : emitterListeners });
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : startupListeners });
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : statsListeners });
         }
 
         function onResetChart () {
-            listenerManager.remove({target: emitter,    listeners: startupListeners});
-            listenerManager.add({ target: emitter,      listeners: startupListeners });
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : startupListeners });
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : startupListeners });
             createBufferChart();
             createBitrateChart();
             createQualityChart();
         }
 
-        function onPlayerStats(e) {
+        function onPlayerStats (e) {
             var stats = e.data.stats;
             if (currentTime !== stats.currentTime.toFixed(0)) {
                 currentTime = stats.currentTime.toFixed(0);
-            } else {
-                return
+            }
+            else {
+                return;
             }
             var delay = stats.buffer.delay.current;
             while (delays.length > 10) {
@@ -82,7 +95,7 @@ define([
             times.push(currentTime);
             var labels = new Array(times.length);
             labels[0] = times[0];
-            labels[labels.length-1] = times[times.length-1]
+            labels[labels.length - 1] = times[times.length - 1];
             updateBufferChart(delays, labels);
 
             if (stats.bitrate) {
@@ -111,57 +124,57 @@ define([
 
         function createProfileChart () {
             var setColours = {
-                connection:     '#628395',
-                transmission:   '#c1ce42',
-                processing:     '#96897b',
-                buffering:      '#cf995f',
-                starting:       '#d0ce7c'
+                'connection'   : '#628395',
+                'transmission' : '#c1ce42',
+                'processing'   : '#96897b',
+                'buffering'    : '#cf995f',
+                'starting'     : '#d0ce7c'
             };
 
             var datasets = [];
             for (var set in setColours) if (setColours.hasOwnProperty(set)) {
                 datasets.push({
-                    label: set,
-                    backgroundColor: setColours[set],
-                    data: []
+                    'label'           : set,
+                    'backgroundColor' : setColours[set],
+                    'data'            : []
                 });
             }
 
             profileChart = new Chart(
                 $('#profileChart'),
                 {
-                    type: 'bar',
-                    data: {
-                        labels: [],
-                        datasets: datasets
+                    'type' : 'bar',
+                    'data' : {
+                        'labels'   : [],
+                        'datasets' : datasets
                     },
-                    options: {
-                        title:{
-                            display:true,
-                            text:"Startup profile"
+                    'options': {
+                        'title': {
+                            'display' : true,
+                            'text'    : 'Startup profile'
                         },
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false
+                        'tooltips': {
+                            'mode'      : 'index',
+                            'intersect' : false
                         },
-                        responsive: true,
-                        scales: {
-                            xAxes: [{
-                                stacked: true,
+                        'responsive' : true,
+                        'scales'     : {
+                            'xAxes': [{
+                                'stacked': true,
                             }],
-                            yAxes: [{
-                                stacked: true
+                            'yAxes': [{
+                                'stacked': true
                             }]
                         },
-                        tooltips: {
-                            enabled: false
+                        'tooltips': {
+                            'enabled': false
                         }
                     }
                 }
             );
         }
 
-        function createBufferChart() {
+        function createBufferChart () {
             delays = [];
             times = [];
 
@@ -172,41 +185,41 @@ define([
             bufferChart = new Chart(
                 $('#bufferChart'),
                 {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Delay',
-                            data: [],
-                            lineTension: 0
+                    'type' : 'line',
+                    'data' : {
+                        'labels'   : [],
+                        'datasets' : [{
+                            'label'       : 'Delay',
+                            'data'        : [],
+                            'lineTension' : 0
                         }]
                     },
-                    options: {
-                        tooltips: {
-                            enabled: false
+                    'options': {
+                        'tooltips': {
+                            'enabled': false
                         },
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
+                        'maintainAspectRatio' : false,
+                        'scales'              : {
+                            'yAxes': [{
+                                'ticks': {
+                                    'beginAtZero': true
                                 }
                             }]
                         },
-                        elements: {
-                            point: {
-                                radius: 1
+                        'elements': {
+                            'point': {
+                                'radius': 1
                             }
                         },
-                        tooltips: {
-                            enabled: false
+                        'tooltips': {
+                            'enabled': false
                         }
                     }
                 }
             );
         }
 
-        function createBitrateChart() {
+        function createBitrateChart () {
             bitrates = [];
 
             if (bitrateChart) {
@@ -216,41 +229,41 @@ define([
             bitrateChart = new Chart(
                 $('#bitrateChart'),
                 {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Bitrate in kbps',
-                            data: [],
-                            lineTension: 0
+                    'type' : 'line',
+                    'data' : {
+                        'labels'   : [],
+                        'datasets' : [{
+                            'label'       : 'Bitrate in kbps',
+                            'data'        : [],
+                            'lineTension' : 0
                         }]
                     },
-                    options: {
-                        tooltips: {
-                            enabled: false
+                    'options': {
+                        'tooltips': {
+                            'enabled': false
                         },
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
+                        'maintainAspectRatio' : false,
+                        'scales'              : {
+                            'yAxes': [{
+                                'ticks': {
+                                    'beginAtZero': true
                                 }
                             }]
                         },
-                        elements: {
-                            point: {
-                                radius: 1
+                        'elements': {
+                            'point': {
+                                'radius': 1
                             }
                         },
-                        tooltips: {
-                            enabled: false
+                        'tooltips': {
+                            'enabled': false
                         }
                     }
                 }
             );
         }
 
-        function createQualityChart() {
+        function createQualityChart () {
             if (qualityChart) {
                 qualityChart.destroy();
             }
@@ -258,48 +271,48 @@ define([
             qualityChart = new Chart(
                 $('#qualityChart'),
                 {
-                    type: 'line',
-                    data: {
-                        labels: [],
-                        datasets: [{
-                            label: 'Dropped',
-                            data: [],
-                            lineTension: 0,
-                            borderColor: "rgba(255,0,0,1)"
+                    'type' : 'line',
+                    'data' : {
+                        'labels'   : [],
+                        'datasets' : [{
+                            'label'       : 'Dropped',
+                            'data'        : [],
+                            'lineTension' : 0,
+                            'borderColor' : 'rgba(255,0,0,1)'
                         },
                         {
-                            label: 'Corrupted',
-                            data: [],
-                            lineTension: 0,
-                            borderColor: "rgba(0,255,0,1)"
+                            'label'       : 'Corrupted',
+                            'data'        : [],
+                            'lineTension' : 0,
+                            'borderColor' : 'rgba(0,255,0,1)'
                         }]
                     },
-                    options: {
-                        tooltips: {
-                            enabled: false
+                    'options': {
+                        'tooltips': {
+                            'enabled': false
                         },
-                        maintainAspectRatio: false,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
+                        'maintainAspectRatio' : false,
+                        'scales'              : {
+                            'yAxes': [{
+                                'ticks': {
+                                    'beginAtZero': true
                                 }
                             }]
                         },
-                        elements: {
-                            point: {
-                                radius: 1
+                        'elements': {
+                            'point': {
+                                'radius': 1
                             }
                         },
-                        tooltips: {
-                            enabled: false
+                        'tooltips': {
+                            'enabled': false
                         }
                     }
                 }
             );
         }
 
-        function updateProfileChart() {
+        function updateProfileChart () {
             while (profileChart.data.labels.length < startupProfile.connection.length) {
                 profileChart.data.labels.push(profileChart.data.labels.length + 1);
             }
@@ -310,40 +323,55 @@ define([
             profileChart.update();
         }
 
-        function updateBufferChart(values, times) {
+        function updateBufferChart (values, times) {
             bufferChart.data.datasets[0].data = values;
             bufferChart.data.labels = times;
             bufferChart.update();
         }
 
-        function updateBitrateChart(values, times) {
+        function updateBitrateChart (values, times) {
             bitrateChart.data.datasets[0].data = values;
             bitrateChart.data.labels = times;
             bitrateChart.update();
         }
 
-        function updateQualityChart(dropped, corrupted, times) {
+        function updateQualityChart (dropped, corrupted, times) {
             qualityChart.data.datasets[0].data = dropped;
             qualityChart.data.datasets[1].data = corrupted;
             qualityChart.data.labels = times;
             qualityChart.update();
         }
 
-        function parsePerformanceMarks() {
+        function parsePerformanceMarks () {
             var relations = [
-                { start: 'connecting',              end: 'connected',               measurement: 'connection',    value: 0 },
-                { start: 'connected',               end: 'firstFragmentReceived',   measurement: 'transmission',  value: 0 },
-                { start: 'firstFragmentReceived',   end: 'firstFrameRendered',      measurement: 'processing',    value: 0 },
-                { start: 'firstFrameRendered',      end: 'playable',                measurement: 'buffering',     value: 0 },
-                { start: 'playable',                end: 'playing',                 measurement: 'starting',      value: 0 }
+                { 'start'       : 'connecting',
+                    'end'         : 'connected',
+                    'measurement' : 'connection',
+                    'value'       : 0 },
+                { 'start'       : 'connected',
+                    'end'         : 'firstFragmentReceived',
+                    'measurement' : 'transmission',
+                    'value'       : 0 },
+                { 'start'       : 'firstFragmentReceived',
+                    'end'         : 'firstFrameRendered',
+                    'measurement' : 'processing',
+                    'value'       : 0 },
+                { 'start'       : 'firstFrameRendered',
+                    'end'         : 'playable',
+                    'measurement' : 'buffering',
+                    'value'       : 0 },
+                { 'start'       : 'playable',
+                    'end'         : 'playing',
+                    'measurement' : 'starting',
+                    'value'       : 0 }
             ];
 
             var marks = [];
-            performance.getEntriesByType('mark').forEach(function(mark){
+            performance.getEntriesByType('mark').forEach(function (mark) {
                 if (mark.name.indexOf('nano.') == 0) {
                     marks.push({
-                        name: mark.name,
-                        startTime: mark.startTime
+                        'name'      : mark.name,
+                        'startTime' : mark.startTime
                     });
                 }
             });
@@ -390,13 +418,14 @@ define([
                 endMark = getArrayItem(marks, 'name', namePrefix + relation.end);
                 if (endMark.startTime - startMark.startTime < 0) {
                     for (var j = 0; j < marks.length; ++j) {
-                        if (marks[j]['name'] === namePrefix + relation.start) {
+                        if (marks[j].name === namePrefix + relation.start) {
                             if (j === 0) {
                                 startMark.startTime = endMark.startTime;
-                                marks[j]['startTime'] = startMark.startTime;
-                            } else {
+                                marks[j].startTime = startMark.startTime;
+                            }
+                            else {
                                 endMark.startTime = startMark.startTime;
-                                marks[j]['startTime'] = endMark.startTime;
+                                marks[j].startTime = endMark.startTime;
                             }
                         }
                     }
@@ -410,12 +439,13 @@ define([
             updateProfileChart();
         }
 
-        function getArrayItem(array, key, value, splice) {
+        function getArrayItem (array, key, value, splice) {
             for (var i = 0; i < array.length; ++i) {
                 if (array[i][key] == value) {
                     if (splice) {
                         return array.splice(i, 1)[0];
-                    } else {
+                    }
+                    else {
                         return array[i];
                     }
                 }
@@ -423,10 +453,10 @@ define([
             return null;
         }
 
-        function setArrayItem(array, key, value, replace) {
+        function setArrayItem (array, key, value, replace) {
             for (var i = 0; i < array.length; ++i) {
                 if (array[i][key] == value) {
-                    array[i]['startTime'] = replace;
+                    array[i].startTime = replace;
                 }
             }
             return null;
@@ -435,11 +465,11 @@ define([
         init();
 
         return {
-            destroy: destroy
+            'destroy': destroy
         };
     }
 
     return {
-        create: create
+        'create': create
     };
 });

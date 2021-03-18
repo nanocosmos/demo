@@ -16,14 +16,18 @@ define([
 ) {
     var log = logger.create('ranges');
 
-    function create(emitter) {
+    function create (emitter) {
         var emitterListeners = [
-            {type: playerEvents.CREATE,         listener: onPlayerCreate},
-            {type: playerEvents.DESTROY,        listener: onPlayerDestroy}
+            { 'type'     : playerEvents.CREATE,
+                'listener' : onPlayerCreate },
+            { 'type'     : playerEvents.DESTROY,
+                'listener' : onPlayerDestroy }
         ];
         var videoListeners = [
-            {type: mediaEvents.PROGRESS,        listener: onVideoEvent},
-            {type: mediaEvents.TIME_UPDATE,     listener: onVideoEvent}
+            { 'type'     : mediaEvents.PROGRESS,
+                'listener' : onVideoEvent },
+            { 'type'     : mediaEvents.TIME_UPDATE,
+                'listener' : onVideoEvent }
         ];
 
         var container;
@@ -32,12 +36,14 @@ define([
         var video;
         var rangeCount;
 
-        function init() {
-            listenerManager.add({target: emitter, listeners: emitterListeners});
+        function init () {
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : emitterListeners });
         }
 
         function destroy () {
-            listenerManager.remove({target: emitter, listeners: emitterListeners});
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : emitterListeners });
         }
 
         function onPlayerCreate () {
@@ -50,13 +56,15 @@ define([
 
             video = $('video');
 
-            listenerManager.add({target: video, listeners: videoListeners});
+            listenerManager.add({ 'target'    : video,
+                'listeners' : videoListeners });
         }
 
         function onPlayerDestroy () {
             container && container.html('');
             ranges = [];
-            listenerManager.remove({target: video, listeners: videoListeners});
+            listenerManager.remove({ 'target'    : video,
+                'listeners' : videoListeners });
         }
 
         function onVideoEvent () {
@@ -80,7 +88,7 @@ define([
             var rangeStart;
             var rangeEnd;
 
-            for(var i = 0; i < buffered.length; ++i) {
+            for (var i = 0; i < buffered.length; ++i) {
                 rangeStart = buffered.start(i);
                 rangeEnd = buffered.end(i);
 
@@ -88,15 +96,15 @@ define([
 
                 range.attr('data-start', Math.floor(rangeStart * 1000));
                 range.attr('data-end', Math.floor(rangeEnd * 1000));
-                range.css('left', ((rangeStart - start) / (end-start) * 100) + '%');
-                range.css('width', ((rangeEnd - rangeStart) / (end-start) * 100) + '%');
+                range.css('left', ((rangeStart - start) / (end - start) * 100) + '%');
+                range.css('width', ((rangeEnd - rangeStart) / (end - start) * 100) + '%');
             }
 
             indicator.css('left', ((video[0].currentTime - start) / (end - start) * 100) + '%');
             indicator.attr('data-position', Math.floor(video[0].currentTime * 1000));
         }
 
-        function setupRanges() {
+        function setupRanges () {
             var buffered = video[0].buffered;
             var range;
             while (ranges.length < buffered.length) {
@@ -111,12 +119,12 @@ define([
             }
         }
 
-        function getRangeList(buffered) {
+        function getRangeList (buffered) {
             var result = '';
             for (var i = 0; i < buffered.length; ++i) {
                 result += (msec(buffered.start(i)) + '-' + msec(buffered.end(i)));
                 if (i < buffered.length - 1) {
-                    result += ' <' + msec(buffered.start(i+1) - buffered.end(i)) + '> ';
+                    result += ' <' + msec(buffered.start(i + 1) - buffered.end(i)) + '> ';
                 }
             }
             return result;
@@ -129,11 +137,11 @@ define([
         init();
 
         return {
-            destroy: destroy
+            'destroy': destroy
         };
     }
 
     return {
-        create: create
+        'create': create
     };
 });

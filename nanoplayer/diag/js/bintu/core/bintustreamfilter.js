@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2016 nanocosmos IT GmbH. All rights reserved.
  * http://www.nanocosmos.de
  * Bintu Release Version 0.5
@@ -21,7 +21,7 @@ define([], function () {
      * @example
      * var streamFilter = new BintuStreamFilter();
      */
-    function BintuStreamFilter() {
+    function BintuStreamFilter () {
         /**
          * @alias state
          * @memberOf BintuStreamFilter#
@@ -55,10 +55,10 @@ define([], function () {
      */
     BintuStreamFilter.STATE = Object.create(
         {
-            LIVE: 'live',
-            CREATED: 'created',
-            ENDED: 'ended',
-            ALL: null
+            'LIVE'    : 'live',
+            'CREATED' : 'created',
+            'ENDED'   : 'ended',
+            'ALL'     : null
         }
     );
 
@@ -80,12 +80,12 @@ define([], function () {
                 newState = BintuStreamFilter.STATE[s];
         }
         if (typeof newState === 'undefined') {
-            throw new Error("The param 'state' must be of type 'BintuStreamFilter.STATE'");
+            throw new Error('The param \'state\' must be of type \'BintuStreamFilter.STATE\'');
             return;
         }
         this.state = newState;
         return this;
-    }
+    };
 
     /**
      * @alias addTag
@@ -105,13 +105,13 @@ define([], function () {
      */
     proto.addTag = function (tag) {
         if (!(tag.length > 0 && (typeof tag === 'string' || tag instanceof String))) {
-            throw new Error("The param 'tag' must be of type 'string' and also may not be empty string.");
+            throw new Error('The param \'tag\' must be of type \'string\' and also may not be empty string.');
             return;
         }
         this.tags.push(tag);
         this.tags = this._reduceDuplicates(this.tags);
         return this;
-    }
+    };
 
     /**
      * @alias addTags
@@ -130,13 +130,13 @@ define([], function () {
      */
     proto.addTags = function (tags) {
         if (!((typeof tags === 'object') && (typeof tags.push === 'function') && (tags.length === 0 || (tags.length > 0 && (typeof tags[0] === 'string' || tags[0] instanceof String))))) {
-            throw new Error("The param 'tags' must be of type 'string array'");
+            throw new Error('The param \'tags\' must be of type \'string array\'');
             return;
         }
         this.tags = this.tags.concat(tags);
         this.tags = this._reduceDuplicates(this.tags);
         return this;
-    }
+    };
 
     /**
      * @alias getQueryString
@@ -152,20 +152,20 @@ define([], function () {
      * console.log(queryString); // prints '?tags[]=myTag&tags[]=newTag&tags[]=otherTag&state=live'
      */
     proto.getQueryString = function () {
-        var queryString = "";
+        var queryString = '';
         if (typeof this.tags === 'object' && typeof this.tags.push === 'function' && this.tags.length > 0) {
             for (var i = 0; i < this.tags.length; i += 1) {
                 if (typeof this.tags[i] !== 'string') continue;
                 queryString += (i === 0) ? '?' : '&';
-                queryString += "tags[]=" + this.tags[i];
+                queryString += 'tags[]=' + this.tags[i];
             }
         }
         if (typeof this.state === 'string' && this.state.length > 0) {
             queryString += (queryString.indexOf('?') === -1) ? '?' : '&';
-            queryString += "state=" + this.state;
+            queryString += 'state=' + this.state;
         }
         return queryString;
-    }
+    };
 
     /**
      * @private
@@ -177,11 +177,13 @@ define([], function () {
      */
     proto._reduceDuplicates = function (tags) {
         if (!((typeof tags === 'object') && (typeof tags.push === 'function') && (tags.length === 0 || (tags.length > 0 && (typeof tags[0] === 'string' || tags[0] instanceof String))))) {
-            throw new Error("The param 'tags' must be of type 'string array'");
+            throw new Error('The param \'tags\' must be of type \'string array\'');
             return;
         }
-        return tags.reduce(function (a, b) { if (a.indexOf(b) < 0) a.push(b); return a; }, [])
-    }
+        return tags.reduce(function (a, b) {
+            if (a.indexOf(b) < 0) a.push(b); return a;
+        }, []);
+    };
 
     return BintuStreamFilter;
 });
