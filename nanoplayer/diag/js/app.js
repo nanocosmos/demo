@@ -23,7 +23,7 @@ define([
     var emitter = new EventEmitter();
     var components = [];
 
-    function init() {
+    function init () {
         document.cookie = 'nanoDump=1';
 
         components.push(nanoHandler.create(emitter));

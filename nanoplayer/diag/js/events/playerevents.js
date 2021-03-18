@@ -4,16 +4,16 @@
 define([], function () {
     var base = 'player.';
     return {
-        CREATE:     base + 'create',
-        DESTROY:    base + 'destroy',
+        'CREATE'  : base + 'create',
+        'DESTROY' : base + 'destroy',
 
-        LOADING:    base + 'loading',
-        PLAYING:    base + 'playing',
-        BUFFERING:  base + 'buffering',
-        ERROR:      base + 'error',
+        'LOADING'   : base + 'loading',
+        'PLAYING'   : base + 'playing',
+        'BUFFERING' : base + 'buffering',
+        'ERROR'     : base + 'error',
 
-        STATS:      base + 'stats',
+        'STATS': base + 'stats',
 
-        VERSIONING: base + 'versioning'
+        'VERSIONING': base + 'versioning'
     };
 });

@@ -4,11 +4,11 @@
 define([
     'elementids',
     'util/browserinfo'
-], function(
+], function (
     elementIds,
     info
-){
-    function create() {
+) {
+    function create () {
         var infoList = $(elementIds.INFO);
         for (var key in info) {
             var li = $('<li></li>');
@@ -18,6 +18,6 @@ define([
     }
 
     return {
-        create: create
+        'create': create
     };
 });

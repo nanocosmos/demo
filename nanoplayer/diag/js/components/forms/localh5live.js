@@ -22,20 +22,24 @@ define([
         ];
 
         var emitterListeners = [
-            {type: uiEvents.SELECT_FORM,    listener: onSelectForm},
-            {type: uiEvents.APPLY_FORM,     listener: onApplyForm}
+            { 'type'     : uiEvents.SELECT_FORM,
+                'listener' : onSelectForm },
+            { 'type'     : uiEvents.APPLY_FORM,
+                'listener' : onApplyForm }
         ];
 
-        function init() {
-            listenerManager.add({target: emitter,       listeners: emitterListeners});
+        function init () {
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : emitterListeners });
             validate1.forEach(function (id) {
                 $(id).bind('change paste keyup blur', onChange);
             });
             validate();
         }
 
-        function destroy() {
-            listenerManager.remove({target: emitter,    listeners: emitterListeners});
+        function destroy () {
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : emitterListeners });
         }
 
         function onSelectForm (e) {
@@ -61,10 +65,11 @@ define([
                 }
             });
 
-            emitter.emit(uiEvents.FORM_VALIDATED, {formId: formId, valid: valid});
+            emitter.emit(uiEvents.FORM_VALIDATED, { 'formId' : formId,
+                'valid'  : valid });
         }
 
-        function onChange(e) {
+        function onChange (e) {
             var elementId = '#' + e.currentTarget.id;
             if (localStorage) {
                 localStorage.setItem(elementId, e.currentTarget.value);
@@ -72,7 +77,7 @@ define([
             validate();
         }
 
-        function getConfiguration() {
+        function getConfiguration () {
             var config;
 
             var wss = $(elementIds.INPUT_LOCAL_SERVER_WSS).val();
@@ -80,14 +85,14 @@ define([
             var streamname = $(elementIds.INPUT_LOCAL_RTMP_STREAMNAME).val();
 
             config = {
-                source: {
-                    h5live: {
-                        server: {
-                            websocket: wss
+                'source': {
+                    'h5live': {
+                        'server': {
+                            'websocket': wss
                         },
-                        rtmp: {
-                            url: url,
-                            streamname: streamname
+                        'rtmp': {
+                            'url'        : url,
+                            'streamname' : streamname
                         }
                     }
                 }
@@ -99,11 +104,11 @@ define([
         init();
 
         return {
-            destroy: destroy
-        }
+            'destroy': destroy
+        };
     }
 
     return {
-        create: create
+        'create': create
     };
 });

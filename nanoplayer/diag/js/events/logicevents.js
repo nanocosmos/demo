@@ -4,6 +4,6 @@
 define([], function () {
     var base = 'logic.';
     return {
-        CONFIGURATION: base + 'configuration'
+        'CONFIGURATION': base + 'configuration'
     };
 });

@@ -24,24 +24,29 @@ define([
 ) {
     var log = logger.create('ui');
 
-    function create(emitter) {
+    function create (emitter) {
         var emitterListeners = [
-            {type: uiEvents.FORM_VALIDATED, listener: onFormValidated},
-            {type: playerEvents.CREATE,     listener: onPlayerCreate},
-            { type: playerEvents.DESTROY, listener: onPlayerDestroy },
-            { type: playerEvents.VERSIONING, listener: onPlayerVersioning }
+            { 'type'     : uiEvents.FORM_VALIDATED,
+                'listener' : onFormValidated },
+            { 'type'     : playerEvents.CREATE,
+                'listener' : onPlayerCreate },
+            { 'type'     : playerEvents.DESTROY,
+                'listener' : onPlayerDestroy },
+            { 'type'     : playerEvents.VERSIONING,
+                'listener' : onPlayerVersioning }
         ];
 
         var formHandlers = [];
         var activeFormId = elementIds.FORM_NANO;
         var video;
 
-        function init() {
+        function init () {
             log('init');
 
             info.create();
 
-            listenerManager.add({target: emitter, listeners: emitterListeners});
+            listenerManager.add({ 'target'    : emitter,
+                'listeners' : emitterListeners });
 
             initializeTabs();
             initializeForms();
@@ -58,7 +63,8 @@ define([
         }
 
         function destroy () {
-            listenerManager.remove({target: emitter,    listeners: emitterListeners});
+            listenerManager.remove({ 'target'    : emitter,
+                'listeners' : emitterListeners });
         }
 
         function onFormValidated (e) {
@@ -87,12 +93,12 @@ define([
             $(elementIds.CONTAINER).html('');
         }
 
-        function onPlayerVersioning(version) {
+        function onPlayerVersioning (version) {
             $(elementIds.SPAN_VERSION).html(version);
         }
 
         function initializeTabs () {
-            $(".nav-tabs a").click(function(){
+            $('.nav-tabs a').click(function () {
                 $(this).tab('show');
                 activeFormId = '#' + this.href.split('#')[1];
                 if (localStorage) {
@@ -135,12 +141,12 @@ define([
 
             $(elementIds.BUTTON_APPLY).click(function () {
                 emitter.emit(uiEvents.VIDEO_ELEMENT_USAGE, {
-                    videoId : null
+                    'videoId': null
                 });
                 emitter.emit(uiEvents.APPLY_FORM, activeFormId);
             });
 
-            $(elementIds.BUTTON_VIDEO_APPLY).click(function(){
+            $(elementIds.BUTTON_VIDEO_APPLY).click(function () {
                 var videoId = 'external';
 
                 if (!video) {
@@ -158,10 +164,10 @@ define([
                 }
 
                 emitter.emit(uiEvents.VIDEO_ELEMENT_USAGE, {
-                    videoId: videoId
+                    'videoId': videoId
                 });
 
-                setTimeout(function() {
+                setTimeout(function () {
                     emitter.emit(uiEvents.APPLY_FORM, activeFormId);
                 }, 100);
             });
@@ -185,15 +191,15 @@ define([
                 });
         }
 
-        function initializePlaybackMode() {
+        function initializePlaybackMode () {
             if (localStorage) {
                 var autoplay = localStorage.getItem('playerAutoplay');
                 var keepConnection = localStorage.getItem('playerKeepConnection');
                 var muted = localStorage.getItem('playerMuted');
                 var blur = localStorage.getItem('playerBlur');
-                autoplay = autoplay === 'false' ? false : true;
-                keepConnection = keepConnection === 'true' ? true : false;
-                muted = muted === 'true' ? true : false;
+                autoplay = autoplay !== 'false';
+                keepConnection = keepConnection === 'true';
+                muted = muted === 'true';
                 blur = blur || '15';
                 $(elementIds.INPUT_AUTOPLAY).prop('checked', autoplay);
                 $(elementIds.INPUT_KEEP_CONNECTION).prop('checked', keepConnection);
@@ -235,11 +241,11 @@ define([
         init();
 
         return {
-            destroy: destroy
+            'destroy': destroy
         };
     }
 
     return {
-        create: create
+        'create': create
     };
 });

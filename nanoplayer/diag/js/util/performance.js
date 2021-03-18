@@ -19,7 +19,8 @@ define([], function () {
     function storeMeasuredValue (label, value) {
         if (!measured[label]) {
             measured[label] = [value];
-        } else {
+        }
+        else {
             measured[label].push(value);
         }
     }
@@ -29,8 +30,8 @@ define([], function () {
     }
 
     return {
-        start: start,
-        finish: finish,
-        getMeasuredValues: getMeasuredValues
+        'start'             : start,
+        'finish'            : finish,
+        'getMeasuredValues' : getMeasuredValues
     };
 });

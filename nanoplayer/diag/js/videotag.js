@@ -5,14 +5,14 @@ define([
     'mediaevents',
     'log',
     'elementids'
-], function(
+], function (
     mediaEvents,
     log,
     elementIds
-){
+) {
     var video;
 
-    function createTag(container){
+    function createTag (container) {
         return $('<video></video>')
             .attr('autoplay', true)
             // .attr('muted', true)
@@ -22,7 +22,7 @@ define([
             .appendTo(container);
     }
 
-    function setListeners(video){
+    function setListeners (video) {
         var silentTypes = [
             mediaEvents.TIME_UPDATE,
             mediaEvents.PROGRESS,
@@ -38,15 +38,15 @@ define([
         video.on(mediaEvents.TIME_UPDATE, onTimeUpdate);
     }
 
-    function onTimeUpdate(e){
+    function onTimeUpdate (e) {
         var output = [
-            new Date(e.currentTarget.currentTime*1000).toISOString().substr(11, 12),
+            new Date(e.currentTarget.currentTime * 1000).toISOString().substr(11, 12),
             e.currentTarget.videoWidth + 'x' + e.currentTarget.videoHeight
         ];
         $(elementIds.CURRENT_TIME).html(output.join(', '));
     }
 
-    function onMediaEvent(e) {
+    function onMediaEvent (e) {
         if (e.type === mediaEvents.PLAYING || e.type === mediaEvents.PLAY) {
             var ranges = [];
             for (var i = 0; e.currentTarget && i < e.currentTarget.buffered.length; ++i) {
@@ -57,7 +57,7 @@ define([
         log(e.type);
     }
 
-    function init(src){
+    function init (src) {
         log('add videotag');
         video = createTag(elementIds.CONTAINER);
         setListeners(video);
@@ -66,46 +66,49 @@ define([
             .trigger('play');
     }
 
-    function play(){
+    function play () {
         if (video) {
             video.trigger('play');
         }
     }
 
-    function pause(){
+    function pause () {
         if (video) {
             video.trigger('pause');
         }
     }
 
-    function enterFullScreen(videoTag){
-        if (!videoTag){
+    function enterFullScreen (videoTag) {
+        if (!videoTag) {
             videoTag = video[0];
         }
-        if (videoTag){
-            if (typeof(videoTag.requestFullscreen) != "undefined") {
+        if (videoTag) {
+            if (typeof (videoTag.requestFullscreen) !== 'undefined') {
                 videoTag.requestFullscreen();
-            } else if (typeof(videoTag.webkitEnterFullscreen) != "undefined") {
+            }
+            else if (typeof (videoTag.webkitEnterFullscreen) !== 'undefined') {
                 videoTag.webkitEnterFullscreen();
-            } else if (typeof(videoTag.webkitRequestFullscreen)  != "undefined") {
+            }
+            else if (typeof (videoTag.webkitRequestFullscreen) !== 'undefined') {
                 videoTag.webkitRequestFullscreen();
-            } else if (typeof(videoTag.mozRequestFullScreen)  != "undefined") {
+            }
+            else if (typeof (videoTag.mozRequestFullScreen) !== 'undefined') {
                 videoTag.mozRequestFullScreen();
             }
         }
     }
 
-    function destroy() {
+    function destroy () {
         $(elementIds.CONTAINER).html('');
     }
 
     return {
-        createTag: createTag,
-        setListeners: setListeners,
-        init: init,
-        play: play,
-        pause: pause,
-        enterFullScreen: enterFullScreen,
-        destroy: destroy
-    }
+        'createTag'       : createTag,
+        'setListeners'    : setListeners,
+        'init'            : init,
+        'play'            : play,
+        'pause'           : pause,
+        'enterFullScreen' : enterFullScreen,
+        'destroy'         : destroy
+    };
 });

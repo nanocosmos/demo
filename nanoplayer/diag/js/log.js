@@ -3,9 +3,9 @@
  */
 define([
     'elementids'
-], function(
+], function (
     elementIds
-){
+) {
     function create (label) {
         return function (text, type) {
             var ts = new Date().toISOString().substr(11, 12);
@@ -17,6 +17,6 @@ define([
     }
 
     return {
-        create: create
+        'create': create
     };
 });
