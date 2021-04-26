@@ -325,7 +325,6 @@ define([], function () {
         }
     }
 
-
     var osVersion = unknown;
     var parseResult = undefined;
 
