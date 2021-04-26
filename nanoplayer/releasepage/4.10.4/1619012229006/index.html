@@ -1,0 +1,190 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
+<h2 id="please-find-more-about-the-media-error-recovery-feature-in-our-documentation">Please find more about the <strong>media error recovery</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/">documentation</a></h2>
+<h2 id="-4-10-4-"><strong>[4.10.4]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version implements an automatic recovery workflow for certain media errors that can occure during playback. Recoverable errors are <code>3003</code>, <code>3100</code> and <code>1008</code>.
+The allowed number of recoveries within 60 seconds (default: <code>3</code>) can be customized by the new config parameter <code>playback.mediaErrorRecoveries</code>.
+Further the support of the native HTMLMediaElement attribute <code>crossOrigin</code> is added and can be set via the new config parameter <code>playback.crossOrigin</code>.
+The values can be <code>&#39;anonymous&#39;</code>, <code>&#39;use-credentials&#39;</code> and <code>&#39;not-set&#39;</code> (default).</p>
+<p>Part of this release are minor adjustments for metrics and an improvement of the Mac OS version detection.
+Also an issue with the interaction of the <code>style.keepFrame</code> and the <code>style.poster</code> (since 4.9.1) functionality is fixed.
+Now after a pause the last frame will be kept instead of displaying the poster image with <code>keepFrame</code> enabled.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>automatic recovery workflow for media errors<ul>
+<li>recoverable error codes:<ul>
+<li><code>3003</code> (media decode error)</li>
+<li><code>3100</code> (media source ended)</li>
+<li><code>1008</code> (hls playback error)</li>
+</ul>
+</li>
+<li>new config parameter (number) <code>playback.mediaErrorRecoveries</code>, default: <code>3</code>, to set the number of max recoveries within 60 seconds</li>
+<li>recoveries will be indicated by an <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#onwarning"><code>onWarning</code></a> event</li>
+<li>sample warning message:<ul>
+<li><code>&#39;Recovering from media error 3003, recovery 1/3 within the last 60 seconds (12 total).&#39;</code></li>
+</ul>
+</li>
+<li>if threshold reached the error will be thrown followed by a pause with reason <code>&#39;playbackerror&#39;</code></li>
+<li>see playback section in <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#nanoplayerconfig--codeobjectcode">config</a></li>
+<li>see <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/">feature description</a></li>
+</ul>
+</li>
+<li>support of native <code>crossOrigin</code> attribute for HTMLMediaElements (applies to all player-internal video &amp; image elements)<ul>
+<li>new config parameter (string) <code>playback.crossOrigin</code>, default: <code>&#39;not-set&#39;</code></li>
+<li>sets or disables the native &quot;crossOrigin&quot; attribute for all internal video elements and images (poster)</li>
+<li>possible values are:<ul>
+<li><code>&#39;anonymous&#39;</code></li>
+<li><code>&#39;use-credentials&#39;</code></li>
+<li><code>&#39;not-set&#39;</code> (default), if used the attribute will not be added</li>
+</ul>
+</li>
+<li>see playback section in <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#nanoplayerconfig--codeobjectcode">config</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>minor adjustment for metrics</li>
+<li>Mac OS version detection</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>keepFrame functionality while poster is set (Note: keepFrame is not supported on iOS)</li>
+</ul>
+<h3 id="release-package-4-10-4"><strong>Release Package 4.10.4</strong></h3>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/4yWDAN4cR9T2wMx">4.10.4</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h3 id="documentation"><strong>Documentation</strong></h3>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+</ul>
+<h3 id="feature-description">Feature Description</h3>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/">media error recovery</a></li>
+</ul>
+<h3 id="release-history"><strong>Release History</strong></h3>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
+</ul>
+
+  </body>
+</html>

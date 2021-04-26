@@ -145,6 +145,23 @@ function getNanoPlayerParameters () {
             config.playback.timeouts.connecting = parseFloat(connecting);
         }
     }
+    var recoverDecode = getHTTPParam('recover') || getHTTPParam('playback.mediaErrorRecoveries');
+    if (recoverDecode) {
+        config.playback.mediaErrorRecoveries = !isNaN(recoverDecode) ? parseInt(recoverDecode, 0) : 0;
+    }
+    // TEST, REMOVE
+    var errors = getHTTPParam('errors');
+    if (errors) {
+        var _errors = errors.split(',');
+        if (_errors.length === 3) {
+            var names = ['_3003_', '_3100_', '_1008_'];
+            for (i = 0; i < _errors.length; i++) {
+                if (!isNaN(_errors[i])) {
+                    window[names[i]] = parseInt(_errors[i], 10);
+                }
+            }
+        }
+    }
     // TODO fix forcing in playerfactory
     var force = getHTTPParam('force') || getHTTPParam('playback.forceTech');
     if (force) {
@@ -179,6 +196,10 @@ function getNanoPlayerParameters () {
     var allowSafariHlsFallback = getHTTPParam('allowSafariHlsFallback') || getHTTPParam('playback.allowSafariHlsFallback');
     if (allowSafariHlsFallback) {
         config.playback.allowSafariHlsFallback = (allowSafariHlsFallback === 'true' || allowSafariHlsFallback === '1');
+    }
+    var crossOrigin = getHTTPParam('crossOrigin') || getHTTPParam('playback.crossOrigin');
+    if (crossOrigin) {
+        config.playback.crossOrigin = crossOrigin;
     }
     var view = getHTTPParam('view') || getHTTPParam('style.view');
     if (view) {
@@ -656,5 +677,22 @@ function warning (message) {
 function hideErrorWarning () {
     document.getElementById('error-container').style.display = 'none';
     document.getElementById('warning-container').style.display = 'none';
+}
+
+function seekPlayer () {
+    var i, iframes, videos = document.querySelectorAll('video');
+    if (videos) {
+        for (i = 0; i < videos.length; i++) {
+            videos[i].currentTime = 0;
+        }
+    }
+    iframes = document.querySelectorAll('iframe');
+    if (iframes) {
+        for (i = 0; i < iframes.length; i++) {
+            var iframe = iframes[i];
+            var video = iframe.contentDocument.querySelector('video');
+            video.currentTime = 0;
+        }
+    }
 }
 

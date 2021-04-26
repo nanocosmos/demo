@@ -1,5 +1,54 @@
 ﻿# **NanoPlayer - Release History**
 
+## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
+
+## **[4.10.4]**
+
+### **Release Notes**
+
+This version implements an automatic recovery workflow for certain media errors that can occure during playback. Recoverable errors are `3003`, `3100` and `1008`.
+The allowed number of recoveries within 60 seconds (default: `3`) can be customized by the new config parameter `playback.mediaErrorRecoveries`.
+Further the support of the native HTMLMediaElement attribute `crossOrigin` is added and can be set via the new config parameter `playback.crossOrigin`.
+The values can be `'anonymous'`, `'use-credentials'` and `'not-set'` (default).
+
+Part of this release are minor adjustments for metrics and an improvement of the Mac OS version detection.
+Also an issue with the interaction of the `style.keepFrame` and the `style.poster` (since 4.9.1) functionality is fixed.
+Now after a pause the last frame will be kept instead of displaying the poster image with `keepFrame` enabled.
+
+### **Changelog**
+
+### Added
+
+- automatic recovery workflow for media errors
+  - recoverable error codes:
+    - `3003` (media decode error)
+    - `3100` (media source ended)
+    - `1008` (hls playback error)
+  - new config parameter (number) `playback.mediaErrorRecoveries`, default: `3`, to set the number of max recoveries within 60 seconds
+  - recoveries will be indicated by an [`onWarning`](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#onwarning) event
+  - sample warning message:
+    - `'Recovering from media error 3003, recovery 1/3 within the last 60 seconds (12 total).'`
+  - if threshold reached the error will be thrown followed by a pause with reason `'playbackerror'`
+  - see playback section in [config](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#nanoplayerconfig--codeobjectcode)
+  - see [feature description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
+- support of native `crossOrigin` attribute for HTMLMediaElements (applies to all player-internal video & image elements)
+  - new config parameter (string) `playback.crossOrigin`, default: `'not-set'`
+  - sets or disables the native "crossOrigin" attribute for all internal video elements and images (poster)
+  - possible values are:
+    - `'anonymous'`
+    - `'use-credentials'`
+    - `'not-set'` (default), if used the attribute will not be added
+  - see playback section in [config](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#nanoplayerconfig--codeobjectcode)
+
+### Improved
+
+- minor adjustment for metrics
+- Mac OS version detection
+
+### Fixed
+
+- keepFrame functionality while poster is set (Note: keepFrame is not supported on iOS)
+
 ## **[4.9.2]**
 
 ### **Release Notes**
@@ -80,7 +129,7 @@ This version introduces a new error code. In case the media element fires an err
 - add new error code `3200` - `An unspecific media error occurred.`
 - removed WebSocket prototype polyfill
 
-## Please find more about the **fullscreen API** feature in our [documentation]**(https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/)
+## Please find more about the **fullscreen API** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fullscreen_api/)**
 
 ## **[4.7.8]**
 
@@ -220,7 +269,7 @@ The handling of mute states and autoplay has been improved.
 This version introduces the 'setAdaption' API to switch between adaption rules (ex. enable/disable ABR).
 Furthermore, this version implements optimizations for the ABR feature and minor internal, config and metrics adjustments. Additionally, this version prevents non-critical console errors during initialization and fixes a timeout error during client-side switchStream/updateSource.
 
-Please find more about setAdaption API [here]**(https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor).
+Please find more about setAdaption API [here](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor).
 
 ### **Changelog**
 
@@ -250,7 +299,7 @@ Please find more about setAdaption API [here]**(https://demo.nanocosmos.de/nanop
 
 This version handles the usage of metrics with the old deprecated single stream configuration over 'config.source.h5live'.
 
-See [here]**(https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
+See [here](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
 
 ### **Changelog**
 
@@ -321,7 +370,7 @@ Furthermore, the ABR prediction cycle is improved to reduce load.
 This version implements the communication of switchStream and updateSource API events and data to the metrics service.
 In addition the internal 'streamInfo' event flow is improved and detailed stream information propagated through the event object.
 
-Please find more about the stream switching & ABR feature in our [documentation]**( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+Please find more about the stream switching & ABR feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
 
 ### **Changelog**
 
@@ -393,7 +442,7 @@ A set of stream sources (entries) is expected inside the 'entries' array of the 
 The config's 'source' object now holds an 'options' object to set the ABR 'rule' (algorithm) inside the 'adaption' object and the switch options inside the 'switch' object.
 To manually switch between entries the new 'switchStream' API is used which comes along with 4 new public events and error codes.
 
-Please find more about the stream switching & ABR feature in our [documentation]**( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+Please find more about the stream switching & ABR feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
 
 ### **Changelog**
 
@@ -471,7 +520,7 @@ to correctly detect H5Live MSE or LL-HLS modes for playback.
 The new nanoStream H5Live Player version 4 brings an updated stream switch feature. We improved the old 'updateSource' functionality by the possibility to switch to another stream by server-side switch and a better client-side switch.
 Now the switch to another source is much more smoother and faster. The old behaviour with stopping the player by reason 'playbackrestart' and restart playback with the new source is removed except for iOS.
 
-Please find more about the new feature in our [documentation]**( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
+Please find more about the new feature in our [documentation]( https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/).
 
 ### **Changelog**
 

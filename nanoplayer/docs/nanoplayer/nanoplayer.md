@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.9.2
+NanoPlayer (H5Live) Public API Class 4.10.4
 
 **Kind**: global class  
-**Version**: 4.9.2  
+**Version**: 4.10.4  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2073,6 +2073,12 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[playback.allowSafariHlsFallback]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If enabled the player will select the playback method in Safari Mac OS X and utilize H5Live low latency HLS if appropriate.</p>
+</td>
+    </tr><tr>
+    <td>[playback.crossOrigin]</td><td><code>string</code></td><td><code>&quot;\&quot;not-set\&quot;&quot;</code></td><td><p>Sets or disables the native &quot;crossOrigin&quot; attribute for all internal video elements and images (poster). Possible values are &quot;anonymous&quot;, &quot;use-credentials&quot; and &quot;not-set&quot; (default). If &quot;not-set&quot; is used the attribute will not be added.</p>
+</td>
+    </tr><tr>
+    <td>[playback.mediaErrorRecoveries]</td><td><code>number</code></td><td><code>3</code></td><td><p>The number of allowed media error recoveries within a minute. If threshold is reached the last error will be thrown and playback pauses. Possible recoverable error codes are 3003 (decode error), 3100 (media source ended) and 1008 (hls playback error). See <a href="#NanoPlayer..errorcode">errorcodes</a>.</p>
 </td>
     </tr><tr>
     <td>[playback.reconnect]</td><td><code>object</code></td><td></td><td><p>The reconnect object to configure the reconnect settings. See <a href="#NanoPlayer..errorcode">errorcodes</a> for reconnect possibility.</p>
