@@ -178,15 +178,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.9.2.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.10.4.min.js"></script>
     <script>
 
-        var playerVersion = '4.9.2';
+        var playerVersion = '4.10.4';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210225';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210421';
         };
 
         var player;
@@ -582,7 +582,7 @@ All modifications will remain property of nanocosmos.
             if (document.getElementById('demo-version').innerText !== 'version ' + player.version) {
                 alert('The page has been updated during the last few minutes! Please empty your cache!');
             }
-            document.getElementById('demo-version').innerText = 'version ' + player.version;
+            document.getElementById('demo-version').innerHTML = '<a href="' + document.location.href + '" target="_blank">version ' + player.version + '</a>';
         }
 
         function play() {

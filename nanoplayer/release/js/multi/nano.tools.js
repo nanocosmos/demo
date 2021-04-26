@@ -697,30 +697,40 @@
             }
 
             var osVersion = unknown;
-
-            if (/Windows/.test(os)) {
-                osVersion = /Windows (.*)/.exec(os)[1];
-                os = 'Windows';
-            }
+            var parseResult = undefined;
 
             switch (os) {
                 case 'Mac OS X':
-                    osVersion = /Mac OS X ([\\.\\_\d]+)/.exec(nAgt)[1];
+                    parseResult = /Mac OS X (\d+)_(\d+)_?(\d+)?/.exec(nAgt) || /Mac OS X ([._\d]+)/.exec(nAgt);
+                    if (parseResult !== null) {
+                        osVersion = parseResult[1] + '.' + (parseResult[2] | 0) + '.' + (parseResult[3] | 0);
+                    }
                     break;
 
                 case 'Android':
-                    osVersion = /Android ([\\.\\_\d]+)/.exec(nAgt)[1];
+                    parseResult = /Android ([._\d]+)/.exec(nAgt);
+                    if (parseResult !== null) {
+                        osVersion = parseResult[1];
+                    }
                     break;
 
                 case 'iOS':
-                    osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-                    osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
+                    parseResult = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
+                    if (parseResult !== null) {
+                        osVersion = parseResult[1] + '.' + parseResult[2] + '.' + (parseResult[3] | 0);
+                    }
                     break;
 
                 default:
+                    if (/Windows/.test(os)) {
+                        parseResult = /Windows (.*)/.exec(os);
+                        if (parseResult !== null) {
+                            osVersion = parseResult[1];
+                        }
+                        os = 'Windows';
+                    }
                     break;
             }
-        }
 
         window.browserInfo = {
             'screen'         : screenSize,
