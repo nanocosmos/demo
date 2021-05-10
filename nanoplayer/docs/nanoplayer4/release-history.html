@@ -115,6 +115,21 @@
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
 <h2 id="please-find-more-about-the-media-error-recovery-feature-in-our-documentation">Please find more about the <strong>media error recovery</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/">documentation</a></h2>
+<h2 id="-4-10-5-"><strong>[4.10.5]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version provides a fix for an error related to the player view.
+The issue occured in case of a rejected setup call or if 
+the <code>config.playback</code> object was not defined in the configuration.
+The player view is enabled by default (<code>config.style.view=true</code>).</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>prevent view initialization error in case of:<ul>
+<li>setup call rejection with error <code>5xxx</code></li>
+<li>undefined <code>config.playback</code> object</li>
+</ul>
+</li>
+</ul>
 <h2 id="-4-10-4-"><strong>[4.10.4]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version implements an automatic recovery workflow for certain media errors that can occure during playback. Recoverable errors are <code>3003</code>, <code>3100</code> and <code>1008</code>.
