@@ -2,6 +2,19 @@
 
 ## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
 
+## **[4.10.6]**
+
+### **Release Notes**
+
+This version implements a fix for an issue with the control bar appearing by tapping the player's surface on iOS.
+The control bar didn't appear by tap in `PAUSED` state with `keepFrame` disabled.
+
+### **Changelog**
+
+### Fixed
+
+- control bar appearing in `PAUSED` state with `keepFrame` disabled on iOS
+
 ## **[4.10.5]**
 
 ### **Release Notes**
