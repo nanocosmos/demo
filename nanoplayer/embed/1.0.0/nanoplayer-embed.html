@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your player embedded in iFrame</title>
+    </head>
+    <body>
+        <iframe src="nanoplayer.html" frameborder="0" allowfullscreen width="1280" height="720"></iframe>
+        <script>
+            var query = document.location.href;
+            var pos = query.indexOf('?') + 1;
+            if (pos) {
+                query = query.slice(pos);
+            }
+            var src = "nanoplayer.html?" + query;
+            var iFrame = document.querySelector('iframe');
+            iFrame.src = src;
+        </script>
+    </body>
+</html>
