@@ -236,6 +236,11 @@ function getNanoPlayerParameters () {
         config.style = config.style || {};
         config.style.backgroundColor = backgroundColor;
     }
+    var fullScreenBackgroundColor = getHTTPParam('fullScreenBackgroundColor') || getHTTPParam('style.fullScreenBackgroundColor');
+    if (fullScreenBackgroundColor) {
+        config.style = config.style || {};
+        config.style.fullScreenBackgroundColor = fullScreenBackgroundColor;
+    }
     var fullScreenControl = getHTTPParam('fullScreenControl') || getHTTPParam('style.fullScreenControl');
     if (fullScreenControl) {
         config.style = config.style || {};
@@ -291,10 +296,18 @@ function getNanoPlayerParameters () {
         config.style = config.style || {};
         config.style.width = isNaN(width) ? width : width + 'px';
     }
+    else {
+        config.style = config.style || {};
+        config.style.width = 'auto';
+    }
     var height = getHTTPParam('height') || getHTTPParam('style.height');
     if (height) {
         config.style = config.style || {};
         config.style.height = isNaN(height) ? height : height + 'px';
+    }
+    else {
+        config.style = config.style || {};
+        config.style.height = 'auto';
     }
 
     var asArray = getHTTPParam('codeSnippetAsArray');

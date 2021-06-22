@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.10.6
+NanoPlayer (H5Live) Public API Class 4.11.0
 
 **Kind**: global class  
-**Version**: 4.10.6  
+**Version**: 4.11.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2169,6 +2169,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[style.poster]</td><td><code>string</code></td><td></td><td><p>Sets a poster image to the player that is visible before and after playback. That can be every valid source of an IMG element. Valid sources are e.g. &#39;./assets/poster.png&#39; or &#39;https://[YOURDOMAIN]/assets/poster.gif&#39;. The poster will be displayed &#39;letterbox&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[style.fullScreenBackgroundColor]</td><td><code>string</code></td><td><code>&quot;inherit&quot;</code></td><td><p>Sets the background color in fullscreen mode of the video element. If not set it inherits from <code>style.backgroundColor</code> - possible values: html colors (&quot;red&quot;, &quot;blue&quot;, ...), hex color codes (&quot;#FACAFD&quot;, &quot;#FCEC66&quot;, ...) and rgba color values (&quot;rgba(255,0,0,1)&quot;, &quot;rgba(0,255,0,0.7)&quot;, ...).</p>
 </td>
     </tr><tr>
     <td>[events]</td><td><code>object</code></td><td></td><td><p>The object to set handlers to the player events.</p>

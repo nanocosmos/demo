@@ -179,6 +179,10 @@ input[type=radio] {
     top: -1px;
 }
 
+input[type=range] {
+    max-width: 80px;
+}
+
 p {
     color: #444;
     font-weight: 300;
@@ -249,6 +253,12 @@ video {
     h1 {
         font-size: 24px;
     }
+
+    div#container {
+        margin: 0 auto 0 auto;
+        max-width: none;
+        padding: 0;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -289,8 +299,8 @@ pre {
 }
 
 .player {
-    width: 640px;
-    height: 360px;
+    width: 100%;
+    padding-top: 56.25%;
     border: 1px solid black;
 }
 
@@ -327,6 +337,32 @@ pre {
 
 .row {
     display: flex;
+}
+
+.row-flex {
+    display: flex;
+    justify-content: space-between
+}
+
+.row-flex-left {
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.row-flex-right {
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.row-padding {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .col {
@@ -376,7 +412,7 @@ pre {
 .labelBitrate, .labelResolution, .labelFrameRate {
     font-size: 14px;
     font-weight: 500;
-    color: #ed7d0e;
+    color: #FFA43E;
 }
 
 .shake {

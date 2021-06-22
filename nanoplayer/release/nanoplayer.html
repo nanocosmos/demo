@@ -20,7 +20,9 @@ All modifications will remain property of nanocosmos.
     <title>nanoplayer</title>
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main-light.css">
     <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
     <div id="container">
@@ -32,23 +34,19 @@ All modifications will remain property of nanocosmos.
             <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
-        <p class="normal">
-            <span>
-                <strong>controls:&nbsp;</strong>
-                <button id="buttonPlay" onclick="play();">play</button>
-                <button id="buttonPause" onclick="pause();">pause</button>
-                <button id="buttonReset" onclick="startPlayer();">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">fullscreen</button>
-                <!-- <button id="buttonDestroy" onclick="destroyPlayer();">destroy</button> -->
-            </span>
-            <span style="float:right">
-                <span>&nbsp;</span>
-                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);" onchange="setVolume(this, value);" />
-                <output for="fader" id="volume">100%</output>
-            </span>
-            <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
-            <strong id="friendly-message"></strong>
-        </p>
+        <div id="controlsWrapper" class="row-flex row-padding">
+            <div>
+                <button id="buttonPlay" onclick="play();" style="padding-right:5px">play</button>
+                <button id="buttonPause" onclick="pause();" style="padding-right:5px">pause</button>
+                <button id="buttonReset" onclick="startPlayer();" style="padding-right:5px">reset</button>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();" style="padding-right:5px">fullscreen</button></div>
+            <div>
+                <button id="buttonMute" onclick="mute(this);" data-muted="false" style="padding-left:5px">mute</button>
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
+                    onchange="setVolume(this, value);"  style="padding-left:5px; display:inline-block; vertical-align: middle;"/>
+                <output for="fader" id="volume" style="padding-left:5px; display:inline-block; vertical-align: middle;">100%</output>
+            </div>
+        </div>
         <p class="normal" id="warning-container" style="display:none">
             <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
         </p>
@@ -137,17 +135,236 @@ All modifications will remain property of nanocosmos.
     <script src="./js/nanoplayer-metrics-config.js"></script>
     <script src="./js/multi/nano.bintu.js"></script>
 
+    <!-- REMOVE TEST IOS CHROME DEBUGGING WITH WEINRE -->
+    <!--script src="http://10.24.99.6:8080/target/target-script-min.js"></script-->
+
+        <style>
+            @keyframes blackwhite {
+                0% {
+                    background-color: #000;
+                }
+                7% {
+                    background-color: #111;
+                }
+                13% {
+                    background-color: #222;
+                }
+                20% {
+                    background-color: #333;
+                }
+                27% {
+                    background-color: #444;
+                }
+                33% {
+                    background-color: #555;
+                }
+                40% {
+                    background-color: #666;
+                }
+                47% {
+                    background-color: #777;
+                }
+                53% {
+                    background-color: #888;
+                }
+                60% {
+                    background-color: #999;
+                }
+                67% {
+                    background-color: #aaa;
+                }
+                73% {
+                    background-color: #bbb;
+                }
+                80% {
+                    background-color: #ccc;
+                }
+                87% {
+                    background-color: #ddd;
+                }
+                93% {
+                    background-color: #eee;
+                }
+                100% {
+                    background-color: #fff
+                }
+            }
+            @keyframes rainbow {
+                0% {
+                    background-color: #e87d7d;
+                }
+                2% {
+                    background-color: #e88a7d;
+                }
+                4% {
+                    background-color: #e8977d;
+                }
+                6% {
+                    background-color: #e8a47d;
+                }
+                8% {
+                    background-color: #e8b07d;
+                }
+                10% {
+                    background-color: #e8bd7d;
+                }
+                12% {
+                    background-color: #e8ca7d;
+                }
+                14% {
+                    background-color: #e8d77d;
+                }
+                16% {
+                    background-color: #e8e47d;
+                }
+                18% {
+                    background-color: #dfe87d;
+                }
+                20% {
+                    background-color: #d3e87d;
+                }
+                22% {
+                    background-color: #c6e87d;
+                }
+                24% {
+                    background-color: #b9e87d;
+                }
+                26% {
+                    background-color: #ace87d;
+                }
+                28% {
+                    background-color: #9fe87d;
+                }
+                30% {
+                    background-color: #92e87d;
+                }
+                32% {
+                    background-color: #86e87d;
+                }
+                34% {
+                    background-color: #7de881;
+                }
+                36% {
+                    background-color: #7de88e;
+                }
+                38% {
+                    background-color: #7de89b;
+                }
+                40% {
+                    background-color: #7de8a8;
+                }
+                42% {
+                    background-color: #7de8b5;
+                }
+                44% {
+                    background-color: #7de8c1;
+                }
+                46% {
+                    background-color: #7de8ce;
+                }
+                48% {
+                    background-color: #7de8db;
+                }
+                50% {
+                    background-color: #7de8e8;
+                }
+                52% {
+                    background-color: #7ddbe8;
+                }
+                54% {
+                    background-color: #7dcee8;
+                }
+                56% {
+                    background-color: #7dc1e8;
+                }
+                58% {
+                    background-color: #7db5e8;
+                }
+                60% {
+                    background-color: #7da8e8;
+                }
+                62% {
+                    background-color: #7d9be8;
+                }
+                64% {
+                    background-color: #7d8ee8;
+                }
+                66% {
+                    background-color: #7d81e8;
+                }
+                68% {
+                    background-color: #867de8;
+                }
+                70% {
+                    background-color: #927de8;
+                }
+                72% {
+                    background-color: #9f7de8;
+                }
+                74% {
+                    background-color: #ac7de8;
+                }
+                76% {
+                    background-color: #b97de8;
+                }
+                78% {
+                    background-color: #c67de8;
+                }
+                80% {
+                    background-color: #d37de8;
+                }
+                82% {
+                    background-color: #df7de8;
+                }
+                84% {
+                    background-color: #e87de4;
+                }
+                86% {
+                    background-color: #e87dd7;
+                }
+                88% {
+                    background-color: #e87dca;
+                }
+                90% {
+                    background-color: #e87dbd;
+                }
+                92% {
+                    background-color: #e87db0;
+                }
+                94% {
+                    background-color: #e87da4;
+                }
+                96% {
+                    background-color: #e87d97;
+                }
+                98% {
+                    background-color: #e87d8a;
+                }
+                100% {
+                    background-color: #e87d7d;
+                }
+            }
+            .rainbow {
+                animation: rainbow 1s infinite;
+            }
+            .blackwhite {
+                animation: blackwhite 1s infinite;
+                animation-direction: alternate;
+            }
+
+        </style>
+
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.10.6.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.11.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.10.6';
+        var playerVersion = '4.11.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210608';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210622';
         };
 
         var player;

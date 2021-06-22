@@ -1,0 +1,38 @@
+﻿body {
+    background-color: black;
+    color: #c6c6c6;
+}
+
+button {
+    background-color: #ffa43e;
+    color: #2d2d2d;
+}
+
+p, h2, .labelStreamname--active{
+    color: #c6c6c6 !important;
+}
+
+.player {
+    border: none;
+}
+
+#controlsWrapper {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#controlsWrapper > button, #controlsWrapper > strong, #controlsWrapper > div {
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 999px) {
+  #container {
+    padding: 10px !important;
+  }
+  #controlsWrapper {
+    justify-content: space-between;
+}
+}
