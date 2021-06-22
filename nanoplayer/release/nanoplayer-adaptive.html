@@ -21,7 +21,10 @@ All modifications will remain property of nanocosmos.
     <title>nanoplayer</title>
     <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main-light.css">
     <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+    <!-- REMOVE LATER !!! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
@@ -30,43 +33,23 @@ All modifications will remain property of nanocosmos.
             <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
             <strong id="demo-version"></strong>
         </p>
-        <div class="row" style="display: flex">
-            <div class="col">
-                <div id="playerDiv" class="player">
-                    <!---->
-                    <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
-                </div>
-            </div>
-            <!-- <div class="col" style="flex: 1; height: 100%; padding-left: 20px">
-                <div id="chartWrapper"
-                    class="d-xl-flex col px-4 py-4 mt-4 mt-xl-4 mx-0 background--light card box-shadow__material"
-                    style="height: 100%">
-                    <div class="row mx-0 font-weight-medium title white--text">
-                        Buffer
-                    </div>
-                    <div class="flex-col flex-1 mt-4" style="overflow: hidden;height: 100%">
-                        <canvas id="bitrateChart"></canvas>
-                    </div>
-                </div>
-            </div> -->
+        <div id="playerDiv" class="player">
+            <!---->
+            <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
-        <p class="normal">
-            <span>
-                <strong>controls:&nbsp;</strong>
-                <button id="buttonPlay" onclick="play();">play</button>
-                <button id="buttonPause" onclick="pause();">pause</button>
-                <button id="buttonReset" onclick="startPlayer(null, true);">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();">fullscreen</button>
-            </span>
-            <span style="float:right">
-                <span>&nbsp;</span>
+        <div id="controlsWrapper" class="row-flex row-padding">
+            <div>
+                <button id="buttonPlay" onclick="play();" style="margin-right:5px">play</button>
+                <button id="buttonPause" onclick="pause();" style="margin-right:5px">pause</button>
+                <button id="buttonReset" onclick="startPlayer();" style="margin-right:5px">reset</button>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();" style="margin-right:5px">fullscreen</button></div>
+            <div>
+                <button id="buttonMute" onclick="mute(this);" data-muted="false" style="margin-left:5px">mute</button>
                 <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
-                    onchange="setVolume(this, value);" />
-                <output for="fader" id="volume">100%</output>
-            </span>
-            <button id="buttonMute" onclick="mute(this);" data-muted="false" style="float:right">mute</button>
-            <strong id="friendly-message"></strong>
-        </p>
+                    onchange="setVolume(this, value);"  style="margin-left:5px; display:inline-block; vertical-align: middle;"/>
+                <output for="fader" id="volume" style="margin-left:5px; display:inline-block; vertical-align: middle;">100%</output>
+            </div>
+        </div>
         <p class="normal">
             <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);">
                 <option value="none">none</option>
@@ -178,15 +161,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.10.6.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.11.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.10.6';
+        var playerVersion = '4.11.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210608';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210622';
         };
 
         var player;

@@ -510,14 +510,14 @@
     // OS DETECTION
     (function () {
         /* test cases
-            alert(
-                'browserInfo result: OS: ' + browserInfo.os +' '+ browserInfo.osVersion + '\n'+
-                    'Browser: ' + browserInfo.browser +' '+ browserInfo.browserVersion + '\n' +
-                    'Mobile: ' + browserInfo.mobile + '\n' +
-                    'Cookies: ' + browserInfo.cookies + '\n' +
-                    'Screen Size: ' + browserInfo.screen
-            );
-        */
+                alert(
+                    'browserInfo result: OS: ' + browserInfo.os +' '+ browserInfo.osVersion + '\n'+
+                        'Browser: ' + browserInfo.browser +' '+ browserInfo.browserVersion + '\n' +
+                        'Mobile: ' + browserInfo.mobile + '\n' +
+                        'Cookies: ' + browserInfo.cookies + '\n' +
+                        'Screen Size: ' + browserInfo.screen
+                );
+            */
         var unknown = 'Unknown';
 
         // screen
