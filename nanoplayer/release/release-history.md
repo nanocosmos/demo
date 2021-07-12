@@ -1,6 +1,23 @@
 ﻿# **NanoPlayer - Release History**
 
-## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
+## **[4.11.2]**
+
+### **Release Notes**
+
+This version is fixing a video layout issue on iOS that occurred in the integrated WebView of a major social media app.
+Furthermore it is containing a fix related to the display of the player control bar after tapping on older iOS versions 12 and lower.
+The issues have been introduced in version 4.10.6.
+
+### **Changelog**
+
+### Improved
+
+- validation of parameter config.source.startIndex
+
+### Fixed
+
+- video layout issue on iOS in the integrated WebView of a major social media app
+- display of the player control bar after tapping on older iOS versions 12 and lower
 
 ## **[4.11.0]**
 
@@ -42,6 +59,8 @@ The following improvements to the fullscreen mode have been added for iOS Safari
 ### Fixed
 
 - script error in nanoplayer-multi demo page
+
+## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
 
 ## **[4.10.6]**
 
