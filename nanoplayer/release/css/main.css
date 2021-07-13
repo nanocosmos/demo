@@ -300,8 +300,11 @@ pre {
 
 .player {
     width: 100%;
-    padding-top: 56.25%;
     border: 1px solid black;
+}
+
+.responsive {
+    padding-top: 56.25%;
 }
 
 @media (min-width: 1200px) {

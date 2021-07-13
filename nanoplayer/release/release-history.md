@@ -1,12 +1,13 @@
 ﻿# **NanoPlayer - Release History**
 
-## **[4.11.2]**
+## **[4.11.3]**
 
 ### **Release Notes**
 
 This version is fixing a video layout issue on iOS that occurred in the integrated WebView of a major social media app.
 Furthermore it is containing a fix related to the display of the player control bar after tapping on older iOS versions 12 and lower.
 The issues have been introduced in version 4.10.6.
+Moreover an issue with poster scaling and aspect ratio changing of the player is solved.
 
 ### **Changelog**
 
@@ -18,6 +19,7 @@ The issues have been introduced in version 4.10.6.
 
 - video layout issue on iOS in the integrated WebView of a major social media app
 - display of the player control bar after tapping on older iOS versions 12 and lower
+- poster scaling while aspect ratio of the player is changing
 
 ## **[4.11.0]**
 
