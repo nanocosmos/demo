@@ -304,6 +304,7 @@ function getNanoPlayerParameters () {
     if (height) {
         config.style = config.style || {};
         config.style.height = isNaN(height) ? height : height + 'px';
+        document.getElementById('playerDiv').classList.remove('responsive');
     }
     else {
         config.style = config.style || {};
