@@ -114,6 +114,46 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="-4-12-0-"><strong>[4.12.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version is adding the option to configure the minimum number steps during an ABR initialized switch down via the <code>adaption.downStep</code> parameter. Potential related use case are configurations containing a higher number of qualities or configurations with rather close rendition bitrates.
+The detection of the available buffer time has been improved for iOS in general and iOS 15 in particular.
+A timing related condition that could lead to buffering after a stream switch has been fixed.
+The start-buffer calculation in <code>bufferDynamic</code> mode has been fixed to prevent out of range values.
+Assigning <code>null</code> values to non mandatory configuration parameters will no longer lead to a setup error.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li><p>new option <code>config.source.options.adaption.downStep</code></p>
+<ul>
+<li>for ABR automatic &#39;deviationOfMean&#39; and &#39;deviationOfMean2&#39; only</li>
+<li>allows to define the minimum number of steps during a ABR initialized down switch via the <code>adaption</code> object</li>
+<li>if the number of remaining lower renditions is smaller than the value then the switch will be performed to the lowest rendition</li>
+<li>default value is <code>1</code></li>
+<li><p>e.g.:</p>
+<pre><code class="lang-javascript"><span class="hljs-string">"adaption"</span>: {
+    <span class="hljs-string">"rule"</span>: <span class="hljs-string">"deviationOfMean2"</span>,
+    <span class="hljs-string">"downStep"</span>: <span class="hljs-number">2</span>
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>detection of the available buffer time for iOS in general and iOS 15 in particular</li>
+<li>config warning message in case of wrong configured properties of an entry</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>timing related condition that could lead to buffering after a stream switch</li>
+<li>start-buffer calculation in cooldown if <code>bufferDynamic</code> is enabled<ul>
+<li>prevent lower values than the original configured start buffer value</li>
+</ul>
+</li>
+<li>assigning <code>null</code> values to non mandatory configuration parameters will no longer lead to a setup error</li>
+</ul>
 <h2 id="-4-11-3-"><strong>[4.11.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version is fixing a video layout issue on iOS that occurred in the integrated WebView of a major social media app.

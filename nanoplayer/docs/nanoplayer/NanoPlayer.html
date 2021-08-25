@@ -81,7 +81,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.11.3</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.12.0</p></div>
         
     
 </header>
@@ -170,7 +170,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.11.3</li>
+			<li>4.12.0</li>
 		</ul>
 	</dd>
 	
@@ -224,109 +224,11 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">
-&lt;!-- Example: load player with new video element into playerDiv --&gt;
-&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var player;
-    var config = {
-        &quot;source&quot;: {
-            &quot;entries&quot;: [
-                    {
-                        &quot;h5live&quot;: {
-                             // your rtmp stream
-                            &quot;rtmp&quot;: {
-                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;
-                            },
-                            &quot;server&quot;: {
-                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                            }
-                        }
-                    }
-            ]
-        }
-    };
-    function initPlayer() {
-        player = new NanoPlayer(&#x27;playerDiv&#x27;);
-        player.setup(config).then(function (config) {
-            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-        }, function (error) {
-            console.log(error);
-        });
-    }
-    // load player from playerDiv
-    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {
-        initPlayer();
-    });
-&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">
-&lt;!-- Example: load player with existing html video element --&gt;
-&lt;div id=&quot;playerDiv&quot;&gt;
-    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;
-    &lt;!-- iOS ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;
-    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var player;
-    var config = {
-        &quot;source&quot;: {
-            &quot;entries&quot;: [
-                    {
-                        &quot;h5live&quot;: {
-                             // your rtmp stream
-                            &quot;rtmp&quot;: {
-                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;
-                            },
-                            &quot;server&quot;: {
-                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                            }
-                        }
-                    }
-            ]
-        },
-        &quot;playback&quot;: {
-            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]
-        }
-    };
-    function initPlayer() {
-        player = new NanoPlayer(&#x27;playerDiv&#x27;);
-        player.setup(config).then(function (config) {
-            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-        }, function (error) {
-            console.log(error);
-        });
-    }
-    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {
-        initPlayer();
-    });
-&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- iOS ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">
-&lt;!-- Example: load player with require.js --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var player;
-    requirejs.config({
-        paths: {
-            // loads the player ...
-            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;
-            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path
-            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;
-        },
-        waitSeconds: 20, // timeout for loading modules
-    });
-    require(&#x27;nanoplayer&#x27;, function() {
-        initPlayer();
-    });
-&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
 
 
     
@@ -858,9 +760,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.destroy();
-player.setup(config);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.destroy();player.setup(config);</pre>
 
 
     
@@ -964,15 +864,7 @@ player.setup(config);</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.exitFullscreen()
-   .then(function (){
-       console.log(&#x27;exitFullscreen resolved&#x27;);
-   })
-   .catch(function(err) {
-       // error reasons can be &#x27;denied&#x27; or &#x27;disabled&#x27; (e.g. in audio player mode)
-       console.log(&#x27;exitFullscreen rejected: &#x27; + err.reason);
-   });</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.exitFullscreen()   .then(function (){       console.log(&#x27;exitFullscreen resolved&#x27;);   })   .catch(function(err) {       // error reasons can be &#x27;denied&#x27; or &#x27;disabled&#x27; (e.g. in audio player mode)       console.log(&#x27;exitFullscreen rejected: &#x27; + err.reason);   });</pre>
 
 
     
@@ -1056,8 +948,7 @@ player.exitFullscreen()
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.mute();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.mute();</pre>
 
 
     
@@ -1141,8 +1032,7 @@ player.mute();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.pause();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.pause();</pre>
 
 
     
@@ -1226,8 +1116,7 @@ player.pause();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.play();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.play();</pre>
 
 
     
@@ -1331,15 +1220,7 @@ player.play();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.requestFullscreen()
-   .then(function (){
-       console.log(&#x27;requestFullscreen resolved&#x27;);
-   })
-   .catch(function(err) {
-       // error reasons can be &#x27;denied&#x27; or &#x27;disabled&#x27; (e.g. in audio player mode)
-       console.log(&#x27;requestFullscreen rejected: &#x27; + err.reason);
-   });</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.requestFullscreen()   .then(function (){       console.log(&#x27;requestFullscreen resolved&#x27;);   })   .catch(function(err) {       // error reasons can be &#x27;denied&#x27; or &#x27;disabled&#x27; (e.g. in audio player mode)       console.log(&#x27;requestFullscreen rejected: &#x27; + err.reason);   });</pre>
 
 
     
@@ -1480,14 +1361,7 @@ player.requestFullscreen()
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var adaption = {
-    &quot;rule&quot;: &quot;deviationOfMean&quot;
-}
-if (!useAdaption) {
-    adaption.rule = &quot;none&quot;;
-}
-player.setAdaption(adaption);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar adaption = {    &quot;rule&quot;: &quot;deviationOfMean2&quot;,    &quot;downStep&quot;: 2}if (!useAdaption) {    adaption.rule = &quot;none&quot;;}player.setAdaption(adaption);</pre>
 
 
     
@@ -1648,12 +1522,7 @@ player.setAdaption(adaption);</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -1787,8 +1656,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.setVolume(0.3);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.setVolume(0.3);</pre>
 
 
     
@@ -1949,12 +1817,7 @@ player.setVolume(0.3);</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.switchStream(1).then(function (config) {
-    console.log(&#x27;switch stream initialized with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.switchStream(1).then(function (config) {    console.log(&#x27;switch stream initialized with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -2038,8 +1901,7 @@ player.switchStream(1).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-player.unmute();</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayerplayer.unmute();</pre>
 
 
     
@@ -2672,6 +2534,46 @@ player.unmute();</pre>
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>downStep</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>The minimum number of steps during a ABR down switch ('deviationOfMean' and 'deviationOfMean2' only).</p></td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -3522,148 +3424,9 @@ player.unmute();</pre>
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var source = {
-    &quot;entries&quot;: [
-            {
-                &quot;index&quot;: 0,
-                &quot;label&quot;: &quot;high&quot;,
-                &quot;tag&quot;: &quot;this is a high quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 1200,
-                    &quot;width&quot;: 1280,
-                    &quot;height&quot;: 720,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            },
-            {
-                &quot;index&quot;: 1,
-                &quot;label&quot;: &quot;medium&quot;,
-                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 800,
-                    &quot;width&quot;: 864,
-                    &quot;height&quot;: 480,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            },
-            {
-                &quot;index&quot;: 2,
-                &quot;label&quot;: &quot;low&quot;,
-                &quot;tag&quot;: &quot;this is a low quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 400,
-                    &quot;width&quot;: 426,
-                    &quot;height&quot;: 240,
-                    &quot;framerate&quot;: 15
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            }
-    ],
-    &quot;options&quot;: {
-        &quot;adaption&quot;: {
-            &quot;rule&quot;: &quot;deviationOfMean&quot;
-        },
-        &quot;switch&quot;: {
-            &#x27;method&#x27;: &#x27;server&#x27;,
-            &#x27;pauseOnError&#x27;: false,
-            &#x27;forcePlay&#x27;: true,
-            &#x27;fastStart&#x27;: false,
-            &#x27;timeout&#x27;: 20
-        }
-    },
-    &quot;startIndex&quot;: 2 // lowest
-};
-// player instance of NanoPlayer
-player.updateSource(source).then(function (config) {
-    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;,                &quot;tag&quot;: &quot;this is a high quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 1,                &quot;label&quot;: &quot;medium&quot;,                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 800,                    &quot;width&quot;: 864,                    &quot;height&quot;: 480,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 2,                &quot;label&quot;: &quot;low&quot;,                &quot;tag&quot;: &quot;this is a low quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 400,                    &quot;width&quot;: 426,                    &quot;height&quot;: 240,                    &quot;framerate&quot;: 15                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            }    ],    &quot;options&quot;: {        &quot;adaption&quot;: {            &quot;rule&quot;: &quot;deviationOfMean2&quot;,            &quot;downStep&quot;: 1        },        &quot;switch&quot;: {            &#x27;method&#x27;: &#x27;server&#x27;,            &#x27;pauseOnError&#x27;: false,            &#x27;forcePlay&#x27;: true,            &#x27;fastStart&#x27;: false,            &#x27;timeout&#x27;: 20        }    },    &quot;startIndex&quot;: 2 // lowest};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log(&#x27;update source ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
-    <pre class="sunlight-highlight-javascript">var source = {
-    &quot;entries&quot;: [
-            {
-                &quot;index&quot;: 0,
-                &quot;label&quot;: &quot;high&quot;, // optional
-                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional
-                &quot;info&quot;: { // optional
-                    &quot;bitrate&quot;: 1200,
-                    &quot;width&quot;: 1280,
-                    &quot;height&quot;: 720,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;h5live&quot;: {
-                     // your rtmp stream
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    // optional (secure token)
-                    &quot;security&quot;: {
-                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,
-                        &quot;expires&quot;: &#x27;1519819200&#x27;,
-                        &quot;options&quot;: &#x27;15&#x27;,
-                        &quot;tag&quot;: &#x27;anyTag&#x27;
-                    }
-                }
-            }
-    ]
-};
-// player instance of NanoPlayer
-player.updateSource(source).then(function (config) {
-    console.log(&#x27;update source initialized with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;, // optional                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                &quot;info&quot;: { // optional                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;h5live&quot;: {                     // your rtmp stream                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    // optional (secure token)                    &quot;security&quot;: {                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                        &quot;expires&quot;: &#x27;1519819200&#x27;,                        &quot;options&quot;: &#x27;15&#x27;,                        &quot;tag&quot;: &#x27;anyTag&#x27;                    }                }            }    ]};// player instance of NanoPlayerplayer.updateSource(source).then(function (config) {    console.log(&#x27;update source initialized with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -4290,6 +4053,44 @@ player.updateSource(source).then(function (config) {
             
 
             <td class="description last"><p>The switch rule if multiple entries are defined. Possible values are 'deviationOfMean' (ABR automatic), 'deviationOfMean2' (ABR automatic) and 'none' (default, means only manual stream switch via 'switchStream' possible).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>downStep</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last"><p>The minimum number of steps during a ABR down switch ('deviationOfMean' and 'deviationOfMean2' only).</p></td>
         </tr>
 
     
@@ -4966,7 +4767,7 @@ player.updateSource(source).then(function (config) {
             
                 <td class="default">
                 
-                    "https://bintu.nanocosmos.de"
+                    https://bintu.nanocosmos.de
                 
                 </td>
             
@@ -5376,7 +5177,7 @@ player.updateSource(source).then(function (config) {
                 </td>
             
 
-            <td class="description last"><p>If enabled the player will have always a connection to the h5live server.</p></td>
+            <td class="description last"><p>If enabled the player will have always a connection to the h5live server. NOTE: not recommended for general use</p></td>
         </tr>
 
     
@@ -5447,7 +5248,7 @@ player.updateSource(source).then(function (config) {
             
                 <td class="default">
                 
-                    "not-set"
+                    not-set
                 
                 </td>
             
@@ -8147,284 +7948,13 @@ player.updateSource(source).then(function (config) {
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var config = {
-    source: {
-        bintu: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.
-            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;
-        }
-    }
-};</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    source: {        bintu: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.            streamid: &#x27;q23rf2tzw3h6754iretmft7irt&#x27;        }    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">// Complete config example
-var config = {
-    &quot;source&quot; : {
-        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects
-                {
-                    &quot;index&quot;: 0,
-                    &quot;label&quot;: &quot;high&quot;,
-                    &quot;tag&quot;: &quot;this is a high quality stream&quot;,
-                    &quot;info&quot;: {
-                        &quot;bitrate&quot;: 1200,
-                        &quot;width&quot;: 1280,
-                        &quot;height&quot;: 720,
-                        &quot;framerate&quot;: 30
-                    },
-                    &quot;hls&quot;: &quot;&quot;,
-                    &quot;h5live&quot;: {
-                        &quot;rtmp&quot;: {
-                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                            &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;
-                        },
-                        &quot;server&quot;: {
-                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                        },
-                        &quot;token&quot;: &quot;&quot;,
-                        &quot;security&quot;: {}
-                    },
-                    &quot;bintu&quot;: {}
-                },
-                {
-                    &quot;index&quot;: 1,
-                    &quot;label&quot;: &quot;medium&quot;,
-                    &quot;tag&quot;: &quot;this is a medium quality stream&quot;,
-                    &quot;info&quot;: {
-                        &quot;bitrate&quot;: 800,
-                        &quot;width&quot;: 864,
-                        &quot;height&quot;: 480,
-                        &quot;framerate&quot;: 30
-                    },
-                    &quot;hls&quot;: &quot;&quot;,
-                    &quot;h5live&quot;: {
-                        &quot;rtmp&quot;: {
-                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                            &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;
-                        },
-                        &quot;server&quot;: {
-                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                        },
-                        &quot;token&quot;: &quot;&quot;,
-                        &quot;security&quot;: {}
-                    },
-                    &quot;bintu&quot;: {}
-                },
-                {
-                    &quot;index&quot;: 2,
-                    &quot;label&quot;: &quot;low&quot;,
-                    &quot;tag&quot;: &quot;this is a low quality stream&quot;,
-                    &quot;info&quot;: {
-                        &quot;bitrate&quot;: 400,
-                        &quot;width&quot;: 426,
-                        &quot;height&quot;: 240,
-                        &quot;framerate&quot;: 15
-                    },
-                    &quot;hls&quot;: &quot;&quot;,
-                    &quot;h5live&quot;: {
-                        &quot;rtmp&quot;: {
-                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                            &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;
-                        },
-                        &quot;server&quot;: {
-                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                        },
-                        &quot;token&quot;: &quot;&quot;,
-                        &quot;security&quot;: {}
-                    },
-                    &quot;bintu&quot;: {}
-                }
-        ],
-        &quot;options&quot;: {
-            &quot;adaption&quot;: {
-                &quot;rule&quot;: &quot;deviationOfMean&quot;
-            },
-            &quot;switch&quot;: {
-                &#x27;method&#x27;: &#x27;server&#x27;,
-                &#x27;pauseOnError&#x27;: false,
-                &#x27;forcePlay&#x27;: true,
-                &#x27;fastStart&#x27;: false,
-                &#x27;timeout&#x27;: 20
-            }
-        },
-        &quot;startIndex&quot;: 2 // lowest
-    },
-    // playback is completely optional
-    &quot;playback&quot;: {
-        &quot;autoplay&quot;: false,
-        &quot;metadata&quot;: true,
-        &quot;keepConnection&quot;: true,
-        &quot;reconnect&quot;: {
-            &quot;minDelay&quot;: 2.5,
-            &quot;maxDelay&quot;: 12.5,
-            &quot;delaySteps&quot;: 6,
-            &quot;maxRetries&quot;: 20
-        }
-    },
-    &quot;events&quot;: {
-        &quot;onWarning&quot;: function (e) {
-            console.log(e);
-        }
-    },
-    &quot;style&quot;: {
-        &quot;width&quot;: &#x27;1280px&#x27;,
-        &quot;height&quot;: &#x27;720px&#x27;
-    },
-    // optional buffer tweaks, use with care, usually not required
-    &quot;tweaks&quot;: {
-        &quot;buffer&quot;: {
-            &quot;min&quot;: 0.2,
-            &quot;start&quot;: 0.5,
-            &quot;max&quot;: 8.0,
-            &quot;target&quot;: 1.2,
-            &quot;limit&quot;: 1.7
-        },
-        &quot;bufferDynamic&quot;: {
-            &quot;offsetThreshold&quot;: 2,
-            &quot;offsetStep&quot;: 0.5,
-            &quot;cooldownTime&quot;: 10
-        }
-    },
-    // metrics/analytics (requires account)
-    &quot;metrics&quot;: {
-        &quot;accountId&quot;: &#x27;myId&#x27;,
-        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;,
-        &quot;userId&quot;: &#x27;myUserId&#x27;,
-        &quot;eventId&quot;: &#x27;myEventId&#x27;,
-        &quot;statsInterval&quot;: 10,
-        &quot;customField1&quot;: &#x27;custom&#x27;,
-        &quot;customField2&quot;: 42,
-        &quot;customField3&quot;: true
-    }
-};</pre>
+    <pre class="sunlight-highlight-javascript">// Complete config examplevar config = {    &quot;source&quot; : {        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects                {                    &quot;index&quot;: 0,                    &quot;label&quot;: &quot;high&quot;,                    &quot;tag&quot;: &quot;this is a high quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 1200,                        &quot;width&quot;: 1280,                        &quot;height&quot;: 720,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                },                {                    &quot;index&quot;: 1,                    &quot;label&quot;: &quot;medium&quot;,                    &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 800,                        &quot;width&quot;: 864,                        &quot;height&quot;: 480,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                },                {                    &quot;index&quot;: 2,                    &quot;label&quot;: &quot;low&quot;,                    &quot;tag&quot;: &quot;this is a low quality stream&quot;,                    &quot;info&quot;: {                        &quot;bitrate&quot;: 400,                        &quot;width&quot;: 426,                        &quot;height&quot;: 240,                        &quot;framerate&quot;: 15                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        &quot;token&quot;: &quot;&quot;,                        &quot;security&quot;: {}                    },                    &quot;bintu&quot;: {}                }        ],        &quot;options&quot;: {            &quot;adaption&quot;: {                &quot;rule&quot;: &quot;deviationOfMean2&quot;,                &quot;downStep&quot;: 2            },            &quot;switch&quot;: {                &#x27;method&#x27;: &#x27;server&#x27;,                &#x27;pauseOnError&#x27;: false,                &#x27;forcePlay&#x27;: true,                &#x27;fastStart&#x27;: false,                &#x27;timeout&#x27;: 20            }        },        &quot;startIndex&quot;: 2 // lowest    },    // playback is completely optional    &quot;playback&quot;: {        &quot;autoplay&quot;: true,        &quot;automute&quot;: true,        &quot;muted&quot;: false,        &quot;metadata&quot;: true,        &quot;reconnect&quot;: {            &quot;minDelay&quot;: 2.5,            &quot;maxDelay&quot;: 12.5,            &quot;delaySteps&quot;: 6,            &quot;maxRetries&quot;: 20        }    },    &quot;events&quot;: {        &quot;onWarning&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {        &quot;width&quot;: &#x27;1280px&#x27;,        &quot;height&quot;: &#x27;720px&#x27;    },    // optional buffer tweaks, use with care, usually not required    &quot;tweaks&quot;: {        &quot;buffer&quot;: {            &quot;min&quot;: 0.2,            &quot;start&quot;: 0.5,            &quot;max&quot;: 8.0,            &quot;target&quot;: 1.2,            &quot;limit&quot;: 1.7        }    },    // metrics/analytics (requires account)    &quot;metrics&quot;: {        &quot;accountId&quot;: &#x27;myId&#x27;,        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;,        &quot;userId&quot;: &#x27;myUserId&#x27;,        &quot;eventId&quot;: &#x27;myEventId&#x27;,        &quot;statsInterval&quot;: 10,        &quot;customField1&quot;: &#x27;custom&#x27;,        &quot;customField2&quot;: 42,        &quot;customField3&quot;: true    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">// example with source url params and events
-var config = {
-    &quot;source&quot;: {
-        &quot;h5live&quot;: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.
-            &quot;server&quot;: {
-                &quot;websocket&quot;: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,
-                &quot;hls&quot;: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;
-            },
-            // rtmp stream source (your live stream)
-            &quot;params&quot;: {
-                &quot;url&quot;: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,
-                &quot;streamname&quot;: &#x27;XXXXX-YYYYY&#x27;
-                &quot;custom_key&quot;: &#x27;custom_value&#x27;
-            }
-        }
-    },
-    &quot;playback&quot;: {
-        &quot;autoplay&quot;: false,
-        &quot;videoId&quot;: [&#x27;myVideoTagId&#x27;, &#x27;myVideoTagId&#x27;]
-    },
-    &quot;events&quot;: {
-        &quot;onStats&quot;: function (e) {
-            console.log(e);
-        }
-    },
-    &quot;style&quot;: {
-       view: false
-    },
-    &quot;metrics&quot;: {
-        &quot;accountId&quot;: &#x27;myId&#x27;,
-        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;
-    }
-};</pre>
+    <pre class="sunlight-highlight-javascript">// example with source url params and eventsvar config = {    &quot;source&quot;: {        &quot;h5live&quot;: { // DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#x27;ENTRY&#x27; IS DEFINED IN &#x27;ENTRIES&#x27; ARRAY.            &quot;server&quot;: {                &quot;websocket&quot;: &#x27;wss://bintu-h5live.nanocosmos.de/h5live/stream&#x27;,                &quot;hls&quot;: &#x27;https://bintu-h5live.nanocosmos.de/h5live/http/playlist.m3u8&#x27;            },            // rtmp stream source (your live stream)            &quot;params&quot;: {                &quot;url&quot;: &#x27;rtmp://bintu-play.nanocosmos.de:80/live&#x27;,                &quot;streamname&quot;: &#x27;XXXXX-YYYYY&#x27;                &quot;custom_key&quot;: &#x27;custom_value&#x27;            }        }    },    &quot;playback&quot;: {        &quot;autoplay&quot;: false,        &quot;videoId&quot;: [&#x27;myVideoTagId&#x27;, &#x27;myVideoTagId&#x27;]    },    &quot;events&quot;: {        &quot;onStats&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {       view: false    },    &quot;metrics&quot;: {        &quot;accountId&quot;: &#x27;myId&#x27;,        &quot;accountKey&quot;: &#x27;sdfhe457zsjhnrtzd8&#x27;    }};</pre>
 
-    <pre class="sunlight-highlight-javascript">var config = {
-    &quot;source&quot; : {
-        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects, here only one is defined as single source
-                {
-                    &quot;index&quot;: 0,
-                    &quot;label&quot;: &quot;high&quot;, // optional
-                    &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional
-                    &quot;info&quot;: { // optional
-                        &quot;bitrate&quot;: 1200,
-                        &quot;width&quot;: 1280,
-                        &quot;height&quot;: 720,
-                        &quot;framerate&quot;: 30
-                    },
-                    &quot;hls&quot;: &quot;&quot;,
-                    &quot;h5live&quot;: {
-                        &quot;rtmp&quot;: {
-                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                            &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;
-                        },
-                        &quot;server&quot;: {
-                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                        },
-                        // (optional) secure token
-                        &quot;security&quot;: {
-                            &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,
-                            &quot;expires&quot;: &#x27;1519819200&#x27;,
-                            &quot;options&quot;: &#x27;15&#x27;,
-                            &quot;tag&quot;: &#x27;anyTag&#x27;
-                        }
-                    }
-                }
-        ],
-        &quot;options&quot;: { // optional
-            &quot;adaption&quot;: {
-                &quot;rule&quot;: &quot;none&quot;
-            }
-        },
-        &quot;startIndex&quot;: 0 // optional
-    },
-    &quot;playback&quot;: {
-        &quot;autoplay&quot;: true,
-        &quot;muted&quot;: true
-    },
-    &quot;events&quot;: {
-        &quot;onReady&quot;: function (e) {
-            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));
-        },
-        &quot;onPlay&quot;: function (e) {
-            console.log(&#x27;playing&#x27;);
-            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));
-        },
-        &quot;onPause&quot;: function (e) {
-            console.log(&#x27;pause&#x27;);
-            if (e.data.reason !== &#x27;normal&#x27;) {
-                alert(&#x27;Paused with reason: &#x27; + e.data.reason);
-            }
-        },
-        &quot;onError&quot;: function (e) {
-            try {
-                var err = JSON.stringify(e);
-                if (err === &#x27;{}&#x27;) {
-                    err = e.message;
-                }
-                e = err;
-            } catch (err) { }
-            console.log(e);
-            alert(e);
-        },
-        &quot;onMetaData&quot;: function (e) {
-            console.log(e);
-        },
-        &quot;onStats&quot;: function (e) {
-            console.log(e);
-        },
-        &quot;onStreamInfo&quot;: function (e) {
-            console.log(e);
-        },
-        &quot;onDestroy&quot;: function (e) {
-            console.log(e);
-        }
-    },
-    &quot;style&quot;: {
-        &quot;width: &#x27;1280px&#x27;,
-        &quot;aspectratio&quot;: &#x27;16/9&#x27;,
-        &quot;controls&quot;: false,
-        &quot;scaling&quot;: &#x27;crop&#x27;
-    }
-};</pre>
+    <pre class="sunlight-highlight-javascript">var config = {    &quot;source&quot; : {        &quot;entries&quot;: [ // array of &#x27;entry&#x27; objects, here only one is defined as single source                {                    &quot;index&quot;: 0,                    &quot;label&quot;: &quot;high&quot;, // optional                    &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                    &quot;info&quot;: { // optional                        &quot;bitrate&quot;: 1200,                        &quot;width&quot;: 1280,                        &quot;height&quot;: 720,                        &quot;framerate&quot;: 30                    },                    &quot;hls&quot;: &quot;&quot;,                    &quot;h5live&quot;: {                        &quot;rtmp&quot;: {                            &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                            &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                        },                        &quot;server&quot;: {                            &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                            &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                            &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                        },                        // (optional) secure token                        &quot;security&quot;: {                            &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                            &quot;expires&quot;: &#x27;1519819200&#x27;,                            &quot;options&quot;: &#x27;15&#x27;,                            &quot;tag&quot;: &#x27;anyTag&#x27;                        }                    }                }        ],        &quot;options&quot;: { // optional            &quot;adaption&quot;: {                &quot;rule&quot;: &quot;none&quot;            }        },        &quot;startIndex&quot;: 0 // optional    },    &quot;playback&quot;: {        &quot;autoplay&quot;: true,        &quot;muted&quot;: true    },    &quot;events&quot;: {        &quot;onReady&quot;: function (e) {            console.log(&#x27;player ready with &#x27; + JSON.stringify(e));        },        &quot;onPlay&quot;: function (e) {            console.log(&#x27;playing&#x27;);            console.log(&#x27;play stats: &#x27; + JSON.stringify(e.data.stats));        },        &quot;onPause&quot;: function (e) {            console.log(&#x27;pause&#x27;);            if (e.data.reason !== &#x27;normal&#x27;) {                alert(&#x27;Paused with reason: &#x27; + e.data.reason);            }        },        &quot;onError&quot;: function (e) {            try {                var err = JSON.stringify(e);                if (err === &#x27;{}&#x27;) {                    err = e.message;                }                e = err;            } catch (err) { }            console.log(e);            alert(e);        },        &quot;onMetaData&quot;: function (e) {            console.log(e);        },        &quot;onStats&quot;: function (e) {            console.log(e);        },        &quot;onStreamInfo&quot;: function (e) {            console.log(e);        },        &quot;onDestroy&quot;: function (e) {            console.log(e);        }    },    &quot;style&quot;: {        &quot;width: &#x27;1280px&#x27;,        &quot;aspectratio&quot;: &#x27;16/9&#x27;,        &quot;controls&quot;: false,        &quot;scaling&quot;: &#x27;crop&#x27;    }};</pre>
 
 
     
@@ -9505,136 +9035,9 @@ var config = {
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-javascript">var source = {
-    &quot;entries&quot;: [
-            {
-                &quot;index&quot;: 0,
-                &quot;label&quot;: &quot;high&quot;,
-                &quot;tag&quot;: &quot;this is a high quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 1200,
-                    &quot;width&quot;: 1280,
-                    &quot;height&quot;: 720,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            },
-            {
-                &quot;index&quot;: 1,
-                &quot;label&quot;: &quot;medium&quot;,
-                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 800,
-                    &quot;width&quot;: 864,
-                    &quot;height&quot;: 480,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            },
-            {
-                &quot;index&quot;: 2,
-                &quot;label&quot;: &quot;low&quot;,
-                &quot;tag&quot;: &quot;this is a low quality stream&quot;,
-                &quot;info&quot;: {
-                    &quot;bitrate&quot;: 400,
-                    &quot;width&quot;: 426,
-                    &quot;height&quot;: 240,
-                    &quot;framerate&quot;: 15
-                },
-                &quot;hls&quot;: &quot;&quot;,
-                &quot;h5live&quot;: {
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    &quot;token&quot;: &quot;&quot;,
-                    &quot;security&quot;: {}
-                },
-                &quot;bintu&quot;: {}
-            }
-    ],
-    &quot;options&quot;: {
-        &quot;adaption&quot;: {
-            &quot;rule&quot;: &quot;deviationOfMean&quot;
-        },
-        &quot;switch&quot;: {
-            &#x27;method&#x27;: &#x27;server&#x27;,
-            &#x27;pauseOnError&#x27;: false,
-            &#x27;forcePlay&#x27;: true,
-            &#x27;fastStart&#x27;: false,
-            &#x27;timeout&#x27;: 20
-        }
-    },
-    &quot;startIndex&quot;: 2 // lowest
-};</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;,                &quot;tag&quot;: &quot;this is a high quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY1&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 1,                &quot;label&quot;: &quot;medium&quot;,                &quot;tag&quot;: &quot;this is a medium quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 800,                    &quot;width&quot;: 864,                    &quot;height&quot;: 480,                    &quot;framerate&quot;: 30                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY2&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            },            {                &quot;index&quot;: 2,                &quot;label&quot;: &quot;low&quot;,                &quot;tag&quot;: &quot;this is a low quality stream&quot;,                &quot;info&quot;: {                    &quot;bitrate&quot;: 400,                    &quot;width&quot;: 426,                    &quot;height&quot;: 240,                    &quot;framerate&quot;: 15                },                &quot;hls&quot;: &quot;&quot;,                &quot;h5live&quot;: {                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYY3&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    &quot;token&quot;: &quot;&quot;,                    &quot;security&quot;: {}                },                &quot;bintu&quot;: {}            }    ],    &quot;options&quot;: {        &quot;adaption&quot;: {            &quot;rule&quot;: &quot;deviationOfMean2&quot;,            &quot;downStep&quot;: 1        },        &quot;switch&quot;: {            &#x27;method&#x27;: &#x27;server&#x27;,            &#x27;pauseOnError&#x27;: false,            &#x27;forcePlay&#x27;: true,            &#x27;fastStart&#x27;: false,            &#x27;timeout&#x27;: 20        }    },    &quot;startIndex&quot;: 2 // lowest};</pre>
 
-    <pre class="sunlight-highlight-javascript">var source = {
-    &quot;entries&quot;: [
-            {
-                &quot;index&quot;: 0,
-                &quot;label&quot;: &quot;high&quot;, // optional
-                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional
-                &quot;info&quot;: { // optional
-                    &quot;bitrate&quot;: 1200,
-                    &quot;width&quot;: 1280,
-                    &quot;height&quot;: 720,
-                    &quot;framerate&quot;: 30
-                },
-                &quot;h5live&quot;: {
-                     // your rtmp stream
-                    &quot;rtmp&quot;: {
-                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,
-                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;
-                    },
-                    &quot;server&quot;: {
-                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,
-                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,
-                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;
-                    },
-                    // optional (secure token)
-                    &quot;security&quot;: {
-                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,
-                        &quot;expires&quot;: &#x27;1519819200&#x27;,
-                        &quot;options&quot;: &#x27;15&#x27;,
-                        &quot;tag&quot;: &#x27;anyTag&#x27;
-                    }
-                }
-            }
-    ]
-};</pre>
+    <pre class="sunlight-highlight-javascript">var source = {    &quot;entries&quot;: [            {                &quot;index&quot;: 0,                &quot;label&quot;: &quot;high&quot;, // optional                &quot;tag&quot;: &quot;this is a high quality stream&quot;, // optional                &quot;info&quot;: { // optional                    &quot;bitrate&quot;: 1200,                    &quot;width&quot;: 1280,                    &quot;height&quot;: 720,                    &quot;framerate&quot;: 30                },                &quot;h5live&quot;: {                     // your rtmp stream                    &quot;rtmp&quot;: {                        &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                        &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                    },                    &quot;server&quot;: {                        &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                        &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                        &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                    },                    // optional (secure token)                    &quot;security&quot;: {                        &quot;token&quot;: &#x27;awe456b367g4e6rm8f56hbe6gd8f5m8df6n8idf6tf8mfd68ndi&#x27;,                        &quot;expires&quot;: &#x27;1519819200&#x27;,                        &quot;options&quot;: &#x27;15&#x27;,                        &quot;tag&quot;: &#x27;anyTag&#x27;                    }                }            }    ]};</pre>
 
 
     
@@ -12691,16 +12094,7 @@ var config = {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onDestroy = function (event) {
-    console.log(&#x27;player destroy&#x27;);
-};
-config.events.onDestroy = onDestroy;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onDestroy = function (event) {    console.log(&#x27;player destroy&#x27;);};config.events.onDestroy = onDestroy;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13043,16 +12437,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onError = function (event) {
-    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);
-};
-config.events.onError = onError;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onError = function (event) {    alert(&#x27;Error: &#x27; + event.data.code + &#x27; &#x27; + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13371,19 +12756,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onFullscreenChange = function (event) {
-    console.log(&#x27;FullscreenChange&#x27;);
-    if (event.data.entered === true) {
-         console.log(&#x27;Fullscreen Mode Entered&#x27;);
-    }
-};
-config.events.onFullscreenChange = onFullscreenChange;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onFullscreenChange = function (event) {    console.log(&#x27;FullscreenChange&#x27;);    if (event.data.entered === true) {         console.log(&#x27;Fullscreen Mode Entered&#x27;);    }};config.events.onFullscreenChange = onFullscreenChange;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -13702,16 +13075,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onLoading = function (event) {
-    console.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);
-};
-config.events.onLoading = onLoading;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onLoading = function (event) {    console.log(&#x27;Loading with delay of &#x27; + event.data.connectDelay + &#x27; milliseconds&#x27;);};config.events.onLoading = onLoading;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -14054,16 +13418,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onMetaData = function (event) {
-    console.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));
-};
-config.events.onMetaData = onMetaData;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMetaData = function (event) {    console.log(&#x27;MetaData: &#x27; + JSON.stringify(event.data));};config.events.onMetaData = onMetaData;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -14358,16 +13713,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onMute = function (event) {
-    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);
-};
-config.events.onMute = onMute;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onMute = function (event) {    console.log(&#x27;Muted with volume: &#x27; + event.data.volume);};config.events.onMute = onMute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -14686,19 +14032,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onPause = function (event) {
-    console.log(&#x27;Pause&#x27;);
-    if (event.data.reason !== &#x27;normal&#x27;) {
-         alert(&#x27;Paused with reason: &#x27; + event.data.reason);
-    }
-};
-config.events.onPause = onPause;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPause = function (event) {    console.log(&#x27;Pause&#x27;);    if (event.data.reason !== &#x27;normal&#x27;) {         alert(&#x27;Paused with reason: &#x27; + event.data.reason);    }};config.events.onPause = onPause;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -15186,17 +14520,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onPlay = function (event) {
-    console.log(&#x27;Playing&#x27;);
-    console.log(&#x27;play stats: &#x27; + JSON.stringify(event.data.stats));
-};
-config.events.onPlay = onPlay;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onPlay = function (event) {    console.log(&#x27;Playing&#x27;);    console.log(&#x27;play stats: &#x27; + JSON.stringify(event.data.stats));};config.events.onPlay = onPlay;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -15515,16 +14839,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onReady = function (event) {
-    console.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));
-}
-config.events.onReady = onReady;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onReady = function (event) {    console.log(&#x27;Ready: &#x27; + JSON.stringify(event.data.config));}config.events.onReady = onReady;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -15916,16 +15231,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onServerInfo = function (event) {
-    console.log(&#x27;ServerInfo: &#x27; + JSON.stringify(event.data.serverInfo));
-};
-config.events.onServerInfo = onServerInfo;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onServerInfo = function (event) {    console.log(&#x27;ServerInfo: &#x27; + JSON.stringify(event.data.serverInfo));};config.events.onServerInfo = onServerInfo;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -16195,16 +15501,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStartBuffering = function (event) {
-    console.log(&#x27;Buffering&#x27;);
-};
-config.events.onStartBuffering = onStartBuffering;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStartBuffering = function (event) {    console.log(&#x27;Buffering&#x27;);};config.events.onStartBuffering = onStartBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -17370,16 +16667,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStats = function (event) {
-    console.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));
-};
-config.events.onStats = onStats;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStats = function (event) {    console.log(&#x27;Stats: &#x27; + JSON.stringify(event.data.stats));};config.events.onStats = onStats;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -17649,16 +16937,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStopBuffering = function (event) {
-    console.log(&#x27;Resume&#x27;);
-};
-config.events.onStopBuffering = onStopBuffering;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStopBuffering = function (event) {    console.log(&#x27;Resume&#x27;);};config.events.onStopBuffering = onStopBuffering;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -18388,16 +17667,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStreamInfo = function (event) {
-    console.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfo = onStreamInfo;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfo = function (event) {    console.log(&#x27;StreamInfo: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfo = onStreamInfo;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -19055,16 +18325,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onStreamInfoUpdate = function (event) {
-    console.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));
-};
-config.events.onStreamInfoUpdate = onStreamInfoUpdate;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onStreamInfoUpdate = function (event) {    console.log(&#x27;StreamInfo updated: &#x27; + JSON.stringify(event.data.streamInfo));};config.events.onStreamInfoUpdate = onStreamInfoUpdate;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -19551,18 +18812,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onSwitchStreamAbort = function (event) {
-    console.log(&#x27;switch stream abort by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with reason: &#x27; + event.data.reason));
-    console.log(&#x27;tag: &#x27; + event.data.tag);
-    console.log(&#x27;count: &#x27; + event.data.count);
-};
-config.events.onSwitchStreamAbort = onSwitchStreamAbort;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamAbort = function (event) {    console.log(&#x27;switch stream abort by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with reason: &#x27; + event.data.reason));    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onSwitchStreamAbort = onSwitchStreamAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -20024,18 +19274,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onSwitchStreamFail = function (event) {
-    console.log(&#x27;switch stream fail by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);
-    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);
-    console.log(&#x27;switch stream count: &#x27; + event.data.count);
-};
-config.events.onSwitchStreamFail = onSwitchStreamFail;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamFail = function (event) {    console.log(&#x27;switch stream fail by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamFail = onSwitchStreamFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -20522,18 +19761,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onSwitchStreamInit = function (event) {
-    console.log(&#x27;switch stream init by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));
-    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);
-    console.log(&#x27;switch stream count: &#x27; + event.data.count);
-};
-config.events.onSwitchStreamInit = onSwitchStreamInit;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamInit = function (event) {    console.log(&#x27;switch stream init by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;switch stream tag: &#x27; + event.data.tag);    console.log(&#x27;switch stream count: &#x27; + event.data.count);};config.events.onSwitchStreamInit = onSwitchStreamInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -20996,16 +20224,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onSwitchStreamSuccess = function (event) {
-    console.log(&#x27;switch stream success by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);
-};
-config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onSwitchStreamSuccess = function (event) {    console.log(&#x27;switch stream success by rule &#x27; + event.data.rule + &#x27; from type &#x27; + event.data.type + &#x27;with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onSwitchStreamSuccess = onSwitchStreamSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -21300,16 +20519,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUnmute = function (event) {
-    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);
-};
-config.events.onUnmute = onUnmute;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUnmute = function (event) {    console.log(&#x27;Unmuted with volume: &#x27; + event.data.volume);};config.events.onUnmute = onUnmute;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -21796,18 +21006,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUpdateSourceAbort = function (event) {
-    console.log(&#x27;update source abort with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and reason: &#x27; + event.data.reason);
-    console.log(&#x27;tag: &#x27; + event.data.tag);
-    console.log(&#x27;count: &#x27; + event.data.count);
-};
-config.events.onUpdateSourceAbort = onUpdateSourceAbort;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceAbort = function (event) {    console.log(&#x27;update source abort with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27; and reason: &#x27; + event.data.reason);    console.log(&#x27;tag: &#x27; + event.data.tag);    console.log(&#x27;count: &#x27; + event.data.count);};config.events.onUpdateSourceAbort = onUpdateSourceAbort;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -22269,18 +21468,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUpdateSourceFail = function (event) {
-    console.log(&#x27;update source fail with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);
-    console.log(&#x27;update source tag: &#x27; + event.data.tag);
-    console.log(&#x27;update source count: &#x27; + event.data.count);
-};
-config.events.onUpdateSourceFail = onUpdateSourceFail;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceFail = function (event) {    console.log(&#x27;update source fail with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with error code: &#x27; + event.data.code + &#x27; and error message: &#x27; + event.data.message);    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceFail = onUpdateSourceFail;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -22767,18 +21955,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUpdateSourceInit = function (event) {
-    console.log(&#x27;update source init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));
-    console.log(&#x27;update source tag: &#x27; + event.data.tag);
-    console.log(&#x27;update source count: &#x27; + event.data.count);
-};
-config.events.onUpdateSourceInit = onUpdateSourceInit;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceInit = function (event) {    console.log(&#x27;update source init with source: &#x27; + JSON.stringify(event.data.source) + &#x27; and options: &#x27; + JSON.stringify(event.data.options));    console.log(&#x27;update source tag: &#x27; + event.data.tag);    console.log(&#x27;update source count: &#x27; + event.data.count);};config.events.onUpdateSourceInit = onUpdateSourceInit;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -23241,16 +22418,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onUpdateSourceSuccess = function (event) {
-    console.log(&#x27;update source success with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);
-};
-config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onUpdateSourceSuccess = function (event) {    console.log(&#x27;update source success with entry: &#x27; + JSON.stringify(event.data.entry) + &#x27;, with tag: &#x27; + event.data.tag + &#x27; and count: &#x27; + event.data.count);};config.events.onUpdateSourceSuccess = onUpdateSourceSuccess;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -23545,16 +22713,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onVolumeChange = function (event) {
-    console.log(&#x27;Volume: &#x27; + event.data.volume);
-};
-config.events.onVolumeChange = onVolumeChange;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onVolumeChange = function (event) {    console.log(&#x27;Volume: &#x27; + event.data.volume);};config.events.onVolumeChange = onVolumeChange;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -23873,16 +23032,7 @@ player.setup(config).then(function (config) {
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayer
-var onWarning = function (event) {
-    console.log(&#x27;Warning: &#x27; + event.data.message);
-};
-config.events.onWarning = onWarning;
-player.setup(config).then(function (config) {
-    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));
-}, function (error) {
-    console.log(error);
-});</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onWarning = function (event) {    console.log(&#x27;Warning: &#x27; + event.data.message);};config.events.onWarning = onWarning;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
 
 
     
@@ -23938,7 +23088,7 @@ player.setup(config).then(function (config) {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Tue Jul 13th 2021
+		on Wed Aug 25th 2021
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
