@@ -30,7 +30,7 @@ All modifications will remain property of nanocosmos.
             <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
             <strong id="demo-version"></strong>
         </p>
-        <div id="playerDiv" class="player">
+        <div id="playerDiv" class="player responsive">
             <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
@@ -356,15 +356,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.11.3.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.12.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.11.3';
+        var playerVersion = '4.12.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210713';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210825';
         };
 
         var player;

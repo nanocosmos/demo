@@ -33,7 +33,7 @@ All modifications will remain property of nanocosmos.
             <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
             <strong id="demo-version"></strong>
         </p>
-        <div id="playerDiv" class="player">
+        <div id="playerDiv" class="player responsive">
             <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
@@ -56,6 +56,7 @@ All modifications will remain property of nanocosmos.
                 <option value="deviationOfMean">deviationOfMean</option>
                 <option value="deviationOfMean2">deviationOfMean2</option>
             </select>
+            <strong>adaption downstep:&nbsp;</strong><select id="adaption-downstep" onchange="onSetAdaption(this);"></select>
         </p>
         <div class="col">
             <div class="row">
@@ -161,15 +162,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.11.3.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.12.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.11.3';
+        var playerVersion = '4.12.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210713';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20210825';
         };
 
         var player;
@@ -310,8 +311,13 @@ All modifications will remain property of nanocosmos.
         function onSetAdaption(e) {
             var select = document.getElementById('switch-rule');
             var rule = select.options[select.selectedIndex].value;
+            select = document.getElementById('adaption-downstep');
+            var downStep = parseInt(select.options[select.selectedIndex].value, 10) || 1;
             if (player) {
-                player.setAdaption({ 'rule': rule });
+                player.setAdaption({
+                    'rule': rule,
+                    'downStep': downStep
+                 });
             }
         }
 
@@ -514,6 +520,13 @@ All modifications will remain property of nanocosmos.
                     setVolume(null, document.getElementById('faderVolume').value);
                     checkConfig(conf);
                     document.querySelector('#switch-rule option[value="' + conf.source.options.adaption.rule + '"]').selected = true;
+                    for (var i = 1; i < conf.source.entries.length; i += 1) {
+                        var option = document.createElement('option');
+                        option.value = i;
+                        option.textContent = i;
+                        document.querySelector('#adaption-downstep').appendChild(option);
+                    }
+                    document.querySelector('#adaption-downstep option[value="' + conf.source.options.adaption.downStep + '"]').selected = true;
                     try {
                         conf = JSON.stringify(conf)
                     } catch (err) { }

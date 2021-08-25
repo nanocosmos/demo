@@ -547,6 +547,8 @@ function checkEntries () {
             break;
         }
         var url = getHTTPParam('entry' + num + '.rtmp.url');
+        var token = getHTTPParam('entry' + num + '.token');
+        var params = getHTTPParam('entry' + num + '.params');
         if (!url) {
             url = 'rtmp://bintu-play.nanocosmos.de:80/play';
         }
@@ -618,6 +620,18 @@ function checkEntries () {
                     'tag'     : getHTTPParam('entry' + num + '.security.tag')
                 }
             };
+            if (token) {
+                entry.h5live.token = token;
+            }
+            if (params) {
+                try {
+                    params = JSON.parse(params);
+                }
+                catch (e) {
+                    params = {};
+                }
+                entry.h5live.params = params;
+            }
         }
         entries.push(entry);
         index++;
@@ -635,9 +649,13 @@ function checkOptions () {
             'switch': {}
         };
 
-        var rule = getHTTPParam('rule') || getHTTPParam('options.rule');
+        var rule = getHTTPParam('rule') || getHTTPParam('options.rule') || getHTTPParam('options.adaption.rule');
         if (rule) {
             config.source.options.adaption.rule = rule;
+        }
+        var downStep = getHTTPParam('downStep') || getHTTPParam('options.adaption.downStep');
+        if (downStep) {
+            config.source.options.adaption.downStep = parseInt(downStep, 10) || 1;
         }
         var forcePlay = getHTTPParam('forcePlay') || getHTTPParam('options.switch.forcePlay');
         if (forcePlay) {
