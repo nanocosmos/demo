@@ -543,12 +543,12 @@ function checkEntries () {
         var num = nums.shift();
         var name = getHTTPParam('entry' + num + '.rtmp.streamname');
         var streamid = getHTTPParam('entry' + num + '.bintu.streamid');
-        if (!name && !streamid) {
+        var params = getHTTPParam('entry' + num + '.params');
+        if (!name && !streamid && !params) {
             break;
         }
         var url = getHTTPParam('entry' + num + '.rtmp.url');
         var token = getHTTPParam('entry' + num + '.token');
-        var params = getHTTPParam('entry' + num + '.params');
         if (!url) {
             url = 'rtmp://bintu-play.nanocosmos.de:80/play';
         }
