@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.12.0
+NanoPlayer (H5Live) Public API Class 4.12.1
 
 **Kind**: global class  
-**Version**: 4.12.0  
+**Version**: 4.12.1  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -317,7 +317,7 @@ Updates the source of the player.
     <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
 </td>
     </tr><tr>
-    <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.* @param {object} [playback] - The object to configure the playback.</p>
+    <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</p>
 </td>
     </tr><tr>
     <td>[source.options.adaption]</td><td><code>object</code></td><td></td><td><p>The object to set an adaption for switching.</p>
@@ -326,7 +326,7 @@ Updates the source of the player.
     <td>[source.options.adaption.rule]</td><td><code>string</code></td><td><code>&quot;none&quot;</code></td><td><p>The switch rule if multiple entries are defined. Possible values are &#39;deviationOfMean&#39; (ABR automatic), &#39;deviationOfMean2&#39; (ABR automatic) and &#39;none&#39; (default, means only manual stream switch via &#39;switchStream&#39; possible).</p>
 </td>
     </tr><tr>
-    <td>[source.options.adaption.downStep]</td><td><code>string</code></td><td><code>1</code></td><td><p>The minimum number of steps during a ABR down switch (&#39;deviationOfMean&#39; and &#39;deviationOfMean2&#39; only).</p>
+    <td>[source.options.adaption.downStep]</td><td><code>number</code></td><td><code>1</code></td><td><p>The minimum number of steps during a ABR down switch (&#39;deviationOfMean&#39; and &#39;deviationOfMean2&#39; only).</p>
 </td>
     </tr><tr>
     <td>[source.h5live]</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. The h5live object to configure the h5live connection.</p>
@@ -380,7 +380,7 @@ Updates the source of the player.
     <td>source.bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
 </td>
     </tr><tr>
-    <td>[source.bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
+    <td>[source.bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;https://bintu.nanocosmos.de&quot;</code></td><td><p>The bintu api url.</p>
 </td>
     </tr><tr>
     <td>[source.hls]</td><td><code>string</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. An hls playout url as string.</p>
@@ -1982,7 +1982,7 @@ The config object to pass as param for the 'setup' call.
     <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and the <a href="NanoPlayer#~event:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
 </td>
     </tr><tr>
-    <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.* @property {object} [playback] - The object to configure the playback.</p>
+    <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</p>
 </td>
     </tr><tr>
     <td>[source.options.adaption]</td><td><code>object</code></td><td></td><td><p>The object to set an adaption for switching.</p>
@@ -1991,7 +1991,7 @@ The config object to pass as param for the 'setup' call.
     <td>[source.options.adaption.rule]</td><td><code>string</code></td><td><code>&quot;none&quot;</code></td><td><p>The switch rule if multiple entries are defined. Possible values are &#39;deviationOfMean&#39; (ABR automatic), &#39;deviationOfMean2&#39; (ABR automatic) and &#39;none&#39; (default, means only manual stream switch via &#39;switchStream&#39; possible).</p>
 </td>
     </tr><tr>
-    <td>[source.options.adaption.downStep]</td><td><code>string</code></td><td><code>1</code></td><td><p>The minimum number of steps during a ABR down switch (&#39;deviationOfMean&#39; and &#39;deviationOfMean2&#39; only).</p>
+    <td>[source.options.adaption.downStep]</td><td><code>number</code></td><td><code>1</code></td><td><p>The minimum number of steps during a ABR down switch (&#39;deviationOfMean&#39; and &#39;deviationOfMean2&#39; only).</p>
 </td>
     </tr><tr>
     <td>[source.h5live]</td><td><code>object</code></td><td></td><td><p>DEPRECATED. PLEASE USE ENTRIES!!! WILL BE OVERWRITTEN IN CASE AT LEAST ONE &#39;ENTRY&#39; IS DEFINED IN &#39;ENTRIES&#39; ARRAY. The h5live object to configure the h5live connection.</p>
@@ -2416,7 +2416,7 @@ An entry object to pass stream parameters like h5live config, stream information
     <td>bintu.streamid</td><td><code>string</code></td><td></td><td><p>The bintu stream id.</p>
 </td>
     </tr><tr>
-    <td>[bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;\&quot;https://bintu.nanocosmos.de\&quot;&quot;</code></td><td><p>The bintu api url.</p>
+    <td>[bintu.apiurl]</td><td><code>string</code></td><td><code>&quot;https://bintu.nanocosmos.de&quot;</code></td><td><p>The bintu api url.</p>
 </td>
     </tr>  </tbody>
 </table>

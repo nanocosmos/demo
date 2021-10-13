@@ -1,5 +1,18 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.12.1]**
+
+### **Release Notes**
+
+This version is fixing a layout issue in fullscreen mode on iOS that occurred if special CSS position settings in the page are used. It could happen that the player becomes invisible at first fullscreen entering. Furthermore it is containing a minor fix related to config source `params` object and multi stream configuration.
+
+### **Changelog**
+
+### Fixed
+
+- player invisibility issue at fullscreen enter on iOS with special CSS position settings
+- config source `params` object usage with multi stream configuration
+
 ## **[4.12.0]**
 
 ### **Release Notes**
