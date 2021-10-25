@@ -36,7 +36,8 @@ var activeCampaignModule = (function () {
         },
     ]
 
-    function init() {
+    function init(disableAcTimeout) {
+
         showActiveCampaingButtons();
         popUpContactBtn.addEventListener( 'click', function (){
             window.open("https://www.nanocosmos.de/v6/contact")
@@ -47,11 +48,15 @@ var activeCampaignModule = (function () {
         popUpInfoBtn.addEventListener( 'click', function (){
             window.open("https://www.nanocosmos.de/blog/2020/08/nanostream-cloud-4-5-6/")
         });
-        setTimeout(function (){
-            fixFrontElements()
-            popUp.style.visibility= 'visible';
-            playerModule.togglePlay();
-        }, 180000);
+
+        if (!disableAcTimeout) {
+
+            setTimeout(function (){
+                fixFrontElements()
+                popUp.style.visibility= 'visible';
+                playerModule.togglePlay();
+            }, 180000);
+        }
     }
 
     function showActiveCampaingButtons() {

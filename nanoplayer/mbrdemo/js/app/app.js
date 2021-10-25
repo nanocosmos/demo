@@ -19,5 +19,6 @@ All modifications will remain property of nanocosmos.
     configModule.init();
     var config = configModule.getConfig();
     playerModule.init(config);
-    activeCampaignModule.init();
+    var disableAcTimeout = paramModule.getParamByKey('enableAcTimeout') === 'false';
+    activeCampaignModule.init(disableAcTimeout);
 }());
