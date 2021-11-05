@@ -17,11 +17,11 @@ All modifications will remain property of nanocosmos.
 var paramModule = (function () {
     var httpParams = new Array();
 
-    function init() {
+    function init () {
         setHTTPParams();
     }
 
-    function setHTTPParams() {
+    function setHTTPParams () {
         if (document.location.search) {
             var strGET = document.location.search.substr(1, document.location.search.length);
             if (strGET === '' && document.location.href.indexOf('?') !== -1) {
@@ -43,22 +43,23 @@ var paramModule = (function () {
         }
     }
 
-    function getParamByKey(key) {
+    function getParamByKey (key) {
         try {
             return httpParams[key];
-        } catch (e) {
+        }
+        catch (e) {
             return undefined;
         }
     }
 
-    function getParams() {
+    function getParams () {
         return httpParams;
     }
 
     return {
-        init: init,
-        httpParams: httpParams,
-        getParamByKey: getParamByKey,
-        getParams: getParams
-    }
-}());
+        'init'          : init,
+        'httpParams'    : httpParams,
+        'getParamByKey' : getParamByKey,
+        'getParams'     : getParams
+    };
+})();

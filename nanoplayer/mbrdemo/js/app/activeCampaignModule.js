@@ -51,11 +51,11 @@ var activeCampaignModule = (function () {
 
         if (!disableAcTimeout) {
 
-            setTimeout(function (){
-                fixFrontElements()
-                popUp.style.visibility= 'visible';
-                playerModule.togglePlay();
-            }, 180000);
+        setTimeout(function (){
+            fixFrontElements()
+            popUp.style.visibility= 'visible';
+            playerModule.togglePlay();
+        }, 180000);
         }
     }
 
