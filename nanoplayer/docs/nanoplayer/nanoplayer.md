@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.12.1
+NanoPlayer (H5Live) Public API Class 4.13.0
 
 **Kind**: global class  
-**Version**: 4.12.1  
+**Version**: 4.13.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -1961,6 +1961,12 @@ The config object to pass as param for the 'setup' call.
     <td>[source.startIndex]</td><td><code>number</code></td><td><code>0</code></td><td><p>The index of the entry to start playback with. Can be in the range from 0 to &#39;entries.length-1&#39;.</p>
 </td>
     </tr><tr>
+    <td>[source.defaults]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries defaults.</p>
+</td>
+    </tr><tr>
+    <td>[source.defaults.service]</td><td><code>string</code></td><td></td><td><p>The defaults service.  If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>.</p>
+</td>
+    </tr><tr>
     <td>[source.options]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries options.</p>
 </td>
     </tr><tr>
@@ -2297,7 +2303,7 @@ The config object to pass as param for the 'setup' call.
     <td>[metrics.eventId]</td><td><code>string</code></td><td></td><td><p>Application event id. If the stream is related to a certain event, e.g. webinar, auction or sports event, providing this information enables you to filter or aggregate data by this event.</p>
 </td>
     </tr><tr>
-    <td>[metrics.statsInterval]</td><td><code>number</code></td><td><code>10</code></td><td><p>The interval how often the stats should be collected in seconds. The minimum is 1 second.</p>
+    <td>[metrics.statsInterval]</td><td><code>number</code></td><td><code>10</code></td><td><p>The interval how often the stats should be collected in seconds. The minimum is 5 seconds..</p>
 </td>
     </tr><tr>
     <td>[metrics.customField*]</td><td><code>string</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;.</p>

@@ -119,15 +119,6 @@ All modifications will remain property of nanocosmos.
         </p>
     </div>
 
-    <script>
-
-        // DEFAULT DEMO PAGE H5LIVE SERVER
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER = 'bintu-h5live.nanocosmos.de';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS = 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8';
-        var DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE = 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
-
-    </script>
     <script src="./js/nanoplayer-helper.js"></script>
     <script src="./js/nanoplayer-helper-events.js"></script>
     <script src="./js/nanoplayer-helper-multistream.js"></script>
@@ -356,15 +347,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.12.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.13.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.12.1';
+        var playerVersion = '4.13.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20211012';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20211105';
         };
 
         var player;
@@ -601,9 +592,7 @@ All modifications will remain property of nanocosmos.
                 var wssEl = document.getElementById('h5live-server-wss');
                 var hlsEl = document.getElementById('h5live-server-hls');
                 wssEl.innerText = conf.source.h5live.server.websocket;
-                wssEl.innerText += (conf.source.h5live.server.websocket === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
                 hlsEl.innerText = conf.source.h5live.server.hls;
-                hlsEl.innerText += (conf.source.h5live.server.hls === DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS) ? ' (default demo page server, see line 94)' : (config.source.bintu && !config.source.h5live) ? ' (bintu)' : ' (custom)';
                 container.style.display = 'block';
             }
             document.getElementById('url').innerText = conf.url;
