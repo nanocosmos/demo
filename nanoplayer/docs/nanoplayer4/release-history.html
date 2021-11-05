@@ -114,6 +114,34 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<p>Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.</p>
+<h2 id="-4-13-0-"><strong>[4.13.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version introduces the new <strong>source defaults</strong> feature that simplifies the source configuration by adding <code>defaults.service</code> to the <code>config.source</code> object. If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>. See our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">docs feature entry</a> for more information.
+Furthermore this release includes improvements in preventing exceptions in case of DOM access restrictions or unreachable DOM elements.
+A last change is regarding the metrics module of the player. The minimum value of the <code>metrics.statsInterval</code> parameter has been raised to <code>5</code> seconds.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>new <code>config.source</code> parameter <code>defaults.service</code> for simplifying configuration if the standard nanoStream Cloud is used</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>handling of DOM access restrictions or unreachable DOM elements</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li>minimum value of <code>metrics.statsInterval</code> set from <code>1</code> to <code>5</code> seconds</li>
+</ul>
+<h2 id="-4-12-1-"><strong>[4.12.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version is fixing a layout issue in fullscreen mode on iOS that occurred if special CSS position settings in the page are used. It could happen that the player becomes invisible at first fullscreen entering. Furthermore it is containing a minor fix related to config source <code>params</code> object and multi stream configuration.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>player invisibility issue at fullscreen enter on iOS with special CSS position settings</li>
+<li>config source <code>params</code> object usage with multi stream configuration</li>
+</ul>
 <h2 id="-4-12-0-"><strong>[4.12.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version is adding the option to configure the minimum number steps during an ABR initialized switch down via the <code>adaption.downStep</code> parameter. Potential related use case are configurations containing a higher number of qualities or configurations with rather close rendition bitrates.

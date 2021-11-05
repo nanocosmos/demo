@@ -1,5 +1,42 @@
 ﻿# **NanoPlayer - Release History**
 
+Please find more about the **source defaults** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/).
+
+## **[4.13.0]**
+
+### **Release Notes**
+
+This version introduces the new **source defaults** feature that simplifies the source configuration by adding `defaults.service` to the `config.source` object. If a service is set, the `h5live.server` object and the `h5live.rtmp.url` in each entry can be omitted. In this case defaults will be applied internally. Values for `h5live.server` and/or `h5live.rtmp.url` that are defined explicitly in the entry have priority. The available value for `defaults.service` is `'bintu'` for using the standard **nanoStream Cloud**. See our [docs feature entry](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/) for more information.
+Furthermore this release includes improvements in preventing exceptions in case of DOM access restrictions or unreachable DOM elements.
+A last change is regarding the metrics module of the player. The minimum value of the `metrics.statsInterval` parameter has been raised to `5` seconds.
+
+### **Changelog**
+
+### Added
+
+- new `config.source` parameter `defaults.service` for simplifying configuration if the standard nanoStream Cloud is used
+
+### Improved
+
+- handling of DOM access restrictions or unreachable DOM elements
+
+### Changed
+
+- minimum value of `metrics.statsInterval` set from `1` to `5` seconds
+
+## **[4.12.1]**
+
+### **Release Notes**
+
+This version is fixing a layout issue in fullscreen mode on iOS that occurred if special CSS position settings in the page are used. It could happen that the player becomes invisible at first fullscreen entering. Furthermore it is containing a minor fix related to config source `params` object and multi stream configuration.
+
+### **Changelog**
+
+### Fixed
+
+- player invisibility issue at fullscreen enter on iOS with special CSS position settings
+- config source `params` object usage with multi stream configuration
+
 ## **[4.12.0]**
 
 ### **Release Notes**

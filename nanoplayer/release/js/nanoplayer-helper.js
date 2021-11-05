@@ -333,6 +333,7 @@ function getNanoPlayerParameters () {
         config.source.bintu.streamid = bintuQ.streamid;
         checkH5Live();
         checkSecurity();
+        checkDefaults();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -340,16 +341,11 @@ function getNanoPlayerParameters () {
     else if (bintuQ.streamname) {
         config.source.h5live = config.source.h5live || {};
         config.source.h5live.rtmp = {
-            'url'        : 'rtmp://bintu-play.nanocosmos.de:80/play',
-            'streamname' : bintuQ.streamname
-        };
-        config.source.h5live.server = {
-            'websocket'   : 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4',
-            'hls'         : 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8',
-            'progressive' : 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
+            'streamname': bintuQ.streamname
         };
         checkH5Live();
         checkSecurity();
+        checkDefaults();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -375,7 +371,7 @@ function getNanoPlayerParameters () {
         h5liveQ.rtmp = {};
         h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
         h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname') || getHTTPParam('entries.streamname');
-        if (h5liveQ.rtmp.url && h5liveQ.rtmp.streamname) {
+        if (h5liveQ.rtmp.url || h5liveQ.rtmp.streamname) {
             config.source.h5live = config.source.h5live || {};
             config.source.h5live.rtmp = h5liveQ.rtmp;
             // document.getElementById('update-source-container').style.display = 'block';
@@ -391,6 +387,7 @@ function getNanoPlayerParameters () {
             config.source.dash = dash;
         }
         checkSecurity();
+        checkDefaults();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -475,18 +472,6 @@ function checkH5Live (server) {
                 warning('To use h5live on iOS please also pass a hls url over the query param "h5live.server.hls"!');
             }
         }
-        else if (!config.source.bintu && !config.source.h5live) {
-            config.source.h5live = {};
-            config.source.h5live.server = {};
-
-            // USE DEFAULT DEMO PAGE H5LIVE SERVER
-            // to change the page defaults see line 94
-            config.source.h5live.server.websocket = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_WSS;
-            config.source.h5live.server.hls = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_HLS;
-            config.source.h5live.server.progressive = DEFAULT_DEMO_PAGE_H5LIVE_SERVER_PROGRESSIVE;
-
-            // document.getElementById('inputServer').value = DEFAULT_DEMO_PAGE_H5LIVE_SERVER;
-        }
     }
     h5liveQ.token = getHTTPParam('h5live.token');
     if (h5liveQ.token) {
@@ -541,17 +526,14 @@ function checkEntries () {
 
     while (nums.length) {
         var num = nums.shift();
-        var name = getHTTPParam('entry' + num + '.rtmp.streamname');
+        var streamname = getHTTPParam('entry' + num + '.rtmp.streamname');
         var streamid = getHTTPParam('entry' + num + '.bintu.streamid');
         var params = getHTTPParam('entry' + num + '.params');
-        if (!name && !streamid && !params) {
+        if (!streamname && !streamid && !params) {
             break;
         }
         var url = getHTTPParam('entry' + num + '.rtmp.url');
         var token = getHTTPParam('entry' + num + '.token');
-        if (!url) {
-            url = 'rtmp://bintu-play.nanocosmos.de:80/play';
-        }
         var server = getHTTPParam('entry' + num + '.server');
         if (server) {
             var routes = {
@@ -573,14 +555,20 @@ function checkEntries () {
                 'progressive' : route.progressive[0] + server + route.progressive[1]
             };
         }
-        else {
-            var wss = getHTTPParam('entry' + num + '.server.websocket');
-            var hls = getHTTPParam('entry' + num + '.server.hls');
-            server = {
-                'websocket'   : wss || 'wss://bintu-h5live.nanocosmos.de:443/h5live/stream/stream.mp4',
-                'hls'         : hls || 'https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8',
-                'progressive' : 'https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4'
-            };
+        var wss = getHTTPParam('entry' + num + '.server.websocket');
+        var hls = getHTTPParam('entry' + num + '.server.hls');
+        var progressive = getHTTPParam('entry' + num + '.server.progressive');
+        if (wss || hls || progressive) {
+            server = server || {};
+            if (wss) {
+                server.websocket = wss;
+            }
+            if (hls) {
+                server.hls = hls;
+            }
+            if (progressive) {
+                server.progressive = progressive;
+            }
         }
         var apiurl = getHTTPParam('entry' + num + '.bintu.apiurl');
 
@@ -590,36 +578,45 @@ function checkEntries () {
         paramFramerate = parseInt(getHTTPParam(['entry' + num + '.info.framerate']), 10);
         var entry = {
             'index' : index,
-            'label' : 'stream ' + (index + 1),
-            'tag'   : '',
-            'info'  : {
-                'bitrate'   : !isNaN(paramBitrate) ? paramBitrate : 0,
-                'width'     : !isNaN(paramWidth) ? paramWidth : 0,
-                'height'    : !isNaN(paramHeight) ? paramHeight : 0,
-                'framerate' : !isNaN(paramFramerate) ? paramFramerate : 0
-            }
+            'label' : 'stream ' + (index + 1)
         };
+        if (paramBitrate || paramWidth || paramHeight || paramFramerate) {
+            entry.info = {};
+            if (paramBitrate) {
+                entry.info.bitrate = !isNaN(paramBitrate) ? paramBitrate : 0;
+            }
+            if (paramWidth) {
+                entry.info.width = !isNaN(paramWidth) ? paramWidth : 0;
+            }
+            if (paramHeight) {
+                entry.info.height = !isNaN(paramHeight) ? paramHeight : 0;
+            }
+            if (paramFramerate) {
+                entry.info.framerate = !isNaN(paramFramerate) ? paramFramerate : 0;
+            }
+        }
         if (streamid) {
             entry.bintu = {
-                'apiurl'   : apiurl,
-                'streamid' : streamid
+                'streamid': streamid
             };
+            if (apiurl) {
+                entry.bintu.apiurl = apiurl;
+            }
         }
-        else {
-            entry.h5live = {
-                'rtmp': {
-                    'url'        : url,
-                    'streamname' : name
-                },
-                'server'   : server,
-                'token'    : '',
-                'security' : {
-                    'token'   : getHTTPParam('entry' + num + '.security.token'),
-                    'expires' : getHTTPParam('entry' + num + '.security.expires'),
-                    'options' : getHTTPParam('entry' + num + '.security.options'),
-                    'tag'     : getHTTPParam('entry' + num + '.security.tag')
+        if (url || streamname || server || token || params) {
+            entry.h5live = {};
+            if (url || streamname) {
+                entry.h5live.rtmp = {};
+                if (url) {
+                    entry.h5live.rtmp.url = url;
                 }
-            };
+                if (streamname) {
+                    entry.h5live.rtmp.streamname = streamname;
+                }
+            }
+            if (server) {
+                entry.h5live.server = server;
+            }
             if (token) {
                 entry.h5live.token = token;
             }
@@ -633,6 +630,16 @@ function checkEntries () {
                 entry.h5live.params = params;
             }
         }
+        var security = {
+            'token'   : getHTTPParam('entry' + num + '.security.token'),
+            'expires' : getHTTPParam('entry' + num + '.security.expires'),
+            'options' : getHTTPParam('entry' + num + '.security.options'),
+            'tag'     : getHTTPParam('entry' + num + '.security.tag')
+        };
+        if (security.token) {
+            entry.h5live = entry.h5live || {};
+            entry.h5live.security = security;
+        }
         entries.push(entry);
         index++;
     }
@@ -640,6 +647,15 @@ function checkEntries () {
     config.source.entries = entries;
 }
 
+function checkDefaults () {
+    config.source = config.source || {};
+    config.source.defaults = config.source.defaults || {};
+    config.source.defaults.service = 'bintu';
+    var service = getHTTPParam('service') || getHTTPParam('defaults.service');
+    if (service) {
+        config.source.defaults.service = service;
+    }
+}
 function checkOptions () {
     if (config.source.entries && config.source.entries.length > 1) {
         config.source.options = {

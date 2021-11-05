@@ -67,7 +67,7 @@ function createCodeSippet (_config) {
     // remove empty objects, arrays & undefined keys
     removeFromConfig(config);
     // transform old to new
-    var i, len, entry, entryType, entryTypes = ['bintu', 'h5live'];
+    var i, len, entry, entryType, entryTypes = ['bintu', 'h5live'], commonServer, commonUrl;
     for (i = 0, len = entryTypes.length; i < len; i += 1) {
         entryType = entryTypes[i];
         if (config.source[entryType]) {
@@ -93,67 +93,69 @@ function createCodeSippet (_config) {
         }
     }
     // check if is redundant code snippet
-    var isRedundant = false;
+    var isSameServer, isSameUrl, hasNoServer, hasNoUrl, isGroupStreams;
     var filtered = config.source.entries.filter(function (entry) {
         return !!entry[entryType];
     });
     if (filtered.length === config.source.entries.length) {
-        filtered = filtered.filter(function (entry) {
-            return (
-                (entry[entryType] && entry[entryType].rtmp && entry[entryType].rtmp.url.indexOf('bintu-play.nanocosmos.de') !== -1) ||
-                (entry[entryType] && entry[entryType].streamid)
-            );
+        isSameServer = filtered.every(function (entry) {
+            return entry.h5live && entry.h5live.server && JSON.stringify(entry.h5live.server) === JSON.stringify(filtered[0].h5live.server);
         });
+        hasNoServer = filtered.every(function (entry) {
+            return !entry.h5live || (entry.h5live && !entry.h5live.server);
+        });
+        isSameUrl = filtered.every(function (entry) {
+            return entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.url && entry.h5live.rtmp.url === filtered[0].h5live.rtmp.url;
+        });
+        hasNoUrl = filtered.every(function (entry) {
+            return !entry.h5live || (entry.h5live && (!entry.h5live.rtmp || (entry.h5live.rtmp && !entry.h5live.rtmp.url)));
+        });
+        isGroupStreams = (isSameServer || isSameUrl) || (hasNoServer && hasNoUrl);
     }
-    isRedundant = filtered.length === config.source.entries.length;
-
-    if (isRedundant) {
-        var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
-        if (entryType === 'h5live') {
-            var defaultUrl = config.source.entries[0].h5live.rtmp.url;
-            var defaultServer = config.source.entries[0].h5live.server;
-            // add defaults
-            line += 'var defaultUrl = "' + defaultUrl + '"; \r\n';
-            line += 'var defaultServer = ' + JSON.stringify(defaultServer, undefined, 4) + '; \r\n';
-            _asArray && (line += 'var streamNames = [ \r\n');
-            for (i = 0, len = config.source.entries.length; i < len; i++) {
-                entry = config.source.entries[i];
-                // add stream name
-                if (_asArray) {
-                    line += '   "' + entry.h5live.rtmp.streamname + '"';
-                    (i !== len - 1) && (line += ',');
-                }
-                else {
-                    line += 'var streamName' + (i + 1) + ' = "' + entry.h5live.rtmp.streamname + '";';
-                }
-                line += ' \r\n';
-                // set placeholders
-                entry.h5live.server = '___defaultServer___';
-                entry.h5live.rtmp.url = '___defaultUrl___';
+    var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
+    // add defaults
+    if (isSameUrl) {
+        commonUrl = config.source.entries[0].h5live.rtmp.url;
+        line += 'var commonUrl = "' + commonUrl + '"; \r\n';
+    }
+    if (isSameServer) {
+        commonServer = config.source.entries[0].h5live.server;
+        line += 'var commonServer = ' + JSON.stringify(commonServer, undefined, 4) + '; \r\n';
+    }
+    if (isGroupStreams) {
+        _asArray && (line += 'var ' + (entryType === 'h5live' ? 'streamNames' : 'bintuStreamIds') + ' = [ \r\n');
+    }
+    for (i = 0, len = config.source.entries.length; i < len; i++) {
+        entry = config.source.entries[i];
+        // add stream name
+        if (isGroupStreams) {
+            if (_asArray) {
+                line += '   "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '"';
+                (i !== len - 1) && (line += ',');
+            }
+            else {
+                line += 'var ' + (entryType === 'h5live' ? 'streamName' : 'bintuStreamId') + (i + 1) + ' = "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '";';
+            }
+            line += ' \r\n';
+        }
+        // set placeholders
+        if (isSameUrl) {
+            entry.h5live.rtmp.url = '___commonUrl___';
+        }
+        if (isSameServer) {
+            entry.h5live.server = '___commonServer___';
+        }
+        if (isGroupStreams) {
+            if (entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.streamname) {
                 entry.h5live.rtmp.streamname = '___streamName' + (_asArray ? 's[' + i + ']' : (i + 1)) + '___';
-                entry.bintu && delete entry.bintu;
             }
-            _asArray && (line += ']; \r\n');
-        }
-        else {
-            _asArray && (line += 'var bintuStreamIds = [ \r\n');
-            for (i = 0, len = config.source.entries.length; i < len; i++) {
-                entry = config.source.entries[i];
-                // add stream id
-                if (_asArray) {
-                    line += '   "' + entry.bintu.streamid + '"';
-                    (i !== len - 1) && (line += ',');
-                }
-                else {
-                    line += 'var bintuStreamId' + i + ' = "' + entry.bintu.streamid + '";';
-                }
-                line += ' \r\n';
-                // set placeholders
+            if (entry.bintu && entry.bintu.streamid) {
                 entry.bintu.streamid = '___bintuStreamId' + (_asArray ? 's[' + i + ']' : i) + '___';
-                entry.h5live && delete entry.h5live;
             }
-            _asArray && (line += ']; \r\n');
         }
+    }
+    if (isGroupStreams) {
+        _asArray && (line += ']; \r\n');
     }
     config = JSON.stringify(config, null, 4);
     config = removePlaceholders(config);
