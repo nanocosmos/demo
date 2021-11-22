@@ -115,6 +115,20 @@
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
 <p>Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.</p>
+<h2 id="-4-13-1-"><strong>[4.13.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version includes a patch regarding the player&#39;s <code>style.scaling</code> configuration and <code>updateSource</code>. If <code>style.scaling</code> is set to a different value as default <code>&#39;letterbox&#39;</code> e.g. <code>&#39;crop&#39;</code> or <code>&#39;fill&#39;</code>
+this setting will now always be preserved during an <code>updateSource</code> call.
+Before the player styling was
+falling back to default values after an server-side updateSource call if the new target stream name
+and the previous stream name were the same.
+Further an issue with <code>updateSource</code> in <code>PAUSED</code> state with <code>source.options.switch.forcePlay</code> set to <code>false</code> and ABR enabled is solved, preventing unintended switching in <code>PAUSED</code> state.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li><code>style.scaling</code> with non-default value will be preserved during <code>updateSource</code> with server-side switch to the same stream</li>
+<li>initial switch up interval with ABR configured <code>source</code> will be prevented from starting in <code>PAUSED</code> state</li>
+</ul>
 <h2 id="-4-13-0-"><strong>[4.13.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version introduces the new <strong>source defaults</strong> feature that simplifies the source configuration by adding <code>defaults.service</code> to the <code>config.source</code> object. If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>. See our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">docs feature entry</a> for more information.
