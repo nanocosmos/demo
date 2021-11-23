@@ -1,156 +1,192 @@
-<!DOCTYPE  html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    
-    <title>NanoPlayer Releases</title>
-    <link rel="stylesheet" href="release-styles.css"/>
-    <style>
-      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
-      pre code {
-        display: block; padding: 0.5em;
-        color: #333;
-        background: #f8f8ff
-      }
-      pre .comment,
-      pre .template_comment,
-      pre .diff .header,
-      pre .javadoc {
-        color: #998;
-        font-style: italic
-      }
-      pre .keyword,
-      pre .css .rule .keyword,
-      pre .winutils,
-      pre .javascript .title,
-      pre .nginx .title,
-      pre .subst,
-      pre .request,
-      pre .status {
-        color: #333;
-        font-weight: bold
-      }
-      pre .number,
-      pre .hexcolor,
-      pre .ruby .constant {
-        color: #099;
-      }
-      pre .string,
-      pre .tag .value,
-      pre .phpdoc,
-      pre .tex .formula {
-        color: #d14
-      }
-      pre .title,
-      pre .id {
-        color: #900;
-        font-weight: bold
-      }
-      pre .javascript .title,
-      pre .lisp .title,
-      pre .clojure .title,
-      pre .subst {
-        font-weight: normal
-      }
-      pre .class .title,
-      pre .haskell .type,
-      pre .vhdl .literal,
-      pre .tex .command {
-        color: #458;
-        font-weight: bold
-      }
-      pre .tag,
-      pre .tag .title,
-      pre .rules .property,
-      pre .django .tag .keyword {
-        color: #000080;
-        font-weight: normal
-      }
-      pre .attribute,
-      pre .variable,
-      pre .lisp .body {
-        color: #008080
-      }
-      pre .regexp {
-        color: #009926
-      }
-      pre .class {
-        color: #458;
-        font-weight: bold
-      }
-      pre .symbol,
-      pre .ruby .symbol .string,
-      pre .lisp .keyword,
-      pre .tex .special,
-      pre .prompt {
-        color: #990073
-      }
-      pre .built_in,
-      pre .lisp .title,
-      pre .clojure .built_in {
-        color: #0086b3
-      }
-      pre .preprocessor,
-      pre .pi,
-      pre .doctype,
-      pre .shebang,
-      pre .cdata {
-        color: #999;
-        font-weight: bold
-      }
-      pre .deletion {
-        background: #fdd
-      }
-      pre .addition {
-        background: #dfd
-      }
-      pre .diff .change {
-        background: #0086b3
-      }
-      pre .chunk {
-        color: #aaa
-      }
-    </style>
-  </head>
-  <body>  
-    <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
-<p>Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.</p>
-<h2 id="-4-13-0-"><strong>[4.13.0]</strong></h2>
-<h3 id="release-notes"><strong>Release Notes</strong></h3>
-<p>This version introduces the new <strong>source defaults</strong> feature that simplifies the source configuration by adding <code>defaults.service</code> to the <code>config.source</code> object. If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>. See our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">docs feature entry</a> for more information.
-Furthermore this release includes improvements in preventing exceptions in case of DOM access restrictions or unreachable DOM elements.
-A last change is regarding the metrics module of the player. The minimum value of the <code>metrics.statsInterval</code> parameter has been raised to <code>5</code> seconds.</p>
-<h3 id="changelog"><strong>Changelog</strong></h3>
-<h3 id="added">Added</h3>
-<ul>
-<li>new <code>config.source</code> parameter <code>defaults.service</code> for simplifying configuration if the standard nanoStream Cloud is used</li>
-</ul>
-<h3 id="improved">Improved</h3>
-<ul>
-<li>handling of DOM access restrictions or unreachable DOM elements</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li>minimum value of <code>metrics.statsInterval</code> set from <code>1</code> to <code>5</code> seconds</li>
-</ul>
-<h3 id="release-package-4-13-0"><strong>Release Package 4.13.0</strong></h3>
-<ul>
-<li><a href="https://files.nanocosmos.de/index.php/s/8GRnENpnSacrPfQ">4.13.0</a></li>
-<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
-<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
-</ul>
-<h3 id="documentation"><strong>Documentation</strong></h3>
-<ul>
-<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
-</ul>
-<h3 id="feature-description"><strong>Feature Description</strong></h3>
-<ul>
-<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">source defaults</a></li>
-</ul>
-<h3 id="release-history"><strong>Release History</strong></h3>
-<ul>
-<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
-</ul>
 
-  </body>
+<head>
+  <meta charset="utf-8">
+
+  <title>NanoPlayer Releases</title>
+  <link rel="stylesheet" href="release-styles.css" />
+  <style>
+    /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+    pre code {
+      display: block;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8ff
+    }
+
+    pre .comment,
+    pre .template_comment,
+    pre .diff .header,
+    pre .javadoc {
+      color: #998;
+      font-style: italic
+    }
+
+    pre .keyword,
+    pre .css .rule .keyword,
+    pre .winutils,
+    pre .javascript .title,
+    pre .nginx .title,
+    pre .subst,
+    pre .request,
+    pre .status {
+      color: #333;
+      font-weight: bold
+    }
+
+    pre .number,
+    pre .hexcolor,
+    pre .ruby .constant {
+      color: #099;
+    }
+
+    pre .string,
+    pre .tag .value,
+    pre .phpdoc,
+    pre .tex .formula {
+      color: #d14
+    }
+
+    pre .title,
+    pre .id {
+      color: #900;
+      font-weight: bold
+    }
+
+    pre .javascript .title,
+    pre .lisp .title,
+    pre .clojure .title,
+    pre .subst {
+      font-weight: normal
+    }
+
+    pre .class .title,
+    pre .haskell .type,
+    pre .vhdl .literal,
+    pre .tex .command {
+      color: #458;
+      font-weight: bold
+    }
+
+    pre .tag,
+    pre .tag .title,
+    pre .rules .property,
+    pre .django .tag .keyword {
+      color: #000080;
+      font-weight: normal
+    }
+
+    pre .attribute,
+    pre .variable,
+    pre .lisp .body {
+      color: #008080
+    }
+
+    pre .regexp {
+      color: #009926
+    }
+
+    pre .class {
+      color: #458;
+      font-weight: bold
+    }
+
+    pre .symbol,
+    pre .ruby .symbol .string,
+    pre .lisp .keyword,
+    pre .tex .special,
+    pre .prompt {
+      color: #990073
+    }
+
+    pre .built_in,
+    pre .lisp .title,
+    pre .clojure .built_in {
+      color: #0086b3
+    }
+
+    pre .preprocessor,
+    pre .pi,
+    pre .doctype,
+    pre .shebang,
+    pre .cdata {
+      color: #999;
+      font-weight: bold
+    }
+
+    pre .deletion {
+      background: #fdd
+    }
+
+    pre .addition {
+      background: #dfd
+    }
+
+    pre .diff .change {
+      background: #0086b3
+    }
+
+    pre .chunk {
+      color: #aaa
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
+  <h2 id="please-find-more-about-the-source defaults-feature-in-our-documentation">Please find more about the
+    <strong>source defaults</strong> feature in our <a
+      href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.
+  </h2>
+  <h2 id="-4-13-0-"><strong>[4.13.0]</strong></h2>
+  <h3 id="release-notes"><strong>Release Notes</strong></h3>
+  <p>This version introduces the new <strong>source defaults</strong> feature that simplifies the source configuration
+    by adding <code>defaults.service</code> to the <code>config.source</code> object. If a service is set, the
+    <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case
+    defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that
+    are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is
+    <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>. See our <a
+      href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">docs feature entry</a> for
+    more information.
+    Furthermore this release includes improvements in preventing exceptions in case of DOM access restrictions or
+    unreachable DOM elements.
+    A last change is regarding the metrics module of the player. The minimum value of the
+    <code>metrics.statsInterval</code> parameter has been raised to <code>5</code> seconds.</p>
+  <h3 id="changelog"><strong>Changelog</strong></h3>
+  <h3 id="added">Added</h3>
+  <ul>
+    <li>new <code>config.source</code> parameter <code>defaults.service</code> for simplifying configuration if the
+      standard nanoStream Cloud is used</li>
+  </ul>
+  <h3 id="improved">Improved</h3>
+  <ul>
+    <li>handling of DOM access restrictions or unreachable DOM elements</li>
+  </ul>
+  <h3 id="changed">Changed</h3>
+  <ul>
+    <li>minimum value of <code>metrics.statsInterval</code> set from <code>1</code> to <code>5</code> seconds</li>
+  </ul>
+  <h3 id="release-package-4-13-0"><strong>Release Package 4.13.0</strong></h3>
+  <ul>
+    <li><a href="https://files.nanocosmos.de/index.php/s/8GRnENpnSacrPfQ">4.13.0</a></li>
+    <li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+    <li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+  </ul>
+  <h3 id="documentation"><strong>Documentation</strong></h3>
+  <ul>
+    <li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+  </ul>
+  <h3 id="feature-description"><strong>Feature Description</strong></h3>
+  <ul>
+    <li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">source defaults</a>
+    </li>
+  </ul>
+  <h3 id="release-history"><strong>Release History</strong></h3>
+  <ul>
+    <li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
+  </ul>
+
+</body>
+
 </html>

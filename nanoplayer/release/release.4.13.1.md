@@ -1,6 +1,6 @@
 # **NanoPlayer - Release Overview**
 
-Please find more about the **source defaults** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/).
+## Please find more about the **source defaults** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/).
 
 ## **[4.13.1]**
 
