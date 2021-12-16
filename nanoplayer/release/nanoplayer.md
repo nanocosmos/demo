@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.13.1
+NanoPlayer (H5Live) Public API Class 4.13.2
 
 **Kind**: global class  
-**Version**: 4.13.1  
+**Version**: 4.13.2  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2091,6 +2091,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[playback.mediaErrorRecoveries]</td><td><code>number</code></td><td><code>3</code></td><td><p>The number of allowed media error recoveries within a minute. If threshold is reached the last error will be thrown and playback pauses. Possible recoverable error codes are 3003 (decode error), 3100 (media source ended) and 1008 (hls playback error). See <a href="#NanoPlayer..errorcode">errorcodes</a>.</p>
+</td>
+    </tr><tr>
+    <td>[playback.metadataLowDelay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If enabled this mode for metadata processing is preventing occasionally delayed metadata on iOS. To use legacy mode set to false. The setting <code>playback.metadata</code> has to be enabled. IOS ONLY</p>
 </td>
     </tr><tr>
     <td>[playback.reconnect]</td><td><code>object</code></td><td></td><td><p>The reconnect object to configure the reconnect settings. See <a href="#NanoPlayer..errorcode">errorcodes</a> for reconnect possibility.</p>

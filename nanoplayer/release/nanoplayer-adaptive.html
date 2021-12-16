@@ -37,6 +37,13 @@ All modifications will remain property of nanocosmos.
             <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
+        <p class="normal" id="timestamp-container" style="display:none">
+            <h1 id="timestamp" style="display:none">00:00:000</h1>
+        </p>
+        <p class="normal" id="metadata-container" style="display:none">
+            <strong>metadata</strong>
+            <pre id="metadata" style="display:none"></pre>
+        </p>
         <div id="controlsWrapper" class="row-flex row-padding">
             <div>
                 <button id="buttonPlay" onclick="play();" style="margin-right:5px">play</button>
@@ -123,9 +130,6 @@ All modifications will remain property of nanocosmos.
         <p class="normal">
             <strong>deviationOfMean (dev):&nbsp;</strong><span id="adaptiveBufferTimeDelayDeviation">0.0</span>
         </p>
-        <p class="normal" id="metadata-container" style="display:none">
-            <strong>metadata:&nbsp;</strong><span id="metadata"></span>
-        </p>
         <p class="normal" id="error-container" style="display:none">
             <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
         </p>
@@ -153,15 +157,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.13.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.13.2.min.js"></script>
     <script>
 
-        var playerVersion = '4.13.1';
+        var playerVersion = '4.13.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20211122';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20211216';
         };
 
         var player;

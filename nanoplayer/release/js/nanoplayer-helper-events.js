@@ -58,16 +58,26 @@ events.onWarning = function (e) {
     document.getElementById('warning-container').style.display = 'block';
 };
 events.onMetaData = function (e) {
-    var metadata = JSON.stringify(e.data);
-    (metadata.length > 100) && (metadata = metadata.substr(0, 100) + '...');
-    document.getElementById('metadata').innerText = metadata;
+    var metadata = JSON.stringify(e.data, undefined, 4);
+    document.getElementById('metadata').textContent = metadata;
     document.getElementById('metadata-container').style.display = 'block';
+    document.getElementById('metadata').style.display = 'block';
     clearTimeout(metaDataTimeout);
     metaDataTimeout = setTimeout(function () {
         document.getElementById('metadata-container').style.display = 'none';
-    }, 5000);
-    log('onMetaData');
+        document.getElementById('metadata').style.display = 'none';
+        if (document.getElementById('timestamp-container')) {
+            document.getElementById('timestamp-container').style.display = 'none';
+            document.getElementById('timestamp').style.display = 'none';
+        }
+    }, 10000);
     log(e, true);
+    if (e.data.message.st && document.getElementById('timestamp-container')) {
+        document.getElementById('timestamp').textContent = e.data.message.st;
+        document.getElementById('timestamp-container').style.display = 'block';
+        document.getElementById('timestamp').style.display = 'block';
+    }
+    //log(e, true);
 };
 events.onStats = function (e) {
     var stats = e.data.stats;
