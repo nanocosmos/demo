@@ -187,7 +187,7 @@ function getNanoPlayerParameters () {
     }
     var metadata = getHTTPParam('metadata') || getHTTPParam('playback.metadata');
     if (metadata) {
-        config.playback.metadata = true;
+        config.playback.metadata = (metadata === 'true' || metadata === '1');
     }
     var keepConnection = getHTTPParam('keepConnection') || getHTTPParam('playback.keepConnection');
     if (keepConnection) {
@@ -200,6 +200,10 @@ function getNanoPlayerParameters () {
     var crossOrigin = getHTTPParam('crossOrigin') || getHTTPParam('playback.crossOrigin');
     if (crossOrigin) {
         config.playback.crossOrigin = crossOrigin;
+    }
+    var metadataLowDelay = getHTTPParam('metadataLowDelay') || getHTTPParam('playback.metadataLowDelay');
+    if (metadataLowDelay) {
+        config.playback.metadataLowDelay = !(metadataLowDelay === 'false' || metadataLowDelay === '0');
     }
     var view = getHTTPParam('view') || getHTTPParam('style.view');
     if (view) {
