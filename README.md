@@ -2,6 +2,20 @@
 
 ## Please find more about the **source defaults** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/).
 
+## **[4.13.3]**
+
+### **Release Notes**
+
+This version includes a fix for a potential CSS layout issue in iOS fullscreen mode,
+that could lead to page elements unintendedly being displayed above the video layer.
+The issue has been introduced in version 4.13.2.
+
+### **Changelog**
+
+### Fixed
+
+- CSS layout issue in iOS fullscreen mode
+
 ## **[4.13.2]**
 
 ### **Release Notes**
