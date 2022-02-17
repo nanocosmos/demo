@@ -1,93 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-    <title>nanoStream web samples</title>
-    <link rel="shortcut icon" href="./images/flavicon.ico" type="image/x-icon" />
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="./css/lib/bootstrap.min.css" />
-    <link rel="stylesheet" href="./css/lib/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="./css/app/main.css" />
-
+    <meta http-equiv="refresh" content="0;url=https://www.nanocosmos.de/demo">
 </head>
-<body style="background: url(./images/background.jpg) content-box">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-
-            <div class="navbar-header">
-                <a class="navbar-brand" id="im"><span style="margin-left:60px">nanoStream web samples</span><span>&nbsp;&nbsp;(c) 2018 nanocosmos gmbh</span></a>
-            </div>
-        </div>
-    </nav>
-    <div id="message-box" class="panel panel-primary text-center" style="display:none;z-index:999;position:fixed;width:40%;left:30%;top:30%;margin-left:auto;margin-right:auto">
-        <div class="panel-heading"><h3 class="panel-title navbar-btn">Message</h3><button id="btn-x" class="btn btn-primary pull-right" style="position:absolute;right:2px;top:2px">&nbsp;X&nbsp;</button></div>
-        <div class="panel-body" style="font-weight:bold">
-            <span id="info-message"></span>
-        </div>
-        <div class="panel-footer">
-            <p>
-                <button id="btn-ok" class="btn btn-primary" style="margin-left:auto;margin-right:auto">ok</button>
-            </p>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <strong>webrtc local samples</strong>
-                </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="https://webrtc-local.nanocosmos.de/stage/chat.html?webrtc.server=https://rtc-local.nanocosmos.de/p/stage&bintu.apiurl=https://bintu-local.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht&webrtc.serverusername=nano&webrtc.serverpassword=nano&&bintu.tags=ibc,demo,webrtc&webrtc.room=ibc&webrtc.iceservers=%7B%22url%22:%22turn:turn-local.nanocosmos.de:443%3Ftransport%3Dtcp%22,%22credential%22:%22nano%22,%22username%22:%22nano%22%7D&experimental.h264passthrough=1&webrtc.videocodec=H264" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">webrtc - h264 passthrough</a>
-                            
-			    <a href="https://webrtc-local.nanocosmos.de/stage/chat.html?webrtc.server=https://rtc-local.nanocosmos.de/p/stage&bintu.apiurl=https://bintu-local.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht&webrtc.serverusername=nano&webrtc.serverpassword=nano&&bintu.tags=ibc,demo,webrtc&webrtc.room=ibc&webrtc.iceservers=%7B%22url%22:%22turn:turn-local.nanocosmos.de:443%3Ftransport%3Dtcp%22,%22credential%22:%22nano%22,%22username%22:%22nano%22%7D" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">webrtc</a>
-			</li>
-		    </ul>
-                <div class="panel-heading">
-                    <strong>webrtc samples</strong>
-                </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="https://webrtc.nanocosmos.de/stage/chat.html?webrtc.server=https://rtc1.nanocosmos.de/p/stage&bintu.apiurl=https://bintu-stage.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht&webrtc.serverusername=nano&webrtc.serverpassword=nano&&bintu.tags=ibc,demo,webrtc&webrtc.room=ibc&experimental.h264passthrough=1&webrtc.videocodec=H264" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">webrtc - h264 passthrough</a>
-			    <a href="https://webrtc.nanocosmos.de/stage/chat.html?webrtc.server=https://rtc1.nanocosmos.de/p/stage&bintu.apiurl=https://bintu-stage.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht&webrtc.serverusername=nano&webrtc.serverpassword=nano&&bintu.tags=ibc,demo,webrtc&webrtc.room=ibc" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">webrtc</a>
-			</li>
-		    </ul>
-                <div class="panel-heading">
-                    <strong>Gallery Player</strong>
-                </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="http://demo-local.nanocosmos.de/nanoplayer/release/nanoplayer-multi.html?bintu.apiurl=https://bintu-local.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">Gallery Player local</a>
-                            <a href="https://demo.nanocosmos.de/nanoplayer/release/nanoplayer-multi.html?bintu.apiurl=https://bintu.nanocosmos.de&bintu.apikey=N9yInDIRMoBdBQp3vncYIdrrGOdAHin1iUMPPdlKpJk6OogxARK0d4MABrsLAbHwc5BdPT1IMRffohht" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">Gallery Player</a>
-			</li>
-		    </ul>
-			
-                <div class="panel-heading">
-                    <strong>Bintu</strong>
-                </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="https://bintu-local.nanocosmos.de" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">Bintu local</a>
-                            <a href="https://bintu.nanocosmos.de" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">Bintu</a>
-			</li>
-		    </ul>
-                <div class="panel-heading">
-                    <strong>h5live Player</strong>
-                </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="http://demo-local.nanocosmos.de/nanoplayer/release/nanoplayer.html?h5live.rtmp.url=rtmp://bintu-play-local.nanocosmos.de/play&h5live.rtmp.streamname=myStream" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">h5live Player local</a>
-                            <a href="https://demo.nanocosmos.de/nanoplayer/release/nanoplayer.html?h5live.rtmp.url=rtmp://bintu-play.nanocosmos.de/play&h5live.rtmp.streamname=myStream" target="_blank" id="buttonWebrtc" class="btn btn-primary btn-success">h5live Player</a>
-			</li>
-		    </ul>
-                <div class="panel-footer">
-                </div>
-            </div>
-        </div>
-    </div>  
-
-
+<body>
+    <script>
+        (function(){
+            documentation.location.href = 'https://www.nanocosmos.de/demo';
+        })();
+    </script>
 </body>
 </html>
 
