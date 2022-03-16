@@ -84,11 +84,11 @@ events.onStats = function (e) {
     document.getElementById('currentTime').textContent = stats.currentTime.toFixed(1);
     document.getElementById('playTimeStart').textContent = stats.playout.start.toFixed(1);
     document.getElementById('playTimeEnd').textContent = stats.playout.end.toFixed(1);
-    document.getElementById('bufferTimeStart').textContent = stats.buffer.start.toFixed(1);
-    document.getElementById('bufferTimeEnd').textContent = stats.buffer.end.toFixed(1);
-    document.getElementById('bufferTimeDelay').textContent = stats.buffer.delay.avg.toFixed(1);
-    document.getElementById('bufferTimeDelayMin').textContent = stats.buffer.delay.min.toFixed(1);
-    document.getElementById('bufferTimeDelayMax').textContent = stats.buffer.delay.max.toFixed(1);
+    document.getElementById('bufferTimeStart').textContent = stats.buffer.start.toFixed(2);
+    document.getElementById('bufferTimeEnd').textContent = stats.buffer.end.toFixed(2);
+    document.getElementById('bufferTimeDelay').textContent = stats.buffer.delay.avg.toFixed(2);
+    document.getElementById('bufferTimeDelayMin').textContent = stats.buffer.delay.min.toFixed(2);
+    document.getElementById('bufferTimeDelayMax').textContent = stats.buffer.delay.max.toFixed(2);
     if (document.getElementById('bufferTimeDelayDeviation')) document.getElementById('bufferTimeDelayDeviation').textContent = stats.buffer.delay.deviation.toFixed(2);
     if (stats.bitrate) {
         document.getElementById('bitrateAvg').textContent = (stats.bitrate.avg / 1000).toFixed(0) + ' kbps';
