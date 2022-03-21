@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.13.3
+NanoPlayer (H5Live) Public API Class 4.14.1
 
 **Kind**: global class  
-**Version**: 4.13.3  
+**Version**: 4.14.1  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -888,25 +888,55 @@ The stats event to pass in the 'config.events' object at the setup call. Fires i
     <td>data.stats.framerate.max</td><td><code>number</code></td><td><p>The maximum network framerate over the last 10 seconds. Is &#39;0&#39; if not available. NOT AVAILABLE FOR IOS.</p>
 </td>
     </tr><tr>
+    <td>data.stats.playbackrate</td><td><code>object</code></td><td><p>The playbackrate object. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.playbackrate.current</td><td><code>number</code></td><td><p>The current video playbackrate. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.playbackrate.avg</td><td><code>number</code></td><td><p>The average video playbackrate over the last 10 seconds. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.playbackrate.min</td><td><code>number</code></td><td><p>The minimum video playbackrate over the last 10 seconds. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.playbackrate.max</td><td><code>number</code></td><td><p>The maximum video playbackrate over the last 10 seconds. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.buffergoal</td><td><code>object</code></td><td><p>The buffergoal object. Values used by the latency control (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.buffergoal.base</td><td><code>number</code></td><td><p>The suggested calculated buffergoal value depending on the latency control mode and playback conditions (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.buffergoal.real</td><td><code>number</code></td><td><p>The final calculated buffergoal value including offsets (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.buffergoal.min</td><td><code>number</code></td><td><p>The minimum possible buffergoal value. (since 4.14.1)</p>
+</td>
+    </tr><tr>
+    <td>data.stats.buffergoal.max</td><td><code>number</code></td><td><p>The maximum possible buffergoal value. (since 4.14.1)</p>
+</td>
+    </tr><tr>
     <td>data.stats.quality</td><td><code>object</code></td><td><p>The video playback quality object.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.corruptedVideoFrames</td><td><code>number</code></td><td><p>The total number of corrupted video frames. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.corruptedVideoFrames</td><td><code>number</code></td><td><p>The total number of corrupted video frames.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.corruptedVideoFramesCurrent</td><td><code>number</code></td><td><p>The number of corrupted video frames within the last second. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.corruptedVideoFramesCurrent</td><td><code>number</code></td><td><p>The number of corrupted video frames within the last second.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.creationTime</td><td><code>number</code></td><td><p>The time in miliseconds since the start of the navigation and the creation of the video element. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.creationTime</td><td><code>number</code></td><td><p>The time in miliseconds since the start of the navigation and the creation of the video element.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.droppedVideoFrames</td><td><code>number</code></td><td><p>The total number of dropped video frames. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.droppedVideoFrames</td><td><code>number</code></td><td><p>The total number of dropped video frames.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.droppedVideoFramesCurrent</td><td><code>number</code></td><td><p>The number of dropped video frames within the last second. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.droppedVideoFramesCurrent</td><td><code>number</code></td><td><p>The number of dropped video frames within the last second.</p>
 </td>
     </tr><tr>
-    <td>data.stats.quality.totalVideoFrames</td><td><code>number</code></td><td><p>The total number of created and dropped video frames since creation of the video element. ONLY AVAILABLE FOR FIREFOX.</p>
+    <td>data.stats.quality.totalVideoFrames</td><td><code>number</code></td><td><p>The total number of created and dropped video frames since creation of the video element.</p>
 </td>
     </tr>  </tbody>
 </table>
@@ -1985,7 +2015,7 @@ The config object to pass as param for the 'setup' call.
     <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
 </td>
     </tr><tr>
-    <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and the <a href="NanoPlayer#~event:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
+    <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and the <a href="NanoPlayer#~event:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> event. Default is 20 seconds, valid range is between 5 and 30.</p>
 </td>
     </tr><tr>
     <td>[source.options.switch.tag]</td><td><code>string</code></td><td></td><td><p>A custom field that can be any string like &#39;stream-800k&#39; or &#39;720p&#39;. This tag will be returned in any completion event of the &#39;updateSource&#39; request like &#39;onUpdateSourceSuccess&#39;, &#39;onUpdateSourceFail&#39; and &#39;onUpdateSourceAbort&#39;.</p>
@@ -2067,6 +2097,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[playback.muted]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Mute/unmute the player (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the &#39;muted&#39; property to &#39;true&#39;. See property &#39;autoplay&#39; for more informations.</p>
+</td>
+    </tr><tr>
+    <td>[playback.latencyControlMode]</td><td><code>string</code></td><td><code>&quot;classic&quot;</code></td><td><p>The latency control mode of the player - possible values: &quot;classic&quot;, &quot;fastadaptive&quot;, &quot;balancedadaptive&quot;</p>
 </td>
     </tr><tr>
     <td>[playback.metadata]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable metadata (default: false).</p>

@@ -114,6 +114,29 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation-">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a>.</h2>
+<h2 id="-4-14-1-"><strong>[4.14.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release introduces two new latency control modes targeting especially lowest latency use cases like live auctioning.
+The latency control mode can be selected via the added <code>config.playback.latencyControlMode</code> configuration parameter.
+The established latency control mode is available as the <code>&#39;classic&#39;</code> option which remains to be the default mode.
+In addition the new latency control modes <code>&#39;balancedadaptive&#39;</code> and <code>&#39;fastadaptive&#39;</code> have been added.
+According to the current stream and network conditions they can adjust the latency adaptively.
+This allows to achieve a lower latency while keeping the playback experience smooth.
+Please find further information in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">feature description</a> in the documentation.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>added latency control modes and related configuration parameter<ul>
+<li>configuration parameter: <code>config.playback.latencyControlMode</code></li>
+<li>string values: <code>&#39;classic&#39;</code>, <code>&#39;balancedadaptive&#39;</code>, <code>&#39;fastadaptive&#39;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>improved handling in case of video frames being dropped by the browser</li>
+</ul>
 <h2 id="please-find-more-about-the-source-defaults-feature-in-our-documentation-">Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.</h2>
 <h2 id="-4-13-3-"><strong>[4.13.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>

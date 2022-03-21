@@ -81,7 +81,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.13.3</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.14.1</p></div>
         
     
 </header>
@@ -170,7 +170,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.13.3</li>
+			<li>4.14.1</li>
 		</ul>
 	</dd>
 	
@@ -4012,7 +4012,7 @@
                 </td>
             
 
-            <td class="description last"><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <code>'onUpdateSourceFail'</code> and the <code>'onSwitchStreamFail'</code> event. Default is 10 seconds, valid range is between 5 and 30.</p></td>
+            <td class="description last"><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <code>'onUpdateSourceFail'</code> and the <code>'onSwitchStreamFail'</code> event. Default is 20 seconds, valid range is between 5 and 30.</p></td>
         </tr>
 
     
@@ -5086,6 +5086,44 @@
             
 
             <td class="description last"><p>Mute/unmute the player (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the 'muted' property to 'true'. See property 'autoplay' for more informations.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>latencyControlMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    classic
+                
+                </td>
+            
+
+            <td class="description last"><p>The latency control mode of the player - possible values: &quot;classic&quot;, &quot;fastadaptive&quot;, &quot;balancedadaptive&quot;</p></td>
         </tr>
 
     
@@ -16532,6 +16570,296 @@
 
         <tr>
             
+                <td class="name"><code>playbackrate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The playbackrate object. (since 4.14.1)</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>current</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current video playbackrate. (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>avg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The average video playbackrate over the last 10 seconds. (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>min</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The minimum video playbackrate over the last 10 seconds. (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The maximum video playbackrate over the last 10 seconds. (since 4.14.1)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>buffergoal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The buffergoal object. Values used by the latency control (since 4.14.1)</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>base</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The suggested calculated buffergoal value depending on the latency control mode and playback conditions (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>real</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The final calculated buffergoal value including offsets (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>min</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The minimum possible buffergoal value. (since 4.14.1)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>max</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The maximum possible buffergoal value. (since 4.14.1)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>quality</code></td>
             
 
@@ -16591,7 +16919,7 @@
 
             
 
-            <td class="description last"><p>The total number of corrupted video frames. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The total number of corrupted video frames.</p></td>
         </tr>
 
     
@@ -16615,7 +16943,7 @@
 
             
 
-            <td class="description last"><p>The number of corrupted video frames within the last second. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The number of corrupted video frames within the last second.</p></td>
         </tr>
 
     
@@ -16639,7 +16967,7 @@
 
             
 
-            <td class="description last"><p>The time in miliseconds since the start of the navigation and the creation of the video element. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The time in miliseconds since the start of the navigation and the creation of the video element.</p></td>
         </tr>
 
     
@@ -16663,7 +16991,7 @@
 
             
 
-            <td class="description last"><p>The total number of dropped video frames. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The total number of dropped video frames.</p></td>
         </tr>
 
     
@@ -16687,7 +17015,7 @@
 
             
 
-            <td class="description last"><p>The number of dropped video frames within the last second. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The number of dropped video frames within the last second.</p></td>
         </tr>
 
     
@@ -16711,7 +17039,7 @@
 
             
 
-            <td class="description last"><p>The total number of created and dropped video frames since creation of the video element. ONLY AVAILABLE FOR FIREFOX.</p></td>
+            <td class="description last"><p>The total number of created and dropped video frames since creation of the video element.</p></td>
         </tr>
 
     
@@ -23221,7 +23549,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Wed Jan 5th 2022
+		on Wed Mar 16th 2022
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

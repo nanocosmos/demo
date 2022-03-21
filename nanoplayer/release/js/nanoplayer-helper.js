@@ -205,6 +205,10 @@ function getNanoPlayerParameters () {
     if (metadataLowDelay) {
         config.playback.metadataLowDelay = !(metadataLowDelay === 'false' || metadataLowDelay === '0');
     }
+    var latencyControlMode = getHTTPParam('latencyControlMode') || getHTTPParam('playback.latencyControlMode');
+    if (latencyControlMode) {
+        config.playback.latencyControlMode = latencyControlMode;
+    }
     var view = getHTTPParam('view') || getHTTPParam('style.view');
     if (view) {
         config.style = config.style || {};
