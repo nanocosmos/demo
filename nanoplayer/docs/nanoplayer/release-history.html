@@ -115,6 +115,23 @@
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
 <h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation-">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a>.</h2>
+<h2 id="-4-14-2-"><strong>[4.14.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release is solving issues related to the center view player controls and the layout in fullscreen mode.
+Previously in case the bottom control bar was disabled, the center view player control did not trigger related actions. It occured after a resize of the player e.g. upon entering the fullscreen mode or mobile device rotation.
+Furthermore a fullscreen layout issue has been resolved. Before, parts of the player were not being rendered inside of the display area under following circumstances: If CSS padding was set on the player div and the player&#39;s aspect ratio did not match the form factor of the screen.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>center view player controls not triggering related actions if the bottom control bar was disabled<ul>
+<li>the issue occurred after a resize of the player (e.g. mobile device rotation or entering fullscreen mode)</li>
+</ul>
+</li>
+<li>potential layout issue in fullscreen mode<ul>
+<li>if CSS padding was set on the player div and the player&#39;s aspect ratio did not match the form factor of the screen</li>
+</ul>
+</li>
+</ul>
 <h2 id="-4-14-1-"><strong>[4.14.1]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release introduces two new latency control modes targeting especially lowest latency use cases like live auctioning.

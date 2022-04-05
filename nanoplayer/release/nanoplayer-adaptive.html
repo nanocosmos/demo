@@ -63,7 +63,13 @@ All modifications will remain property of nanocosmos.
                 <option value="deviationOfMean">deviationOfMean</option>
                 <option value="deviationOfMean2">deviationOfMean2</option>
             </select>
-            <strong>adaption downstep:&nbsp;</strong><select id="adaption-downstep" onchange="onSetAdaption(this);"></select>
+        </p>
+        <p class="normal">
+            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode" onchange="onLatencyControlMode(this);">
+                <option value="classic">classic</option>
+                <option value="balancedadaptive">balancedadaptive</option>
+                <option value="fastadaptive">fastadaptive</option>
+            </select>
         </p>
         <div class="col">
             <div class="row">
@@ -157,15 +163,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.14.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.14.2.min.js"></script>
     <script>
 
-        var playerVersion = '4.14.1';
+        var playerVersion = '4.14.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220316';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220405';
         };
 
         var player;
@@ -306,14 +312,20 @@ All modifications will remain property of nanocosmos.
         function onSetAdaption(e) {
             var select = document.getElementById('switch-rule');
             var rule = select.options[select.selectedIndex].value;
-            select = document.getElementById('adaption-downstep');
-            var downStep = parseInt(select.options[select.selectedIndex].value, 10) || 1;
+            var downStep = this.config && this.config.source && this.config.source.options && this.config.source.options.adaption && this.config.source.options.adaption.downStep ? this.config.source.options.adaption.downStep : 1;
             if (player) {
                 player.setAdaption({
                     'rule': rule,
                     'downStep': downStep
                  });
             }
+        }
+
+        function onLatencyControlMode(e) {
+            var select = document.getElementById('latencyControlMode');
+            var latencyControlMode = select.options[select.selectedIndex].value;
+            this.config.playback.latencyControlMode = latencyControlMode;
+            startPlayer();
         }
 
         function setAdaption(_rule) {
@@ -515,13 +527,7 @@ All modifications will remain property of nanocosmos.
                     setVolume(null, document.getElementById('faderVolume').value);
                     checkConfig(conf);
                     document.querySelector('#switch-rule option[value="' + conf.source.options.adaption.rule + '"]').selected = true;
-                    for (var i = 1; i < conf.source.entries.length; i += 1) {
-                        var option = document.createElement('option');
-                        option.value = i;
-                        option.textContent = i;
-                        document.querySelector('#adaption-downstep').appendChild(option);
-                    }
-                    document.querySelector('#adaption-downstep option[value="' + conf.source.options.adaption.downStep + '"]').selected = true;
+                    document.querySelector('#latencyControlMode option[value="' + conf.playback.latencyControlMode + '"]').selected = true;
                     try {
                         conf = JSON.stringify(conf)
                     } catch (err) { }

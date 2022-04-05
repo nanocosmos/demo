@@ -54,6 +54,13 @@ All modifications will remain property of nanocosmos.
                 <output for="fader" id="volume" style="padding-left:5px; display:inline-block; vertical-align: middle;">100%</output>
             </div>
         </div>
+        <p class="normal">
+            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode" onchange="onLatencyControlMode(this);">
+                <option value="classic">classic</option>
+                <option value="balancedadaptive">balancedadaptive</option>
+                <option value="fastadaptive">fastadaptive</option>
+            </select>
+        </p>
         <p class="normal" id="warning-container" style="display:none">
             <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
         </p>
@@ -362,15 +369,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.14.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.14.2.min.js"></script>
     <script>
 
-        var playerVersion = '4.14.1';
+        var playerVersion = '4.14.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220316';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220405';
         };
 
         var player;
@@ -567,6 +574,7 @@ All modifications will remain property of nanocosmos.
 
             player.setup(config).then(function (conf) {
                 setVolume(null, document.getElementById('faderVolume').value);
+                document.querySelector('#latencyControlMode option[value="' + conf.playback.latencyControlMode + '"]').selected = true;
                 checkConfig(conf);
                 try {
                     conf = JSON.stringify(conf)
@@ -673,6 +681,13 @@ All modifications will remain property of nanocosmos.
                 log('update source error: ' + error);
                 document.getElementById('status').innerText = 'Update Source Error: ' + error;
             });
+        }
+
+        function onLatencyControlMode(e) {
+            var select = document.getElementById('latencyControlMode');
+            var latencyControlMode = select.options[select.selectedIndex].value;
+            this.config.playback.latencyControlMode = latencyControlMode;
+            startPlayer();
         }
 
     </script>
