@@ -19,14 +19,16 @@ var streamobj = [];
                 'bintu': {}
             },
             'events': {
-                'onReady'          : this.onReady.bind(this),
-                'onPlay'           : this.onPlay.bind(this),
-                'onPause'          : this.onPause.bind(this),
-                'onLoading'        : this.onLoading.bind(this),
-                'onStartBuffering' : this.onStartBuffering.bind(this),
-                'onStopBuffering'  : this.onStopBuffering.bind(this),
-                'onError'          : this.onError.bind(this),
-                'onMetaData'       : this.onMetaData.bind(this)
+                'onReady'            : this.onReady.bind(this),
+                'onPlay'             : this.onPlay.bind(this),
+                'onPause'            : this.onPause.bind(this),
+                'onLoading'          : this.onLoading.bind(this),
+                'onStartBuffering'   : this.onStartBuffering.bind(this),
+                'onStopBuffering'    : this.onStopBuffering.bind(this),
+                'onError'            : this.onError.bind(this),
+                'onMetaData'         : this.onMetaData.bind(this),
+                'onStreamInfo'       : this.onStreamInfo.bind(this),
+                'onStreamInfoUpdate' : this.onStreamInfo.bind(this)
             },
             'playback': {
                 'autoplay' : true,
@@ -50,6 +52,8 @@ var streamobj = [];
         this.playersConnectionErrors = {};
         this.autoLoad = false;
         this.cropMode = 'fit';
+        this.params = {};
+        this.paramsObject = {};
     };
 
     var proto = AppController.prototype;
@@ -157,6 +161,8 @@ var streamobj = [];
             el = document.getElementById('invalid');
             el.style.display = 'block';
         }
+
+        this.parseConfig();
     };
 
     proto.registerEventHandler = function () {
@@ -477,15 +483,22 @@ var streamobj = [];
             div.style.position = 'relative';
             var divObj = document.createElement('div');
             divObj.setAttribute('id', 'player-' + id);
-            divObj.style.cssText = 'width:100% !important;height:100% !important;background-color: black';
+            divObj.style.cssText = 'width: 100% !important; height: 56.25% !important; overflow: hidden; position: relative; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important;';
             divObj.setAttribute('data-id', id);
             var divEmbed = document.createElement('div');
             divEmbed.setAttribute('id', id);
             var divInfo = document.createElement('div');
             divInfo.setAttribute('id', 'info-' + id);
+            divInfo.style.cssText = 'position: absolute;top: 100%';
             divInfo.innerHTML += '<strong id="status-playback-player-' + id + '">ready: </strong>';
-            divInfo.innerHTML += '<a style="cursor:pointer" onclick="window.open(\'nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + id + '\',\'_blank\');">' + streamname + '</a>';
-
+            var singlePlayerUrl = 'nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + id;
+            var ignore = ['bintu.apikey', 'bintu.tags'];
+            for (var param in this.params) {
+                if (Object.prototype.hasOwnProperty.call(this.params, param) && ignore.indexOf(param) === -1) {
+                    singlePlayerUrl += '&' + param + '=' + encodeURIComponent(this.params[param]);
+                }
+            }
+            divInfo.innerHTML += '<a style="cursor:pointer" onclick="window.open(\'' + singlePlayerUrl + '\',\'_blank\');">' + streamname + '</a>';
             //divObj.appendChild(divEmbed);
             div.appendChild(divObj);
             parent.appendChild(div);
@@ -732,6 +745,33 @@ var streamobj = [];
         this.log(e);
     };
 
+    proto.onStreamInfo = function (e) {
+        this.log(e);
+        var player = e.player;
+        var el = document.getElementById(player);
+        if (el) {
+            var streamInfo = e.data.streamInfo;
+            var ratio = 16 / 9;
+            var ratioPercent = 56.25;
+            if (streamInfo.haveVideo) {
+                ratio = streamInfo.videoInfo.width / streamInfo.videoInfo.height;
+            }
+            if (ratio >= 1) {
+                ratioPercent = (Math.round((1 / ratio * 100) * 100) / 100);
+                el.style.setProperty('width', '100%', 'important');
+                el.style.setProperty('height', '' + ratioPercent + '%', 'important');
+            }
+            else {
+                ratioPercent = (Math.round(((ratio) * 100) * 100) / 100);
+                el.style.setProperty('width', '' + ratioPercent + '%', 'important');
+                el.style.setProperty('heigth', '100%', 'important');
+            }
+            el.style.setProperty('left', '50%', 'important');
+            el.style.setProperty('top', '50%', 'important');
+            el.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+        }
+    };
+
     proto.log = function (e) {
         if (typeof e === 'object') {
             if (e.message) {
@@ -803,6 +843,96 @@ var streamobj = [];
         });
         mb.style.zIndex = Math.pow(2, 64).toString();
         mb.style.display = 'block';
+    };
+
+    proto.parseQuery = function () {
+        // QUERY PARSING
+        var query = document.location.href;
+        var pos = query.indexOf('?') + 1;
+        if (pos) {
+            query = query.slice(pos);
+        }
+        if (query !== '') {
+            var gArr = query.split('&');
+            for (var i = 0; i < gArr.length; ++i) {
+                var v = '';
+                var vArr = gArr[i].split('=');
+                var k = vArr[0];
+                if (vArr.length > 1) {
+                    v = vArr[1];
+                }
+                this.params[decodeURIComponent(k)] = decodeURIComponent(v);
+            }
+        }
+        this.getParamsAsObject();
+    };
+
+    proto.getParamsAsObject = function () {
+        var key, value;
+        var ignore = ['bintu.apikey', 'bintu.tags'];
+        for (key in this.params) {
+            if (Object.hasOwnProperty.call(this.params, key) && ignore.indexOf(key) === -1) {
+                value = this.params[key];
+                this.addParam(this.paramsObject, key.split('.'), value);
+            }
+        }
+    };
+
+    proto.addParam = function (target, keys, value) {
+        var key = keys.shift();
+        if (key) {
+            !target[key] && (target[key] = {});
+            if (keys.length) {
+                this.addParam(target[key], keys, value);
+            }
+            else {
+                if (/^(true)$/.test(value)) {
+                    value = true;
+                }
+                else if (/^(false)$/.test(value)) {
+                    value = false;
+                }
+                else if (!isNaN(value)) {
+                    value = value.indexOf('.') !== -1 ? parseFloat(value) : parseInt(value, 10);
+                }
+                else {
+                    var values = value.split(',');
+                    if (values.length > 1) {
+                        value = values;
+                    }
+                }
+                if (typeof value !== 'undefined') {
+                    target[key] = value;
+                }
+            }
+        }
+    };
+
+    proto.extend = function (source, target) {
+        if (typeof source === 'undefined' || !source || !Object.keys(source).length) {
+            return;
+        }
+        var key, keys, value, values;
+        for (key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                !target[key] && (target[key] = {});
+                if (typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    this.extend(source[key], target[key]);
+                }
+                else {
+                    target[key] = source[key];
+                }
+            }
+        }
+    };
+
+    proto.addOtherConfigs = function () {
+        this.extend(this.paramsObject, this.config);
+    };
+
+    proto.parseConfig = function () {
+        this.parseQuery();
+        this.addOtherConfigs();
     };
 
     return (window.AppController = AppController);
