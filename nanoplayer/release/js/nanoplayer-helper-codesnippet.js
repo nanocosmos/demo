@@ -86,80 +86,82 @@ function createCodeSippet (_config) {
     if (!config.source.entries) {
         console.log('Error: no source entries?');
     }
-    else if (!entryType) {
-        for (i = 0, len = entryTypes.length; i < len; i += 1) {
-            entryType = entryTypes[i];
-            if (config.source.entries[0][entryType]) {
-                break;
+    else {
+        if (!entryType) {
+            for (i = 0, len = entryTypes.length; i < len; i += 1) {
+                entryType = entryTypes[i];
+                if (config.source.entries[0][entryType]) {
+                    break;
+                }
+                entryType = undefined;
             }
-            entryType = undefined;
         }
-    }
-    // check if is redundant code snippet
-    var isSameServer, isSameUrl, hasNoServer, hasNoUrl, isGroupStreams;
-    var filtered = config.source.entries.filter(function (entry) {
-        return !!entry[entryType];
-    });
-    if (filtered.length === config.source.entries.length) {
-        isSameServer = filtered.every(function (entry) {
-            return entry.h5live && entry.h5live.server && JSON.stringify(entry.h5live.server) === JSON.stringify(filtered[0].h5live.server);
+        // check if is redundant code snippet
+        var isSameServer, isSameUrl, hasNoServer, hasNoUrl, isGroupStreams;
+        var filtered = config.source.entries.filter(function (entry) {
+            return !!entry[entryType];
         });
-        hasNoServer = filtered.every(function (entry) {
-            return !entry.h5live || (entry.h5live && !entry.h5live.server);
-        });
-        isSameUrl = filtered.every(function (entry) {
-            return entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.url && entry.h5live.rtmp.url === filtered[0].h5live.rtmp.url;
-        });
-        hasNoUrl = filtered.every(function (entry) {
-            return !entry.h5live || (entry.h5live && (!entry.h5live.rtmp || (entry.h5live.rtmp && !entry.h5live.rtmp.url)));
-        });
-        isGroupStreams = (isSameServer || isSameUrl) || (hasNoServer && hasNoUrl);
-    }
-    var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
-    // add defaults
-    if (isSameUrl) {
-        commonUrl = config.source.entries[0].h5live.rtmp.url;
-        line += 'var commonUrl = "' + commonUrl + '"; \r\n';
-    }
-    if (isSameServer) {
-        commonServer = config.source.entries[0].h5live.server;
-        line += 'var commonServer = ' + JSON.stringify(commonServer, undefined, 4) + '; \r\n';
-    }
-    if (isGroupStreams) {
-        _asArray && (line += 'var ' + (entryType === 'h5live' ? 'streamNames' : 'bintuStreamIds') + ' = [ \r\n');
-    }
-    for (i = 0, len = config.source.entries.length; i < len; i++) {
-        entry = config.source.entries[i];
-        // add stream name
-        if (isGroupStreams) {
-            if (_asArray) {
-                line += '   "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '"';
-                (i !== len - 1) && (line += ',');
-            }
-            else {
-                line += 'var ' + (entryType === 'h5live' ? 'streamName' : 'bintuStreamId') + (i + 1) + ' = "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '";';
-            }
-            line += ' \r\n';
+        if (filtered.length === config.source.entries.length) {
+            isSameServer = filtered.every(function (entry) {
+                return entry.h5live && entry.h5live.server && JSON.stringify(entry.h5live.server) === JSON.stringify(filtered[0].h5live.server);
+            });
+            hasNoServer = filtered.every(function (entry) {
+                return !entry.h5live || (entry.h5live && !entry.h5live.server);
+            });
+            isSameUrl = filtered.every(function (entry) {
+                return entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.url && entry.h5live.rtmp.url === filtered[0].h5live.rtmp.url;
+            });
+            hasNoUrl = filtered.every(function (entry) {
+                return !entry.h5live || (entry.h5live && (!entry.h5live.rtmp || (entry.h5live.rtmp && !entry.h5live.rtmp.url)));
+            });
+            isGroupStreams = (isSameServer || isSameUrl) || (hasNoServer && hasNoUrl);
         }
-        // set placeholders
+        var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
+        // add defaults
         if (isSameUrl) {
-            entry.h5live.rtmp.url = '___commonUrl___';
+            commonUrl = config.source.entries[0].h5live.rtmp.url;
+            line += 'var commonUrl = "' + commonUrl + '"; \r\n';
         }
         if (isSameServer) {
-            entry.h5live.server = '___commonServer___';
+            commonServer = config.source.entries[0].h5live.server;
+            line += 'var commonServer = ' + JSON.stringify(commonServer, undefined, 4) + '; \r\n';
         }
         if (isGroupStreams) {
-            if (entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.streamname) {
-                entry.h5live.rtmp.streamname = '___streamName' + (_asArray ? 's[' + i + ']' : (i + 1)) + '___';
+            _asArray && (line += 'var ' + (entryType === 'h5live' ? 'streamNames' : 'bintuStreamIds') + ' = [ \r\n');
+        }
+        for (i = 0, len = config.source.entries.length; i < len; i++) {
+            entry = config.source.entries[i];
+            // add stream name
+            if (isGroupStreams) {
+                if (_asArray) {
+                    line += '   "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '"';
+                    (i !== len - 1) && (line += ',');
+                }
+                else {
+                    line += 'var ' + (entryType === 'h5live' ? 'streamName' : 'bintuStreamId') + (i + 1) + ' = "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '";';
+                }
+                line += ' \r\n';
             }
-            if (entry.bintu && entry.bintu.streamid) {
-                entry.bintu.streamid = '___bintuStreamId' + (_asArray ? 's[' + i + ']' : i) + '___';
+            // set placeholders
+            if (isSameUrl) {
+                entry.h5live.rtmp.url = '___commonUrl___';
+            }
+            if (isSameServer) {
+                entry.h5live.server = '___commonServer___';
+            }
+            if (isGroupStreams) {
+                if (entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.streamname) {
+                    entry.h5live.rtmp.streamname = '___streamName' + (_asArray ? 's[' + i + ']' : (i + 1)) + '___';
+                }
+                if (entry.bintu && entry.bintu.streamid) {
+                    entry.bintu.streamid = '___bintuStreamId' + (_asArray ? 's[' + i + ']' : i) + '___';
+                }
             }
         }
-    }
-    if (isGroupStreams) {
-        _asArray && (line += ']; \r\n');
-    }
+        if (isGroupStreams) {
+            _asArray && (line += ']; \r\n');
+        }
+    } // end of check config.source.entries
     config = JSON.stringify(config, null, 4);
     config = removePlaceholders(config);
 
