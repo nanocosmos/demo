@@ -3,7 +3,7 @@
  *
  * @file bintu.js - Bintu Streaming API Class for HTML5 Web Browsers.
  * @author nanocosmos IT GmbH
- * @copyright (c) 2016-2020 nanocosmos IT GmbH. All rights reserved.
+ * @copyright (c) 2016-2022 nanocosmos IT GmbH. All rights reserved.
  * @version 1.0.0
  * @license nanoStream Software/Service License - All Rights Reserved
  */

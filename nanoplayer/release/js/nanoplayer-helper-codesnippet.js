@@ -1,5 +1,5 @@
 // nanoPlayer Code Snippet Creation Scripts
-// (c) 2019 nanocosmos gmbh
+// (c) 2019-2022 nanocosmos gmbh
 
 /* eslint-disable no-undef, no-console, no-unused-vars */
 function isEmptyObject (obj) {
