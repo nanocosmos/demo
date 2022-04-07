@@ -1,7 +1,7 @@
 /**
  * @license NanoTools 2.0.0
- * Copyright (c) 2016 nanocosmos IT GmbH. All rights reserved.
- * http://www.nanocosmos.de
+ * Copyright (c) 2016-2022 nanocosmos IT GmbH. All rights reserved.
+ * https://www.nanocosmos.de
  */
 /*eslint-disable no-undef, no-console, no-unused-vars */
 (function () {

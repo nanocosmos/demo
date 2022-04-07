@@ -1,4 +1,7 @@
 /*eslint-disable no-undef, no-console, no-unused-vars */
+/* nanoPlayer Multiplayer 
+   (c) 2016-2022 nanocosmos gmbh, https://www.nanocosmos.de */
+
 var streamobj = [];
 
 (function () {
