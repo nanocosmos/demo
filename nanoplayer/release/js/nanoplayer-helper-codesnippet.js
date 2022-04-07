@@ -83,7 +83,10 @@ function createCodeSippet (_config) {
         }
         entryType = undefined;
     }
-    if (!entryType) {
+    if (!config.source.entries) {
+        console.log('Error: no source entries?');
+    }
+    else if (!entryType) {
         for (i = 0, len = entryTypes.length; i < len; i += 1) {
             entryType = entryTypes[i];
             if (config.source.entries[0][entryType]) {
