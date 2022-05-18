@@ -1,9 +1,13 @@
-<!DOCTYPE html>
 <!--
-    nanoStream Live Player - Multiplayer Demo (multiple players on one page)
-    (c) 2020-2022 nanocosmos gmbh
-    https://www.nanocosmos.de
+    nanoStream Live Player
+    (c) 2020 nanocosmos gmbh
+    http://www.nanocosmos.de
 -->
+<!DOCTYPE html>
+<!--[if IE 8]>          <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
@@ -39,7 +43,7 @@
             <div class="col-md-12" id="invalid" style="display:none;">
                 <h1>no bintu apikey passed</h1>
                 <hr />
-                <label>use it like "../nanoplayer-multi.html?bintu.apikey=adsgfAEWRGsvgRQAEWTQawgagheraZWEGAbvgAERSTG"</label>
+                <label>use it like "...player.html?apikey=adsgfAEWRGsvgRQAEWTQawgagheraZWEGAbvgAERSTG"</label>
             </div>
             <div class="col-md-12" id="valid" style="display: block;">
                 <div class="panel panel-primary">
@@ -109,10 +113,10 @@
 
     
     
-    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.4.14.2.min.js"></script>
+    <script type="text/javascript" src="./js/nanoplayer/nanoplayer.4.15.0.min.js"></script>
     <script type="text/javascript">
 
-        var playerVersion = '4.14.2';
+        var playerVersion = '4.15.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
