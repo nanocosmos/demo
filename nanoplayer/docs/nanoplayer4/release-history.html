@@ -114,6 +114,22 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="-4-16-0-"><strong>[4.16.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version adds the possibility to set a general H5Live server domain. A domain can be applied via <code>config.source.general.serverDomain</code>. This can be especially useful with configurations via <code>source.defaults</code> or <code>bintu.streamid</code>. By default, these configurations are using the standard geo-load-balanced domain namest. Please find further information in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults#applying-a-custom-h5live-server-domain">documentation</a> regarding this feature.</p>
+<p>In addition an issue in relation to timed out stream switches has been fixed. Previously this could lead to a temporarily inconsistent internal stream state.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>new config parameter <code>config.source.general.serverDomain</code><ul>
+<li>will override/modify all h5live server domains</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>internal stream state after timed out stream switches</li>
+</ul>
 <h2 id="-4-15-0-"><strong>[4.15.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version is adding improvements for ABR playback. It implements a cooldown mechanism to control the next up-switch.

@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.15.0
+NanoPlayer (H5Live) Public API Class 4.16.0
 
 **Kind**: global class  
-**Version**: 4.15.0  
+**Version**: 4.16.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -1994,7 +1994,13 @@ The config object to pass as param for the 'setup' call.
     <td>[source.defaults]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries defaults.</p>
 </td>
     </tr><tr>
-    <td>[source.defaults.service]</td><td><code>string</code></td><td></td><td><p>The defaults service.  If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>.</p>
+    <td>[source.defaults.service]</td><td><code>string</code></td><td></td><td><p>The defaults service. If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>.</p>
+</td>
+    </tr><tr>
+    <td>[source.general]</td><td><code>object</code></td><td></td><td><p>The object to configure general values.</p>
+</td>
+    </tr><tr>
+    <td>[source.general.serverDomain]</td><td><code>string</code></td><td></td><td><p>The general server domain. It has highest prio and will override/modify all h5live server domains. Possible values are e.g. <code>bintu-play-eu.nanocosmos.de</code> or <code>bintu-play-ass.nanocosmos.de</code>.</p>
 </td>
     </tr><tr>
     <td>[source.options]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries options.</p>

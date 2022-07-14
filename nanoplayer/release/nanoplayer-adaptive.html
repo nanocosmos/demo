@@ -163,15 +163,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.15.0.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.16.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.15.0';
+        var playerVersion = '4.16.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220518';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20220713';
         };
 
         var player;
@@ -360,6 +360,7 @@ All modifications will remain property of nanocosmos.
                 displayMutedAutoplay: true
             }
         };
+        var prevConf;
         events = events || {};      
         events.onReady = function (e) {
             log('onReady');
@@ -384,6 +385,7 @@ All modifications will remain property of nanocosmos.
             (parseInt(volumeFader.value) !== volume) && (volumeFader.value = volume);
             volumeOutput.value = volume + '%';
         };
+        var lastCodeSnippetConfig;
 
         function init() {
             document.querySelector('#faderVolume').value = 100;
@@ -436,7 +438,9 @@ All modifications will remain property of nanocosmos.
             if (!player) {
                 player = new NanoPlayer('playerDiv');
             }
-            config = config || this.config;
+
+            prevConf !== this.config ? config = prevConf : config = config || this.config;
+
             for (var event in events) {
                 if (Object.prototype.hasOwnProperty.call(events, event)) {
                     player.on(event.substr(2), events[event]);
@@ -504,7 +508,10 @@ All modifications will remain property of nanocosmos.
             if (window.nanoPlayerMetricsConfig) {
                 this.config.metrics = window.nanoPlayerMetricsConfig;
             }
+
+
             var _config = deepCopy(this.config);
+            prevConf = _config;
             
             if (reset && getHTTPParam('reset') === 'update') {
                 player.updateSource(_config.source)
