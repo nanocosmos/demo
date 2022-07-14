@@ -342,6 +342,7 @@ function getNanoPlayerParameters () {
         checkH5Live();
         checkSecurity();
         checkDefaults();
+        checkGeneral();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -354,6 +355,7 @@ function getNanoPlayerParameters () {
         checkH5Live();
         checkSecurity();
         checkDefaults();
+        checkGeneral();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -396,6 +398,7 @@ function getNanoPlayerParameters () {
         }
         checkSecurity();
         checkDefaults();
+        checkGeneral();
         checkEntries();
         checkOptions();
         doStartPlayer = true;
@@ -664,6 +667,14 @@ function checkDefaults () {
         config.source.defaults.service = service;
     }
 }
+function checkGeneral () {
+    config.source = config.source || {};
+    var generalServerDomain = getHTTPParam('general.serverDomain') || getHTTPParam('general.serverDomain');
+    if (generalServerDomain) {
+        config.source.general = config.source.general || {};
+        config.source.general.serverDomain = generalServerDomain;
+    }
+}
 function checkOptions () {
     if (config.source.entries && config.source.entries.length > 1) {
         config.source.options = {
@@ -692,6 +703,10 @@ function checkOptions () {
         var method = getHTTPParam('method') || getHTTPParam('options.switch.method');
         if (method) {
             config.source.options.switch.method = method;
+        }
+        var timeout = getHTTPParam('options.switch.timeout');
+        if (timeout && !isNaN(timeout)) {
+            config.source.options.switch.timeout = parseInt(timeout, 10);
         }
     }
 }
