@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Your player</title>
+  </head>
+    <body>
+      <style>
+        body {
+          margin:0
+        }
+        #playerDiv {
+          width: 100vw;
+          height:100vh
+        }
+      </style>
+
+  <!-- player -->
+      <div id="playerDiv"></div>
+
+      <!-- nanoPlayer JS Files -->
+
+      <!-- nanoStream H5Live Player JS API (nanoPlayer)  -->
+      <script src="https://demo.nanocosmos.de/nanoplayer/api/feature/nanoplayer.4.min.js?20220713"></script>
+
+      <!-- nanoPlayer embed version -->
+      <script src="js/nanoplayer/nanoplayer-embed-version.js"></script>
+
+      <!-- nanoPlayer events - here you can find all the events from nanoplayer API -->
+      <script src="js/nanoplayer/nanoplayer-events.js"></script>
+
+      <!-- nanoPlayer config - here the config is created dynamically - no need to edit -->
+      <script src="js/nanoplayer/nanoplayer-config.js"></script>
+
+      <!-- nanoPlayer main - here the player setup happens - no need to edit -->
+      <script src="js/nanoplayer/nanoplayer-main.js"></script>
+
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          nanoPlayerMain(); // HERE WE LOAD THE NANOPLAYER-MAIN.JS FILE, NO NEED TO EDIT IT
+        });
+      </script>
+
+    </body>
+</html>
