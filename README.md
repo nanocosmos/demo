@@ -1,5 +1,43 @@
 ﻿# **NanoPlayer - Release History**
 
+## Please find more about the **video processing** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/).
+
+## **[4.17.0]**
+
+### **Release Notes**
+
+This version is adding a new public event to the player. The event `onActiveVideoElementChange` is emitted when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS. The event data is providing the `activeVideoElement` and the complete `videoElementList`.
+Having a reference to the `activeVideoElement` simplifies use cases like drawing or rendering images to a canvas or saving snapshots from the video.
+See the [api description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#onactivevideoelementchange) of the event and our [docs feature entry](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_access_and_processing/) for more information.
+
+### **Changelog**
+
+### Added
+
+- new public event `onActiveVideoElementChange`
+  - is emitted when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS
+  - provides the `videoElementList` {Array.HTMLVideoElement} and the `activeVideoElement` {HTMLVideoElement} in the event data
+  - see the [api description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#onactivevideoelementchange)
+
+## **[4.16.0]**
+
+### **Release Notes**
+
+This version adds the possibility to set a general H5Live server domain. A domain can be applied via `config.source.general.serverDomain`. This can be especially useful with configurations via `source.defaults` or `bintu.streamid`. By default, these configurations are using the standard geo-load-balanced domain namest. Please find further information in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults#applying-a-custom-h5live-server-domain) regarding this feature.
+
+In addition an issue in relation to timed out stream switches has been fixed. Previously this could lead to a temporarily inconsistent internal stream state.
+
+### **Changelog**
+
+### Added
+
+- new config parameter `config.source.general.serverDomain`
+  - will override/modify all h5live server domains
+
+### Fixed
+
+- internal stream state after timed out stream switches
+
 ## **[4.15.0]**
 
 ### **Release Notes**

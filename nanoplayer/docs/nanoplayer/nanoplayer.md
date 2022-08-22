@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.16.0
+NanoPlayer (H5Live) Public API Class 4.17.0
 
 **Kind**: global class  
-**Version**: 4.16.0  
+**Version**: 4.17.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -1964,6 +1964,50 @@ The fullscreen change event to pass in the 'config.events' object at the setup c
 **Example**  
 ```js
 // player instance of NanoPlayervar onFullscreenChange = function (event) {    console.log('FullscreenChange');    if (event.data.entered === true) {         console.log('Fullscreen Mode Entered');    }};config.events.onFullscreenChange = onFullscreenChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+```
+<a name="NanoPlayer..event_onActiveVideoElementChange"></a>
+
+### "onActiveVideoElementChange"
+The event that fires when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS (HLS playback on iOS requires two video elements for a smooth stream switch behaviour).
+
+**Kind**: event emitted by [<code>NanoPlayer</code>](#NanoPlayer)  
+**See**: [config](#NanoPlayer..config)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>name</td><td><code>string</code></td><td><p>The event name.</p>
+</td>
+    </tr><tr>
+    <td>player</td><td><code>string</code></td><td><p>The player name (id of the playerDiv).</p>
+</td>
+    </tr><tr>
+    <td>id</td><td><code>string</code></td><td><p>The unique id of the player instance.</p>
+</td>
+    </tr><tr>
+    <td>version</td><td><code>string</code></td><td><p>The version of the player.</p>
+</td>
+    </tr><tr>
+    <td>data</td><td><code>object</code></td><td><p>The data object.</p>
+</td>
+    </tr><tr>
+    <td>data.activeVideoElement</td><td><code>HTMLVideoElement</code></td><td><p>The current active video element. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p>
+</td>
+    </tr><tr>
+    <td>data.videoElementList</td><td><code>Array.HTMLVideoElement</code></td><td><p>The list of available video elements. Has two elements in case of iOS playback. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+// player instance of NanoPlayervar onActiveVideoElementChange = function (event) {    var activeVideoElement = event.data.activeVideoElement;    var videoElementList = event.data.videoElementList;    // IMPORTANT: Video elements should be treated as read-only and not be altered via properties or method calls.    if (activeVideoElement) {        console.log('ActiveVideoElementChange: The current active video element has the id: \'' + activeVideoElement.id + '\'');    }    for (var i = 0; i < videoElementList.length; i += 1) {        console.log('ActiveVideoElementChange: The video element at index ' + i + ' has the id \'' + videoElementList[i].id + '\'');    }};config.events.onActiveVideoElementChange = onActiveVideoElementChange;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..config"></a>
 
