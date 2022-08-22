@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
 				<ul class="dropdown-menu inline">
-					<li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onFullscreenChange">NanoPlayer~event:onFullscreenChange</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onServerInfo">NanoPlayer~event:onServerInfo</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamAbort">NanoPlayer~event:onSwitchStreamAbort</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamFail">NanoPlayer~event:onSwitchStreamFail</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamInit">NanoPlayer~event:onSwitchStreamInit</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamSuccess">NanoPlayer~event:onSwitchStreamSuccess</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
+					<li><a href="NanoPlayer.html#~event:onActiveVideoElementChange">NanoPlayer~event:onActiveVideoElementChange</a></li><li><a href="NanoPlayer.html#~event:onDestroy">NanoPlayer~event:onDestroy</a></li><li><a href="NanoPlayer.html#~event:onError">NanoPlayer~event:onError</a></li><li><a href="NanoPlayer.html#~event:onFullscreenChange">NanoPlayer~event:onFullscreenChange</a></li><li><a href="NanoPlayer.html#~event:onLoading">NanoPlayer~event:onLoading</a></li><li><a href="NanoPlayer.html#~event:onMetaData">NanoPlayer~event:onMetaData</a></li><li><a href="NanoPlayer.html#~event:onMute">NanoPlayer~event:onMute</a></li><li><a href="NanoPlayer.html#~event:onPause">NanoPlayer~event:onPause</a></li><li><a href="NanoPlayer.html#~event:onPlay">NanoPlayer~event:onPlay</a></li><li><a href="NanoPlayer.html#~event:onReady">NanoPlayer~event:onReady</a></li><li><a href="NanoPlayer.html#~event:onServerInfo">NanoPlayer~event:onServerInfo</a></li><li><a href="NanoPlayer.html#~event:onStartBuffering">NanoPlayer~event:onStartBuffering</a></li><li><a href="NanoPlayer.html#~event:onStats">NanoPlayer~event:onStats</a></li><li><a href="NanoPlayer.html#~event:onStopBuffering">NanoPlayer~event:onStopBuffering</a></li><li><a href="NanoPlayer.html#~event:onStreamInfo">NanoPlayer~event:onStreamInfo</a></li><li><a href="NanoPlayer.html#~event:onStreamInfoUpdate">NanoPlayer~event:onStreamInfoUpdate</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamAbort">NanoPlayer~event:onSwitchStreamAbort</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamFail">NanoPlayer~event:onSwitchStreamFail</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamInit">NanoPlayer~event:onSwitchStreamInit</a></li><li><a href="NanoPlayer.html#~event:onSwitchStreamSuccess">NanoPlayer~event:onSwitchStreamSuccess</a></li><li><a href="NanoPlayer.html#~event:onUnmute">NanoPlayer~event:onUnmute</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceAbort">NanoPlayer~event:onUpdateSourceAbort</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceFail">NanoPlayer~event:onUpdateSourceFail</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceInit">NanoPlayer~event:onUpdateSourceInit</a></li><li><a href="NanoPlayer.html#~event:onUpdateSourceSuccess">NanoPlayer~event:onUpdateSourceSuccess</a></li><li><a href="NanoPlayer.html#~event:onVolumeChange">NanoPlayer~event:onVolumeChange</a></li><li><a href="NanoPlayer.html#~event:onWarning">NanoPlayer~event:onWarning</a></li>
 				</ul>
 			</li>
 			
@@ -161,6 +161,325 @@
         <h3 class="subsection-title">Events</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="~event:onActiveVideoElementChange">onActiveVideoElementChange</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>The event that fires when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS (HLS playback on iOS requires two video elements for a smooth stream switch behaviour).</p>
+    </div>
+    
+
+    
+
+    
+        <h5>Type: 
+<span class="param-type">object</span>
+
+
+</h5>
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The event name.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The player name (id of the playerDiv).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The unique id of the player instance.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the player.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The data object.</p>
+                <h6>Properties</h6>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>activeVideoElement</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLVideoElement</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The current active video element. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>videoElementList</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.HTMLVideoElement</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The list of available video elements. Has two elements in case of iOS playback. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><p><a href="NanoPlayer.html#~config"><code>config</code></a></p></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar onActiveVideoElementChange = function (event) {    var activeVideoElement = event.data.activeVideoElement;    var videoElementList = event.data.videoElementList;    // IMPORTANT: Video elements should be treated as read-only and not be altered via properties or method calls.    if (activeVideoElement) {        console.log(&#x27;ActiveVideoElementChange: The current active video element has the id: \&#x27;&#x27; + activeVideoElement.id + &#x27;\&#x27;&#x27;);    }    for (var i = 0; i &lt; videoElementList.length; i += 1) {        console.log(&#x27;ActiveVideoElementChange: The video element at index &#x27; + i + &#x27; has the id \&#x27;&#x27; + videoElementList[i].id + &#x27;\&#x27;&#x27;);    }};config.events.onActiveVideoElementChange = onActiveVideoElementChange;player.setup(config).then(function (config) {    console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));}, function (error) {    console.log(error);});</pre>
+
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -11708,7 +12027,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Wed Jul 13th 2022
+		on Mon Aug 22nd 2022
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

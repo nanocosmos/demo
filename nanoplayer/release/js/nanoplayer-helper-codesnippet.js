@@ -50,6 +50,7 @@ function removePlaceholders (string) {
     return string;
 }
 
+
 function createCodeSippet (_config) {
     // create codesnippet
     var pre = document.getElementById('code-snippet');
@@ -83,83 +84,85 @@ function createCodeSippet (_config) {
         }
         entryType = undefined;
     }
-    if (!config.source.entries) {
-        console.log('Error: no source entries?');
-    }
-    else if (!entryType) {
-        for (i = 0, len = entryTypes.length; i < len; i += 1) {
-            entryType = entryTypes[i];
-            if (config.source.entries[0][entryType]) {
-                break;
-            }
-            entryType = undefined;
-        }
-    }
+
     // check if is redundant code snippet
-    var isSameServer, isSameUrl, hasNoServer, hasNoUrl, isGroupStreams;
-    var filtered = config.source.entries.filter(function (entry) {
-        return !!entry[entryType];
-    });
-    if (filtered.length === config.source.entries.length) {
-        isSameServer = filtered.every(function (entry) {
-            return entry.h5live && entry.h5live.server && JSON.stringify(entry.h5live.server) === JSON.stringify(filtered[0].h5live.server);
-        });
-        hasNoServer = filtered.every(function (entry) {
-            return !entry.h5live || (entry.h5live && !entry.h5live.server);
-        });
-        isSameUrl = filtered.every(function (entry) {
-            return entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.url && entry.h5live.rtmp.url === filtered[0].h5live.rtmp.url;
-        });
-        hasNoUrl = filtered.every(function (entry) {
-            return !entry.h5live || (entry.h5live && (!entry.h5live.rtmp || (entry.h5live.rtmp && !entry.h5live.rtmp.url)));
-        });
-        isGroupStreams = (isSameServer || isSameUrl) || (hasNoServer && hasNoUrl);
-    }
-    var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
-    // add defaults
-    if (isSameUrl) {
-        commonUrl = config.source.entries[0].h5live.rtmp.url;
-        line += 'var commonUrl = "' + commonUrl + '"; \r\n';
-    }
-    if (isSameServer) {
-        commonServer = config.source.entries[0].h5live.server;
-        line += 'var commonServer = ' + JSON.stringify(commonServer, undefined, 4) + '; \r\n';
-    }
-    if (isGroupStreams) {
-        _asArray && (line += 'var ' + (entryType === 'h5live' ? 'streamNames' : 'bintuStreamIds') + ' = [ \r\n');
-    }
-    for (i = 0, len = config.source.entries.length; i < len; i++) {
-        entry = config.source.entries[i];
-        // add stream name
-        if (isGroupStreams) {
-            if (_asArray) {
-                line += '   "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '"';
-                (i !== len - 1) && (line += ',');
+    var isSameServer, isSameUrl, hasNoServer, hasNoUrl, hasReducedStreamConfig;
+
+    if (config.source.entries && config.source.entries.length) {
+        if (!entryType) {
+            for (i = 0, len = entryTypes.length; i < len; i += 1) {
+                entryType = entryTypes[i];
+                if (config.source.entries[0][entryType]) {
+                    break;
+                }
+                entryType = undefined;
             }
-            else {
-                line += 'var ' + (entryType === 'h5live' ? 'streamName' : 'bintuStreamId') + (i + 1) + ' = "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '";';
-            }
-            line += ' \r\n';
         }
-        // set placeholders
+        var filtered = config.source.entries.filter(function (entry) {
+            return !!entry[entryType];
+        });
+        if (filtered.length === config.source.entries.length) {
+            isSameServer = filtered.every(function (entry) {
+                return entry.h5live && entry.h5live.server && JSON.stringify(entry.h5live.server) === JSON.stringify(filtered[0].h5live.server);
+            });
+            hasNoServer = filtered.every(function (entry) {
+                return !entry.h5live || (entry.h5live && !entry.h5live.server);
+            });
+            isSameUrl = filtered.every(function (entry) {
+                return entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.url && entry.h5live.rtmp.url === filtered[0].h5live.rtmp.url;
+            });
+            hasNoUrl = filtered.every(function (entry) {
+                return !entry.h5live || (entry.h5live && (!entry.h5live.rtmp || (entry.h5live.rtmp && !entry.h5live.rtmp.url)));
+            });
+            hasReducedStreamConfig = (isSameServer || isSameUrl) || (hasNoServer && hasNoUrl);
+        }
+        var _asArray = typeof window.asArray !== 'undefined' ? window.asArray : true;
+        // add defaults
         if (isSameUrl) {
-            entry.h5live.rtmp.url = '___commonUrl___';
+            commonUrl = config.source.entries[0].h5live.rtmp.url;
+            line += 'var commonUrl = "' + commonUrl + '"; \r\n';
         }
         if (isSameServer) {
-            entry.h5live.server = '___commonServer___';
+            commonServer = config.source.entries[0].h5live.server;
+            line += 'var commonServer = ' + JSON.stringify(commonServer, undefined, 4) + '; \r\n';
         }
-        if (isGroupStreams) {
-            if (entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.streamname) {
-                entry.h5live.rtmp.streamname = '___streamName' + (_asArray ? 's[' + i + ']' : (i + 1)) + '___';
+        if (hasReducedStreamConfig) {
+            _asArray && (line += 'var ' + (entryType === 'h5live' ? 'streamNames' : 'bintuStreamIds') + ' = [ \r\n');
+        }
+        for (i = 0, len = config.source.entries.length; i < len; i++) {
+            entry = config.source.entries[i];
+            // add stream name
+            if (hasReducedStreamConfig) {
+                if (_asArray) {
+                    line += '   "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '"';
+                    (i !== len - 1) && (line += ',');
+                }
+                else {
+                    line += 'var ' + (entryType === 'h5live' ? 'streamName' : 'bintuStreamId') + (i + 1) + ' = "' + (entryType === 'h5live' ? entry.h5live.rtmp.streamname : entry.bintu.streamid) + '";';
+                }
+                line += ' \r\n';
             }
-            if (entry.bintu && entry.bintu.streamid) {
-                entry.bintu.streamid = '___bintuStreamId' + (_asArray ? 's[' + i + ']' : i) + '___';
+            // set placeholders
+            if (isSameUrl) {
+                entry.h5live.rtmp.url = '___commonUrl___';
             }
+            if (isSameServer) {
+                entry.h5live.server = '___commonServer___';
+            }
+            if (hasReducedStreamConfig) {
+                if (entry.h5live && entry.h5live.rtmp && entry.h5live.rtmp.streamname) {
+                    entry.h5live.rtmp.streamname = '___streamName' + (_asArray ? 's[' + i + ']' : (i + 1)) + '___';
+                }
+                if (entry.bintu && entry.bintu.streamid) {
+                    entry.bintu.streamid = '___bintuStreamId' + (_asArray ? 's[' + i + ']' : i) + '___';
+                }
+            }
+        }
+        if (hasReducedStreamConfig) {
+            _asArray && (line += ']; \r\n');
         }
     }
-    if (isGroupStreams) {
-        _asArray && (line += ']; \r\n');
-    }
+
     config = JSON.stringify(config, null, 4);
     config = removePlaceholders(config);
 
@@ -177,4 +180,29 @@ function createCodeSippet (_config) {
     line += '</script>\r\n';
     pre.appendChild(document.createTextNode(line));
     document.getElementById('code-snippet-container').style.display = 'block';
+}
+
+function showErrorCodeSnippet () {
+    var snippet, div, span, p;
+    snippet = document.getElementById('code-snippet');
+    span = document.createElement('span');
+    div = document.createElement('div');
+    p = document.createElement('p');
+
+    div.style.color = 'orange';
+    div.style.fontWeight = 'bold';
+    div.style.paddingTop = '5px';
+    p.style.margin = '0px';
+    p.style.color = 'orange';
+    snippet.style.backgroundColor = 'gray';
+    snippet.style.border = '3px red solid';
+
+    var textNode1 = document.createTextNode('WARNING: ');
+    var textNode2 = document.createTextNode('this is a snippet of current configuration, as it has an error, it would not be valid if copied');
+
+    div.appendChild(textNode1);
+    p.appendChild(textNode2);
+    div.appendChild(p);
+    span.appendChild(div);
+    snippet.parentNode.insertBefore(span, snippet);
 }

@@ -226,5 +226,10 @@ events.onServerInfo = function (e) {
     //     }
     // });
 });
+events.onActiveVideoElementChange = function (e) {
+    var data = JSON.stringify(e.data);
+    log('onActiveVideoElementChange: ' + data);
+    console.log(e.data);
+};
 
 
