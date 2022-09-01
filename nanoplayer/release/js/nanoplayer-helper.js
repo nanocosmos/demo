@@ -322,6 +322,29 @@ function getNanoPlayerParameters () {
     var asArray = getHTTPParam('codeSnippetAsArray');
     window.asArray = !(asArray === 'false' || asArray === '0');
 
+    var group = {};
+    group.id = getHTTPParam('group.id');
+    var groupSecurityJWToken = getHTTPParam('group.security.jwtoken');
+    if (groupSecurityJWToken) {
+        group.security = {};
+        group.security.jwtoken = groupSecurityJWToken;
+    }
+    var groupApiurl = getHTTPParam('group.apiurl');
+    if (groupApiurl) {
+        group.apiurl = groupApiurl;
+    }
+    var groupStartQuality = getHTTPParam('group.startQuality');
+    if (groupStartQuality) {
+        group.startQuality = groupStartQuality;
+    }
+
+    if (group.id) {
+        config.source.group = group;
+        checkOptions();
+        checkDefaults();
+        checkGeneral();
+        doStartPlayer = true;
+    }
     var bintuQ = getHTTPParam('bintu');
     if (bintuQ) {
         bintuQ = JSON.parse(bintuQ);
@@ -407,7 +430,9 @@ function getNanoPlayerParameters () {
         delete config.source.h5live;
     }
     var startIndex = parseInt(getHTTPParam('startIndex'), 10);
-    config.source.startIndex = startIndex && !isNaN(startIndex) ? startIndex : 0;
+    if (!isNaN(startIndex)) {
+        config.source.startIndex = startIndex;
+    }
 
     return doStartPlayer;
 }
@@ -508,6 +533,12 @@ function checkSecurity () {
         config.source.h5live.security = config.source.h5live.security || {};
         config.source.h5live.security.token = security.token;
     }
+    security.jwtoken = getHTTPParam('h5live.security.jwtoken');
+    if (security.token) {
+        config.source.h5live = config.source.h5live || {};
+        config.source.h5live.security = config.source.h5live.security || {};
+        config.source.h5live.security.token = security.token;
+    }
     security.expires = getHTTPParam('h5live.security.expires');
     if (security.expires) {
         config.source.h5live = config.source.h5live || {};
@@ -539,8 +570,9 @@ function checkEntries () {
         var num = nums.shift();
         var streamname = getHTTPParam('entry' + num + '.rtmp.streamname');
         var streamid = getHTTPParam('entry' + num + '.bintu.streamid');
+        var streamgroup = getHTTPParam('entry' + num + '.bintu.streamgroup');
         var params = getHTTPParam('entry' + num + '.params');
-        if (!streamname && !streamid && !params) {
+        if (!streamname && !streamid && !params && !streamgroup) {
             break;
         }
         var url = getHTTPParam('entry' + num + '.rtmp.url');
@@ -608,7 +640,8 @@ function checkEntries () {
         }
         if (streamid) {
             entry.bintu = {
-                'streamid': streamid
+                'apiurl'   : apiurl,
+                'streamid' : streamid,
             };
             if (apiurl) {
                 entry.bintu.apiurl = apiurl;
@@ -641,16 +674,24 @@ function checkEntries () {
                 entry.h5live.params = params;
             }
         }
-        var security = {
-            'token'   : getHTTPParam('entry' + num + '.security.token'),
-            'expires' : getHTTPParam('entry' + num + '.security.expires'),
-            'options' : getHTTPParam('entry' + num + '.security.options'),
-            'tag'     : getHTTPParam('entry' + num + '.security.tag')
-        };
-        if (security.token) {
+        var securityToken = getHTTPParam('entry' + num + '.security.token');
+        if (securityToken) {
             entry.h5live = entry.h5live || {};
-            entry.h5live.security = security;
+            entry.h5live.security = {
+                'token'   : securityToken,
+                'expires' : getHTTPParam('entry' + num + '.security.expires'),
+                'options' : getHTTPParam('entry' + num + '.security.options'),
+                'tag'     : getHTTPParam('entry' + num + '.security.tag')
+            };
         }
+        var securityJWToken = getHTTPParam('entry' + num + '.security.jwtoken');
+        if (securityJWToken) {
+            entry.h5live = entry.h5live || {};
+            entry.h5live.security = {
+                'jwtoken': securityJWToken
+            };
+        }
+        
         entries.push(entry);
         index++;
     }
@@ -660,11 +701,13 @@ function checkEntries () {
 
 function checkDefaults () {
     config.source = config.source || {};
-    config.source.defaults = config.source.defaults || {};
-    config.source.defaults.service = 'bintu';
-    var service = getHTTPParam('service') || getHTTPParam('defaults.service');
-    if (service) {
-        config.source.defaults.service = service;
+    if (!config.source.group) {
+        config.source.defaults = config.source.defaults || {};
+        config.source.defaults.service = 'bintu';
+        var service = getHTTPParam('service') || getHTTPParam('defaults.service');
+        if (service) {
+            config.source.defaults.service = service;
+        }
     }
 }
 function checkGeneral () {
@@ -676,12 +719,10 @@ function checkGeneral () {
     }
 }
 function checkOptions () {
-    if (config.source.entries && config.source.entries.length > 1) {
+    if ((config.source.entries && config.source.entries.length > 1) || config.source.group) {
         config.source.options = {
-            'adaption': {
-                'rule': 'deviationOfMean2'
-            },
-            'switch': {}
+            'adaption' : {},
+            'switch'   : {}
         };
 
         var rule = getHTTPParam('rule') || getHTTPParam('options.rule') || getHTTPParam('options.adaption.rule');

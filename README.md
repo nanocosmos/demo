@@ -1,5 +1,39 @@
 ﻿# **NanoPlayer - Release History**
 
+## Please find more about the **stream group configuration** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/).
+
+## Please find more about **secure playback with JWT** in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/).
+
+
+## **[4.18.0]**
+
+### **Release Notes**
+
+This version is introducing two new features.
+
+Utilizing the new bintu stream group feature, it is now possible to configure an entire set of ABR streams
+by passing only the corresponding bintu stream group id via the player source configuration.
+This allows a much easier configuration for ABR playback.
+All existing options that are part of the configuration remain unchanged.
+
+Please find more about the **stream group configuration** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/).
+
+Furthermore, this version is adding support for the new secure playback using JSON Web Token (JWT).
+The new token type can contain playback permissions for one or more stream names.
+This way a single token can be used for all secure use cases.
+It can be applied with the current `entries` configuration and with the new `group` configuration.
+
+Please find more about **secure playback with JWT** in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/).
+
+### **Changelog**
+
+### Added
+
+- stream group configuration via `config.source.group` object
+  - see [feature](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/) description
+- support for secure playback using JSON Web Token (JWT)
+  - see [feature](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/) description
+
 ## Please find more about the **video processing** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/).
 
 ## **[4.17.0]**
