@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.17.0
+NanoPlayer (H5Live) Public API Class 4.18.0
 
 **Kind**: global class  
-**Version**: 4.17.0  
+**Version**: 4.18.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2039,6 +2039,24 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[source.defaults.service]</td><td><code>string</code></td><td></td><td><p>The defaults service. If a service is set, the <code>h5live.server</code> object and the <code>h5live.rtmp.url</code> in each entry can be omitted. In this case defaults will be applied internally. Values for <code>h5live.server</code> and/or <code>h5live.rtmp.url</code> that are defined explicitly in the entry have priority. The available value for <code>defaults.service</code> is <code>&#39;bintu&#39;</code> for using the standard <strong>nanoStream Cloud</strong>.</p>
+</td>
+    </tr><tr>
+    <td>[source.group]</td><td><code>object</code></td><td></td><td><p>The object to configure a bintu stream group.</p>
+</td>
+    </tr><tr>
+    <td>[source.group.id]</td><td><code>string</code></td><td></td><td><p>The stream group id.</p>
+</td>
+    </tr><tr>
+    <td>[source.group.apiurl]</td><td><code>string</code></td><td></td><td><p>The bintu apiurl.</p>
+</td>
+    </tr><tr>
+    <td>[source.group.startQuality]</td><td><code>string</code></td><td></td><td><p>The start quality. Will be mapped to a valid <code>startIndex</code>. Possible values are: <code>&#39;high&#39;</code>, <code>&#39;medium-high&#39;</code>, <code>&#39;medium&#39;</code>, <code>&#39;medium-low&#39;</code>, <code>&#39;low&#39;</code>. If not set the general <code>startIndex</code> of the source will be used (default: <code>0</code> ~ <code>&#39;high&#39;</code>)</p>
+</td>
+    </tr><tr>
+    <td>[source.group.security]</td><td><code>object</code></td><td></td><td><p>The security object of the group.</p>
+</td>
+    </tr><tr>
+    <td>[source.group.security.jwtoken]</td><td><code>string</code></td><td></td><td><p>The JSON Web Token for security.</p>
 </td>
     </tr><tr>
     <td>[source.general]</td><td><code>object</code></td><td></td><td><p>The object to configure general values.</p>

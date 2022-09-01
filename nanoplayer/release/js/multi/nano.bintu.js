@@ -3,8 +3,8 @@
  *
  * @file bintu.js - Bintu Streaming API Class for HTML5 Web Browsers.
  * @author nanocosmos IT GmbH
- * @copyright (c) 2016-2020 nanocosmos IT GmbH. All rights reserved.
- * @version 1.0.0
+ * @copyright (c) 2016-2022 nanocosmos IT GmbH. All rights reserved.
+ * @version 1.1.0
  * @license nanoStream Software/Service License - All Rights Reserved
  */
 
@@ -16,8 +16,8 @@
     /**
      * Bintu Streaming API.
      * @class Bintu
-     * @classdesc Bintu Streaming API Class Version 1.0.0
-     * @version 1.0.0
+     * @classdesc Bintu Streaming API Class Version 1.1.0
+     * @version 1.1.0
      * @constructor
      * @param {string} apiUrl - The base url to the Bintu API.
      * @param {string} [apiKey] - The apikey to use with Bintu API.
@@ -462,6 +462,89 @@
         );
     };
 
+    
+
+    /**
+     * @alias getStreamgroup
+     * @memberOf Bintu#
+     * @description Returns a Bintu streamgroup specified by a group id.
+     * @param {string} groupId - The groupId of the Bintu Stream.
+     * @returns {Promise<resolveCallback|rejectCallback>}
+     * @example
+     * // bintu instance of Bintu class
+     * var groupId = 'regwerghsthe6uwj57ikek6ugjghjf';
+     * bintu.getStreamgroup(groupId)
+     *     .then(function (request) {
+     *         try {
+     *             var response = JSON.parse(request.responseText);
+     *             var id = response.id;
+     *             var playout = response.playout;
+     *             var rtmp = playout.rtmp;
+     *             var hls = playout.hls;
+     *             var h5live = playout.h5live;
+     *             var state = response.state;
+     *             console.log('success - get group with id: ' + id);
+     *             console.log('state: ' + state);
+     *             if (h5live && h5live.length) {
+     *                 for (var j = 0; j < h5live.length; j += 1) {
+     *                     console.log('playout ' + (j + 1) + ': ' + h5live[j].rtmp.url + "/" + h5live[j].rtmp.streamname);
+     *                 }
+     *             }
+     *         } catch (err) {
+     *             console.error(err);
+     *         }
+     *     })
+     *     .catch(function (e) {
+     *         var error = (typeof e.error !== 'undefined') ? e.error + ': ' + e.request.responseText : 'error: ' + e.request.responseText;
+     *         console.error(error);
+     *         try {
+     *             error = (typeof e.error !== 'undefined') ? e.error : '';
+     *             var response = JSON.parse(e.request.responseText);
+     *             alert('error while getting bintu stream (' + error + '): status=' + response.status + ', message=' + response.message, 1);
+     *         } catch (ex) {
+     *             error = (typeof e.error !== 'undefined') ? e.error + ': ' + e.request.responseText : 'error: ' + e.request.responseText;
+     *             alert(error);
+     *         }
+     *     });
+     */
+    proto.getStreamgroup = function getStreamgroup (streamId) {
+        return new Promise(
+            function (resolve, reject) {
+                if (!this.apiUrl) {
+                    return reject({
+                        'error'   : 'no api url set',
+                        'request' : {
+                            'responseText': 'no response error'
+                        }
+                    });
+                }
+                else if (!this.apiKey && this.keyMode === 'api') {
+                    return reject({
+                        'error'   : 'no api key set',
+                        'request' : {
+                            'responseText': 'no response error'
+                        }
+                    });
+                }
+
+                // '/streamgroup/' => '/stream/{streamId}/group'
+                var request = new Request('GET', this.apiUrl + '/stream/' + streamId + '/group');
+                request.header = (this.keyMode === 'api' && this.apiKey) ? {
+                    'Accept'         : 'application/json',
+                    'Content-Type'   : 'application/json',
+                    'X-BINTU-APIKEY' : this.apiKey
+                } : {
+                    'Accept'       : 'application/json',
+                    'Content-Type' : 'application/json; charset=utf-8'
+                };
+
+                return request.Send()
+                    .then(resolve)
+                    .catch(reject);
+            }.bind(this)
+        );
+    };
+
     /**
      * @alias getStreams
      * @memberOf Bintu#
@@ -756,9 +839,9 @@
      * Bintu Stream Filter for Bintu Streaming API.
      * @class Bintu.StreamFilter
      * @memberOf Bintu
-     * @version 1.0.0
+     * @version 1.1.0
      * @constructor
-     * @classdesc Bintu Stream Filter Class Version 1.0.0 for Bintu Streaming API Class.
+     * @classdesc Bintu Stream Filter Class Version 1.1.0 for Bintu Streaming API Class.
      * @example
      * var apiKey = 'dfg5490htk64jzep0zhdhdthjkhp69zuk';
      * var apiUrl = 'https://bintu.nanocosmos.de';
