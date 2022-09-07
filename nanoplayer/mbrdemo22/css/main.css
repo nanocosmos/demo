@@ -1,0 +1,203 @@
+﻿body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    background: #F9FBFF;
+    position: relative;
+}
+
+body > .container-fluid { 
+    display: flex;
+    flex-direction: column;
+}
+
+body > .container-fluid > .row:nth-child(2) {
+    flex: 1;
+}
+
+#playerDiv {
+    width: 100% !important; 
+    padding-bottom: 56.25% !important;
+    border-radius: 5px;
+}
+
+#playButton-playerDiv {
+    transform: scale3d(1, 1, 1.5);
+    opacity: 1;
+}
+
+/* Controls */
+#playerControlsBottom {
+    position: absolute;
+    z-index: 10001;
+    width: 100%;
+    bottom: 0;
+    height: 120px;
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0%, rgba(0,0,0, .7));
+    opacity: 1;
+}
+
+#playerControlsBottom .col:nth-child(2) {
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+}
+
+#controlsVolumeSliderTrack {
+    width: 100px;
+    height: 6px;
+    border-radius: 1px;
+    background: rgba(255,255,255, .3);
+    position: relative;
+    display: inline-block;
+}
+
+#controlsVolumeSliderPosition {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: #ed7d0e;
+}
+
+.box-shadow__material {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.flat {
+    box-shadow: unset !important;
+}
+
+.col-flex {
+    display: flex; 
+    flex-direction: column;
+}
+
+.btn:hover > i{
+    color: #ed7d0e;
+}
+
+.btn--icon {
+    max-width: 100px !important; 
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+
+.btn--icon__active {
+    color: #ed7d0e;
+}
+
+.btn-accent {
+    color: #ed7d0e;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.opacity__none {
+    opacity: 0 !important;
+    transition: all 2s ease-in-out;
+}
+
+.corners--round {
+    border-radius: .25rem;
+}
+
+.border--active {
+    border: 1px solid rgba(29, 29, 29, 0.2);
+}
+
+.border--right {
+    border-right: 1px solid rgba(0,0,0,.25);
+}
+
+.border--bottom {
+    border-bottom: 1px solid rgba(0,0,0,.25);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.ac-button {
+    text-decoration: none;
+    min-height: 36px;
+    min-width: 72px;
+    padding: 8px 25px;
+    background: rgb(239,125,0);
+    color: rgba(255,255,255,1);
+    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-family: "Source Sans Pro", sans-serif !important;
+}
+
+@media (min-width: 2000px) {
+    #contentWrapper {
+        width: 1800px;
+        margin: 0 auto;
+    }
+}
+
+/* ----------- iPad Pro ----------- */
+/* Portrait */
+@media only screen 
+    and (min-width: 1024px) 
+    and (max-height: 1366px) 
+    and (orientation: portrait) 
+    and (-webkit-min-device-pixel-ratio: 1.5) {
+       
+}
+
+/* Landscape */
+@media only screen 
+    and (min-width: 900px) 
+    and (max-height: 1366px) 
+    and (orientation: landscape) 
+    and (-webkit-min-device-pixel-ratio: 1.5) {       
+}
+
+/* Google Pixel C Portrait */
+@media only screen and (min-width: 900px) and (max-width: 1280px) and (orientation: portrait) { 
+}
+
+/* Google Pixel C Landscape */
+@media only screen and (min-width: 900px) and (max-width: 1280px) and (orientation: landscape) { 
+    
+}
+
+@media only screen and (min-width: 0px) and (max-width: 899px) and (orientation: portrait) { 
+    #chartWrapper {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 900px) { 
+    #playerStatsWrapperOutside {
+        display: none !important;
+    }
+
+    #playerStatsWrapperInside {
+        display: flex !important;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 899px){ 
+    #playerStatsWrapperOutside {
+        display: none !important;
+    }
+
+    #playerStatsWrapperInside {
+        display: none !important;
+    }
+
+    #controlsVolumeSliderTrack {
+        width: 0px !important;
+    }
+
+    .streamWrapperItemFrameRate {
+        display: none !important;
+    }
+}
