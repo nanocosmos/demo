@@ -25,6 +25,11 @@ It can be applied with the current `entries` configuration and with the new `gro
 
 Please find more about **secure playback with JWT** in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/).
 
+Since this version, the nanoStream Player will not attempt to autoplay non live streams configured via bintu stream ID or bintu group ID after the `setup` call.
+Instead it will pause with reason `'sourcestreamstopped'` and emit the error event 2004 with message `'The source stream has been stopped.'`.
+This will enable the nanoStream Player to properly initialize in the setup method and allow users to reattempt playback 
+even if the stream was not in `live` state at the time of the initialization.
+
 ### **Changelog**
 
 ### Added
@@ -33,6 +38,10 @@ Please find more about **secure playback with JWT** in our [documentation](https
   - see [feature](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/) description
 - support for secure playback using JSON Web Token (JWT)
   - see [feature](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/) description
+
+### Improved
+
+- player setup with bintu stream ID or bintu group ID if the stream in not `live`
 
 ## Please find more about the **video processing** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/).
 
