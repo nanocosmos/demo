@@ -129,6 +129,10 @@ The new token type can contain playback permissions for one or more stream names
 This way a single token can be used for all secure use cases.
 It can be applied with the current <code>entries</code> configuration and with the new <code>group</code> configuration.</p>
 <p>Please find more about <strong>secure playback with JWT</strong> in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/">documentation</a>.</p>
+<p>Since this version, the nanoStream Player will not attempt to autoplay non live streams configured via bintu stream ID or bintu group ID after the <code>setup</code> call.
+Instead it will pause with reason <code>'sourcestreamstopped'</code> and emit the error event 2004 with message <code>'The source stream has been stopped.'</code>.
+This will enable the nanoStream Player to properly initialize in the setup method and allow users to reattempt playback 
+even if the stream was not in <code>live</code> state at the time of the initialization.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
@@ -140,6 +144,10 @@ It can be applied with the current <code>entries</code> configuration and with t
 <li>see <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/">feature</a> description</li>
 </ul>
 </li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>player setup with bintu stream ID or bintu group ID if the stream in not <code>live</code></li>
 </ul>
 <h2 id="please-find-more-about-the-video-processing-feature-in-our-documentation-">Please find more about the <strong>video processing</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/">documentation</a>.</h2>
 <h2 id="-4-17-0-"><strong>[4.17.0]</strong></h2>
