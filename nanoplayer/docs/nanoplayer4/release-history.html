@@ -114,8 +114,28 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
-<h2 id="please-find-more-about-the-stream-group-configuration-feature-in-our-documentation-">Please find more about the <strong>stream group configuration</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/">documentation</a>.</h2>
-<h2 id="please-find-more-about-secure-playback-with-jwt-in-our-documentation-">Please find more about <strong>secure playback with JWT</strong> in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/">documentation</a>.</h2>
+<h2 id="-4-19-2-"><strong>[4.19.2]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version is introducing improvements for error handling and automatic recovery on iOS.
+Playback interruptions in context of stream switches in iOS low power mode have been fixed.
+Furthermore robustness for fullscreen handling in multi-player use cases has been increased.
+The improvement for classic playback on iOS 15 to avoid buffer impacts after adjusting latency has now been applied for iOS 16 as well.
+This was introduced in version 4.15.0.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>automatic error recovery during an ongoing stream switch on iOS</li>
+<li>playback speed ~1.0 on iOS 16 as standard to reduce rebuffering effects after latency adjustment</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>playback interruptions in context of stream switches in iOS low power mode</li>
+<li>fullscreen handling with multiple player instances</li>
+<li>unreasoned configuration warnings for event handlers <code>onServerInfo</code> and <code>onFullscreenChange</code></li>
+<li>added fields <code>id</code>, <code>player</code>, <code>version</code>, <code>state</code> in <code>onFullscreenChange</code> event object</li>
+</ul>
+<h2 id="please-find-more-about-the-stream-group-configuration-feature-in-our-documentation">Please find more about the <strong>stream group configuration</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_group_configuration/">documentation</a></h2>
+<h2 id="please-find-more-about-secure-playback-with-jwt-in-our-documentation">Please find more about <strong>secure playback with JWT</strong> in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/">documentation</a></h2>
 <h2 id="-4-18-0-"><strong>[4.18.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version is introducing two new features.</p>
@@ -130,9 +150,8 @@ This way a single token can be used for all secure use cases.
 It can be applied with the current <code>entries</code> configuration and with the new <code>group</code> configuration.</p>
 <p>Please find more about <strong>secure playback with JWT</strong> in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_token_security/">documentation</a>.</p>
 <p>Since this version, the nanoStream Player will not attempt to autoplay non live streams configured via bintu stream ID or bintu group ID after the <code>setup</code> call.
-Instead it will pause with reason <code>'sourcestreamstopped'</code> and emit the error event 2004 with message <code>'The source stream has been stopped.'</code>.
-This will enable the nanoStream Player to properly initialize in the setup method and allow users to reattempt playback 
-even if the stream was not in <code>live</code> state at the time of the initialization.</p>
+Instead it will pause with reason <code>&#39;sourcestreamstopped&#39;</code> and emit the error event 2004 with message <code>&#39;The source stream has been stopped.&#39;</code>.
+This will enable the nanoStream Player to properly initialize in the setup method and allow users to reattempt playback even if the stream was not in <code>live</code> state at the time of the initialization.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
 <ul>
@@ -149,7 +168,7 @@ even if the stream was not in <code>live</code> state at the time of the initial
 <ul>
 <li>player setup with bintu stream ID or bintu group ID if the stream in not <code>live</code></li>
 </ul>
-<h2 id="please-find-more-about-the-video-processing-feature-in-our-documentation-">Please find more about the <strong>video processing</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/">documentation</a>.</h2>
+<h2 id="please-find-more-about-the-video-processing-feature-in-our-documentation">Please find more about the <strong>video processing</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_video_processing/">documentation</a></h2>
 <h2 id="-4-17-0-"><strong>[4.17.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version is adding a new public event to the player. The event <code>onActiveVideoElementChange</code> is emitted when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS. The event data is providing the <code>activeVideoElement</code> and the complete <code>videoElementList</code>.
@@ -197,7 +216,7 @@ Also the visual switching behaviour on iOS has been improved to prevent a possib
 <li>playback speed ~1.0 on iOS 15 as standard to reduce rebuffering effects after latency adjustment</li>
 <li>z-index only for video element switch on iOS to avoid black frame effect</li>
 </ul>
-<h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation-">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a>.</h2>
+<h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a></h2>
 <h2 id="-4-14-2-"><strong>[4.14.2]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release is solving issues related to the center view player controls and the layout in fullscreen mode.
@@ -237,7 +256,7 @@ Please find further information in our <a href="https://docs.nanocosmos.de/docs/
 <ul>
 <li>improved handling in case of video frames being dropped by the browser</li>
 </ul>
-<h2 id="please-find-more-about-the-source-defaults-feature-in-our-documentation-">Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a>.</h2>
+<h2 id="please-find-more-about-the-source-defaults-feature-in-our-documentation">Please find more about the <strong>source defaults</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_source_defaults/">documentation</a></h2>
 <h2 id="-4-13-3-"><strong>[4.13.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version includes a fix for a potential CSS layout issue in iOS fullscreen mode,
@@ -417,7 +436,7 @@ The control bar didn&#39;t appear by tap in <code>PAUSED</code> state with <code
 <h2 id="-4-10-5-"><strong>[4.10.5]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This version provides a fix for an error related to the player view.
-The issue occured in case of a rejected setup call or if 
+The issue occured in case of a rejected setup call or if
 the <code>config.playback</code> object was not defined in the configuration.
 The player view is enabled by default (<code>config.style.view=true</code>).</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
