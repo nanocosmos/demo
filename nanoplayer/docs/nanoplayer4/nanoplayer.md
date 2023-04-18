@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.19.2
+NanoPlayer (H5Live) Public API Class 4.20.2
 
 **Kind**: global class  
-**Version**: 4.19.2  
+**Version**: 4.20.2  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2628,7 +2628,13 @@ The possible error codes in a onError event.
     <td>3004</td><td></td><td><p>The received audio/video is not supported.</p>
 </td>
     </tr><tr>
+    <td>3005</td><td></td><td><p>An error occurred while hls playback when decoding video.</p>
+</td>
+    </tr><tr>
     <td>3100</td><td></td><td><p>The media source extension changed the state to &#39;ended&#39;. NOT AVAILABLE FOR IOS.</p>
+</td>
+    </tr><tr>
+    <td>3101</td><td></td><td><p>An error occurred while buffering on hls playback.</p>
 </td>
     </tr><tr>
     <td>3200</td><td></td><td><p>An unspecific media error occurred.</p>
