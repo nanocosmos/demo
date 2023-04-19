@@ -25,19 +25,21 @@ The issue has been introduced in version 4.19.
 
 ### **Changelog**
 
-- detection and automatic recovery of stalled video playback due to decoding issues on iOS 
+### Added
+
+- detection and automatic recovery of stalled video playback due to decoding issues on iOS
   - related error: `3005` - `'An error occurred while hls playback when decoding video.'`
-- detection and automatic recovery of buffering errors on iOS 
+- detection and automatic recovery of buffering errors on iOS
   - related error: `3101` - `'An error occurred while buffering on hls playback.'`
 - see `errorcode` [definitions](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#nanoplayererrorcode--codenumbercode)
 - see [feature](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/) description
 
-### Improved 
+### Improved
 
 - timeout handling in case of `updateSource` API calls during LOADING state
 - current playback time monotonically increasing after stream switches and recoveries on iOS
 
-### Fixed 
+### Fixed
 
 - failing rejections of unmuted autoplay on iOS
 
