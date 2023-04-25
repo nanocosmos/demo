@@ -1,4 +1,19 @@
-﻿## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
+﻿# **NanoPlayer - Release History**
+
+## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
+
+## **[4.20.3]**
+
+### **Release Notes**
+
+This version is fixing an issue in context of a media error occuring during an ongoing stream switch.
+The issue has been introduced in version 4.20.2.
+
+### **Changelog**
+
+### Fixed
+
+- issue in context of a media error occuring during an ongoing stream switch
 
 ## **[4.20.2]**
 
@@ -22,6 +37,8 @@ Furthermore an issue related to failing rejections of unmuted autoplay on iOS ha
 The issue has been introduced in version 4.19.
 
 ### **Changelog**
+
+### Added
 
 - detection and automatic recovery of stalled video playback due to decoding issues on iOS
   - related error: `3005` - `'An error occurred while hls playback when decoding video.'`
