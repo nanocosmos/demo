@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.20.3
+NanoPlayer (H5Live) Public API Class 4.20.4
 
 **Kind**: global class  
-**Version**: 4.20.3  
+**Version**: 4.20.4  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -252,7 +252,7 @@ Unmutes the player.
 <a name="NanoPlayer+setVolume"></a>
 
 ### nanoPlayer.setVolume(volume)
-Sets the volume of the player.
+Sets the volume of the player. NOT AVAILABLE FOR IOS, see [<b>here</b>](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#volume-control-in-javascript/) for more informations.
 
 **Kind**: instance method of [<code>NanoPlayer</code>](#NanoPlayer)  
 <table>
@@ -2735,13 +2735,13 @@ The possible error codes in a onError event.
     <td>5001</td><td></td><td><p>An exception was thrown during setup.</p>
 </td>
     </tr><tr>
-    <td>5002</td><td></td><td><p>A forced tech is not supported by your browser.</p>
+    <td>5002</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
 </td>
     </tr><tr>
-    <td>5003</td><td></td><td><p>The players source configuration is malformed or missing.</p>
+    <td>5003</td><td></td><td><p>A forced tech is not supported by your browser.</p>
 </td>
     </tr><tr>
-    <td>5004</td><td></td><td><p>This browser does not fully support HTML5 and H5Live. Supported are: Chrome &gt;=54 (Windows, MacOSX, Android), Firefox &gt;=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX &amp; at least iOS 10).</p>
+    <td>5004</td><td></td><td><p>The players source configuration is malformed or missing.</p>
 </td>
     </tr><tr>
     <td>5005</td><td></td><td><p>Configuration error. Could not create/update player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.</p>

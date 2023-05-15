@@ -56,6 +56,7 @@ events.onWarning = function (e) {
     log('Warning = ' + e.data.message);
     document.getElementById('warning').innerText = e.data.message;
     document.getElementById('warning-container').style.display = 'block';
+    setTimeout(hideErrorWarning, 5000);
 };
 events.onMetaData = function (e) {
     var metadata = JSON.stringify(e.data, undefined, 4);
