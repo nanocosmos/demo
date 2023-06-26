@@ -3,7 +3,7 @@
 // (c) 2022, nanocosmos gmbh
 // https://www.nanocosmos.de
 
-// NanoPlayer Embed 1.3.1
+// NanoPlayer Embed 1.3.2
 
 /* eslint-disable no-undef, no-console, no-unused-vars */
 var events = {};
