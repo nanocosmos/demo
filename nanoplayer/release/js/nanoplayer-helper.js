@@ -345,89 +345,91 @@ function getNanoPlayerParameters () {
         checkGeneral();
         doStartPlayer = true;
     }
-    var bintuQ = getHTTPParam('bintu');
-    if (bintuQ) {
-        bintuQ = JSON.parse(bintuQ);
-    }
     else {
-        bintuQ = {};
-        bintuQ.apiurl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
-        bintuQ.streamid = getHTTPParam('bintu.streamid');
-        bintuQ.streamname = getHTTPParam('bintu.streamname');
-        bintuQ.group = getHTTPParam('bintu.group');
-        bintuQ.apikey = getHTTPParam('bintu.apikey');
-    }
-    if (bintuQ.streamid) {
-        config.source.bintu = {};
-        if (bintuQ.apiurl)
-            config.source.bintu.apiurl = bintuQ.apiurl;
-        config.source.bintu.streamid = bintuQ.streamid;
-        checkH5Live();
-        checkSecurity();
-        checkDefaults();
-        checkGeneral();
-        checkEntries();
-        checkOptions();
-        doStartPlayer = true;
-    }
-    else if (bintuQ.streamname) {
-        config.source.h5live = config.source.h5live || {};
-        config.source.h5live.rtmp = {
-            'streamname': bintuQ.streamname
-        };
-        checkH5Live();
-        checkSecurity();
-        checkDefaults();
-        checkGeneral();
-        checkEntries();
-        checkOptions();
-        doStartPlayer = true;
-    }
-    else if (bintuQ.group && bintuQ.apikey) {
-        bintu = new Bintu(bintuQ.apiurl, bintuQ.apikey);
-        searchStreams();
-        searchRefreshInterval = setInterval(searchStreams, 8000);
-
-        var count = streamObjs.length;
-        document.getElementById('group').innerText = group + ' - ' + count + ' stream(s)';
-
-        var groupContainer = document.getElementById('group-container');
-        groupContainer.style.display = 'block';
-
-        var streamsContainer = document.getElementById('streams-container');
-        streamsContainer.style.display = 'block';
-        return;
-    }
-    else {
-        checkH5Live();
-        var h5liveQ = {};
-        h5liveQ.rtmp = {};
-        h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
-        h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname') || getHTTPParam('entries.streamname');
-        if (h5liveQ.rtmp.url || h5liveQ.rtmp.streamname) {
+        var bintuQ = getHTTPParam('bintu');
+        if (bintuQ) {
+            bintuQ = JSON.parse(bintuQ);
+        }
+        else {
+            bintuQ = {};
+            bintuQ.apiurl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
+            bintuQ.streamid = getHTTPParam('bintu.streamid');
+            bintuQ.streamname = getHTTPParam('bintu.streamname');
+            bintuQ.group = getHTTPParam('bintu.group');
+            bintuQ.apikey = getHTTPParam('bintu.apikey');
+        }
+        if (bintuQ.streamid) {
+            config.source.bintu = {};
+            if (bintuQ.apiurl)
+                config.source.bintu.apiurl = bintuQ.apiurl;
+            config.source.bintu.streamid = bintuQ.streamid;
+            checkH5Live();
+            checkSecurity();
+            checkDefaults();
+            checkGeneral();
+            checkEntries();
+            checkOptions();
+            doStartPlayer = true;
+        }
+        else if (bintuQ.streamname) {
             config.source.h5live = config.source.h5live || {};
-            config.source.h5live.rtmp = h5liveQ.rtmp;
+            config.source.h5live.rtmp = {
+                'streamname': bintuQ.streamname
+            };
+            checkH5Live();
+            checkSecurity();
+            checkDefaults();
+            checkGeneral();
+            checkEntries();
+            checkOptions();
+            doStartPlayer = true;
+        }
+        else if (bintuQ.group && bintuQ.apikey) {
+            bintu = new Bintu(bintuQ.apiurl, bintuQ.apikey);
+            searchStreams();
+            searchRefreshInterval = setInterval(searchStreams, 8000);
+
+            var count = streamObjs.length;
+            document.getElementById('group').innerText = group + ' - ' + count + ' stream(s)';
+
+            var groupContainer = document.getElementById('group-container');
+            groupContainer.style.display = 'block';
+
+            var streamsContainer = document.getElementById('streams-container');
+            streamsContainer.style.display = 'block';
+            return;
+        }
+        else {
+            checkH5Live();
+            var h5liveQ = {};
+            h5liveQ.rtmp = {};
+            h5liveQ.rtmp.url = getHTTPParam('h5live.rtmp.url');
+            h5liveQ.rtmp.streamname = getHTTPParam('h5live.rtmp.streamname') || getHTTPParam('entries.streamname');
+            if (h5liveQ.rtmp.url || h5liveQ.rtmp.streamname) {
+                config.source.h5live = config.source.h5live || {};
+                config.source.h5live.rtmp = h5liveQ.rtmp;
             // document.getElementById('update-source-container').style.display = 'block';
             // document.getElementById('inputUrl').value = h5liveQ.rtmp.url;
             // document.getElementById('inputStreamname').value = h5liveQ.rtmp.streamname;
+            }
+            var hls = getHTTPParam('hls');
+            if (hls) {
+                config.source.hls = hls;
+            }
+            var dash = getHTTPParam('dash');
+            if (dash) {
+                config.source.dash = dash;
+            }
+            checkSecurity();
+            checkDefaults();
+            checkGeneral();
+            checkEntries();
+            checkOptions();
+            doStartPlayer = true;
         }
-        var hls = getHTTPParam('hls');
-        if (hls) {
-            config.source.hls = hls;
+        if (config.source.entries.length) {
+            delete config.source.h5live;
         }
-        var dash = getHTTPParam('dash');
-        if (dash) {
-            config.source.dash = dash;
-        }
-        checkSecurity();
-        checkDefaults();
-        checkGeneral();
-        checkEntries();
-        checkOptions();
-        doStartPlayer = true;
-    }
-    if (config.source.entries.length) {
-        delete config.source.h5live;
     }
     var startIndex = parseInt(getHTTPParam('startIndex'), 10);
     if (!isNaN(startIndex)) {
@@ -534,10 +536,10 @@ function checkSecurity () {
         config.source.h5live.security.token = security.token;
     }
     security.jwtoken = getHTTPParam('h5live.security.jwtoken');
-    if (security.token) {
+    if (security.jwtoken) {
         config.source.h5live = config.source.h5live || {};
         config.source.h5live.security = config.source.h5live.security || {};
-        config.source.h5live.security.token = security.token;
+        config.source.h5live.security.jwtoken = security.jwtoken;
     }
     security.expires = getHTTPParam('h5live.security.expires');
     if (security.expires) {

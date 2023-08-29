@@ -2,6 +2,16 @@
 
 ## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
 
+## **[4.21.0]**
+
+### **Release Notes**
+
+This release brings a range of enhancements and fixes to improve your experience. We have made adjustments to iOS buffer control to ensure best performance with iOS 17.
+All metrics events now include an event counter and an indication of `Document.visibilityState` to provide deeper insights into user interactions.
+Furthermore we've worked on enhancing iOS playback recovery. In case of network interruptions or degradations, the iOS playback will be recovered more smoothly.
+An issue has been resolved that previously led to a false positive `PLAYING` state on iOS during network interruptions. This will result in more accurate playback status representation.
+In addition we've addressed an issue that could occasionally lead to an incomplete or empty `stats` object in the `onPlay` event.
+
 ## **[4.20.4]**
 
 ### **Release Notes**
@@ -1267,7 +1277,7 @@ This release patches an issue with bintu sources. Now after a successful bintu c
 ### **Release Notes**
 
 With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<sales@nanocosmos.de>) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
 ### **Changelog**
@@ -1304,7 +1314,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
   - enables event logging and data aggregation
   - configurable via the new 'config.metrics' object, see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor>
   - disabled by default
-  - for more information contact our sales team: mailto:sales@nanocosmos.de
+  - for more information contact our sales team: mailto:<sales@nanocosmos.de>
   - NOTE: don't set if you have no account!
   - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
 
@@ -1343,7 +1353,7 @@ The second feature is the new public event 'onDestroy'. This event is fired when
   - subobject 'stats' in 'event.data'
   - keys: 'connecting', 'connected', 'firstFragmentReceived', 'firstFrameRendered', 'playable', 'playing'
   - times in milliseconds relative to 'connecting'
-  - see 'https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay'
+  - see '<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay>'
   - an example 'event.data.stats' object:
 
 ````javascript
