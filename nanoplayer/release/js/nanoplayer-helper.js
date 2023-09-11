@@ -209,6 +209,10 @@ function getNanoPlayerParameters () {
     if (latencyControlMode) {
         config.playback.latencyControlMode = latencyControlMode;
     }
+    var faststart = getHTTPParam('faststart') || getHTTPParam('playback.faststart');
+    if (faststart) {
+        config.playback.faststart = !!(faststart === '1' || faststart === 'true');
+    }
     var view = getHTTPParam('view') || getHTTPParam('style.view');
     if (view) {
         config.style = config.style || {};
@@ -724,7 +728,7 @@ function checkOptions () {
     if ((config.source.entries && config.source.entries.length > 1) || config.source.group) {
         config.source.options = {
             'adaption' : {},
-            'switch'   : {}
+            'switch'   : {},
         };
 
         var rule = getHTTPParam('rule') || getHTTPParam('options.rule') || getHTTPParam('options.adaption.rule');

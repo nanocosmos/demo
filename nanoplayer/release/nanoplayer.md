@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.21.0
+NanoPlayer (H5Live) Public API Class 4.22.0
 
 **Kind**: global class  
-**Version**: 4.21.0  
+**Version**: 4.22.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2080,7 +2080,7 @@ The config object to pass as param for the 'setup' call.
     <td>[source.options.switch.forcePlay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
 </td>
     </tr><tr>
-    <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
+    <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>DEPRECATED. Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
 </td>
     </tr><tr>
     <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> and the <a href="NanoPlayer#~event:onSwitchStreamFail">&#39;onSwitchStreamFail&#39;</a> event. Default is 20 seconds, valid range is between 5 and 30.</p>
@@ -2195,6 +2195,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[playback.metadataLowDelay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If enabled this mode for metadata processing is preventing occasionally delayed metadata on iOS. To use legacy mode set to false. The setting <code>playback.metadata</code> has to be enabled. IOS ONLY</p>
+</td>
+    </tr><tr>
+    <td>[playback.faststart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If enabled the fast start mode is reducing the time to first frame and the playback start time.</p>
 </td>
     </tr><tr>
     <td>[playback.reconnect]</td><td><code>object</code></td><td></td><td><p>The reconnect object to configure the reconnect settings. See <a href="#NanoPlayer..errorcode">errorcodes</a> for reconnect possibility.</p>

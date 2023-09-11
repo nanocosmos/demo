@@ -104,6 +104,9 @@ All modifications will remain property of nanocosmos.
             </p>
         </div> -->
         <p class="normal">
+            <strong>preroll:&nbsp;</strong><span id="preroll">0</span>
+        </p>
+        <p class="normal">
             <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
         </p>
         <p class="normal">
@@ -163,15 +166,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.21.0.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.22.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.21.0';
+        var playerVersion = '4.22.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20230829';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20230911';
         };
 
         var player;
