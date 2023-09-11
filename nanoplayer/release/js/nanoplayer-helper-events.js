@@ -1,6 +1,8 @@
 /* eslint-disable no-undef, no-console, no-unused-vars */
 var events = {};
 
+var prerollDuration = 0;
+
 events.onReady = function () {
     log('ready');
     document.getElementById('status').innerText = 'ready';
@@ -8,8 +10,8 @@ events.onReady = function () {
 events.onPlay = function (e) {
     log('playing');
     log('play stats: ' + JSON.stringify(e.data));
-    document.getElementById('status').innerText = 'playing';
-    hideErrorWarning();
+    document.getElementById('status').innerText = 'playing (preroll: ' + (prerollDuration) + ', firstFrame: ' + (e.data.stats.firstFrameRendered.toFixed(0) + ', playing: ' + (e.data.stats.playing.toFixed(0))) + ')';
+    setTimeout(hideErrorWarning, 5000);
 };
 events.onPause = function (e) {
     var reason = (e.data.reason !== 'normal') ? ' ($reason$)'.replace('$reason$', e.data.reason) : '';
@@ -19,6 +21,7 @@ events.onPause = function (e) {
 events.onLoading = function () {
     log('loading');
     document.getElementById('status').innerText = 'loading';
+    prerollDuration = 0;
 };
 events.onStartBuffering = function () {
     buffering.start = new Date();
@@ -120,6 +123,8 @@ events.onVolumeChange = function (e) {
 events.onStreamInfo = function (e) {
     var streamInfo = JSON.stringify(e.data.streamInfo);
     log('onStreamInfo: ' + streamInfo);
+    prerollDuration = e.data.streamInfo.prerollDuration;
+    document.getElementById('preroll').innerText = prerollDuration;
 };
 events.onStreamInfoUpdate = function (e) {
     var streamInfo = JSON.stringify(e.data.streamInfo);
@@ -232,5 +237,3 @@ events.onActiveVideoElementChange = function (e) {
     log('onActiveVideoElementChange: ' + data);
     console.log(e.data);
 };
-
-

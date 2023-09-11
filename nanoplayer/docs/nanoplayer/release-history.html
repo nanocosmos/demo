@@ -114,6 +114,37 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="please-find-more-about-the-fast-playback-start-feature-in-our-documentation">Please find more about the <strong>fast playback start</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fast_start/">documentation</a></h2>
+<h2 id="-4-22-0-"><strong>[4.22.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version is introducing the new Fast Start Mode feature that enhances playback start-up times with nanoStream Cloud.
+This cutting-edge addition allows you to significantly reduce startup times when initiating playback.
+Fast Start Mode can be enabled using the configuration setting <code>config.playback.faststart</code>.
+Please note that it is disabled by default, so you have full control over its activation.
+The unused option <code>config.source.options.switch.fastStart</code> has been deprecated.</p>
+<p>Furthermore we have improved the Adaptive Bitrate (ABR) initial switch-up behavior in case of degraded network conditions.
+In addition, a layout issue that occured after exiting fullscreen mode in Safari 16.5 macOS has been fixed.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>fast start mode feature for improved playback start-up times with nanoStream Cloud<ul>
+<li>can be enabled via boolean <code>config.playback.faststart</code>, disabled by default</li>
+<li>fast start related values in <code>onStreamInfo</code> and <code>onPlay</code> event</li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>initial ABR switch up behaviour in case of degraded network conditions</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>layout issue after exiting fullscreen mode in Safari 16.5 macOS</li>
+</ul>
+<h2 id="removed">Removed</h2>
+<ul>
+<li>deprecated unused option <code>config.source.options.switch.fastStart</code></li>
+</ul>
 <h2 id="please-find-more-about-the-media-error-recovery-feature-in-our-documentation">Please find more about the <strong>media error recovery</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/">documentation</a></h2>
 <h2 id="-4-21-0-"><strong>[4.21.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
@@ -1170,7 +1201,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 <h2 id="-3-15-3-"><strong>[3.15.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#115;&#x61;&#108;&#x65;&#115;&#64;&#x6e;&#97;&#110;&#111;&#x63;&#x6f;&#115;&#109;&#111;&#x73;&#x2e;&#100;&#x65;">&#115;&#x61;&#108;&#x65;&#115;&#64;&#x6e;&#97;&#110;&#111;&#x63;&#x6f;&#115;&#109;&#111;&#x73;&#x2e;&#100;&#x65;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#x73;&#x61;&#108;&#x65;&#115;&#x40;&#110;&#97;&#x6e;&#111;&#99;&#x6f;&#x73;&#109;&#111;&#115;&#46;&#x64;&#101;">&#x73;&#x61;&#108;&#x65;&#115;&#x40;&#110;&#97;&#x6e;&#111;&#99;&#x6f;&#x73;&#109;&#111;&#115;&#46;&#x64;&#101;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
@@ -1209,7 +1240,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>enables event logging and data aggregation</li>
 <li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
 <li>disabled by default</li>
-<li>for more information contact our sales team: mailto:<a href="mailto:&#115;&#x61;&#108;&#x65;&#115;&#x40;&#x6e;&#97;&#110;&#x6f;&#99;&#111;&#x73;&#x6d;&#x6f;&#x73;&#x2e;&#100;&#x65;">&#115;&#x61;&#108;&#x65;&#115;&#x40;&#x6e;&#97;&#110;&#x6f;&#99;&#111;&#x73;&#x6d;&#x6f;&#x73;&#x2e;&#100;&#x65;</a></li>
+<li>for more information contact our sales team: mailto:<a href="mailto:&#115;&#x61;&#108;&#x65;&#115;&#x40;&#x6e;&#x61;&#x6e;&#111;&#x63;&#x6f;&#x73;&#109;&#111;&#x73;&#46;&#x64;&#101;">&#115;&#x61;&#108;&#x65;&#115;&#x40;&#x6e;&#x61;&#x6e;&#111;&#x63;&#x6f;&#x73;&#109;&#111;&#x73;&#46;&#x64;&#101;</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
 <li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!</li>
 </ul>
