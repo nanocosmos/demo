@@ -1,0 +1,17 @@
+﻿body {
+    background-color: white;
+    color: black;
+}
+
+button {
+    background-color: #ee830a;
+    color: white;
+}
+
+p {
+    color: #444;
+}
+
+.player {
+    border: 1px solid black;
+}
