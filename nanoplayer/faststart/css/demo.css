@@ -1,0 +1,111 @@
+﻿
+h3 {
+    cursor:pointer;
+}
+
+.navbar-default {
+	border-color: #ee830a;
+}
+
+.col-md-12,
+.col-md-6 {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.panel-body {
+    padding: 8px;
+}
+
+.panel-footer {
+    padding: 8px;
+}
+
+.panel-primary  {
+	border-color: #ee830a;
+}
+
+.panel-primary >.panel-heading  {
+	background-color: #ee830a;
+	border-color: #ee830a;
+}
+
+.panel-heading {
+    padding: 8px 13px;    
+}
+
+.panel-title::before {
+  /* add hamburger icon at panel title */
+  /*content: "â˜° "; */
+  content: "\2630  ";
+}
+
+.btn {
+    padding: 6px 10px;
+}
+
+.btn-primary, .btn-primary:focus {
+	background-color: #ee830a;
+	border-color: #ee830a;
+}
+
+.btn-primary:hover {
+	background-color: #333;
+	border-color: #FFA43E;
+	color: #ee830a;
+}
+
+.btn-primary:disabled {
+	background-color: #333;
+	border-color: #FFA43E;
+}
+
+.text-primary {
+	color: #ee830a;
+}
+
+.label-success {
+	background-color: #ee830a;
+	color: #333;
+}
+
+.label {
+  font-size: 90%;
+}
+
+.list-group-item:active {
+	background-color: #333;
+}
+
+.list-group-item:hover {
+	background-color: #333;
+	color: #ee830a;
+}
+
+h1 {
+	color: #FFA43E;
+}
+
+.no-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+hr {
+    border-color: #aaa;
+}
+
+/* fixes inlined select boxes not to cross each other */
+.inline-select {
+    width: auto !important;
+}
+
+.popover {
+    min-width: 10em !important;
+}
+
+.popover-title {
+    background: #5bc0de;
+    font-weight: bold;
+    color: #ffffff;
+}
