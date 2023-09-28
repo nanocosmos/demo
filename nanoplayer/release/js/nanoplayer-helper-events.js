@@ -3,31 +3,40 @@ var events = {};
 
 var prerollDuration = 0;
 
+var getElementById = function (id) {
+    var el = document.getElementById(id);
+    if (!el) {
+        el = document.createElement('div');
+        el.id = id;
+    }
+    return el;
+};
+
 events.onReady = function () {
     log('ready');
-    document.getElementById('status').innerText = 'ready';
+    getElementById('status').innerText = 'ready';
 };
 events.onPlay = function (e) {
     log('playing');
     log('play stats: ' + JSON.stringify(e.data));
-    document.getElementById('status').innerText = 'playing (preroll: ' + (prerollDuration) + ', firstFrame: ' + (e.data.stats.firstFrameRendered.toFixed(0) + ', playing: ' + (e.data.stats.playing.toFixed(0))) + ')';
+    getElementById('status').innerText = 'playing (preroll: ' + (prerollDuration) + ', firstFrame: ' + (e.data.stats.firstFrameRendered.toFixed(0) + ', playing: ' + (e.data.stats.playing.toFixed(0))) + ')';
     setTimeout(hideErrorWarning, 5000);
 };
 events.onPause = function (e) {
     var reason = (e.data.reason !== 'normal') ? ' ($reason$)'.replace('$reason$', e.data.reason) : '';
     log('pause' + reason);
-    document.getElementById('status').innerText = 'paused' + reason;
+    getElementById('status').innerText = 'paused' + reason;
 };
 events.onLoading = function () {
     log('loading');
-    document.getElementById('status').innerText = 'loading';
+    getElementById('status').innerText = 'loading';
     prerollDuration = 0;
 };
 events.onStartBuffering = function () {
     buffering.start = new Date();
     setTimeout(function () {
         if (buffering.start) {
-            document.getElementById('status').innerText = 'buffering';
+            getElementById('status').innerText = 'buffering';
         }
     }, 2000);
 };
@@ -40,7 +49,7 @@ events.onStopBuffering = function () {
         }
         buffering.stop = buffering.start = 0;
     }
-    document.getElementById('status').innerText = 'playing';
+    getElementById('status').innerText = 'playing';
 };
 events.onError = function (e) {
     try {
@@ -52,63 +61,63 @@ events.onError = function (e) {
     }
     catch (err) { }
     log('Error = ' + e);
-    document.getElementById('error').innerText = e;
-    document.getElementById('error-container').style.display = 'block';
+    getElementById('error').innerText = e;
+    getElementById('error-container').style.display = 'block';
 };
 events.onWarning = function (e) {
     log('Warning = ' + e.data.message);
-    document.getElementById('warning').innerText = e.data.message;
-    document.getElementById('warning-container').style.display = 'block';
+    getElementById('warning').innerText = e.data.message;
+    getElementById('warning-container').style.display = 'block';
     setTimeout(hideErrorWarning, 5000);
 };
 events.onMetaData = function (e) {
     var metadata = JSON.stringify(e.data, undefined, 4);
-    document.getElementById('metadata').textContent = metadata;
-    document.getElementById('metadata-container').style.display = 'block';
-    document.getElementById('metadata').style.display = 'block';
+    getElementById('metadata').textContent = metadata;
+    getElementById('metadata-container').style.display = 'block';
+    getElementById('metadata').style.display = 'block';
     clearTimeout(metaDataTimeout);
     metaDataTimeout = setTimeout(function () {
-        document.getElementById('metadata-container').style.display = 'none';
-        document.getElementById('metadata').style.display = 'none';
-        if (document.getElementById('timestamp-container')) {
-            document.getElementById('timestamp-container').style.display = 'none';
-            document.getElementById('timestamp').style.display = 'none';
+        getElementById('metadata-container').style.display = 'none';
+        getElementById('metadata').style.display = 'none';
+        if (getElementById('timestamp-container')) {
+            getElementById('timestamp-container').style.display = 'none';
+            getElementById('timestamp').style.display = 'none';
         }
     }, 10000);
     log(e, true);
-    if (e.data.message.st && document.getElementById('timestamp-container')) {
-        document.getElementById('timestamp').textContent = e.data.message.st;
-        document.getElementById('timestamp-container').style.display = 'block';
-        document.getElementById('timestamp').style.display = 'block';
+    if (e.data.message.st && getElementById('timestamp-container')) {
+        getElementById('timestamp').textContent = e.data.message.st;
+        getElementById('timestamp-container').style.display = 'block';
+        getElementById('timestamp').style.display = 'block';
     }
     //log(e, true);
 };
 events.onStats = function (e) {
     var stats = e.data.stats;
-    document.getElementById('currentTime').textContent = stats.currentTime.toFixed(1);
-    document.getElementById('playTimeStart').textContent = stats.playout.start.toFixed(1);
-    document.getElementById('playTimeEnd').textContent = stats.playout.end.toFixed(1);
-    document.getElementById('bufferTimeStart').textContent = stats.buffer.start.toFixed(2);
-    document.getElementById('bufferTimeEnd').textContent = stats.buffer.end.toFixed(2);
-    document.getElementById('bufferTimeDelay').textContent = stats.buffer.delay.avg.toFixed(2);
-    document.getElementById('bufferTimeDelayMin').textContent = stats.buffer.delay.min.toFixed(2);
-    document.getElementById('bufferTimeDelayMax').textContent = stats.buffer.delay.max.toFixed(2);
-    if (document.getElementById('bufferTimeDelayDeviation')) document.getElementById('bufferTimeDelayDeviation').textContent = stats.buffer.delay.deviation.toFixed(2);
+    getElementById('currentTime').textContent = stats.currentTime.toFixed(1);
+    getElementById('playTimeStart').textContent = stats.playout.start.toFixed(1);
+    getElementById('playTimeEnd').textContent = stats.playout.end.toFixed(1);
+    getElementById('bufferTimeStart').textContent = stats.buffer.start.toFixed(2);
+    getElementById('bufferTimeEnd').textContent = stats.buffer.end.toFixed(2);
+    getElementById('bufferTimeDelay').textContent = stats.buffer.delay.avg.toFixed(2);
+    getElementById('bufferTimeDelayMin').textContent = stats.buffer.delay.min.toFixed(2);
+    getElementById('bufferTimeDelayMax').textContent = stats.buffer.delay.max.toFixed(2);
+    if (getElementById('bufferTimeDelayDeviation')) getElementById('bufferTimeDelayDeviation').textContent = stats.buffer.delay.deviation.toFixed(2);
     if (stats.bitrate) {
-        document.getElementById('bitrateAvg').textContent = (stats.bitrate.avg / 1000).toFixed(0) + ' kbps';
-        document.getElementById('bitrateMin').textContent = (stats.bitrate.min / 1000).toFixed(0) + ' kbps';
-        document.getElementById('bitrateMax').textContent = (stats.bitrate.max / 1000).toFixed(0) + ' kbps';
-        if (document.getElementById('bitrateDeviation')) document.getElementById('bitrateDeviation').textContent = (stats.bitrate.deviation / 1000).toFixed(0) + ' kbps';
+        getElementById('bitrateAvg').textContent = (stats.bitrate.avg / 1000).toFixed(0) + ' kbps';
+        getElementById('bitrateMin').textContent = (stats.bitrate.min / 1000).toFixed(0) + ' kbps';
+        getElementById('bitrateMax').textContent = (stats.bitrate.max / 1000).toFixed(0) + ' kbps';
+        if (getElementById('bitrateDeviation')) getElementById('bitrateDeviation').textContent = (stats.bitrate.deviation / 1000).toFixed(0) + ' kbps';
     }
     if (stats.framerate) {
-        document.getElementById('framerateCurrent').textContent = stats.framerate.current + ' fps';
-        document.getElementById('framerateAvg').textContent = (stats.framerate.avg).toFixed(1) + ' fps';
-        document.getElementById('framerateMin').textContent = stats.framerate.min + ' fps';
-        document.getElementById('framerateMax').textContent = stats.framerate.max + ' fps';
-        if (document.getElementById('framerateDeviation')) document.getElementById('framerateDeviation').textContent = stats.framerate.deviation.toFixed(2) + ' fps';
+        getElementById('framerateCurrent').textContent = stats.framerate.current + ' fps';
+        getElementById('framerateAvg').textContent = (stats.framerate.avg).toFixed(1) + ' fps';
+        getElementById('framerateMin').textContent = stats.framerate.min + ' fps';
+        getElementById('framerateMax').textContent = stats.framerate.max + ' fps';
+        if (getElementById('framerateDeviation')) getElementById('framerateDeviation').textContent = stats.framerate.deviation.toFixed(2) + ' fps';
     }
-    if (stats.adaptive && (stats.adaptive.deviationOfMean || stats.adaptive.deviationOfMean2) && document.getElementById('adaptiveBufferTimeDelayDeviation')) {
-        document.getElementById('adaptiveBufferTimeDelayDeviation').textContent = stats.adaptive.deviationOfMean ? stats.adaptive.deviationOfMean.buffer.delay.deviation.toFixed(2) : stats.adaptive.deviationOfMean2.buffer.delay.deviation.toFixed(2);
+    if (stats.adaptive && (stats.adaptive.deviationOfMean || stats.adaptive.deviationOfMean2) && getElementById('adaptiveBufferTimeDelayDeviation')) {
+        getElementById('adaptiveBufferTimeDelayDeviation').textContent = stats.adaptive.deviationOfMean ? stats.adaptive.deviationOfMean.buffer.delay.deviation.toFixed(2) : stats.adaptive.deviationOfMean2.buffer.delay.deviation.toFixed(2);
     }
 };
 events.onMute = function () {
@@ -124,7 +133,7 @@ events.onStreamInfo = function (e) {
     var streamInfo = JSON.stringify(e.data.streamInfo);
     log('onStreamInfo: ' + streamInfo);
     prerollDuration = e.data.streamInfo.prerollDuration;
-    document.getElementById('preroll').innerText = prerollDuration;
+    getElementById('preroll').innerText = prerollDuration;
 };
 events.onStreamInfoUpdate = function (e) {
     var streamInfo = JSON.stringify(e.data.streamInfo);
@@ -132,12 +141,12 @@ events.onStreamInfoUpdate = function (e) {
 };
 events.onDestroy = function () {
     log('destroy');
-    document.getElementById('status').innerText = 'destroy';
+    getElementById('status').innerText = 'destroy';
 };
 events.onUpdateSourceInit = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceInit: ' + data);
-    var updateSourceInit = document.getElementById('updateSourceInit');
+    var updateSourceInit = getElementById('updateSourceInit');
     if (updateSourceInit !== null) {
         updateSourceInit.textContent = parseInt(updateSourceInit.textContent, 10) + 1;
     }
@@ -145,7 +154,7 @@ events.onUpdateSourceInit = function (e) {
 events.onUpdateSourceSuccess = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceSuccess: ' + data);
-    var updateSourceSuccess = document.getElementById('updateSourceSuccess');
+    var updateSourceSuccess = getElementById('updateSourceSuccess');
     if (updateSourceSuccess !== null) {
         updateSourceSuccess.textContent = parseInt(updateSourceSuccess.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
@@ -154,7 +163,7 @@ events.onUpdateSourceSuccess = function (e) {
 events.onUpdateSourceFail = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceFail: ' + data);
-    var updateSourceFail = document.getElementById('updateSourceFail');
+    var updateSourceFail = getElementById('updateSourceFail');
     if (updateSourceFail !== null) {
         updateSourceFail.textContent = parseInt(updateSourceFail.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
@@ -163,9 +172,9 @@ events.onUpdateSourceFail = function (e) {
 events.onUpdateSourceAbort = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceAbort: ' + data);
-    var updateSourceAbortEqual = document.getElementById('updateSourceAbortEqual');
-    var updateSourceAbortFrequency = document.getElementById('updateSourceAbortFrequency');
-    var updateSourceAbortSuperseded = document.getElementById('updateSourceAbortSuperseded');
+    var updateSourceAbortEqual = getElementById('updateSourceAbortEqual');
+    var updateSourceAbortFrequency = getElementById('updateSourceAbortFrequency');
+    var updateSourceAbortSuperseded = getElementById('updateSourceAbortSuperseded');
     if (updateSourceAbortEqual !== null && e.data.reason === 'equalsource') {
         updateSourceAbortEqual.textContent = parseInt(updateSourceAbortEqual.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
@@ -219,14 +228,14 @@ events.onServerInfo = function (e) {
 
 ['change', 'blur', 'input', 'focus', 'keyup'].forEach(function () {
     // ['inputUrl', 'inputStreamname'].forEach(function (input) {
-    //     document.getElementById(input).addEventListener(event, function (e) {
+    //     getElementById(input).addEventListener(event, function (e) {
     //         if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
     //             config.source.h5live.rtmp = config.source.h5live.rtmp || {};
     //             config.source.h5live.rtmp[e.currentTarget.dataset.prop] = e.currentTarget.value;
     //         }
     //     });
     // });
-    // document.getElementById('inputServer').addEventListener(event, function (e) {
+    // getElementById('inputServer').addEventListener(event, function (e) {
     //     if (config && config.source && config.source.h5live && e.currentTarget.value.length > 0) {
     //         checkH5Live(e.currentTarget.value);
     //     }
