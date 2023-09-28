@@ -2,6 +2,18 @@
 
 ## Please find more about the **fast playback start** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fast_start/)
 
+## **[4.22.1]**
+
+### **Release Notes**
+
+This version fixes a rare issue that could lead to incorrect startup stats, mainly occuring if the browser or tab was not visible in `LOADING` state.
+
+### **Changelog**
+
+### Fixed
+
+- issue with incorrect startup stats in `LOADING` state at visibility `hidden`
+
 ## **[4.22.0]**
 
 ### **Release Notes**
