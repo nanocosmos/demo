@@ -3,8 +3,8 @@
  *
  * @file bintu.js - Bintu Streaming API Class for HTML5 Web Browsers.
  * @author nanocosmos IT GmbH
- * @copyright (c) 2016-2022 nanocosmos IT GmbH. All rights reserved.
- * @version 1.1.0
+ * @copyright (c) 2016-2023 nanocosmos IT GmbH. All rights reserved.
+ * @version 1.2.1
  * @license nanoStream Software/Service License - All Rights Reserved
  */
 
@@ -16,8 +16,8 @@
     /**
      * Bintu Streaming API.
      * @class Bintu
-     * @classdesc Bintu Streaming API Class Version 1.1.0
-     * @version 1.1.0
+     * @classdesc Bintu Streaming API Class Version 1.2.1
+     * @version 1.2.1
      * @constructor
      * @param {string} apiUrl - The base url to the Bintu API.
      * @param {string} [apiKey] - The apikey to use with Bintu API.
@@ -618,7 +618,7 @@
                         }
                     });
                 }
-                else if (!this.apiKey && this.keyMode === 'api') {
+                else if (!this.apiKey) {
                     return reject({
                         'error'   : 'no api key set',
                         'request' : {
@@ -626,7 +626,101 @@
                         }
                     });
                 }
-                else if (!this.playerKey && this.keyMode === 'player') {
+
+                var url = this.apiUrl + '/stream';
+
+                if (filter instanceof Bintu.StreamFilter) {
+                    url += filter.getQueryString(false);
+                }
+
+                var request = new Request('GET', url);
+                request.header = {
+                    'Accept'         : 'application/json',
+                    'Content-Type'   : 'application/json',
+                    'X-BINTU-APIKEY' : this.apiKey
+                };
+
+                return request.Send()
+                    .then(resolve)
+                    .catch(reject);
+            }.bind(this)
+        );
+    };
+
+    /**
+     * @alias getStreamsPublic
+     * @memberOf Bintu#
+     * @description Returns one or many Bintu streams optional filtered by related tags and/or state.
+     * @param {Bintu.StreamFilter} [filter] - The filter for the search.
+     * @returns {Promise<resolveCallback|rejectCallback>}
+     * @example
+     * // bintu instance of Bintu class
+     * var streamFilter = new Bintu.StreamFilter();
+     * var state = Bintu.StreamFilter.STATE.LIVE;
+     * var tags = ['myTag', 'doc'];
+     * streamFilter.setState(state);
+     * streamFilter.addTags(tags);
+     * streamFilter.addTag('title:This is a title');
+     * bintu.getStreamsPublic(streamFilter)
+     *     .then(function (request) {
+     *         var response = request.responseText;
+     *         try {
+     *             response = JSON.parse(response);
+     *             console.log('success - get streams');
+     *         } catch (err) {
+     *             response = [];
+     *             console.error(err);
+     *         }
+     *         var i, len;
+     *         for (i = 0, len = response.length; i < len; i += 1) {
+     *             var state = response[i].state;
+     *             var streamId = response[i].id;
+     *             console.log('found stream with id: ' + streamId);
+     *             var url = response[i].playout.rtmp[0].url + '/' + response[i].playout.rtmp[0].streamname;
+     *             console.log('rtmp playout: ' + url);
+     *             var tags = response[i].tags;
+     *             var message = "";
+     *             if (tags && tags.push) {
+     *                 var j, tLen;
+     *                 for (j = 0, tLen = tags.length; j < tLen; j += 1) {
+     *                     if (j === 0)
+     *                         message += 'tags: ';
+     *                     message += tags[j];
+     *                     if (j !== tLen - 1)
+     *                         message += ',';
+     *                 }
+     *             }
+     *             console.log(message);
+     *         }
+     *         if (len === 0) {
+     *             console.log('no stream found with the given search parameters');
+     *         }
+     *     })
+     *     .catch(function (e) {
+     *         var error = (typeof e.error !== 'undefined') ? e.error + ': ' + e.request.responseText : 'error: ' + e.request.responseText;
+     *         console.error(error);
+     *         try {
+     *             error = (typeof e.error !== 'undefined') ? e.error : '';
+     *             var response = JSON.parse(e.request.responseText);
+     *             alert('error while getting bintu streams (' + error + '): status=' + response.status + ', message=' + response.message, 1);
+     *         } catch (ex) {
+     *             error = (typeof e.error !== 'undefined') ? e.error + ': ' + e.request.responseText : 'error: ' + e.request.responseText;
+     *             alert(error);
+     *         }
+     *     });
+     */
+    proto.getStreamsPublic = function getStreamsPublic (filter) {
+        return new Promise(
+            function (resolve, reject) {
+                if (!this.apiUrl) {
+                    return reject({
+                        'error'   : 'no api url set',
+                        'request' : {
+                            'responseText': 'no response error'
+                        }
+                    });
+                }
+                else if (!this.playerKey) {
                     return reject({
                         'error'   : 'no player key set',
                         'request' : {
@@ -634,24 +728,13 @@
                         }
                     });
                 }
-                var url = this.apiUrl + '/stream';
+                var url = this.apiUrl + '/stream/public';
+
                 if (filter instanceof Bintu.StreamFilter) {
-                    if (filter.tags.length === 0 && this.keyMode === 'player') {
-                        return reject({
-                            'error'   : 'no tags set',
-                            'request' : {
-                                'responseText': 'no response error'
-                            }
-                        });
-                    }
-                    url += filter.getQueryString();
+                    url += filter.getQueryString(true);
                 }
                 var request = new Request('GET', url);
-                request.header = (this.keyMode === 'api') ? {
-                    'Accept'         : 'application/json',
-                    'Content-Type'   : 'application/json',
-                    'X-BINTU-APIKEY' : this.apiKey
-                } : {
+                request.header = {
                     'Accept'            : 'application/json',
                     'Content-Type'      : 'application/json',
                     'X-BINTU-PLAYERKEY' : this.playerKey
@@ -964,16 +1047,17 @@
      * @alias getQueryString
      * @memberOf Bintu.StreamFilter#
      * @description Returns the query string for the search that can be added to the url of the GET request.
+     * @param {boolean} enforceTagsParam - Enforce empty tags parameter if tag list is empty. 
      * @returns {string} The query string
      * @example
      * // streamFilter instance of StreamFilter
      * streamFilter.addTags(['myTag', 'otherTag']);
      * streamFilter.addTag('newTag');
      * streamFilter.setState(Bintu.StreamFilter.STATE.LIVE);
-     * var queryString = streamFilter.getQueryString();
+     * var queryString = streamFilter.getQueryString(false);
      * console.log(queryString); // prints '?tags[]=myTag&tags[]=newTag&tags[]=otherTag&state=live'
      */
-    proto.getQueryString = function getQueryString () {
+    proto.getQueryString = function getQueryString (enforceTagsParam) {
         var queryString = '';
         if (typeof this.tags === 'object' && typeof this.tags.push === 'function' && this.tags.length > 0) {
             for (var i = 0; i < this.tags.length; i += 1) {
@@ -981,6 +1065,9 @@
                 queryString += i === 0 ? '?' : '&';
                 queryString += 'tags[]=' + this.tags[i];
             }
+        }
+        if(enforceTagsParam === true && queryString === '') {
+            queryString += '?tags[]=';
         }
         if (typeof this.state === 'string' && this.state.length > 0) {
             queryString += queryString.indexOf('?') === -1 ? '?' : '&';

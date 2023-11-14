@@ -1,5 +1,73 @@
 ﻿# **NanoPlayer - Release History**
 
+## Please find more about the **fast playback start** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fast_start/)
+
+## **[4.22.2]**
+
+### **Release Notes**
+
+This release introduces crucial improvements and fixes to elevate your streaming experience. We have addressed issues that had impacted playback on iOS devices, ensuring a smoother experience across various scenarios. This update focuses on improving playback latencies, stream switch buffering on iOS, fullscreen layout issues, and occasional exceptions during player destruction on iOS.
+
+### **Changelog**
+
+### Improved
+
+- preventing higher playback latencies of some webrtc ingest streams that show frequent resolution adaptions
+
+### Fixed
+
+- randomly occurring issue that could lead to repeated buffering after stream switches on iOS
+- fullscreen layout issue after entering fullscreen mode more than one time
+  - affected screens with display ratios higher/wider than the player including mobile landscape orientation
+  - the bottom of the video was partially out of the display area
+  - (the issue has been introduced in v4.22.0)
+- non critical exception occurring occasionally during `player.destroy` on iOS
+
+## **[4.22.1]**
+
+### **Release Notes**
+
+This version fixes a rare issue that could lead to incorrect startup stats, mainly occuring if the browser or tab was not visible in `LOADING` state.
+
+### **Changelog**
+
+### Fixed
+
+- issue with incorrect startup stats in `LOADING` state at visibility `hidden`
+
+## **[4.22.0]**
+
+### **Release Notes**
+
+This version is introducing the new Fast Start Mode feature that enhances playback start-up times with nanoStream Cloud.
+This cutting-edge addition allows you to significantly reduce startup times when initiating playback.
+Fast Start Mode can be enabled using the configuration setting `config.playback.faststart`.
+Please note that it is disabled by default, so you have full control over its activation.
+The unused option `config.source.options.switch.fastStart` has been deprecated.
+
+Furthermore we have improved the Adaptive Bitrate (ABR) initial switch-up behavior in case of degraded network conditions.
+In addition, a layout issue that occured after exiting fullscreen mode in Safari 16.5 macOS has been fixed.
+
+### **Changelog**
+
+### Added
+
+- fast start mode feature for improved playback start-up times with nanoStream Cloud
+  - can be enabled via boolean `config.playback.faststart`, disabled by default
+  - fast start related values in `onStreamInfo` and `onPlay` event
+
+### Improved
+
+- initial ABR switch up behaviour in case of degraded network conditions
+
+### Fixed
+
+- layout issue after exiting fullscreen mode in Safari 16.5 macOS
+
+## Removed
+
+- deprecated unused option `config.source.options.switch.fastStart`
+
 ## Please find more about the **media error recovery** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_media_error_recovery/)
 
 ## **[4.21.0]**
@@ -11,6 +79,23 @@ All metrics events now include an event counter and an indication of `Document.v
 Furthermore we've worked on enhancing iOS playback recovery. In case of network interruptions or degradations, the iOS playback will be recovered more smoothly.
 An issue has been resolved that previously led to a false positive `PLAYING` state on iOS during network interruptions. This will result in more accurate playback status representation.
 In addition we've addressed an issue that could occasionally lead to an incomplete or empty `stats` object in the `onPlay` event.
+
+### **Changelog**
+
+### Added
+
+- iOS 17 related adjustment in iOS buffer control
+- indication of `Document.visibilityState` in all metrics events
+- event counter in all metrics events
+
+### Improved
+
+- iOS playback recovery in case of network interruptions or degradations
+
+### Fixed
+
+- prevent false positive `playing` state in case of iOS network interruptions
+- issue that could cause an incomplete or empty `stats` object in the `onPlay` event
 
 ## **[4.20.4]**
 
