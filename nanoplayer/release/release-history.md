@@ -2,6 +2,27 @@
 
 ## Please find more about the **fast playback start** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fast_start/)
 
+## **[4.22.2]**
+
+### **Release Notes**
+
+This release introduces crucial improvements and fixes to elevate your streaming experience. We have addressed issues that had impacted playback on iOS devices, ensuring a smoother experience across various scenarios. This update focuses on improving playback latencies, stream switch buffering on iOS, fullscreen layout issues, and occasional exceptions during player destruction on iOS.
+
+### **Changelog**
+
+### Improved
+
+- preventing higher playback latencies of some webrtc ingest streams that show frequent resolution adaptions
+
+### Fixed
+
+- randomly occurring issue that could lead to repeated buffering after stream switches on iOS
+- fullscreen layout issue after entering fullscreen mode more than one time
+  - affected screens with display ratios higher/wider than the player including mobile landscape orientation
+  - the bottom of the video was partially out of the display area
+  - (the issue has been introduced in v4.22.0)
+- non critical exception occurring occasionally during `player.destroy` on iOS
+
 ## **[4.22.1]**
 
 ### **Release Notes**

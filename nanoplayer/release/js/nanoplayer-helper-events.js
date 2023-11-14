@@ -155,7 +155,8 @@ events.onUpdateSourceSuccess = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceSuccess: ' + data);
     var updateSourceSuccess = getElementById('updateSourceSuccess');
-    if (updateSourceSuccess !== null) {
+    var updateSourceCompleted = getElementById('updateSourceCompleted');
+    if (updateSourceSuccess !== null && updateSourceCompleted !== null) {
         updateSourceSuccess.textContent = parseInt(updateSourceSuccess.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
     }
@@ -164,7 +165,8 @@ events.onUpdateSourceFail = function (e) {
     var data = JSON.stringify(e.data);
     log('onUpdateSourceFail: ' + data);
     var updateSourceFail = getElementById('updateSourceFail');
-    if (updateSourceFail !== null) {
+    var updateSourceCompleted = getElementById('updateSourceCompleted');
+    if (updateSourceFail !== null && updateSourceCompleted !== null) {
         updateSourceFail.textContent = parseInt(updateSourceFail.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
     }
@@ -175,15 +177,16 @@ events.onUpdateSourceAbort = function (e) {
     var updateSourceAbortEqual = getElementById('updateSourceAbortEqual');
     var updateSourceAbortFrequency = getElementById('updateSourceAbortFrequency');
     var updateSourceAbortSuperseded = getElementById('updateSourceAbortSuperseded');
-    if (updateSourceAbortEqual !== null && e.data.reason === 'equalsource') {
+    var updateSourceCompleted = getElementById('updateSourceCompleted');
+    if (updateSourceAbortEqual !== null && e.data.reason === 'equalsource' && updateSourceCompleted !== null) {
         updateSourceAbortEqual.textContent = parseInt(updateSourceAbortEqual.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
     }
-    if (updateSourceAbortFrequency !== null && e.data.reason === 'updatefrequency') {
+    if (updateSourceAbortFrequency !== null && e.data.reason === 'updatefrequency' && updateSourceCompleted !== null) {
         updateSourceAbortFrequency.textContent = parseInt(updateSourceAbortFrequency.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
     }
-    if (updateSourceAbortSuperseded !== null && e.data.reason === 'superseded') {
+    if (updateSourceAbortSuperseded !== null && e.data.reason === 'superseded' && updateSourceCompleted !== null) {
         updateSourceAbortSuperseded.textContent = parseInt(updateSourceAbortSuperseded.textContent, 10) + 1;
         updateSourceCompleted.textContent = parseInt(updateSourceCompleted.textContent, 10) + 1;
     }
