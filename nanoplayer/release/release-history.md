@@ -2,6 +2,18 @@
 
 ## Please find more about the **fast playback start** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_fast_start/)
 
+## **[4.22.3]**
+
+### **Release Notes**
+
+This version is improving the detection of supported browsers for iOS WebView apps with customized user agent strings.
+
+### **Changelog**
+
+### Improved
+
+- detection of supported browsers for iOS WebView apps with customized user agent strings
+
 ## **[4.22.2]**
 
 ### **Release Notes**
