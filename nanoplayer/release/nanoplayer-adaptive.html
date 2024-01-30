@@ -30,31 +30,35 @@ All modifications will remain property of nanocosmos.
 <body>
     <div id="container">
         <p class="normal">
-            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
-            <strong id="demo-version"></strong>
+        <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+        <strong id="demo-version"></strong>
         </p>
         <div id="playerDiv" class="player responsive">
             <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
         <p class="normal" id="timestamp-container" style="display:none">
-            <h1 id="timestamp" style="display:none">00:00:000</h1>
+        <h1 id="timestamp" style="display:none">00:00:000</h1>
         </p>
         <p class="normal" id="metadata-container" style="display:none">
             <strong>metadata</strong>
-            <pre id="metadata" style="display:none"></pre>
+        <pre id="metadata" style="display:none"></pre>
         </p>
         <div id="controlsWrapper" class="row-flex row-padding">
             <div>
                 <button id="buttonPlay" onclick="play();" style="margin-right:5px">play</button>
                 <button id="buttonPause" onclick="pause();" style="margin-right:5px">pause</button>
                 <button id="buttonReset" onclick="startPlayer(null, true);" style="margin-right:5px">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();" style="margin-right:5px">fullscreen</button></div>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();"
+                    style="margin-right:5px">fullscreen</button>
+            </div>
             <div>
                 <button id="buttonMute" onclick="mute(this);" data-muted="false" style="margin-left:5px">mute</button>
                 <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
-                    onchange="setVolume(this, value);"  style="margin-left:5px; display:inline-block; vertical-align: middle;"/>
-                <output for="fader" id="volume" style="margin-left:5px; display:inline-block; vertical-align: middle;">100%</output>
+                    onchange="setVolume(this, value);"
+                    style="margin-left:5px; display:inline-block; vertical-align: middle;" />
+                <output for="fader" id="volume"
+                    style="margin-left:5px; display:inline-block; vertical-align: middle;">100%</output>
             </div>
         </div>
         <p class="normal">
@@ -65,7 +69,8 @@ All modifications will remain property of nanocosmos.
             </select>
         </p>
         <p class="normal">
-            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode" onchange="onLatencyControlMode(this);">
+            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode"
+                onchange="onLatencyControlMode(this);">
                 <option value="classic">classic</option>
                 <option value="balancedadaptive">balancedadaptive</option>
                 <option value="fastadaptive">fastadaptive</option>
@@ -166,15 +171,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.22.3.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.23.1.min.js"></script>
     <script>
 
-        var playerVersion = '4.22.3';
+        var playerVersion = '4.23.1';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20231213';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20240130';
         };
 
         var player;
@@ -266,7 +271,7 @@ All modifications will remain property of nanocosmos.
 
                     qualityWrapper.addEventListener('click', function (index) {
                         if (player) {
-                            player.switchStream(index).then(function(_config){
+                            player.switchStream(index).then(function (_config) {
                                 log('switchStream initialized');
                             }, function error(_err) {
                                 log('switchStream aborted with error ' + _err.code + ': ' + _err.message);
@@ -320,7 +325,7 @@ All modifications will remain property of nanocosmos.
                 player.setAdaption({
                     'rule': rule,
                     'downStep': downStep
-                 });
+                });
             }
         }
 
@@ -366,7 +371,7 @@ All modifications will remain property of nanocosmos.
         };
         var prevConf;
         var latencyControlModeLastChangedValue;
-        events = events || {};      
+        events = events || {};
         events.onReady = function (e) {
             log('onReady');
             document.getElementById('status').innerText = 'ready';
@@ -525,7 +530,7 @@ All modifications will remain property of nanocosmos.
 
             var _config = deepCopy(this.config);
             prevConf = _config;
-            
+
             if (reset && getHTTPParam('reset') === 'update') {
                 player.updateSource(_config.source)
                     .then(function (__config) {
@@ -587,10 +592,10 @@ All modifications will remain property of nanocosmos.
         function requestFullscreenPlayer() {
             if (player) {
                 player.requestFullscreen()
-                    .then(function (){
+                    .then(function () {
                         log('requestFullscreen resolved');
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         log('requestFullscreen rejected: ' + err.reason);
                     });
             }
@@ -661,7 +666,7 @@ All modifications will remain property of nanocosmos.
             });
         }
 
-        
+
     </script>
 </body>
 

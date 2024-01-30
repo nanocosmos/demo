@@ -21,11 +21,13 @@ events.onPlay = function (e) {
     log('play stats: ' + JSON.stringify(e.data));
     getElementById('status').innerText = 'playing (preroll: ' + (prerollDuration) + ', firstFrame: ' + (e.data.stats.firstFrameRendered.toFixed(0) + ', playing: ' + (e.data.stats.playing.toFixed(0))) + ')';
     setTimeout(hideErrorWarning, 5000);
+    buffering.stop = buffering.start = 0;
 };
 events.onPause = function (e) {
     var reason = (e.data.reason !== 'normal') ? ' ($reason$)'.replace('$reason$', e.data.reason) : '';
     log('pause' + reason);
     getElementById('status').innerText = 'paused' + reason;
+    buffering.stop = buffering.start = 0;
 };
 events.onLoading = function () {
     log('loading');

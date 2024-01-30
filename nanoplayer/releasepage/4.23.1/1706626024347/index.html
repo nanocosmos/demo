@@ -1,0 +1,168 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
+<h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a></h2>
+<h2 id="-4-23-1-"><strong>[4.23.1]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>In this latest release, we&#39;re exited to introduce enhanced playback support through the Managed Media Source API (MMSE) for iOS 17.1 and above. By default, this feature provides an upgraded media playback experience in line with desktop and Android platforms, resulting in improved latency, faster start-up times, and an overall enhanced user experience. In the event that MMSE API is unsupported or disabled, H5live-HLS will seamlessly take over on iOS.</p>
+<p>Moreover, we&#39;ve expanded support for the latency control mode <code>balancedadaptive</code> across all iOS versions. This empowers users to achieve lower latency while ensuring a smooth playback experience on iOS devices. For more detailed information, refer to our comprehensive feature description in the <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes#v4231">documentation</a>.</p>
+<p>Additionally, this version includes a general enhancement to buffer and latency control for H5live-HLS playback on iOS. These improvements contribute to an even more refined and optimized playback experience.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>support for playback via Managed Media Source API (MMSE) on iOS 17.1 and higher<ul>
+<li>media playback workflow similar to desktop and Android</li>
+<li>replacing h5live-HLS</li>
+<li>improving: latency, start-up time, general UX</li>
+</ul>
+</li>
+<li>support for playback with latency control mode <code>balancedadaptive</code> on iOS (all versions)<ul>
+<li>configuration fallback from <code>fastadaptive</code> to <code>balancedadaptive</code> mode</li>
+<li>improving: latency (control)</li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>buffer and latency control on iOS (all versions)<ul>
+<li>workflow similar to desktop and Android</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>false positive <code>warning</code> event related to <code>switch.method</code> configuration on iOS</li>
+<li>reconnect behaviour in <code>keepConnection</code> mode</li>
+<li>adaptive bitrate control after error recovery on iOS</li>
+<li>redundant adaptive bitrate control down step attempts</li>
+</ul>
+<h3 id="release-package-4-23-1"><strong>Release Package 4.23.1</strong></h3>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/R6p8gKXJDirMDRd">4.23.1</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/4nndC45mcB6oSa6">latest 4.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h3 id="documentation"><strong>Documentation</strong></h3>
+<ul>
+<li><a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.de</a></li>
+</ul>
+<h3 id="release-history"><strong>Release History</strong></h3>
+<ul>
+<li><a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/release-history.html">release history</a></li>
+</ul>
+
+  </body>
+</html>
