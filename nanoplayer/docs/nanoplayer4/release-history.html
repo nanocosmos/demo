@@ -114,6 +114,29 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="-4-24-0-"><strong>[4.24.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release comes with several improvements. We added the use of a new lean response option via the Bintu API, which improves response times.
+Further we improved the latency recovery during playback on desktop platforms when transitioning from a hidden to visible state, enhancing user experience.
+Moreover, we implemented measures to prevent buffering when quality adaptations occur in streams ingested via WebRTC, ensuring smoother streaming experiences.
+Additionally we improved the detection of iOS desktop mode and application of background suspension, ensuring consistent behavior across browsers and modes on iOS devices.
+Also we addressed a bug where stream switching failed while in a paused state with <code>keepConnection</code> and <code>forcePlay</code> options enabled, improving overall functionality and stability.
+We added a fix regarding the unintended fallback behavior in latency control mode <code>fastadaptive</code> to <code>balancedadaptive</code> for Safari versions 17.4 and above on MacOS Sonoma. The fallback was introduced in version 4.23.1.
+As a last point we enabled H5Live-HLS fallbacks when access to ManagedMediaSource API is denied for locally loaded webpages in iOS WKWebView.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>utilizing new lean response option for configuration via bintu API for a faster response</li>
+<li>faster latency recovery of playback via desktop when returning from hidden to visible state</li>
+<li>prevent buffering in case of quality adaptions in streams ingested via webrtc</li>
+<li>iOS desktop mode detection and application of background suspension to ensure consisent behaviour across browsers and modes on iOS</li>
+<li>use H5Live-HLS fallback in case of a denied access to the ManagedMediaSource API for locally loaded webpages in iOS WKWebView</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>stream switch failing in paused state with <code>keepConnection</code> and <code>forcePlay</code> options enabled</li>
+<li>remove unintended fallback for latency control mode <code>fastadaptive</code> to <code>balancedadaptive</code> for Safari 17.4+ on MacOS Sonoma (introduced in 4.23.1)</li>
+</ul>
 <h2 id="please-find-more-about-the-latency-control-modes-feature-in-our-documentation">Please find more about the <strong>latency control modes</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_latency_control_modes/">documentation</a></h2>
 <h2 id="-4-23-1-"><strong>[4.23.1]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
@@ -1271,7 +1294,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 <h2 id="-3-15-3-"><strong>[3.15.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#115;&#x61;&#108;&#x65;&#x73;&#x40;&#x6e;&#x61;&#110;&#111;&#x63;&#111;&#115;&#109;&#x6f;&#115;&#x2e;&#x64;&#x65;">&#115;&#x61;&#108;&#x65;&#x73;&#x40;&#x6e;&#x61;&#110;&#111;&#x63;&#111;&#115;&#109;&#x6f;&#115;&#x2e;&#x64;&#x65;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#115;&#97;&#108;&#x65;&#x73;&#x40;&#110;&#x61;&#x6e;&#x6f;&#99;&#111;&#x73;&#x6d;&#111;&#115;&#x2e;&#x64;&#101;">&#115;&#97;&#108;&#x65;&#x73;&#x40;&#110;&#x61;&#x6e;&#x6f;&#99;&#111;&#x73;&#x6d;&#111;&#115;&#x2e;&#x64;&#101;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
@@ -1310,7 +1333,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>enables event logging and data aggregation</li>
 <li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
 <li>disabled by default</li>
-<li>for more information contact our sales team: mailto:<a href="mailto:&#115;&#97;&#x6c;&#x65;&#115;&#64;&#x6e;&#x61;&#110;&#111;&#99;&#x6f;&#115;&#x6d;&#111;&#115;&#46;&#x64;&#x65;">&#115;&#97;&#x6c;&#x65;&#115;&#64;&#x6e;&#x61;&#110;&#111;&#99;&#x6f;&#115;&#x6d;&#111;&#115;&#46;&#x64;&#x65;</a></li>
+<li>for more information contact our sales team: mailto:<a href="mailto:&#115;&#97;&#108;&#101;&#x73;&#64;&#110;&#97;&#x6e;&#x6f;&#x63;&#x6f;&#x73;&#109;&#x6f;&#115;&#x2e;&#100;&#101;">&#115;&#97;&#108;&#101;&#x73;&#64;&#110;&#97;&#x6e;&#x6f;&#x63;&#x6f;&#x73;&#109;&#x6f;&#115;&#x2e;&#100;&#101;</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
 <li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!</li>
 </ul>
