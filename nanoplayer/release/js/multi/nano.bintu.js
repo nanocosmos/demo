@@ -3,8 +3,8 @@
  *
  * @file bintu.js - Bintu Streaming API Class for HTML5 Web Browsers.
  * @author nanocosmos IT GmbH
- * @copyright (c) 2016-2023 nanocosmos IT GmbH. All rights reserved.
- * @version 1.2.1
+ * @copyright (c) 2016-2024 nanocosmos IT GmbH. All rights reserved.
+ * @version 1.3.0
  * @license nanoStream Software/Service License - All Rights Reserved
  */
 
@@ -16,8 +16,8 @@
     /**
      * Bintu Streaming API.
      * @class Bintu
-     * @classdesc Bintu Streaming API Class Version 1.2.1
-     * @version 1.2.1
+     * @classdesc Bintu Streaming API Class Version 1.3.0
+     * @version 1.3.0
      * @constructor
      * @param {string} apiUrl - The base url to the Bintu API.
      * @param {string} [apiKey] - The apikey to use with Bintu API.
@@ -391,11 +391,12 @@
      * @memberOf Bintu#
      * @description Returns a Bintu stream specified by a stream id.
      * @param {string} streamId - The streamId of the Bintu Stream.
+     * @param {object} params - Additional url query params.
      * @returns {Promise<resolveCallback|rejectCallback>}
      * @example
      * // bintu instance of Bintu class
      * var streamId = 'regwerghsthe6uwj57ikek6ugjghjf';
-     * bintu.getStream(streamId)
+     * bintu.getStream(streamId, params)
      *     .then(function (request) {
      *         try {
      *             var response = JSON.parse(request.responseText);
@@ -425,7 +426,7 @@
      *         }
      *     });
      */
-    proto.getStream = function getStream (streamId) {
+    proto.getStream = function getStream (streamId, params) {
         return new Promise(
             function (resolve, reject) {
                 if (!this.apiUrl) {
@@ -445,7 +446,10 @@
                     });
                 }
 
-                var request = new Request('GET', this.apiUrl + '/stream/' + streamId);
+                var paramsObject = getFlatObject(params, '.', 10, 0);
+                var urlQueryParams = getUrlQuery(paramsObject);
+
+                var request = new Request('GET', this.apiUrl + '/stream/' + streamId + urlQueryParams);
                 request.header = (this.keyMode === 'api' && this.apiKey) ? {
                     'Accept'         : 'application/json',
                     'Content-Type'   : 'application/json',
@@ -469,6 +473,7 @@
      * @memberOf Bintu#
      * @description Returns a Bintu streamgroup specified by a group id.
      * @param {string} groupId - The groupId of the Bintu Stream.
+     * @param {object} params - Additional url query params.
      * @returns {Promise<resolveCallback|rejectCallback>}
      * @example
      * // bintu instance of Bintu class
@@ -507,7 +512,7 @@
      *         }
      *     });
      */
-    proto.getStreamgroup = function getStreamgroup (streamId) {
+    proto.getStreamgroup = function getStreamgroup (streamId, params) {
         return new Promise(
             function (resolve, reject) {
                 if (!this.apiUrl) {
@@ -527,8 +532,11 @@
                     });
                 }
 
-                // '/streamgroup/' => '/stream/{streamId}/group'
-                var request = new Request('GET', this.apiUrl + '/stream/' + streamId + '/group');
+                var paramsObject = getFlatObject(params, '.', 10, 0);
+                var urlQueryParams = getUrlQuery(paramsObject);
+
+                // new route: /stream/{id}/group?profile=player
+                var request = new Request('GET', this.apiUrl + '/stream/' + streamId + '/group' + urlQueryParams);
                 request.header = (this.keyMode === 'api' && this.apiKey) ? {
                     'Accept'         : 'application/json',
                     'Content-Type'   : 'application/json',
@@ -1047,7 +1055,7 @@
      * @alias getQueryString
      * @memberOf Bintu.StreamFilter#
      * @description Returns the query string for the search that can be added to the url of the GET request.
-     * @param {boolean} enforceTagsParam - Enforce empty tags parameter if tag list is empty. 
+     * @param {boolean} enforceTagsParam - Enforce empty tags parameter if tag list is empty.
      * @returns {string} The query string
      * @example
      * // streamFilter instance of StreamFilter
@@ -1066,7 +1074,7 @@
                 queryString += 'tags[]=' + this.tags[i];
             }
         }
-        if(enforceTagsParam === true && queryString === '') {
+        if (enforceTagsParam === true && queryString === '') {
             queryString += '?tags[]=';
         }
         if (typeof this.state === 'string' && this.state.length > 0) {
@@ -1085,6 +1093,64 @@
             return a;
         }, []);
     };
+
+    // Private helper functions
+
+    function getUrlQuery (object) {
+        // create query string
+        var queryString = '';
+        for (var key in object) {
+            if (Object.prototype.hasOwnProperty.call(object, key)) {
+                var element = object[key];
+                if (key && element) {
+                    if (queryString.length === 0) {
+                        queryString += '?';
+                    }
+                    else {
+                        queryString += '&';
+                    }
+                    queryString += key + '=' + element;
+                }
+            }
+        }
+        return queryString;
+    }
+
+    // Define the _getParams function
+    function getFlatObject (data, delimiter, maxDepth, maxArrayLength) {
+        var result = {};
+        delimiter = typeof delimiter !== 'string' ? '.' : delimiter;
+        maxDepth = isNaN(maxDepth) ? 10 : maxDepth;
+        maxArrayLength = isNaN(maxArrayLength) ? 0 : parseInt(maxArrayLength, 10);
+
+        function buildFlatObject (obj, prefix, currentDepth) {
+            if (currentDepth >= maxDepth) {
+                return;
+            }
+
+            for (var key in obj) {
+                var keyModified = (prefix ? prefix + delimiter : '') + key;
+
+                // Array.isArray(obj[key]) adjusted to ES5
+                if (Object.prototype.toString.call(obj[key]) === '[object Array]' && maxArrayLength === 0) {
+                    continue; // Skip arrays if maxArrayLength is 0
+                }
+
+                if (typeof obj[key] === 'object') {
+                    buildFlatObject(obj[key], keyModified, currentDepth + 1);
+                }
+                else {
+                    result[keyModified] = obj[key].toString();
+                }
+            }
+        }
+
+        if (data && typeof data === 'object') {
+            buildFlatObject(data, '', 0);
+        }
+
+        return result;
+    }
 
     // Expose the class either via AMD, CommonJS or the global object
     if (typeof define === 'function' && define.amd) {
