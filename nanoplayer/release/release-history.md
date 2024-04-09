@@ -1,5 +1,18 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.24.1]**
+
+### **Release Notes**
+
+The update addresses an issue where playback would become stuck after repeated stream switches or pause/play actions in H5Live-HLS mode on iOS devices. Specifically, the fix resolves problems encountered with H5Live-HLS fallback when using locally loaded web pages in iOS WKWebView.
+
+### **Changelog**
+
+### Fixed
+
+- playback stuck after repeated stream switches or pause/play in H5Live-HLS mode on iOS
+  - H5Live-HLS fallback with locally loaded web pages in iOS WKWebView
+
 ## **[4.24.0]**
 
 ### **Release Notes**
