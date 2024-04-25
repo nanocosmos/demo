@@ -1,5 +1,21 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.24.2]**
+
+### **Release Notes**
+
+This patch release addresses an autoplay issue occurring when the application called `player.unmute()` without user interaction context. This issue could result in black frames or errors during playback start if unmuted playback was not permitted. Further we enhanced the smoothness of stream switches specifically in H5Live-HLS mode, providing a better viewing experience for users.
+
+### **Changelog**
+
+### Fixed
+
+- autoplay issue in case of application calling `player.unmute()` without user interaction context that could lead to black frames or errors during playback start if unmuted playback was not permitted
+
+### Improved
+
+- smoothness during stream switches in H5Live-HLS mode
+
 ## **[4.24.1]**
 
 ### **Release Notes**
