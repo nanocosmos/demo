@@ -30,47 +30,43 @@ All modifications will remain property of nanocosmos.
 <body>
     <div id="container">
         <p class="normal">
-        <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
-        <strong id="demo-version"></strong>
+            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
+            <strong id="demo-version"></strong>
         </p>
         <div id="playerDiv" class="player responsive">
-            <!---->
             <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
         </div>
         <p class="normal" id="timestamp-container" style="display:none">
-        <h1 id="timestamp" style="display:none">00:00:000</h1>
+            <h1 id="timestamp" style="display:none">00:00:000</h1>
         </p>
         <p class="normal" id="metadata-container" style="display:none">
             <strong>metadata</strong>
-        <pre id="metadata" style="display:none"></pre>
+            <pre id="metadata" style="display:none"></pre>
         </p>
         <div id="controlsWrapper" class="row-flex row-padding">
             <div>
                 <button id="buttonPlay" onclick="play();" style="margin-right:5px">play</button>
                 <button id="buttonPause" onclick="pause();" style="margin-right:5px">pause</button>
                 <button id="buttonReset" onclick="startPlayer(null, true);" style="margin-right:5px">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();"
-                    style="margin-right:5px">fullscreen</button>
+                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();" style="margin-right:5px">fullscreen</button>
             </div>
             <div>
                 <button id="buttonMute" onclick="mute(this);" data-muted="false" style="margin-left:5px">mute</button>
-                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
-                    onchange="setVolume(this, value);"
-                    style="margin-left:5px; display:inline-block; vertical-align: middle;" />
-                <output for="fader" id="volume"
-                    style="margin-left:5px; display:inline-block; vertical-align: middle;">100%</output>
+                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);" onchange="setVolume(this, value);" style="margin-left:5px; display:inline-block; vertical-align: middle;" />
+                <output for="fader" id="volume" style="margin-left:5px; display:inline-block; vertical-align: middle;">100%</output>
             </div>
         </div>
         <p class="normal">
-            <strong>switch rule:&nbsp;</strong><select id="switch-rule" onchange="onSetAdaption(this);">
+            <strong>switch rule:&nbsp;</strong>
+            <select id="switch-rule" onchange="onSetAdaption(this);">
                 <option value="none">none</option>
                 <option value="deviationOfMean">deviationOfMean</option>
                 <option value="deviationOfMean2">deviationOfMean2</option>
             </select>
         </p>
         <p class="normal">
-            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode"
-                onchange="onLatencyControlMode(this);">
+            <strong>latency control mode:&nbsp;</strong>
+            <select id="latencyControlMode" onchange="onLatencyControlMode(this);">
                 <option value="classic">classic</option>
                 <option value="balancedadaptive">balancedadaptive</option>
                 <option value="fastadaptive">fastadaptive</option>
@@ -86,74 +82,76 @@ All modifications will remain property of nanocosmos.
             </div>
         </div>
         <p class="normal" id="warning-container" style="display:none">
-            <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
+            <strong>warning:&nbsp;</strong>
+            <span id="warning" style="color:orange"></span>
         </p>
         <p class="normal" id="group-container" style="display:none">
-            <strong>group:&nbsp;</strong><span id="group">uninitialized</span>
+            <strong>group:&nbsp;</strong>
+            <span id="group">uninitialized</span>
         </p>
         <p class="normal" id="streams-container" style="display:none">
-            <strong>streams:&nbsp;</strong><select id="stream-select" onchange="resetPlayer();"></select>
-        </p>
-        <!-- <div id="update-source-container" style="display:none">
-            <p class="normal" style="display:flex">
-                <strong>server:&nbsp;</strong><input id="inputServer" data-prop="server" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <strong>url:&nbsp;</strong><input id="inputUrl" data-prop="url" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <strong>streamname:&nbsp;</strong><input id="inputStreamname" data-prop="streamname" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <button id="buttonUpdateSource" onclick="updateSource();" style="flex:1">update</button>
-            </p>
-        </div> -->
-        <p class="normal">
-            <strong>preroll:&nbsp;</strong><span id="preroll">0</span>
+            <strong>streams:&nbsp;</strong>
+            <select id="stream-select" onchange="resetPlayer();"></select>
         </p>
         <p class="normal">
-            <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
+            <strong>preroll:&nbsp;</strong>
+            <span id="preroll">0</span>
         </p>
         <p class="normal">
-            <strong>play latency (avg/min/max/dev):&nbsp;</strong><span
-                id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span
-                id="bufferTimeDelayMax">0.0</span><span>/</span><span id="bufferTimeDelayDeviation">0.00</span><br />
+            <strong>status:&nbsp;</strong>
+            <span id="status">uninitialized</span>
         </p>
         <p class="normal">
-            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
+            <strong>play latency (avg/min/max/dev):&nbsp;</strong>
+            <span id="bufferTimeDelay">0.0</span><span>/</span>
+            <span id="bufferTimeDelayMin">0.0</span><span>/</span>
+            <span id="bufferTimeDelayMax">0.0</span><span>/</span>
+            <span id="bufferTimeDelayDeviation">0.00</span>
         </p>
         <p class="normal">
-            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span
-                id="playTimeEnd">0.0</span>
+            <strong>current time:&nbsp;</strong>
+            <span id="currentTime">0.0</span>
         </p>
         <p class="normal">
-            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span
-                id="bufferTimeEnd">0.0</span>
+            <strong>play time (start/end):&nbsp;</strong>
+            <span id="playTimeStart">0.0</span><span>/</span>
+            <span id="playTimeEnd">0.0</span>
         </p>
         <p class="normal">
-            <strong>bitrate (avg/min/max/dev):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span
-                id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span><span>/</span><span
-                id="bitrateDeviation">0 kBps</span>
+            <strong>buffer time (start/end):&nbsp;</strong>
+            <span id="bufferTimeStart">0.0</span><span>/</span>
+            <span id="bufferTimeEnd">0.0</span>
         </p>
         <p class="normal">
-            <strong>framerate (current/avg/min/max/dev):&nbsp;</strong><span id="framerateCurrent">0
-                kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0
-                kBps</span><span>/</span><span id="framerateMax">0 kBps</span><span>/</span><span
-                id="framerateDeviation">0 kBps</span>
+            <strong>bitrate (avg/min/max/dev):&nbsp;</strong>
+            <span id="bitrateAvg">0 kBps</span><span>/</span>
+            <span id="bitrateMin">0 kBps</span><span>/</span>
+            <span id="bitrateMax">0 kBps</span><span>/</span>
+            <span id="bitrateDeviation">0 kBps</span>
         </p>
         <p class="normal">
-            <strong>deviationOfMean (dev):&nbsp;</strong><span id="adaptiveBufferTimeDelayDeviation">0.0</span>
+            <strong>framerate (current/avg/min/max/dev):&nbsp;</strong>
+            <span id="framerateCurrent">0 kBps</span><span>/</span>
+            <span id="framerateAvg">0 kBps</span><span>/</span>
+            <span id="framerateMin">0 kBps</span><span>/</span>
+            <span id="framerateMax">0 kBps</span><span>/</span>
+            <span id="framerateDeviation">0 kBps</span>
+        </p>
+        <p class="normal">
+            <strong>deviationOfMean (dev):&nbsp;</strong>
+            <span id="adaptiveBufferTimeDelayDeviation">0.0</span>
         </p>
         <p class="normal" id="error-container" style="display:none">
-            <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
+            <strong>error:&nbsp;</strong>
+            <span id="error" style="color:orangered"></span>
         </p>
         <div id="code-snippet-container" style="display:none">
             <strong>code snippet</strong>
             <pre id="code-snippet"></pre>
         </div>
         <p class="normal">
-            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">open api
-                documentation</a>
+            <strong>documentation:&nbsp;</strong>
+            <a href="../docs/nanoplayer/index.html" target="_blank">open api documentation</a>
         </p>
         <p class="normal">
             <strong>log:&nbsp;</strong><br />
@@ -171,15 +169,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.24.1.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.24.2.min.js"></script>
     <script>
 
-        var playerVersion = '4.24.1';
+        var playerVersion = '4.24.2';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20240408';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20240423';
         };
 
         var player;
