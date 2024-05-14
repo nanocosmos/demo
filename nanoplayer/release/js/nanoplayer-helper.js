@@ -1,5 +1,5 @@
 // nanoPlayer Helper Scripts
-// (c) 2019 nanocosmos gmbh
+// (c) 2014-2024 nanocosmos gmbh
 
 /* eslint-disable no-undef, no-console, no-unused-vars */
 var _HTTPParams = undefined;
