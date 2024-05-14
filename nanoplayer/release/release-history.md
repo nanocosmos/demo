@@ -1,5 +1,29 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.25.0]**
+
+### **Release Notes**
+
+With this release, we've implemented handling for repeated switch stream failures by introducing cooldown functionality, thereby enhancing the robustness of stream switching.
+Additionally, we've strengthened access to video elements, ensuring more reliable and stable functionality.
+Furthermore, we've resolved issues related to preventing multiple `2004` errors and event order discrepancies when a bintu stream group is not live during setup.
+Lastly, we've addressed a random playback error occurring when `keepConnection` was enabled, ensuring a smoother playback experience.
+
+### **Changelog**
+
+### Added
+
+- handling in case of repeated switch stream fails via cooldown functionality
+
+### Improved
+
+- hardening video element access
+
+### Fixed
+
+- redundant `2004` error in case a bintu streamgroup is not live at setup
+- random playback error with `keepConnection` enabled
+
 ## **[4.24.3]**
 
 ### **Release Notes**
