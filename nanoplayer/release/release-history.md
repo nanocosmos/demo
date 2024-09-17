@@ -1,5 +1,17 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.26.1]**
+
+### **Release Notes**
+
+With this patch version, we resolved an issue during `player.setup` that could cause an unhandled exception.
+
+### **Changelog**
+
+### Fixed
+
+- error condition during `player.setup` that could result in an unhandled exception
+
 ## **[4.26.0]**
 
 ### **Release Notes**
