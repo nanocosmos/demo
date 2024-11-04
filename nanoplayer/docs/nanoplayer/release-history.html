@@ -114,6 +114,14 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="-4-27-0-"><strong>[4.27.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This version includes a more robust conditioning for initial switch up which results in a faster up switch while using ABR. Applies to all platforms including iOS17, iOS18 and higher.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>initial switch up time for ABR</li>
+</ul>
 <h2 id="-4-26-1-"><strong>[4.26.1]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this patch version, we resolved an issue during <code>player.setup</code> that could cause an unhandled exception.</p>
@@ -1381,7 +1389,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 <h2 id="-3-15-3-"><strong>[3.15.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#x73;&#97;&#x6c;&#x65;&#x73;&#64;&#x6e;&#97;&#x6e;&#x6f;&#x63;&#x6f;&#115;&#x6d;&#111;&#x73;&#x2e;&#x64;&#101;">&#x73;&#97;&#x6c;&#x65;&#x73;&#64;&#x6e;&#97;&#x6e;&#x6f;&#x63;&#x6f;&#115;&#x6d;&#111;&#x73;&#x2e;&#x64;&#101;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#115;&#97;&#108;&#101;&#x73;&#x40;&#x6e;&#x61;&#x6e;&#x6f;&#99;&#x6f;&#x73;&#109;&#111;&#x73;&#x2e;&#x64;&#x65;">&#115;&#97;&#108;&#101;&#x73;&#x40;&#x6e;&#x61;&#x6e;&#x6f;&#99;&#x6f;&#x73;&#109;&#111;&#x73;&#x2e;&#x64;&#x65;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
@@ -1420,7 +1428,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>enables event logging and data aggregation</li>
 <li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
 <li>disabled by default</li>
-<li>for more information contact our sales team: mailto:<a href="mailto:&#x73;&#97;&#108;&#x65;&#x73;&#x40;&#x6e;&#x61;&#110;&#111;&#99;&#111;&#115;&#x6d;&#111;&#115;&#x2e;&#x64;&#101;">&#x73;&#97;&#108;&#x65;&#x73;&#x40;&#x6e;&#x61;&#110;&#111;&#99;&#111;&#115;&#x6d;&#111;&#115;&#x2e;&#x64;&#101;</a></li>
+<li>for more information contact our sales team: mailto:<a href="mailto:&#x73;&#x61;&#108;&#101;&#x73;&#64;&#110;&#x61;&#110;&#111;&#99;&#x6f;&#x73;&#109;&#111;&#115;&#x2e;&#x64;&#x65;">&#x73;&#x61;&#108;&#101;&#x73;&#64;&#110;&#x61;&#110;&#111;&#99;&#x6f;&#x73;&#109;&#111;&#115;&#x2e;&#x64;&#x65;</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
 <li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!</li>
 </ul>
