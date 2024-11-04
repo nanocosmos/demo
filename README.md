@@ -1,5 +1,17 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.27.0]**
+
+### **Release Notes**
+
+This version includes a more robust conditioning for initial switch up which results in a faster up switch while using ABR. Applies to all platforms including iOS17, iOS18 and higher.
+
+### **Changelog**
+
+### Improved
+
+- initial switch up time for ABR
+
 ## **[4.26.1]**
 
 ### **Release Notes**

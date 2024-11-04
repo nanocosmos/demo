@@ -81,7 +81,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.26.1</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.27.0</p></div>
         
     
 </header>
@@ -170,7 +170,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.26.1</li>
+			<li>4.27.0</li>
 		</ul>
 	</dd>
 	
@@ -226,7 +226,7 @@
         
     <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- iOS ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- HLS PLAYBACK ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
     <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
 
@@ -1611,7 +1611,7 @@
 
     
     <div class="description">
-        <p>Sets the volume of the player. NOT AVAILABLE FOR IOS, see <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#volume-control-in-javascript/"><b>here</b></a> for more informations.</p>
+        <p>Sets the volume of the player. NOT AVAILABLE FOR HLS PLAYBACK, see <a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#volume-control-in-javascript/"><b>here</b></a> for more informations.</p>
     </div>
     
 
@@ -5688,7 +5688,7 @@
                 </td>
             
 
-            <td class="description last"><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (iOS ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p></td>
+            <td class="description last"><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (HLS PLAYBACK ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p></td>
         </tr>
 
     
@@ -5878,7 +5878,7 @@
                 </td>
             
 
-            <td class="description last"><p>If enabled this mode for metadata processing is preventing occasionally delayed metadata on iOS. To use legacy mode set to false. The setting <code>playback.metadata</code> has to be enabled. IOS ONLY</p></td>
+            <td class="description last"><p>If enabled this mode for metadata processing is preventing occasionally delayed metadata on iOS. To use legacy mode set to false. The setting <code>playback.metadata</code> has to be enabled. HLS PLAYBACK ONLY</p></td>
         </tr>
 
     
@@ -6245,7 +6245,7 @@
                 </td>
             
 
-            <td class="description last"><p>The timeout for establishing the websocket connection, range from 5 - 30 seconds. If reached the player will be stopped with reason 'connectionclose' and error 4106 will be thrown. WEBSOCKET ONLY, FOR IOS ONLY IF METADATA IS ENABLED</p></td>
+            <td class="description last"><p>The timeout for establishing the websocket connection, range from 5 - 30 seconds. If reached the player will be stopped with reason 'connectionclose' and error 4106 will be thrown. WEBSOCKET ONLY, FOR HLS PLAYBACK ONLY IF METADATA IS ENABLED</p></td>
         </tr>
 
     
@@ -10291,7 +10291,7 @@
 
             
 
-            <td class="description last"><p>The media source extension changed the state to 'ended'. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The media source extension changed the state to 'ended'. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17166,7 +17166,7 @@
 
             
 
-            <td class="description last"><p>The current bitrate in Bit/s. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The current bitrate in Bit/s. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17190,7 +17190,7 @@
 
             
 
-            <td class="description last"><p>The average bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The average bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17214,7 +17214,7 @@
 
             
 
-            <td class="description last"><p>The minimum bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The minimum bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17238,7 +17238,7 @@
 
             
 
-            <td class="description last"><p>The maximum bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The maximum bitrate in Bit/s over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17311,7 +17311,7 @@
 
             
 
-            <td class="description last"><p>The current network framerate. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The current network framerate. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17335,7 +17335,7 @@
 
             
 
-            <td class="description last"><p>The average network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The average network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17359,7 +17359,7 @@
 
             
 
-            <td class="description last"><p>The minimum network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The minimum network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -17383,7 +17383,7 @@
 
             
 
-            <td class="description last"><p>The maximum network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The maximum network framerate over the last 10 seconds. Is '0' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -18679,7 +18679,7 @@
 
             
 
-            <td class="description last"><p>The bits per sample. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The bits per sample. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -18706,7 +18706,7 @@
 
             
 
-            <td class="description last"><p>The audio sample rate. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The audio sample rate. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -18733,7 +18733,7 @@
 
             
 
-            <td class="description last"><p>The number of audio channels. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The number of audio channels. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -18866,7 +18866,7 @@
 
             
 
-            <td class="description last"><p>The video frame rate. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The video frame rate. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -19337,7 +19337,7 @@
 
             
 
-            <td class="description last"><p>The bits per sample. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The bits per sample. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -19364,7 +19364,7 @@
 
             
 
-            <td class="description last"><p>The audio sample rate. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The audio sample rate. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -19391,7 +19391,7 @@
 
             
 
-            <td class="description last"><p>The number of audio channels. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The number of audio channels. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -19524,7 +19524,7 @@
 
             
 
-            <td class="description last"><p>The video frame rate. Is 'null' if not available. NOT AVAILABLE FOR IOS.</p></td>
+            <td class="description last"><p>The video frame rate. Is 'null' if not available. NOT AVAILABLE FOR HLS PLAYBACK.</p></td>
         </tr>
 
     
@@ -24376,7 +24376,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Mon Sep 16th 2024
+		on Fri Nov 1st 2024
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
