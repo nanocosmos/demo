@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.27.0
+NanoPlayer (H5Live) Public API Class 4.28.0
 
 **Kind**: global class  
-**Version**: 4.27.0  
+**Version**: 4.28.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -784,6 +784,39 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
     <td>data.message</td><td><code>string</code></td><td><p>The error cause as human readable string.</p>
 </td>
     </tr><tr>
+    <td>[data.playback]</td><td><code>object</code></td><td><p>The optional data playback object (since 4.28.0). Includes current playback stats. Only available if error is a <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api_errors#startup-errors">startup error</a>.</p>
+</td>
+    </tr><tr>
+    <td>data.playback.bufferDelayCurrent</td><td><code>number</code></td><td><p>Buffer delay in ms experienced at the time of the error. Always available.</p>
+</td>
+    </tr><tr>
+    <td>data.playback.bitrateCurrent</td><td><code>number</code></td><td><p>The bitrate in Bit/s of playback at the time the error occurred. Always available.</p>
+</td>
+    </tr><tr>
+    <td>data.playback.framerateCurrent</td><td><code>number</code></td><td><p>Playback framerate per second at the time of the error. Always available.</p>
+</td>
+    </tr><tr>
+    <td>[data.state]</td><td><code>object</code></td><td><p>The optional data state object (since 4.28.0). Includes all timestamps of the startup phase that have been reached before the error occurred. Only available if error is a <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api_errors#startup-errors">startup error</a>.</p>
+</td>
+    </tr><tr>
+    <td>[data.state.connected]</td><td><code>number</code></td><td><p>Timestamp in ms indicating when the connection was established (relative to load start). Optional.</p>
+</td>
+    </tr><tr>
+    <td>[data.state.firstFragmentReceived]</td><td><code>number</code></td><td><p>Time in ms at which the first fragment of media data was received (relative to load start). Optional.</p>
+</td>
+    </tr><tr>
+    <td>[data.state.firstFrameRendered]</td><td><code>number</code></td><td><p>Time in ms when the first frame was rendered (relative to load start). Optional.</p>
+</td>
+    </tr><tr>
+    <td>[data.state.playable]</td><td><code>number</code></td><td><p>Timestamp in ms indicating when playback was ready to begin (relative to load start). Optional.</p>
+</td>
+    </tr><tr>
+    <td>[data.state.playing]</td><td><code>number</code></td><td><p>Timestamp in ms indicating when playback actually started (relative to load start). Optional.</p>
+</td>
+    </tr><tr>
+    <td>data.state.error</td><td><code>number</code></td><td><p>Timestamp in ms marking when the error occurred (relative to load start). Always available.</p>
+</td>
+    </tr><tr>
     <td>state</td><td><code><a href="#NanoPlayer..state">state</a></code></td><td><p>The player state.</p>
 </td>
     </tr>  </tbody>
@@ -791,7 +824,7 @@ The error event to pass in the 'config.events' object at the setup call. Fires i
 
 **Example**  
 ```js
-// player instance of NanoPlayervar onError = function (event) {    alert('Error: ' + event.data.code + ' ' + event.data.message);};config.events.onError = onError;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
+// player instance of NanoPlayervar onError = function (event) {    if (event.data.state) {        alert('Startup Error: ' + event.data.code + ' ' + event.data.message + ' at ' + event.data.state.error + 'ms after load start');    }    else {        alert('Error: ' + event.data.code + ' ' + event.data.message);    }};config.events.onError = onError;player.setup(config).then(function (config) {    console.log('setup ok with config: ' + JSON.stringify(config));}, function (error) {    console.log(error);});
 ```
 <a name="NanoPlayer..event_onStats"></a>
 
