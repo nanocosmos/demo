@@ -1,5 +1,27 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.28.0]**
+
+### **Release Notes**  
+
+This update introduces improved error observability and enhanced player responsiveness.
+Startup errors now include detailed insights, making it easier to identify and resolve playback issues during the initial loading phase, including the first 30 seconds of playback.
+For full details, refer to our [Startup Errors Documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api_errors#startup-errors).
+Additionally, the player’s resizing behavior has been optimized, ensuring a smoother experience when the container dimensions change.
+These enhancements ensure a more reliable and user-friendly experience.
+
+### **Changelog**
+
+### **Added**
+
+- enhanced observability with additional information in the error event when identified as a startup error:
+  - errors occurring during playback attempts in the initial loading phase, including the first 30 seconds of playback
+  - for details, see [Startup Errors Documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api_errors#startup-errors)
+
+### **Improved**
+
+- optimized resizing behavior during player container dimension changes
+
 ## **[4.27.0]**
 
 ### **Release Notes**
