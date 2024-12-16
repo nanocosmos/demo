@@ -1,5 +1,34 @@
 ﻿# **NanoPlayer - Release History**
 
+## Please find more about the **stream switching and abr** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)
+
+## **[4.29.0]**
+
+### **Release Notes**  
+
+This release introduces a new configuration option for adaptive bitrate (ABR) setups.
+
+You can now omit specific renditions in ABR configurations using the new `config.source.options.adaption.omitRenditions` parameter. This parameter accepts an `array` of predefined quality identifiers (e.g., `"high"`, `"medium"`, `"low"`) or stream entry indexes (e.g., `0`, `1`, `2`, etc.), providing greater flexibility in tailoring adaptive bitrate playback.
+
+Additionally, an issue affecting the `config.source.options.adaption.downStep` value in group configurations has been resolved, ensuring proper functionality.
+
+These updates enhance flexibility and reliability in ABR setups.
+
+### **Changelog**
+
+### **Added**
+
+- introduced an option to omit specific renditions in ABR multi-stream configurations via Bintu stream group or entries:
+  - new parameter: `config.source.options.adaption.omitRenditions` (type: `array`)
+  - accepted values include predefined quality identifiers (type: `string`) or stream entry indexes (type: `number`):
+    - qualities: `"high"`, `"medium-high"`, `"medium"`, `"medium-low"`, `"low"`
+    - indexes: `0`, `1`, `2`, etc.
+  - see the [feature description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching#advanced-abr-settings) for more details
+
+### **Fixed**
+
+- resolved an issue where the `config.source.options.adaption.downStep` value was not applied correctly when using group configurations
+
 ## **[4.28.0]**
 
 ### **Release Notes**  

@@ -4943,7 +4943,7 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4955,7 +4955,7 @@ a.badge:focus {
   font-weight: 200;
 }
 .jumbotron > hr {
-  border-top-color: #dcdcdc;
+  border-top-color: #e0e0e0;
 }
 .container .jumbotron,
 .container-fluid .jumbotron {
@@ -5794,7 +5794,7 @@ button.list-group-item-danger.active:focus {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   border: 1px solid transparent;
   border-radius: 3px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -6149,7 +6149,7 @@ button.close {
   margin-left: -11px;
   border-bottom-width: 0;
   border-top-color: rgba(0, 0, 0, 0);
-  border-top-color: rgba(0, 0, 0, 0.12);
+  border-top-color: rgba(0, 0, 0, 0.075);
   bottom: -11px;
 }
 .popover.top > .arrow:after {
@@ -6165,7 +6165,7 @@ button.close {
   margin-top: -11px;
   border-left-width: 0;
   border-right-color: rgba(0, 0, 0, 0);
-  border-right-color: rgba(0, 0, 0, 0.12);
+  border-right-color: rgba(0, 0, 0, 0.075);
 }
 .popover.right > .arrow:after {
   content: " ";
@@ -6179,7 +6179,7 @@ button.close {
   margin-left: -11px;
   border-top-width: 0;
   border-bottom-color: rgba(0, 0, 0, 0);
-  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-color: rgba(0, 0, 0, 0.075);
   top: -11px;
 }
 .popover.bottom > .arrow:after {
@@ -6195,7 +6195,7 @@ button.close {
   margin-top: -11px;
   border-right-width: 0;
   border-left-color: rgba(0, 0, 0, 0);
-  border-left-color: rgba(0, 0, 0, 0.12);
+  border-left-color: rgba(0, 0, 0, 0.075);
 }
 .popover.left > .arrow:after {
   content: " ";
@@ -6757,7 +6757,7 @@ button.close {
   box-shadow: inset 0 -2px 0 #fff;
 }
 .btn-default {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-default:focus {
@@ -6772,12 +6772,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #e0e0e0 10%, #fff 11%);
   background-image: radial-gradient(circle, #e0e0e0 10%, #fff 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-primary {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-primary:focus {
@@ -6792,12 +6792,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #0b76cc 10%, #2196F3 11%);
   background-image: radial-gradient(circle, #0b76cc 10%, #2196F3 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-success {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-success:focus {
@@ -6812,12 +6812,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #39843c 10%, #4CAF50 11%);
   background-image: radial-gradient(circle, #39843c 10%, #4CAF50 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-info {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-info:focus {
@@ -6832,12 +6832,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #701c7e 10%, #9C27B0 11%);
   background-image: radial-gradient(circle, #701c7e 10%, #9C27B0 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-warning {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-warning:focus {
@@ -6852,12 +6852,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #c27400 10%, #ff9800 11%);
   background-image: radial-gradient(circle, #c27400 10%, #ff9800 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-danger {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-danger:focus {
@@ -6872,12 +6872,12 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #b0141a 10%, #e51c23 11%);
   background-image: radial-gradient(circle, #b0141a 10%, #e51c23 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .btn-link {
-  background-size: 200% 200%;
+  background-size: 200%;
   background-position: 50%;
 }
 .btn-link:focus {
@@ -6892,7 +6892,7 @@ button.close {
   background-image: -webkit-radial-gradient(circle, #e0e0e0 10%, #fff 11%);
   background-image: radial-gradient(circle, #e0e0e0 10%, #fff 11%);
   background-repeat: no-repeat;
-  background-size: 1000% 1000%;
+  background-size: 1000%;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -7297,10 +7297,6 @@ input[type="checkbox"]:disabled:checked:after,
   border-color: transparent;
   background-color: transparent;
 }
-.form-group-lg select,
-.form-group-lg select.form-control {
-  line-height: 1.5;
-}
 .nav-tabs > li > a,
 .nav-tabs > li > a:focus {
   margin-right: 0;
@@ -7369,7 +7365,7 @@ input[type="checkbox"]:disabled:checked:after,
 .alert-danger {
   background-color: #e51c23;
 }
-.alert a:not(.close):not(.btn),
+.alert a:not(.close),
 .alert .alert-link {
   color: #fff;
   font-weight: bold;
@@ -7473,19 +7469,49 @@ input[type="checkbox"]:disabled:checked:after,
   padding-left: 20px;
   padding-right: 20px;
 }
+.navbar .dropdown-menu {
+  padding: 20px;
+  max-height: 300px;
+  overflow: auto;
+  width: 300px;
+  background-color: #2196F3;
+}
+.navbar .dropdown-menu a,
+.navbar .dropdown-menu a:visited {
+  color: #b2dbfb;
+}
+.navbar .dropdown-menu a:hover {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar .dropdown-menu a:active {
+  color: #fff;
+  background-color: #0c7cd5;
+}
+.navbar .dropdown-menu a {
+  padding-left: 0;
+  padding-right: 5px;
+  font-weight: 500;
+  font-size: 115%;
+}
 img.branding-logo {
   max-height: 30px;
   display: inline-block;
   padding: 0px;
   margin: -3px 5px 0 0;
 }
+/* TODO - just make toc use bootstrap elements and classes for its template?*/
 #toc {
   position: fixed;
   top: 62px;
   right: 0;
   max-height: 82%;
-  max-height: calc(100% - 72px);
   overflow: auto;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px #fff solid;
   padding: 5px;
 }
 #toc .toc-h1 {
@@ -7531,8 +7557,9 @@ footer {
   padding-top: 15px;
 }
 code {
-  background-color: inherit;
+  background-color: none;
   border: none;
+  color: orange;
 }
 .buffered-name {
   padding-top: 62px;
@@ -7583,41 +7610,4 @@ code {
   font-size: 12px;
   line-height: 15px;
   padding: 11px 4px !important;
-}
-.dropdown-menu {
-  overflow-y: auto;
-  max-height: 150px;
-}
-@media (min-height: 300px) {
-  .dropdown-menu {
-    max-height: 238px;
-  }
-}
-@media (min-height: 400px) {
-  .dropdown-menu {
-    max-height: 338px;
-  }
-}
-@media (min-height: 500px) {
-  .dropdown-menu {
-    max-height: 438px;
-  }
-}
-@media (min-height: 600px) {
-  .dropdown-menu {
-    max-height: 538px;
-  }
-}
-@media (min-height: 700px) {
-  .dropdown-menu {
-    max-height: 638px;
-  }
-}
-.dropdown-menu {
-  max-height: calc(100vh - 62px);
-}
-@media (max-width: 768px) {
-  .dropdown-menu {
-    max-height: none;
-  }
 }

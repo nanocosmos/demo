@@ -739,6 +739,15 @@ function checkOptions () {
         if (downStep) {
             config.source.options.adaption.downStep = parseInt(downStep, 10) || 1;
         }
+        var omitRenditions = getHTTPParam('omitRenditions') || getHTTPParam('options.adaption.omitRenditions');
+        if (omitRenditions) {
+            try {
+                config.source.options.adaption.omitRenditions = omitRenditions.split(',').filter(function (item) { return item.length; }).map(function (item) {
+                    return !isNaN(item) ? parseInt(item, 10) : item;
+                });
+            }
+            catch (err) { }
+        }
         var forcePlay = getHTTPParam('forcePlay') || getHTTPParam('options.switch.forcePlay');
         if (forcePlay) {
             config.source.options.switch.forcePlay = !!(forcePlay === '1' || forcePlay === 'true');

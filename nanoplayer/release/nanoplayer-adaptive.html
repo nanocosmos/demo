@@ -169,15 +169,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.28.0.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.4.29.0.min.js"></script>
     <script>
 
-        var playerVersion = '4.28.0';
+        var playerVersion = '4.29.0';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20241118';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20241216';
         };
 
         var player;
@@ -319,11 +319,29 @@ All modifications will remain property of nanocosmos.
             var select = document.getElementById('switch-rule');
             var rule = select.options[select.selectedIndex].value;
             var downStep = this.config && this.config.source && this.config.source.options && this.config.source.options.adaption && this.config.source.options.adaption.downStep ? this.config.source.options.adaption.downStep : 1;
+            var omitRenditions = typeof getHTTPParam === 'function' && (getHTTPParam('omitRenditions') || getHTTPParam('options.adaption.omitRenditions')) || '';
+            if (omitRenditions) {
+                try {
+                    omitRenditions = omitRenditions.split(',').filter(function (item) { return item.length; }).map(function (item) {
+                        return !isNaN(item) ? parseInt(item, 10) : item;
+                    });
+                }
+                catch (err) { }
+            }
+            var adaption = {
+                'rule': rule,
+                'downStep': downStep,
+                'omitRenditions': omitRenditions
+            };
+            for (var key in adaption) {
+                if (adaption.hasOwnProperty(key)) {
+                    if (adaption[key] === '' || adaption[key] === undefined || adaption[key] === null) {
+                        delete adaption[key];
+                    }
+                }
+            }
             if (player) {
-                player.setAdaption({
-                    'rule': rule,
-                    'downStep': downStep
-                });
+                player.setAdaption(adaption);
             }
         }
 
