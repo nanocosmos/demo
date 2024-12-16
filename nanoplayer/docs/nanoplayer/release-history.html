@@ -114,6 +114,31 @@
   </head>
   <body>  
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
+<h2 id="please-find-more-about-the-stream-switching-and-abr-feature-in-our-documentation">Please find more about the <strong>stream switching and abr</strong> feature in our <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/">documentation</a></h2>
+<h2 id="-4-29-0-"><strong>[4.29.0]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release introduces a new configuration option for adaptive bitrate (ABR) setups.</p>
+<p>You can now omit specific renditions in ABR configurations using the new <code>config.source.options.adaption.omitRenditions</code> parameter. This parameter accepts an <code>array</code> of predefined quality identifiers (e.g., <code>&quot;high&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;low&quot;</code>) or stream entry indexes (e.g., <code>0</code>, <code>1</code>, <code>2</code>, etc.), providing greater flexibility in tailoring adaptive bitrate playback.</p>
+<p>Additionally, an issue affecting the <code>config.source.options.adaption.downStep</code> value in group configurations has been resolved, ensuring proper functionality.</p>
+<p>These updates enhance flexibility and reliability in ABR setups.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added"><strong>Added</strong></h3>
+<ul>
+<li>introduced an option to omit specific renditions in ABR multi-stream configurations via Bintu stream group or entries:<ul>
+<li>new parameter: <code>config.source.options.adaption.omitRenditions</code> (type: <code>array</code>)</li>
+<li>accepted values include predefined quality identifiers (type: <code>string</code>) or stream entry indexes (type: <code>number</code>):<ul>
+<li>qualities: <code>&quot;high&quot;</code>, <code>&quot;medium-high&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;medium-low&quot;</code>, <code>&quot;low&quot;</code></li>
+<li>indexes: <code>0</code>, <code>1</code>, <code>2</code>, etc.</li>
+</ul>
+</li>
+<li>see the <a href="https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching#advanced-abr-settings">feature description</a> for more details</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed"><strong>Fixed</strong></h3>
+<ul>
+<li>resolved an issue where the <code>config.source.options.adaption.downStep</code> value was not applied correctly when using group configurations</li>
+</ul>
 <h2 id="-4-28-0-"><strong>[4.28.0]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This update introduces improved error observability and enhanced player responsiveness.
@@ -1409,7 +1434,7 @@ Two patches address the bintu service. The first one fixes a bug if the view is 
 <h2 id="-3-15-3-"><strong>[3.15.3]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>With this release come new features and some patches. One feature is about firing &#39;onError&#39; with new error codes in case of a setup error. See the docs for more information (<a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor</a>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#x73;&#x61;&#x6c;&#x65;&#115;&#64;&#110;&#x61;&#110;&#x6f;&#x63;&#111;&#115;&#109;&#x6f;&#115;&#x2e;&#100;&#x65;">&#x73;&#x61;&#x6c;&#x65;&#115;&#64;&#110;&#x61;&#110;&#x6f;&#x63;&#111;&#115;&#109;&#x6f;&#115;&#x2e;&#100;&#x65;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<a href="mailto:&#115;&#x61;&#x6c;&#101;&#115;&#64;&#110;&#97;&#x6e;&#111;&#99;&#x6f;&#115;&#x6d;&#x6f;&#115;&#x2e;&#x64;&#101;">&#115;&#x61;&#x6c;&#101;&#115;&#64;&#110;&#97;&#x6e;&#111;&#99;&#x6f;&#115;&#x6d;&#x6f;&#115;&#x2e;&#x64;&#101;</a>) for more information and see &#39;./js/nanoplayer-metrics-config.js&#39; in the &#39;Demo Package&#39;. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39; pause will be fired only if playing.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="added">Added</h3>
@@ -1448,7 +1473,7 @@ Now also &#39;Windows 10&#39; will be detected correctly and on &#39;Destroy&#39
 <li>enables event logging and data aggregation</li>
 <li>configurable via the new &#39;config.metrics&#39; object, see <a href="https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor">https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor</a></li>
 <li>disabled by default</li>
-<li>for more information contact our sales team: mailto:<a href="mailto:&#115;&#x61;&#x6c;&#x65;&#x73;&#64;&#x6e;&#x61;&#x6e;&#x6f;&#99;&#111;&#115;&#x6d;&#x6f;&#115;&#x2e;&#100;&#x65;">&#115;&#x61;&#x6c;&#x65;&#x73;&#64;&#x6e;&#x61;&#x6e;&#x6f;&#99;&#111;&#115;&#x6d;&#x6f;&#115;&#x2e;&#100;&#x65;</a></li>
+<li>for more information contact our sales team: mailto:<a href="mailto:&#x73;&#97;&#108;&#101;&#x73;&#64;&#x6e;&#x61;&#x6e;&#x6f;&#x63;&#111;&#115;&#x6d;&#x6f;&#x73;&#x2e;&#x64;&#x65;">&#x73;&#97;&#108;&#101;&#x73;&#64;&#x6e;&#x61;&#x6e;&#x6f;&#x63;&#111;&#115;&#x6d;&#x6f;&#x73;&#x2e;&#x64;&#x65;</a></li>
 <li>NOTE: don&#39;t set if you have no account!</li>
 <li>NOTE: if &#39;Demo Package&#39; is used see &#39;./js/nanoplayer-metrics-config.js&#39;!</li>
 </ul>

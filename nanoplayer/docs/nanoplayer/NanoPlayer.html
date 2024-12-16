@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
 	<title>NanoPlayer Class: NanoPlayer</title>
 
 	<!--[if lt IE 9]>
@@ -21,13 +20,8 @@
 <div class="container">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="index.html">NanoPlayer</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-        </button>
 	</div>
-	<div class="navbar-collapse collapse" id="topNavigation">
+	<div class="navbar-collapse">
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
@@ -45,25 +39,12 @@
 			</li>
 			
 		</ul>
-        
-            <div class="col-sm-3 col-md-3">
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        
 	</div>
-
 </div>
 </div>
 
 
-<div class="container" id="toc-content">
+<div class="container">
 <div class="row">
 
 	
@@ -81,7 +62,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.28.0</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.29.0</p></div>
         
     
 </header>
@@ -170,7 +151,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.28.0</li>
+			<li>4.29.0</li>
 		</ul>
 	</dd>
 	
@@ -224,11 +205,11 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-javascript">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- HLS PLAYBACK ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-javascript">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- HLS PLAYBACK ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-javascript">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
 
 
     
@@ -254,7 +235,7 @@
             
 <hr>
 <dt class="name" id="capabilities">
-    <h4 id="capabilities"><span class="type-signature">&lt;constant> </span>capabilities<span class="type-signature"> :Array.&lt;string></span></h4>
+    <h4><span class="type-signature">&lt;constant> </span>capabilities<span class="type-signature"> :Array.&lt;string></span></h4>
 
     
 </dt>
@@ -325,7 +306,7 @@
             
 <hr>
 <dt class="name" id="coreversion">
-    <h4 id="coreversion"><span class="type-signature"></span>coreversion<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>coreversion<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -396,7 +377,7 @@
             
 <hr>
 <dt class="name" id="id">
-    <h4 id="id"><span class="type-signature"></span>id<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>id<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -467,7 +448,7 @@
             
 <hr>
 <dt class="name" id="tech">
-    <h4 id="tech"><span class="type-signature"></span>tech<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>tech<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -538,7 +519,7 @@
             
 <hr>
 <dt class="name" id="type">
-    <h4 id="type"><span class="type-signature"></span>type<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>type<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -609,7 +590,7 @@
             
 <hr>
 <dt class="name" id="version">
-    <h4 id="version"><span class="type-signature"></span>version<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>version<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -680,7 +661,7 @@
             
 <hr>
 <dt class="name" id="viewversion">
-    <h4 id="viewversion"><span class="type-signature"></span>viewversion<span class="type-signature"> :string</span></h4>
+    <h4><span class="type-signature"></span>viewversion<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -1432,7 +1413,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar adaption = {    &quot;rule&quot;: &quot;deviationOfMean2&quot;,    &quot;downStep&quot;: 2}if (!useAdaption) {    adaption.rule = &quot;none&quot;;}player.setAdaption(adaption);</pre>
+    <pre class="sunlight-highlight-javascript">// player instance of NanoPlayervar adaption = {    &quot;rule&quot;: &quot;deviationOfMean2&quot;,    &quot;downStep&quot;: 2,    &quot;omitRenditions&quot;: [&quot;high&quot;, &quot;low&quot;]}if (!useAdaption) {    adaption.rule = &quot;none&quot;;}player.setAdaption(adaption);</pre>
 
 
     
@@ -3513,7 +3494,7 @@
                 
 <hr>
 <dt class="name" id="~config">
-    <h4 id="~config">config</h4>
+    <h4>config</h4>
 
     
 </dt>
@@ -4602,6 +4583,42 @@
             
 
             <td class="description last"><p>The minimum number of steps during a ABR down switch ('deviationOfMean' and 'deviationOfMean2' only).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>omitRenditions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;(string|number)></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The renditions to omit if ABR enabled ('deviationOfMean' and 'deviationOfMean2' only). This parameter accepts an <code>array</code> of valid stream group qualities (e.g., <code>&quot;high&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;low&quot;</code>) or stream entry indexes (e.g., <code>0</code>, <code>1</code>, <code>2</code>, etc.).</p></td>
         </tr>
 
     
@@ -8589,7 +8606,7 @@
                 
 <hr>
 <dt class="name" id="~entry">
-    <h4 id="~entry">entry</h4>
+    <h4>entry</h4>
 
     
 </dt>
@@ -9672,7 +9689,7 @@
                 
 <hr>
 <dt class="name" id="~errorcode">
-    <h4 id="~errorcode">errorcode</h4>
+    <h4>errorcode</h4>
 
     
 </dt>
@@ -11699,7 +11716,7 @@
                 
 <hr>
 <dt class="name" id="~pausereason">
-    <h4 id="~pausereason">pausereason</h4>
+    <h4>pausereason</h4>
 
     
 </dt>
@@ -12058,7 +12075,7 @@
                 
 <hr>
 <dt class="name" id="~state">
-    <h4 id="~state">state</h4>
+    <h4>state</h4>
 
     
 </dt>
@@ -24734,28 +24751,12 @@
 
 	
 		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+			<div id="toc" class="col-md-3"></div>
 		</div>
 	
 
 </div>
 </div>
-
-
-    <div class="modal fade" id="searchResults">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Search results</h4>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div>
 
 
 <footer>
@@ -24766,19 +24767,16 @@
 	</span>
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
-	
-		on Mon Nov 18th 2024
-	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a>
+	on Mon Dec 16th 2024 using the <a
+	href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
 </footer>
 
+<!--<script src="scripts/sunlight.js"></script>-->
 <script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/bootstrap-dropdown.js"></script>
 <script src="scripts/toc.js"></script>
-
-    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
-
 
 <script>
 $( function () {
@@ -24788,7 +24786,7 @@ $( function () {
 		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
 	} );
 
-	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
 		var $this = $( this );
 
 		var example = $this.find( "code" );
@@ -24819,25 +24817,26 @@ $( function () {
 		enableDoclinks : true
 	} );
 
-	$.catchAnchorLinks( {
-        navbarOffset: 10
-	} );
 	$( "#toc" ).toc( {
 		anchorName  : function ( i, heading, prefix ) {
-			return $( heading ).attr( "id" ) || ( prefix + i );
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
 		},
-		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		selectors   : "h1,h2,h3,h4",
 		showAndHide : false,
+                navbarOffset: 10,
 		smoothScrolling: true
 	} );
 
+	$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
 	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
 	$( '.dropdown-toggle' ).dropdown();
+	//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
 
-    $( "table" ).each( function () {
-      var $this = $( this );
-      $this.addClass('table');
-    } );
+  $( "table" ).each( function () {
+    var $this = $( this );
+    $this.addClass('table');
+  } );
 
 } );
 </script>
@@ -24848,14 +24847,6 @@ $( function () {
 
 
 <!--Google Analytics-->
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            SearcherDisplay.init();
-        });
-    </script>
 
 
 </body>
