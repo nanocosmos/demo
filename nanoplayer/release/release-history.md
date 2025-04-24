@@ -1,5 +1,22 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.30.0]**
+
+### **Release Notes**  
+
+In this update, additional media and network capabilities are now logged in the `onReady` event. An issue was fixed where the player view was not correctly set up after a failed bintu source configuration. Additionally, an issue was resolved to prevent metrics and event duplication when multiple setup calls happen in quick succession.
+
+### **Changelog**
+
+### Added
+
+- log additional media and network capabilities in `onReady` event
+
+### Fixed
+
+- removed an issue where the player view was not properly set up following a failed bintu source configuration
+- resolved an issue that could cause metrics and event duplication when multiple setup calls occurred in rapid succession
+
 ## Please find more about the **stream switching and abr** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/)
 
 ## **[4.29.0]**
