@@ -1,5 +1,17 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.30.1]**
+
+### **Release Notes**  
+
+This update resolves an issue on iOS 18.4+ that prevented video playback from starting when using HLS fallback mode. The issue affected WebView-based iOS apps that load the web application from local content, e.g. app bundle.
+
+### **Changelog**
+
+### Fixed
+
+- resolved an issue on iOS 18.4+ that prevented video playback from starting when using HLS fallback mode
+
 ## **[4.30.0]**
 
 ### **Release Notes**  
