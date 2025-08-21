@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.30.1
+NanoPlayer (H5Live) Public API Class 4.31.0
 
 **Kind**: global class  
-**Version**: 4.30.1  
+**Version**: 4.31.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2456,6 +2456,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[metrics.customField*]</td><td><code>string</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;.</p>
+</td>
+    </tr><tr>
+    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>Custom metrics/telemetry server domain to use.</p>
 </td>
     </tr>  </tbody>
 </table>

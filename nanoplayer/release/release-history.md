@@ -1,5 +1,17 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.31.0]**
+
+### **Release Notes**  
+
+In this release, we introduce the new config option `metrics.serverDomain`, which allows you to configure a custom white-label domain for nanoStream Cloud metrics and telemetry endpoints.
+
+### **Changelog**
+
+### Added
+
+- option `metrics.serverDomain` enabling to configure a custom white-label domain name for nanoStream Cloud metrics/telemetry endpoints
+
 ## **[4.30.1]**
 
 ### **Release Notes**  
