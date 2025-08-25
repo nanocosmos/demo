@@ -1,5 +1,17 @@
 ﻿# **NanoPlayer - Release History**
 
+## **[4.31.0]**
+
+### **Release Notes**  
+
+In this release, we introduce the new config option `metrics.serverDomain`, which allows you to configure a custom white-label domain for nanoStream Cloud metrics and telemetry endpoints.
+
+### **Changelog**
+
+### Added
+
+- option `metrics.serverDomain` enabling to configure a custom white-label domain name for nanoStream Cloud metrics/telemetry endpoints
+
 ## **[4.30.1]**
 
 ### **Release Notes**  
@@ -108,7 +120,8 @@ With this patch version, we resolved an issue during `player.setup` that could c
 
 ### **Release Notes**
 
-This version includes several improvements. Playback attempts on mobile devices failing due to visibility state hidden at load start will now result in a dedicated event `1009`. This allows for clearer differentiation from other startup errors, such as network or stream issues `2003 Not enough media data received`. Further we improved playback start behavior in iOS WebView apps, which require user interaction for video playback in their WebView settings. Now, if a playback attempt is rejected due to missing user interaction, the player will emit error `1005` early on, allowing the application to prompt the user for interaction more quickly. Refer to recommended settings for iOS WebView: <https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_webview#ios>. In general find more information about error codes here: <https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#NanoPlayer..errorcode>.
+This version includes several improvements. Playback attempts on mobile devices failing due to visibility state hidden at load start will now result in a dedicated event `1009`. This allows for clearer differentiation from other startup errors, such as network or stream issues `2003 Not enough media data received`. Further we improved playback start behavior in iOS WebView apps, which require user interaction for video playback in their WebView settings. Now, if a playback attempt is rejected due to missing user interaction, the player will emit error `1005` early on, allowing the application to prompt the user for interaction more quickly. Refer to recommended settings for [iOS WebView:](./nanoplayer_webview#ios). In general find more information about error codes here:
+[API NanoPlayer..errorcode](./nanoplayer_api#NanoPlayer..errorcode).
 
 ### **Changelog**
 
@@ -122,8 +135,8 @@ This version includes several improvements. Playback attempts on mobile devices 
 - playback start behaviour in iOS WebView apps requiring user interaction for video playback `mediaTypesRequiringUserActionForPlayback`
   - in case of a playback attempt rejected due to missing user interaction, the player will now emit error `1005 Playback must be initialized by user gesture.` early on
   - this enables the application to handle the condition faster by asking the user to interact
-  - see recommended settings for iOS WebView: <https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_webview#ios>
-
+  - see recommended settings for iOS WebView:[nanoplayer WebView iOS](./nanoplayer_webview#ios)
+  
 ## **[4.25.1]**
 
 ### **Release Notes**
@@ -524,7 +537,7 @@ See the [api description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_
 
 - new public event `onActiveVideoElementChange`
   - is emitted when the active video element for playback has been created and if the element has been changed in case of a stream switch on iOS
-  - provides the `videoElementList` {Array.HTMLVideoElement} and the `activeVideoElement` {HTMLVideoElement} in the event data
+  - provides the `videoElementList {Array.HTMLVideoElement}` and the `activeVideoElement {HTMLVideoElement}` in the event data
   - see the [api description](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api#onactivevideoelementchange)
 
 ## **[4.16.0]**
@@ -1101,7 +1114,7 @@ The handling of mute states and autoplay has been improved.
 This version introduces the 'setAdaption' API to switch between adaption rules (ex. enable/disable ABR).
 Furthermore, this version implements optimizations for the ABR feature and minor internal, config and metrics adjustments. Additionally, this version prevents non-critical console errors during initialization and fixes a timeout error during client-side switchStream/updateSource.
 
-Please find more about setAdaption API [here](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor).
+Please find more about setAdaption API in our [documentation](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#setAdaption__anchor).
 
 ### **Changelog**
 
@@ -1131,7 +1144,7 @@ Please find more about setAdaption API [here](https://demo.nanocosmos.de/nanopla
 
 This version handles the usage of metrics with the old deprecated single stream configuration over 'config.source.h5live'.
 
-See [here](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
+See our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_stream_switching/#single-stream-configuration) for detailed information about the new stream configuration.
 
 ### **Changelog**
 
@@ -1534,7 +1547,7 @@ With this release comes a new feature. We added new error codes and pause reason
 We added the error code 1009 for playback fail in case of visibility hidden e.g. open a link as unfocused tab (ctrl + click). In this case the pause reason is 'visibilityhidden'.
 Further not only error 2001 'stream not found' can happen with the loading timeout. If the stream was already connected and the stream info event was fired but not enough data was received the new error code 2003 will be fired. The new pause reason in this case is 'notenoughdata'.
 Another new error code is 2004 that will be fired if the source stream has been stopped. This can happen during 'loading', 'buffering' and 'playing' state and results in a pause with reason 'sourcestreamstopped'. The last new error is 3100, a media error, that will be fired if the media source extension (exclude iOS) changes it's state to 'ended'. The pause reason is 'playbackerror'.
-For further informations see the definitions for 'errorcode' (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>) and 'pausereason' (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor>).
+For further informations see the definitions for 'errorcode' ([NanoPlayer API](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)) and 'pausereason' ([NanoPlayer API](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc22__anchor)).
 In addition we improved the h5live support detection and fixed with the behaviour on error code 3003 (MEDIA_DECODE_ERROR). Now the player don't try to replay automatically.
 
 ### **Changelog**
@@ -1545,7 +1558,7 @@ In addition we improved the h5live support detection and fixed with the behaviou
   - 1009: Playback failed because the player was in visibility state 'hidden' at load start.
   - 2003: Not enough media data received. The stream was already connected and the stream info event was fired.
   - 2004: The source stream has been stopped.
-  - 3100: The media source extension changed the state to 'ended'. NOT AVAILABLE FOR IOS.
+  - 3100: The media source extension changed the state to 'ended'. NOT AVAILABLE FOR HLS PLAYBACK.
 - new pause reasons:
   - 'visibilityhidden': Paused because the player was not visible at load start.
   - 'notenoughdata': Paused by loading timeout. The stream was alive and connected but not enough data was received to start playback.
@@ -1637,8 +1650,8 @@ This release patches an issue with bintu sources. Now after a successful bintu c
 
 ### **Release Notes**
 
-With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<sales@nanocosmos.de>) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information ([https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)). Also a warnings will be fired if config properties are not valid or from wrong type.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
 ### **Changelog**
@@ -1669,13 +1682,13 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
     - 5207: Metrics configuration error. A property is not valid.
     - 5208: Metrics configuration error. No credentials passed.
   - this codes will also be passed as property 'code' in the reject error object
-  - see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>
+  - see [https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor)
 - fire 'onWarning' if a config property is not valid or from wrong type
 - added a new metrics api
   - enables event logging and data aggregation
-  - configurable via the new 'config.metrics' object, see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor>
+  - configurable via the new 'config.metrics' object, see [https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor)
   - disabled by default
-  - for more information contact our sales team: mailto:<sales@nanocosmos.de>
+  - for more information contact our sales team: mailto:sales@nanocosmos.de
   - NOTE: don't set if you have no account!
   - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
 
@@ -1714,7 +1727,7 @@ The second feature is the new public event 'onDestroy'. This event is fired when
   - subobject 'stats' in 'event.data'
   - keys: 'connecting', 'connected', 'firstFragmentReceived', 'firstFrameRendered', 'playable', 'playing'
   - times in milliseconds relative to 'connecting'
-  - see '<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay>'
+  - see [https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#~event:onPlay)
   - an example 'event.data.stats' object:
 
 ````javascript
@@ -1773,7 +1786,7 @@ This version brings a new feature. Now it's possible to change the source withou
   - the video element will be kept
   - pass the subobject 'source' of the config object
   - the Promise return's the new complete config
-  - see docs <http://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#updateSource__anchor>
+  - see [docs](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#updateSource__anchor)
 
 ````javascript
 player.updateSource(source).then(function (config) {
@@ -2195,7 +2208,7 @@ nanoStream Mobile Apps. Its enabled if 'playback.metadata' is set to true.
 
 ### Added
 
-- new stats objects 'bitrate' and 'framerate' (network framerate) in 'onStats' event (NOT AVAILABLE FOR IOS)
+- new stats objects 'bitrate' and 'framerate' (network framerate) in 'onStats' event (NOT AVAILABLE FOR HLS PLAYBACK)
 - auto rotation for mobile streams from nanoStream Mobile Apps if 'playback.metadata=true'
 
 ### Fixed
@@ -2295,7 +2308,7 @@ reconnect: {
   - the delay in milliseconds before start connecting to the server
   - positive if a reconnect is imminent, otherwise zero
 - dispatch network error 4503: service unavailable
-- add performance marks with timestamps (see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks>),
+- add performance marks with timestamps (see our [documentation](https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer3/global.html#performancemarks) for more information),
   the middle part of the name string is the elementId of the player container (not supported on Safari 11 OSX and iOS):
   - 'nano.[playerDivId]**.connecting'
   - 'nano.[playerDivId]**.connected'
