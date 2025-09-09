@@ -81,7 +81,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 4.31.0</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 5.0.0</p></div>
         
     
 </header>
@@ -170,7 +170,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>4.31.0</li>
+			<li>5.0.0</li>
 		</ul>
 	</dd>
 	
@@ -224,11 +224,11 @@
     
         <h5>Examples</h5>
         
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.4.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with new video element into playerDiv --&gt;&lt;div id=&quot;playerDiv&quot;&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;nanoplayer.5.min.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    // load player from playerDiv    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
     <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with existing html video element --&gt;&lt;div id=&quot;playerDiv&quot;&gt;    &lt;video id=&quot;myPlayer&quot;&gt;&lt;/video&gt;    &lt;!-- HLS PLAYBACK ONLY uses 2 video elements for playback if more than one stream is configured, required for seamless stream switching --&gt;    &lt;video id=&quot;myPlayer2&quot;&gt;&lt;/video&gt;&lt;/div&gt;&lt;script&gt;    var player;    var config = {        &quot;source&quot;: {            &quot;entries&quot;: [                    {                        &quot;h5live&quot;: {                             // your rtmp stream                            &quot;rtmp&quot;: {                                &quot;url&quot;: &quot;rtmp://bintu-play.nanocosmos.de/play&quot;,                                &quot;streamname&quot;: &quot;XXXXX-YYYYY&quot;                            },                            &quot;server&quot;: {                                &quot;websocket&quot;: &quot;wss://bintu-h5live.nanocosmos.de:443/h5live/stream.mp4&quot;,                                &quot;hls&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/playlist.m3u8&quot;,                                &quot;progressive&quot;: &quot;https://bintu-h5live.nanocosmos.de:443/h5live/http/stream.mp4&quot;                            }                        }                    }            ]        },        &quot;playback&quot;: {            &quot;videoId&quot;: [&quot;myPlayer&quot;, &quot;myPlayer2&quot;]        }    };    function initPlayer() {        player = new NanoPlayer(&#x27;playerDiv&#x27;);        player.setup(config).then(function (config) {            console.log(&#x27;setup ok with config: &#x27; + JSON.stringify(config));        }, function (error) {            console.log(error);        });    }    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () {        initPlayer();    });&lt;/script&gt;</pre>
 
-    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.4.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
+    <pre class="sunlight-highlight-xml">&lt;!-- Example: load player with require.js --&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;require.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;    var player;    requirejs.config({        paths: {            // loads the player ...            // for a local copy of the minified player use a relative path e.g. &#x27;js/nanoplayer.5.min&#x27;            // if &#x27;baseUrl&#x27; is defined a local path have to be relative to the base path            nanoplayer: &#x27;//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js&#x27;        },        waitSeconds: 20, // timeout for loading modules    });    require(&#x27;nanoplayer&#x27;, function() {        initPlayer();    });&lt;/script&gt;</pre>
 
 
     
@@ -2414,12 +2414,12 @@
             
                 <td class="default">
                 
-                    false
+                    true
                 
                 </td>
             
 
-            <td class="description last"><p>Only if method is 'server'. Tries to accelerate the startup time of the new source. Default is false.</p></td>
+            <td class="description last"><p>Only if method is 'server'. Tries to accelerate the startup time of the new source. Default is true.</p></td>
         </tr>
 
     
@@ -5494,7 +5494,7 @@
             
                 <td class="default">
                 
-                    false
+                    true
                 
                 </td>
             
@@ -5570,7 +5570,7 @@
             
                 <td class="default">
                 
-                    classic
+                    balancedadaptive
                 
                 </td>
             
@@ -5620,7 +5620,7 @@
 
         <tr>
             
-                <td class="name"><code>forceTech</code></td>
+                <td class="name"><code>enableMediaOverQuic</code></td>
             
 
             <td class="type">
@@ -5649,14 +5649,14 @@
                 </td>
             
 
-            <td class="description last"><p>Force the player to use this tech - possible values: &quot;h5live&quot;, &quot;flash&quot;, &quot;hls.native&quot;</p></td>
+            <td class="description last"><p>Enable/disable Media Over Quic playback (default: true).</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>flashplayer</code></td>
+                <td class="name"><code>enableQuicConnectionProbe</code></td>
             
 
             <td class="type">
@@ -5685,7 +5685,7 @@
                 </td>
             
 
-            <td class="description last"><p>A absolute or relative path to the &quot;nano.player.swf&quot;. If not set the player will be required from the base path.</p></td>
+            <td class="description last"><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p></td>
         </tr>
 
     
@@ -5947,7 +5947,7 @@
             
                 <td class="default">
                 
-                    false
+                    true
                 
                 </td>
             
@@ -8407,6 +8407,42 @@
 
         <tr>
             
+                <td class="name"><code>serverDomain</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The server domain to use with the metrics. e.g. &quot;metrics.stream360.io&quot;.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>userId</code></td>
             
 
@@ -8547,42 +8583,6 @@
             
 
             <td class="description last"><p>Custom field. * can be replaced with 1 - 10 e.g. 'customField3'. Possible from 'customField1' to 'customField10'.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>serverDomain</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Custom metrics/telemetry server domain to use.</p></td>
         </tr>
 
     
@@ -24840,7 +24840,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Thu Aug 21st 2025
+		on Tue Sep 9th 2025
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

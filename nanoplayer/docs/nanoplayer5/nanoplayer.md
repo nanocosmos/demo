@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 5.0.0-moq-preview-5.2
+NanoPlayer (H5Live) Public API Class 5.0.0
 
 **Kind**: global class  
-**Version**: 5.0.0-moq-preview-5.2  
+**Version**: 5.0.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -2215,10 +2215,10 @@ The config object to pass as param for the 'setup' call.
     <td>[playback.metadata]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable metadata (default: false).</p>
 </td>
     </tr><tr>
-    <td>[playback.forceTech]</td><td><code>string</code></td><td></td><td><p>Force the player to use this tech - possible values: &quot;h5live&quot;, &quot;flash&quot;, &quot;hls.native&quot;</p>
+    <td>[playback.enableMediaOverQuic]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic playback (default: true).</p>
 </td>
     </tr><tr>
-    <td>[playback.flashplayer]</td><td><code>string</code></td><td></td><td><p>A absolute or relative path to the &quot;nano.player.swf&quot;. If not set the player will be required from the base path.</p>
+    <td>[playback.enableQuicConnectionProbe]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p>
 </td>
     </tr><tr>
     <td>[playback.videoId]</td><td><code>string</code> | <code>Array.string</code></td><td></td><td><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (HLS PLAYBACK ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p>
@@ -2444,6 +2444,9 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key provided by nanocosmos to use with the metrics.</p>
+</td>
+    </tr><tr>
+    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>The server domain to use with the metrics. e.g. &quot;metrics.stream360.io&quot;.</p>
 </td>
     </tr><tr>
     <td>[metrics.userId]</td><td><code>string</code></td><td></td><td><p>Application user/viewer id. If your application includes a user name or user id, providing this information enables you to filter or aggregate data by this user.</p>

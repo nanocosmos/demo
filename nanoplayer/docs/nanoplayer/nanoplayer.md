@@ -7,10 +7,10 @@ sidebar_label: NanoPlayer
 <a name="NanoPlayer"></a>
 
 ## NanoPlayer
-NanoPlayer (H5Live) Public API Class 4.31.0
+NanoPlayer (H5Live) Public API Class 5.0.0
 
 **Kind**: global class  
-**Version**: 4.31.0  
+**Version**: 5.0.0  
 <a name="new_NanoPlayer_new"></a>
 
 ### new NanoPlayer(playerDivId)
@@ -34,7 +34,7 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
 {}
 <!-- Example: load player with new video element into playerDiv -->
 <div id="playerDiv"></div>
-<script type="text/javascript" src="nanoplayer.4.min.js"></script>
+<script type="text/javascript" src="nanoplayer.5.min.js"></script>
 <script type="text/javascript">
     var player;
     var config = {
@@ -128,9 +128,9 @@ The constructor. The source can be loaded via script tag, AMD (requirejs) or Com
     requirejs.config({
         paths: {
             // loads the player ...
-            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.4.min'
+            // for a local copy of the minified player use a relative path e.g. 'js/nanoplayer.5.min'
             // if 'baseUrl' is defined a local path have to be relative to the base path
-            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js'
+            nanoplayer: '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js'
         },
         waitSeconds: 20, // timeout for loading modules
     });
@@ -317,7 +317,7 @@ Updates the source of the player.
     <td>[source.options.switch.forcePlay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If set the player starts playback in case the player is paused. Default is true.</p>
 </td>
     </tr><tr>
-    <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is false.</p>
+    <td>[source.options.switch.fastStart]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Only if method is &#39;server&#39;. Tries to accelerate the startup time of the new source. Default is true.</p>
 </td>
     </tr><tr>
     <td>[source.options.switch.timeout]</td><td><code>number</code></td><td><code>20</code></td><td><p>The timeout for the update source request in seconds. If reached the error 4006 will thrown in the <a href="NanoPlayer#~event:onUpdateSourceFail">&#39;onUpdateSourceFail&#39;</a> event. Default is 10 seconds, valid range is between 5 and 30.</p>
@@ -2203,22 +2203,22 @@ The config object to pass as param for the 'setup' call.
     <td>[playback.autoplay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p>
 </td>
     </tr><tr>
-    <td>[playback.automute]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p>
+    <td>[playback.automute]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p>
 </td>
     </tr><tr>
     <td>[playback.muted]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Mute/unmute the player (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the &#39;muted&#39; property to &#39;true&#39;. See property &#39;autoplay&#39; for more informations.</p>
 </td>
     </tr><tr>
-    <td>[playback.latencyControlMode]</td><td><code>string</code></td><td><code>&quot;classic&quot;</code></td><td><p>The latency control mode of the player - possible values: &quot;classic&quot;, &quot;fastadaptive&quot;, &quot;balancedadaptive&quot;</p>
+    <td>[playback.latencyControlMode]</td><td><code>string</code></td><td><code>&quot;balancedadaptive&quot;</code></td><td><p>The latency control mode of the player - possible values: &quot;classic&quot;, &quot;fastadaptive&quot;, &quot;balancedadaptive&quot;</p>
 </td>
     </tr><tr>
     <td>[playback.metadata]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable metadata (default: false).</p>
 </td>
     </tr><tr>
-    <td>[playback.forceTech]</td><td><code>string</code></td><td></td><td><p>Force the player to use this tech - possible values: &quot;h5live&quot;, &quot;flash&quot;, &quot;hls.native&quot;</p>
+    <td>[playback.enableMediaOverQuic]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic playback (default: true).</p>
 </td>
     </tr><tr>
-    <td>[playback.flashplayer]</td><td><code>string</code></td><td></td><td><p>A absolute or relative path to the &quot;nano.player.swf&quot;. If not set the player will be required from the base path.</p>
+    <td>[playback.enableQuicConnectionProbe]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p>
 </td>
     </tr><tr>
     <td>[playback.videoId]</td><td><code>string</code> | <code>Array.string</code></td><td></td><td><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (HLS PLAYBACK ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p>
@@ -2239,7 +2239,7 @@ The config object to pass as param for the 'setup' call.
     <td>[playback.metadataLowDelay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If enabled this mode for metadata processing is preventing occasionally delayed metadata on iOS. To use legacy mode set to false. The setting <code>playback.metadata</code> has to be enabled. HLS PLAYBACK ONLY</p>
 </td>
     </tr><tr>
-    <td>[playback.faststart]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If enabled the fast start mode is reducing the time to first frame and the playback start time.</p>
+    <td>[playback.faststart]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If enabled the fast start mode is reducing the time to first frame and the playback start time.</p>
 </td>
     </tr><tr>
     <td>[playback.reconnect]</td><td><code>object</code></td><td></td><td><p>The reconnect object to configure the reconnect settings. See <a href="#NanoPlayer..errorcode">errorcodes</a> for reconnect possibility.</p>
@@ -2446,6 +2446,9 @@ The config object to pass as param for the 'setup' call.
     <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key provided by nanocosmos to use with the metrics.</p>
 </td>
     </tr><tr>
+    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>The server domain to use with the metrics. e.g. &quot;metrics.stream360.io&quot;.</p>
+</td>
+    </tr><tr>
     <td>[metrics.userId]</td><td><code>string</code></td><td></td><td><p>Application user/viewer id. If your application includes a user name or user id, providing this information enables you to filter or aggregate data by this user.</p>
 </td>
     </tr><tr>
@@ -2456,9 +2459,6 @@ The config object to pass as param for the 'setup' call.
 </td>
     </tr><tr>
     <td>[metrics.customField*]</td><td><code>string</code></td><td></td><td><p>Custom field. * can be replaced with 1 - 10 e.g. &#39;customField3&#39;. Possible from &#39;customField1&#39; to &#39;customField10&#39;.</p>
-</td>
-    </tr><tr>
-    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>Custom metrics/telemetry server domain to use.</p>
 </td>
     </tr>  </tbody>
 </table>

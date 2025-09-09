@@ -114,10 +114,9 @@
                 'startIndex': 2 // lowest
             },
             'playback': {
-                'autoplay'    : true,
-                'automute'    : true,
-                'muted'       : true,
-                'flashplayer' : '//demo.nanocosmos.de/nanoplayer/nano.player.swf'
+                'autoplay' : true,
+                'automute' : true,
+                'muted'    : true
             },
             'style': {
                 'displayMutedAutoplay': false

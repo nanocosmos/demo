@@ -1,4 +1,6 @@
-﻿## Please find more about the **MoQ playback mode** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_moq/)
+# **NanoPlayer - Release Overview**
+
+## Please find more about the **MoQ playback mode** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_moq/)
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
@@ -51,3 +53,17 @@ Finally, we have cleaned up outdated and rarely used features. Flash player and 
 - deprecated single source configuration via `config.source.h5live` object
   - remaining valid source configurations are `config.source.group` and `config.source.entries`
 - scaling modes `"resize"` and `"original"`
+
+### **Release Package 5.0.0**
+
+- [5.0.0](https://files.nanocosmos.de/index.php/s/WoGxRiPCNTq5B2W)
+- [latest 5.x](https://files.nanocosmos.de/index.php/s/y4e2axW7s8qEtJb)
+- [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
+
+### **Documentation**
+
+- [docs.nanocosmos.de](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_api/)
+
+### **Release History**
+
+- [release history](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_release_history)
