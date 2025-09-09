@@ -162,11 +162,6 @@ function getNanoPlayerParameters () {
             }
         }
     }
-    // TODO fix forcing in playerfactory
-    var force = getHTTPParam('force') || getHTTPParam('playback.forceTech');
-    if (force) {
-        config.playback.forceTech = force;
-    }
     var videoId = getHTTPParam('videoId') || getHTTPParam('playback.videoId');
     var external = getHTTPParam('external');
     if (videoId || external) {
@@ -212,6 +207,18 @@ function getNanoPlayerParameters () {
     var faststart = getHTTPParam('faststart') || getHTTPParam('playback.faststart');
     if (faststart) {
         config.playback.faststart = !!(faststart === '1' || faststart === 'true');
+    }
+    var enableMediaOverQuic = getHTTPParam('enableMediaOverQuic') || getHTTPParam('playback.enableMediaOverQuic');
+    if (enableMediaOverQuic) {
+        config.playback.enableMediaOverQuic = !!(enableMediaOverQuic === '1' || enableMediaOverQuic === 'true');
+    }
+    var enableQuicConnectionProbe = getHTTPParam('enableQuicConnectionProbe') || getHTTPParam('playback.enableQuicConnectionProbe');
+    if (enableQuicConnectionProbe) {
+        config.playback.enableQuicConnectionProbe = !!(enableQuicConnectionProbe === 'false' || enableQuicConnectionProbe === '0');
+    }
+    var volume = getHTTPParam('volume') || getHTTPParam('playback.volume');
+    if (volume) {
+        config.playback.volume = parseFloat(volume);
     }
     var view = getHTTPParam('view') || getHTTPParam('style.view');
     if (view) {
@@ -439,7 +446,9 @@ function getNanoPlayerParameters () {
     if (!isNaN(startIndex)) {
         config.source.startIndex = startIndex;
     }
-
+    else if (config.source.entries && config.source.entries.length > 0) {
+        config.source.startIndex = config.source.entries.length - 1;
+    }
     return doStartPlayer;
 }
 
@@ -587,27 +596,30 @@ function checkEntries () {
         if (server) {
             var routes = {
                 'secured': {
-                    'websocket'   : ['wss://', ':443/h5live/stream.mp4'],
-                    'hls'         : ['https://', ':443/h5live/http/playlist.m3u8'],
-                    'progressive' : ['https://', ':443/h5live/http/stream.mp4']
+                    'websocket'    : ['wss://', ':443/h5live/stream.mp4'],
+                    'hls'          : ['https://', ':443/h5live/http/playlist.m3u8'],
+                    'progressive'  : ['https://', ':443/h5live/http/stream.mp4'],
+                    'webtransport' : ['https://', ':443/h5live/stream/stream.mp4'],
                 },
                 'unsecured': {
                     'websocket'   : ['ws://', ':8181'],
                     'hls'         : ['http://', ':8180/playlist.m3u8'],
-                    'progressive' : ['http://', ':8180/stream.mp4']
-                }
+                    'progressive' : ['http://', ':8180/stream.mp4'] }
             };
             var route = (document.location.protocol.indexOf('https') === 0) ? routes.secured : routes.unsecured;
             server = {
-                'websocket'   : route.websocket[0] + server + route.websocket[1],
-                'hls'         : route.hls[0] + server + route.hls[1],
-                'progressive' : route.progressive[0] + server + route.progressive[1]
+                'websocket'    : route.websocket[0] + server + route.websocket[1],
+                'hls'          : route.hls[0] + server + route.hls[1],
+                'progressive'  : route.progressive[0] + server + route.progressive[1],
+                'webtransport' : route.webtransport[0] + server + route.webtransport[1]
             };
         }
         var wss = getHTTPParam('entry' + num + '.server.websocket');
         var hls = getHTTPParam('entry' + num + '.server.hls');
         var progressive = getHTTPParam('entry' + num + '.server.progressive');
-        if (wss || hls || progressive) {
+        var webtransport = getHTTPParam('entry' + num + '.server.webtransport');
+
+        if (wss || hls || progressive || webtransport) {
             server = server || {};
             if (wss) {
                 server.websocket = wss;
@@ -617,6 +629,9 @@ function checkEntries () {
             }
             if (progressive) {
                 server.progressive = progressive;
+            }
+            if (webtransport) {
+                server.webtransport = webtransport;
             }
         }
         var apiurl = getHTTPParam('entry' + num + '.bintu.apiurl');
@@ -742,7 +757,9 @@ function checkOptions () {
         var omitRenditions = getHTTPParam('omitRenditions') || getHTTPParam('options.adaption.omitRenditions');
         if (omitRenditions) {
             try {
-                config.source.options.adaption.omitRenditions = omitRenditions.split(',').filter(function (item) { return item.length; }).map(function (item) {
+                config.source.options.adaption.omitRenditions = omitRenditions.split(',').filter(function (item) {
+                    return item.length;
+                }).map(function (item) {
                     return !isNaN(item) ? parseInt(item, 10) : item;
                 });
             }

@@ -1,700 +1,810 @@
 <!DOCTYPE html>
-<!--
-nanoStream Player
-(c) 2014-2024, nanocosmos gmbh
-http://www.nanocosmos.de
-sales@nanocosmos.de
-
-LEGAL NOTICE:
-This material is subject to the terms and conditions defined in
-separate license conditions ('LICENSE.txt')
-All information contained herein is, and remains the property
-of nanocosmos GmbH and its suppliers if any. The intellectual and technical concepts
-contained herein are proprietary to nanocosmos GmbH, and are protected by trade secret
-or copyright law. Dissemination of this information or reproduction of this material
-is strictly forbidden unless prior written permission is obtained from nanocosmos.
-All modifications will remain property of nanocosmos.
--->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <title>nanoplayer</title>
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/main-light.css">
-    <link rel="shortcut icon" href="./assets/flavicon.ico" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nanoPlayer Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #00486C 0%, #0F8DC8 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            background: rgba(7, 69, 107, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(15, 141, 200, 0.3);
+            transform-origin: center top;
+            transition: transform 0.3s ease;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .player-container {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .player-container:has(.player[style*="width"][style*="height"]):not(:has(.player[style*="width: 100%"])):not(:has(.player[style*="width:100%"])) {
+            width: fit-content;
+        }
+
+        @media (min-width: 769px) {
+            .player[style*="width"][style*="height"]:not([style*="width: 100%"]):not([style*="width:100%"]) {
+                padding-top: 0 !important;
+            }
+        }
+
+        .container:has(.player[style*="position: fixed"]) {
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            background-color: #000;
+        }
+
+        .player {
+            /* player width and height for this media */
+            /* Note: there is another @media tag for smaller screens below */
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .responsive {
+            padding-top: 56.25%;
+        }
+
+        /* controls and buttons */
+        .controls {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: nowrap;
+            background: rgba(7, 69, 107, 0.3);
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(15, 141, 200, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        button {
+            padding: 8px 12px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(45deg, #F48220 0%, #EF7D00 100%);
+            color: white;
+            box-shadow: 0 2px 6px rgba(244, 130, 32, 0.3);
+            min-width: 44px;
+            height: 36px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(244, 130, 32, 0.5);
+            background: linear-gradient(45deg, #EF7D00 0%, #F48220 100%);
+        }
+
+        button:active {
+            transform: translateY(0px) scale(0.98);
+            box-shadow: 0 1px 3px rgba(244, 130, 32, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            background: linear-gradient(45deg, #888 0%, #666 100%);
+            box-shadow: none;
+        }
+
+        button:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .material-icons {
+            font-size: 1.5em;
+            vertical-align: middle;
+        }
+        
+        /* Special styling for active state buttons */
+        #pause-btn:not(:disabled) {
+            background: linear-gradient(45deg, #22c55e 0%, #16a34a 100%);
+            box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+        }
+        
+        #pause-btn:not(:disabled):hover {
+            background: linear-gradient(45deg, #16a34a 0%, #22c55e 100%);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.5);
+        }
+        
+        #mute-btn.muted {
+            background: linear-gradient(45deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+        }
+        
+        #mute-btn.muted:hover {
+            background: linear-gradient(45deg, #dc2626 0%, #ef4444 100%);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 12px;
+            padding-left: 12px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider:hover {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #F48220;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            width: 20px;
+            height: 20px;
+            box-shadow: 0 4px 12px rgba(244, 130, 32, 0.4), 0 0 0 8px rgba(244, 130, 32, 0.1);
+        }
+
+        .volume-slider::-webkit-slider-thumb:active {
+            width: 22px;
+            height: 22px;
+            box-shadow: 0 4px 12px rgba(244, 130, 32, 0.6), 0 0 0 12px rgba(244, 130, 32, 0.15);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #F48220;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .volume-slider::-moz-range-thumb:hover {
+            width: 20px;
+            height: 20px;
+            box-shadow: 0 4px 12px rgba(244, 130, 32, 0.4);
+        }
+
+        .volume-slider::-moz-range-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            height: 6px;
+        }
+
+        .volume-text {
+            color: white;
+            font-size: 12px;
+            min-width: 35px;
+            font-weight: 500;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(135, 135, 135, 0.2);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(10, 139, 201, 0.3);
+        }
+
+        .config-section {
+            margin-top: 10px;
+            background: rgba(7, 69, 107, 0.1);
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid rgba(15, 141, 200, 0.3);
+        }
+
+        .config-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: start;
+        }
+
+        .config-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .config-item label {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        select {
+            padding: 8px 12px;
+            border: 2px solid rgba(15, 141, 200, 0.4);
+            border-radius: 6px;
+            background: rgba(135, 135, 135, 0.1);
+            color: white;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #F48220;
+            box-shadow: 0 0 8px rgba(244, 130, 32, 0.5);
+        }
+
+        select option {
+            background: #00486C;
+            color: white;
+        }
+
+        .main-status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .main-status-grid .status {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .moq-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .full-row-status {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .status-item {
+            background: rgba(135, 135, 135, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(15, 141, 200, 0.2);
+        }
+
+        .status-item label {
+            color: #F48220;
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .status-item .value {
+            color: white;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .config-section h3 {
+            color: white;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid rgba(15, 141, 200, 0.4);
+            border-radius: 8px;
+            background: rgba(135, 135, 135, 0.1);
+            color: white;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #F48220;
+            box-shadow: 0 0 10px rgba(244, 130, 32, 0.5);
+        }
+
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .version {
+            color: #55b6e2;
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+            margin-top: 1em;
+            margin-left: 1em;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .loading::after {
+            content: "...";
+            animation: pulse 1.5s infinite;
+        }
+
+        /* MoQ Indicator */
+        .latency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            color: #ffffff;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: default;
+            user-select: none;
+        }
+
+        .latency-badge .dot {
+            width: 10px;
+            height: 10px;
+            background: #ed7d0e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(244, 130, 32, 0.6), 0 0 20px rgba(244, 130, 32, 0.3);
+            animation: pulse-glow 2s infinite;
+        }
+
+        .latency-badge.moq-indicator .dot-green {
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .latency-badge.moq-indicator .dot-orange {
+            background: #ed7d0e;
+            box-shadow: 0 0 10px rgba(244, 130, 32, 0.6), 0 0 20px rgba(244, 130, 32, 0.3);
+        }
+
+        .latency-badge.moq-indicator .dot-red {
+            background: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .code-snippet-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .code-snippet-arrow {
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            font-size: 1.2em;
+        }
+
+        .code-snippet-container {
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        .code-snippet-container.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .code-snippet-button-container {
+            background: rgba(135, 135, 135, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(15, 141, 200, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .code-snippet-pre {
+            background: rgba(0, 72, 108, 0.3);
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            border: 1px solid #F48220;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Syntax highlighting colors - matching page theme */
+        .code-snippet-pre .keyword { color: #F48220; font-weight: bold; }
+        .code-snippet-pre .string { color: #4ecdc4; }
+        .code-snippet-pre .number { color: #55b6e2; }
+        .code-snippet-pre .comment { color: #bdc3c7; font-style: italic; }
+        .code-snippet-pre .function { color: #F48220; }
+        .code-snippet-pre .variable { color: #55b6e2; }
+        .code-snippet-pre .property { color: #87ceeb; font-weight: 500; }
+        .code-snippet-pre .operator { color: #ffffff; font-weight: bold; }
+        .code-snippet-pre .bracket { color: #55b6e2; font-weight: bold; }
+
+        .code-snippet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .code-snippet-header h3 {
+            margin: 0;
+        }
+
+        #copy-code-btn.copied {
+            background: linear-gradient(45deg, #22c55e 0%, #16a34a 100%) !important;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.5) !important;
+        }
+
+        #copy-code-btn.failed {
+            background: linear-gradient(45deg, #ef4444 0%, #dc2626 100%) !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5) !important;
+        }
+
+        /* Landscape media queries - higher aspect ratio = narrower width */
+        @media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 4/3) {
+            .container {
+                max-width: 1200px;
+                width: 90%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 4/3) and (max-aspect-ratio: 3/2) {
+            .container {
+                max-width: 1150px;
+                width: 88%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 3/2) and (max-aspect-ratio: 16/10) {
+            .container {
+                max-width: 1100px;
+                width: 85%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 16/10) and (max-aspect-ratio: 16/9) {
+            .container {
+                max-width: 1050px;
+                width: 82%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 16/9) and (max-aspect-ratio: 2/1) {
+            .container {
+                max-width: 1000px;
+                width: 78%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 2/1) and (max-aspect-ratio: 21/9) {
+            .container {
+                max-width: 950px;
+                width: 74%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 21/9) and (max-aspect-ratio: 24/9) {
+            .container {
+                max-width: 900px;
+                width: 70%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 24/9) and (max-aspect-ratio: 32/9) {
+            .container {
+                max-width: 850px;
+                width: 66%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 32/9) and (max-aspect-ratio: 4/1) {
+            .container {
+                max-width: 800px;
+                width: 62%;
+            }
+        }
+        
+        @media (min-aspect-ratio: 4/1) {
+            .container {
+                max-width: 750px;
+                width: 58%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .player {
+                /* player width and height for this media */
+                height: auto;
+            }
+            
+            .code-snippet-container {
+                max-height: 400px;
+            }
+            
+            .code-snippet-pre {
+                white-space: pre;
+                word-wrap: normal;
+                overflow-x: auto;
+            }
+            
+            #copy-code-btn {
+                font-size: 11px !important;
+                padding: 6px 8px !important;
+            }
+            
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .config-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="container">
-        <p class="normal">
-            <h1 id="demo-title">nanoStream H5Live Player Demo</h1>
-            <strong id="demo-version"></strong>
-        </p>
-        <div id="playerDiv" class="player responsive">
-            <!---->
-            <video id="h5live" playsinline style="display:none;width:100%;height:100%"></video>
+    <div class="container">
+        <h1>nanoPlayer Demo</h1>
+        <div class="player-container">
+            <div id="nanoplayer-div" class="player responsive"></div>
+
+            <div class="controls">
+                <button id="play-btn"><span class="material-icons">play_arrow</span></button>
+                <button id="pause-btn" disabled><span class="material-icons">pause</span></button>
+                <button id="mute-btn"><span class="material-icons">volume_up</span></button>
+                <button id="fullscreen-btn"><span class="material-icons">fullscreen</span></button>
+                <div class="volume-control">
+                    <span class="volume-text">Vol</span>
+                    <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="100" title="Volume" placeholder="Set volume">
+                    <span id="volume-value" class="volume-text">100%</span>
+                </div>
+            </div>
+
         </div>
-        <p class="normal" id="timestamp-container" style="display:none">
-            <h1 id="timestamp" style="display:none">00:00:000</h1>
-        </p>
-        <p class="normal" id="metadata-container" style="display:none">
-            <strong>metadata</strong>
-            <pre id="metadata" style="display:none"></pre>
-        </p>
-        <div id="controlsWrapper" class="row-flex row-padding">
-            <div>
-                <button id="buttonPlay" onclick="play();" style="padding-right:5px">play</button>
-                <button id="buttonPause" onclick="pause();" style="padding-right:5px">pause</button>
-                <button id="buttonReset" onclick="startPlayer();" style="padding-right:5px">reset</button>
-                <button id="buttonFullscreenRequest" onclick="requestFullscreenPlayer();" style="padding-right:5px">fullscreen</button></div>
-            <div>
-                <button id="buttonMute" onclick="mute(this);" data-muted="false" style="padding-left:5px">mute</button>
-                <input type="range" min="0" max="100" id="faderVolume" oninput="setVolume(this, value);"
-                    onchange="setVolume(this, value);"  style="padding-left:5px; display:inline-block; vertical-align: middle;"/>
-                <output for="fader" id="volume" style="padding-left:5px; display:inline-block; vertical-align: middle;">100%</output>
+
+        <div class="moq-container">
+            <div class="latency-badge moq-indicator" id="moq-indicator-config">
+                <div class="dot"></div>
+                <span id="moq-text-config">Checking connection type...</span>
             </div>
         </div>
-        <p class="normal">
-            <strong>latency control mode:&nbsp;</strong><select id="latencyControlMode" onchange="onLatencyControlMode(this);">
-                <option value="classic">classic</option>
-                <option value="balancedadaptive">balancedadaptive</option>
-                <option value="fastadaptive">fastadaptive</option>
-            </select>
-        </p>
-        <p class="normal" id="warning-container" style="display:none">
-            <strong>warning:&nbsp;</strong><span id="warning" style="color:orange"></span>
-        </p>
-        <p class="normal" id="group-container" style="display:none">
-            <strong>group:&nbsp;</strong><span id="group">uninitialized</span>
-        </p>
-        <p class="normal" id="streams-container" style="display:none">
-            <strong>streams:&nbsp;</strong><select id="stream-select" onchange="resetPlayer();"></select>
-        </p>
-        <!-- <div id="update-source-container" style="display:none">
-            <p class="normal" style="display:flex">
-                <strong>server:&nbsp;</strong><input id="inputServer" data-prop="server" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <strong>url:&nbsp;</strong><input id="inputUrl" data-prop="url" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <strong>streamname:&nbsp;</strong><input id="inputStreamname" data-prop="streamname" style="flex:2" />
-            </p>
-            <p class="normal" style="display:flex">
-                <button id="buttonUpdateSource" onclick="updateSource();" style="flex:1">update</button>
-            </p>
-        </div> -->
-        <p class="normal">
-            <strong>preroll:&nbsp;</strong><span id="preroll">0</span>
-        </p>
-        <p class="normal">
-            <strong>status:&nbsp;</strong><span id="status">uninitialized</span>
-        </p>
-        <p class="normal">
-            <strong>play latency (avg/min/max):&nbsp;</strong><span id="bufferTimeDelay">0.0</span><span>/</span><span id="bufferTimeDelayMin">0.0</span><span>/</span><span id="bufferTimeDelayMax">0.0</span><br />
-        </p>
-        <p class="normal">
-            <strong>current time:&nbsp;</strong><span id="currentTime">0.0</span><br />
-        </p>
-        <p class="normal">
-            <strong>play time (start/end):&nbsp;</strong><span id="playTimeStart">0.0</span><span>/</span><span id="playTimeEnd">0.0</span>
-        </p>
-        <p class="normal">
-            <strong>buffer time (start/end):&nbsp;</strong><span id="bufferTimeStart">0.0</span><span>/</span><span id="bufferTimeEnd">0.0</span>
-        </p>
-        <p class="normal">
-            <strong>bitrate (avg/min/max):&nbsp;</strong><span id="bitrateAvg">0 kBps</span><span>/</span><span id="bitrateMin">0 kBps</span><span>/</span><span id="bitrateMax">0 kBps</span><span>/</span>
-        </p>
-        <p class="normal">
-            <strong>framerate (current/avg/min/max):&nbsp;</strong><span id="framerateCurrent">0 kBps</span><span>/</span><span id="framerateAvg">0 kBps</span><span>/</span><span id="framerateMin">0 kBps</span><span>/</span><span id="framerateMax">0 kBps</span><span>/</span>
-        </p>
-        <p class="normal" id="timestamp-container" style="display:none">
-            <h1 id="timestamp" style="display:none">00:00:000</h1>
-        </p>
-        <p class="normal" id="metadata-container" style="display:none">
-            <strong>metadata</strong>
-            <pre id="metadata" style="display:none"></pre>
-        </p>
-        <p class="normal" id="metadata-container" style="display:none">
-            <strong>metadata</strong>
-            <pre id="metadata" style="display:none"></pre>
-        </p>
-        <p class="normal" id="error-container" style="display:none">
-            <strong>error:&nbsp;</strong><span id="error" style="color:orangered"></span>
-        </p>
-        <p class="normal" id="h5live-server-container" style="display:none">
-            <strong>h5live server wss:&nbsp;</strong><span id="h5live-server-wss">???</span><br />
-            <strong>h5live server hls:&nbsp;</strong><span id="h5live-server-hls">???</span>
-        </p>
-        <p class="normal">
-        </p>
-        <p class="normal">
-            <strong>source:&nbsp;</strong><span id="url">???</span><span>&nbsp;&nbsp;&nbsp;</span><strong>tech:&nbsp;</strong><span id="tech">???</span>
-        </p>
-        <div id="code-snippet-container" style="display:none">
-            <strong>code snippet</strong>
-            <pre id="code-snippet"></pre>
+
+        <div class="main-status-grid">
+            <div id="status" class="status">
+                Ready to play stream
+            </div>
+            <div id="status2" class="status">
+                ...
+            </div>
         </div>
-        <p class="normal">
-            <strong>documentation:&nbsp;</strong><a href="../docs/nanoplayer/index.html" target="_blank">open api documentation</a>
-        </p>
-        <p class="normal">
-            <strong>log:&nbsp;</strong><br />
-            <span id="log"></span>
-        </p>
+
+        <div class="config-section">
+            <h3>Stream Configuration</h3>
+            
+            <div class="config-row">
+                <div class="config-item">
+                    <label for="abr-quality">Quality:</label>
+                    <select id="abr-quality">
+                        <option value="auto">Auto</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+
+                <div class="config-item">
+                    <label for="latency-mode">Latency Control Mode:</label>
+                    <select id="latency-mode">
+                        <option value="classic" >Classic</option>
+                        <option value="balancedadaptive">Balanced Adaptive</option>
+                        <option value="fastadaptive" selected>Fast Adaptive</option>
+                    </select>
+                </div>
+
+
+            </div>
+            
+        </div>
+
+        <div class="config-section">
+            <h3>Player Status</h3>
+            <div id="warning-container" class="full-row-status hidden">
+                <div class="status-item">
+                    <label>Warning:</label>
+                    <div class="value" id="warning-value"></div>
+                </div>
+            </div>
+            <div id="metadata-container" class="full-row-status hidden">
+                <div class="status-item">
+                    <label>Meta-Data:</label>
+                    <div class="value" id="meta-value"></div>
+                </div>
+            </div>
+            <div id="error-container" class="full-row-status hidden">
+                <div class="status-item">
+                    <label>Error:</label>
+                    <div class="value" id="error-value"></div>
+                </div>
+            </div>
+            <div class="status-grid">
+                <div class="status-item">
+                    <label>Status:</label>
+                    <div class="value" id="status-value">...</div>
+                </div>
+                <div class="status-item">
+                    <label>Play Time (current):</label>
+                    <div class="value" id="time-value">0.0</div>
+                </div>
+                <div class="status-item">
+                    <label>Play Latency (avg/min/max/dev):</label>
+                    <div class="value" id="latency-value">0.0 / 0.0 / 0.0 / 0.00</div>
+                </div>
+                <div class="status-item">
+                    <label>VideoInfo (width x height):</label>
+                    <div class="value" id="videoinfo-value">0x0</div>
+                </div>
+                <div class="status-item">
+                    <label>Bitrate kbps (avg/min/max/dev):</label>
+                    <div class="value" id="bitrate-value">0 / 0 / 0 / 0</div>
+                </div>
+                <div class="status-item">
+                    <label>Framerate fps (current/avg/min/max/dev):</label>
+                    <div class="value" id="framerate-value">0 / 0 / 0 / 0 / 0</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="config-section">
+            <div class="code-snippet-header">
+                <h3 id="code-snippet-toggle" class="code-snippet-toggle">
+                    Code Snippet 
+                    <span id="code-snippet-arrow" class="material-icons code-snippet-arrow">expand_more</span>
+                </h3>
+                <button id="copy-code-btn"><span class="material-icons">content_copy</span> Copy</button>
+            </div>
+            <div id="code-snippet-container" class="code-snippet-container collapsed">
+                <div id="code-snippet" class="code-snippet-pre"></div>
+            </div>
+        </div>
+
+    <span class="version" id="version"></span>
     </div>
 
-    <script src="./js/nanoplayer-helper.js"></script>
-    <script src="./js/nanoplayer-helper-events.js"></script>
-    <script src="./js/nanoplayer-helper-multistream.js"></script>
-    <script src="./js/nanoplayer-helper-codesnippet.js"></script>
-    <script src="./js/nanoplayer-metrics-config.js"></script>
-    <script src="./js/multi/nano.bintu.js"></script>
-
-    <!-- REMOVE TEST IOS CHROME DEBUGGING WITH WEINRE -->
-    <!--script src="http://10.24.99.6:8080/target/target-script-min.js"></script-->
-
-        <style>
-            @keyframes blackwhite {
-                0% {
-                    background-color: #000;
-                }
-                7% {
-                    background-color: #111;
-                }
-                13% {
-                    background-color: #222;
-                }
-                20% {
-                    background-color: #333;
-                }
-                27% {
-                    background-color: #444;
-                }
-                33% {
-                    background-color: #555;
-                }
-                40% {
-                    background-color: #666;
-                }
-                47% {
-                    background-color: #777;
-                }
-                53% {
-                    background-color: #888;
-                }
-                60% {
-                    background-color: #999;
-                }
-                67% {
-                    background-color: #aaa;
-                }
-                73% {
-                    background-color: #bbb;
-                }
-                80% {
-                    background-color: #ccc;
-                }
-                87% {
-                    background-color: #ddd;
-                }
-                93% {
-                    background-color: #eee;
-                }
-                100% {
-                    background-color: #fff
-                }
-            }
-            @keyframes rainbow {
-                0% {
-                    background-color: #e87d7d;
-                }
-                2% {
-                    background-color: #e88a7d;
-                }
-                4% {
-                    background-color: #e8977d;
-                }
-                6% {
-                    background-color: #e8a47d;
-                }
-                8% {
-                    background-color: #e8b07d;
-                }
-                10% {
-                    background-color: #e8bd7d;
-                }
-                12% {
-                    background-color: #e8ca7d;
-                }
-                14% {
-                    background-color: #e8d77d;
-                }
-                16% {
-                    background-color: #e8e47d;
-                }
-                18% {
-                    background-color: #dfe87d;
-                }
-                20% {
-                    background-color: #d3e87d;
-                }
-                22% {
-                    background-color: #c6e87d;
-                }
-                24% {
-                    background-color: #b9e87d;
-                }
-                26% {
-                    background-color: #ace87d;
-                }
-                28% {
-                    background-color: #9fe87d;
-                }
-                30% {
-                    background-color: #92e87d;
-                }
-                32% {
-                    background-color: #86e87d;
-                }
-                34% {
-                    background-color: #7de881;
-                }
-                36% {
-                    background-color: #7de88e;
-                }
-                38% {
-                    background-color: #7de89b;
-                }
-                40% {
-                    background-color: #7de8a8;
-                }
-                42% {
-                    background-color: #7de8b5;
-                }
-                44% {
-                    background-color: #7de8c1;
-                }
-                46% {
-                    background-color: #7de8ce;
-                }
-                48% {
-                    background-color: #7de8db;
-                }
-                50% {
-                    background-color: #7de8e8;
-                }
-                52% {
-                    background-color: #7ddbe8;
-                }
-                54% {
-                    background-color: #7dcee8;
-                }
-                56% {
-                    background-color: #7dc1e8;
-                }
-                58% {
-                    background-color: #7db5e8;
-                }
-                60% {
-                    background-color: #7da8e8;
-                }
-                62% {
-                    background-color: #7d9be8;
-                }
-                64% {
-                    background-color: #7d8ee8;
-                }
-                66% {
-                    background-color: #7d81e8;
-                }
-                68% {
-                    background-color: #867de8;
-                }
-                70% {
-                    background-color: #927de8;
-                }
-                72% {
-                    background-color: #9f7de8;
-                }
-                74% {
-                    background-color: #ac7de8;
-                }
-                76% {
-                    background-color: #b97de8;
-                }
-                78% {
-                    background-color: #c67de8;
-                }
-                80% {
-                    background-color: #d37de8;
-                }
-                82% {
-                    background-color: #df7de8;
-                }
-                84% {
-                    background-color: #e87de4;
-                }
-                86% {
-                    background-color: #e87dd7;
-                }
-                88% {
-                    background-color: #e87dca;
-                }
-                90% {
-                    background-color: #e87dbd;
-                }
-                92% {
-                    background-color: #e87db0;
-                }
-                94% {
-                    background-color: #e87da4;
-                }
-                96% {
-                    background-color: #e87d97;
-                }
-                98% {
-                    background-color: #e87d8a;
-                }
-                100% {
-                    background-color: #e87d7d;
-                }
-            }
-            .rainbow {
-                animation: rainbow 1s infinite;
-            }
-            .blackwhite {
-                animation: blackwhite 1s infinite;
-                animation-direction: alternate;
-            }
-
-        </style>
-
     
     
-    <script src="./js/nanoplayer/nanoplayer.4.31.0.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.5.0.0.min.js?release=20250909"></script>
     <script>
-
-        var playerVersion = '4.31.0';
-        console.log('nanoplayer html version: ' + playerVersion);
-        document.getElementById('demo-version').innerText = 'version ' + playerVersion;
-
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js?20250821';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js?20250909';
         };
-
-        var player;
-
-        document.addEventListener('DOMContentLoaded', function () {
-            var cap = NanoPlayer.capabilities;
-            !cap.length ? console.log('no supported player tech') : cap.forEach(function (c) { console.log('supported player tech: ' + c) });
-            init();
+        // Initialize player on page load
+        window.addEventListener('load', function() {
+            initializePlayer();
         });
     </script>
     
 
-    <script>
-
-        var buffering = {
-            start: 0,
-            end: 0
-        };
-
-        var bintu, bintuQ;
-        var metaDataTimeout = 0;
-        var forceAutoplay = null;
-        var forceMuted = null;
-
-        var searchRefreshInterval = 0;
-
-        var config = {
-            source: {},
-            playback: {
-                autoplay: true,
-                automute: true,
-                muted: true
-            },
-            events: {},
-            style: {
-                displayMutedAutoplay: true
-            }
-        };
-        events = events || {};
-        events.onMute = function (e) {
-            log('onMute');
-            var buttonMute = document.getElementById('buttonMute');
-            buttonMute.dataset.muted = true;
-            buttonMute.innerText = 'unmute';
-        };
-        events.onUnmute = function (e) {
-            log('onUnmute');
-            var buttonMute = document.getElementById('buttonMute');
-            buttonMute.dataset.muted = false;
-            buttonMute.innerText = 'mute';
-        };
-        events.onVolumeChange = function (e) {
-            log('onVolumeChange ' + e.data.volume * 100);
-            var volumeFader = document.getElementById('faderVolume'), volumeOutput = document.getElementById('volume'), volume = Math.round(e.data.volume * 100);
-            (parseInt(volumeFader.value) !== volume) && (volumeFader.value = volume);
-            volumeOutput.value = volume + '%';
-        };
-
-        function init() {
-            document.querySelector('#faderVolume').value = 100;
-            var doStartPlayer = getNanoPlayerParameters();
-            if (doStartPlayer) {
-                startPlayer(config);
-            }
-        }
-
-        function resetPlayer() {
-            var select = document.getElementById('stream-select');
-            if (!select.options[select.selectedIndex]) {
-                return;
-            }
-            var selectedValue = select.options[select.selectedIndex].value;
-
-            if (!!streamObj) {
-                if (streamObj.streamname === selectedValue) {
-                    console.log('already playing this stream');
-                    return;
-                }
-            }
-
-            var i, len = streamObjs.length;
-            for (i = 0; i < len; i += 1) {
-                if (streamObjs[i].streamname === selectedValue)
-                    streamObj = streamObjs[i];
-            }
-
-            var h5liveQ = {};
-            h5liveQ.rtmp = {};
-            h5liveQ.rtmp.url = streamObj.url;
-            h5liveQ.rtmp.streamname = streamObj.streamname;
-            h5liveQ.server = {};
-            h5liveQ.server.websocket = streamObj.server.websocket;
-            h5liveQ.server.hls = streamObj.server.hls;
-            h5liveQ.server.progressive = streamObj.server.progressive;
-
-            config.source = config.source || {};
-            config.source.entries = [
-                {
-                    'h5live': h5liveQ
-                }
-            ]
-            config.source.options = {
-                'switch': {
-                    forcePlay: true
-                }
-            }
-
-            checkSecurity();
-            if (!player) {
-                startPlayer();
-            } else {
-                updateSource();
-            }
-        }
-
-        function destroyPlayer() {
-            if (player) {
-                player.destroy();
-            }
-        }
-
-        function startPlayer(config) {
-            if (!player) {
-                player = new NanoPlayer('playerDiv');
-            }
-            config = config || this.config;
-            createCodeSippet(this.config);
-            //var mobile = /(Android|iPhone|iPad|iPod)/.test(navigator.userAgent);
-            //config.playback.autoplay = (!mobile && config.playback.autoplay);
-            if (forceAutoplay !== null) {
-                config.playback.autoplay = forceAutoplay;
-            }
-            if (forceMuted !== null) {
-                config.playback.muted = forceMuted;
-            }
-            var buttonMute = document.getElementById('buttonMute');
-            buttonMute.dataset.muted = config.playback.muted;
-            buttonMute.innerText = forceMuted ? 'unmute' : 'mute';
-
-            for (var event in events) {
-                if (Object.prototype.hasOwnProperty.call(events, event)) {
-                    player.on(event.substr(2), events[event]);
-                }
-            }
-
-            if (window.nanoPlayerMetricsConfig) {
-                config.metrics = window.nanoPlayerMetricsConfig;
-            }
-
-            var toString = Object.prototype.toString;
-            function deepCopy(obj) {
-                var rv;
-
-                switch (typeof obj) {
-                    case 'object':
-                        if (obj === null) {
-                            // null => null
-                            rv = null;
-                        }
-                        else {
-                            switch (toString.call(obj)) {
-                                case '[object Array]':
-                                    // It's an array, create a new array with
-                                    // deep copies of the entries
-                                    rv = obj.map(deepCopy);
-                                    break;
-                                case '[object Date]':
-                                    // Clone the date
-                                    rv = new Date(obj);
-                                    break;
-                                case '[object RegExp]':
-                                    // Clone the RegExp
-                                    rv = new RegExp(obj);
-                                    break;
-                                    // ...probably a few others
-                                default:
-                                    // Some other kind of object, deep-copy its
-                                    // properties into a new object
-                                    rv = Object.keys(obj).reduce(function (prev, key) {
-                                        prev[key] = deepCopy(obj[key]);
-                                        return prev;
-                                    }, {});
-                                    break;
-                            }
-                        }
-                        break;
-                    default:
-                        // It's a primitive, copy via assignment
-                        rv = obj;
-                        break;
-                }
-                return rv;
-            }
-
-            player.setup(config).then(function (conf) {
-                setVolume(null, document.getElementById('faderVolume').value);
-                document.querySelector('#latencyControlMode option[value="' + conf.playback.latencyControlMode + '"]').selected = true;
-                checkConfig(conf);
-                try {
-                    conf = JSON.stringify(conf)
-                } catch (err) { }
-                log('setup ok: ' + conf);
-            }, function (error) {
-                if (error.message) {
-                    error = error.message;
-                } else {
-                    try {
-                        var err = JSON.stringify(error);
-                        if (err === '{}') {
-                            err = error.message;
-                        }
-                        error = err;
-                    } catch (err) { }
-                }
-                log('Setup Error: ' + error);
-                document.getElementById('status').innerText = 'Setup Error: ' + error;
-                showErrorCodeSnippet();
-            });
-        }
-
-        function requestFullscreenPlayer() {
-            if (player) {
-                player.requestFullscreen()
-                    .then(function (){
-                        log('requestFullscreen resolved');
-                    })
-                    .catch(function(err) {
-                        log('requestFullscreen rejected: ' + err.reason);
-                    });
-            }
-        }
-
-        function checkConfig(conf) {
-            if ((config.source.bintu && !config.source.h5live) || (conf.source.h5live && conf.source.h5live.server)) {
-                var container = document.getElementById('h5live-server-container');
-                var wssEl = document.getElementById('h5live-server-wss');
-                var hlsEl = document.getElementById('h5live-server-hls');
-                wssEl.innerText = conf.source.h5live.server.websocket;
-                hlsEl.innerText = conf.source.h5live.server.hls;
-                container.style.display = 'block';
-            }
-            document.getElementById('url').innerText = conf.url;
-            document.getElementById('tech').innerText = conf.type;
-            if (document.getElementById('demo-version').innerText !== 'version ' + player.version) {
-                alert('The page has been updated during the last few minutes! Please empty your cache!');
-            }
-            document.getElementById('demo-version').innerText = 'version ' + player.version;
-        }
-
-        function play() {
-            player.play();
-        }
-
-        function pause() {
-            player.pause();
-        }
-
-        function mute(e) {
-            var muted = (e.dataset.muted === 'true') ? true : false;
-            if (muted) {
-                player.unmute();
-            } else {
-                player.mute();
-            }
-        }
-
-        function setVolume(e, value) {
-            if (!player) {
-                return;
-            }
-            if (value < 0) {
-                value = 0;
-            } else if (value > 100) {
-                value = 100;
-            }
-            var volume = value / 100;
-            player.setVolume(volume);
-        }
-
-        function updateSource() {
-            if (!player) {
-                return;
-            }
-            player.updateSource(config.source).then(function (conf) {
-                checkConfig(conf);
-                try {
-                    conf = JSON.stringify(conf);
-                } catch (err) { }
-                log('update source ok: ' + conf);
-            }, function (error) {
-                if (error.message) {
-                    error = error.message;
-                } else {
-                    try {
-                        var err = JSON.stringify(error);
-                        if (err === '{}') {
-                            err = error.message;
-                        }
-                        error = err;
-                    } catch (err) { }
-                }
-                log('update source error: ' + error);
-                document.getElementById('status').innerText = 'Update Source Error: ' + error;
-            });
-        }
-
-        function onLatencyControlMode(e) {
-            var select = document.getElementById('latencyControlMode');
-            var latencyControlMode = select.options[select.selectedIndex].value;
-            this.config.playback.latencyControlMode = latencyControlMode;
-            startPlayer();
-        }
-
-    </script>
+    <script src="./js/nanoplayer-demo.js"></script>
 </body>
-
 </html>

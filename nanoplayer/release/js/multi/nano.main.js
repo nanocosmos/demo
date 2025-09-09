@@ -76,11 +76,6 @@ var streamobj = [];
             el = document.getElementById('valid');
             el.style.display = 'block';
             this.registerEventHandler();
-            var force = NanoTools.getHTTPParam('force');
-            if (force) {
-                this.config.playback = this.config.playback || {};
-                this.config.playback.forceTech = force;
-            }
             var metadata = NanoTools.getHTTPParam('playback.metadata');
             if (metadata) {
                 this.config.playback = this.config.playback || {};
@@ -433,9 +428,6 @@ var streamobj = [];
             }
             item.innerHTML += '<strong>standalone player: </strong>';
             var link = '<a style="cursor:pointer" onclick="window.open(\'nanoplayer.html?bintu.apiurl=' + this.config.source.bintu.apiurl + '&bintu.streamid=' + streamId;
-            if (this.config.playback.forceTech) {
-                link += '&force=' + this.config.playback.forceTech;
-            }
             link += '\',\'_blank\');">';
             link += 'open';
             link += '</a>';
