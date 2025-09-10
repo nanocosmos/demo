@@ -24,7 +24,6 @@
             max-width: 1200px;
             width: 90%;
             background: rgba(7, 69, 107, 0.2);
-            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -169,14 +168,16 @@
         .volume-control {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-left: 12px;
-            padding-left: 12px;
+            gap: 4px;
+            margin-left: 6px;
+            padding-left: 6px;
+            margin-right: 6px;
+            padding-right: 6px;
             border-left: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .volume-slider {
-            width: 80px;
+            width: 80%;
             height: 8px;
             background: rgba(255, 255, 255, 0.3);
             border-radius: 4px;
@@ -241,8 +242,8 @@
 
         .volume-text {
             color: white;
-            font-size: 12px;
-            min-width: 35px;
+            font-size: 1em;
+            min-width: 20%;
             font-weight: 500;
         }
 
@@ -674,7 +675,6 @@
                 <button id="mute-btn"><span class="material-icons">volume_up</span></button>
                 <button id="fullscreen-btn"><span class="material-icons">fullscreen</span></button>
                 <div class="volume-control">
-                    <span class="volume-text">Vol</span>
                     <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="100" title="Volume" placeholder="Set volume">
                     <span id="volume-value" class="volume-text">100%</span>
                 </div>
