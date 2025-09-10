@@ -1295,8 +1295,7 @@ function isValidConfigPath (path, isEntry = false) {
         // If the valid config defines this as 'object' string, any nested values are allowed
         if (current === 'object') {
             return {
-                'valid'        : true,
-                'expectedType' : 'object'
+                'valid': true
             };
         }
         
