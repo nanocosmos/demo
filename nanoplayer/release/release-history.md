@@ -1,8 +1,21 @@
 ﻿# **NanoPlayer - Release History**
 
-## Please find more about the **MoQ playback mode** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_moq/)
+## Please find more about the **MOQ playback mode** feature in our [documentation](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_feature_moq/)
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_v5_migration_guide)
+
+## **[5.0.1]**
+
+### **Release Notes**
+
+This update fixes occasional audio lag in MOQ playback mode that could occur when larger faststart buffers were received and removes an unintended log line via `console.log`.
+
+### **Changelog**
+
+### Fixed
+
+- occasional audio lag in MOQ playback mode when larger faststart buffers are received
+- unintended log line via `console.log`
 
 ## **[5.0.0]**
 
