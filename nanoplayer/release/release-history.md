@@ -4,6 +4,18 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.de/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.2]**
+
+### **Release Notes**
+
+This update fixes an issue with secure token playback on iOS ≤ 17.1 in H5Live-HLS mode, resulting in error code `4200`.
+
+### **Changelog**
+
+### Fixed
+
+- secure token playback failing with error `4200` on iOS ≤ 17.1 in H5Live-HLS mode
+
 ## **[5.0.1]**
 
 ### **Release Notes**
@@ -26,7 +38,7 @@ This update fixes occasional audio lag in MOQ playback mode that could occur whe
 This major release introduces Media over QUIC (MoQ) playback, bringing next-generation streaming with ultra-low latency and real-time playback powered by modern web technologies like QUIC and WebCodecs. This unlocks smoother, more interactive streaming experiences while still maintaining full compatibility with proven playback modes such as WebSocket/MSE and H5Live-HLS.
 Playback control has also been improved. You can now set the player volume directly at startup, and the player performs smarter connection checks to ensure QUIC compatibility before playback begins.
 We have optimized the default settings to deliver faster startup times, lower latency, and more reliable adaptive streaming. When multiple quality levels are available, the player will automatically use adaptive bitrate (ABR).
-Finally, we have cleaned up outdated and rarely used features. Flash player and legacy iOS<=9 native-HLS fallback modes have been removed, configuration options have been simplified, and older scaling modes have been retired to ensure a more consistent playback experience.
+Finally, we have cleaned up outdated and rarely used features. Flash player and legacy iOS ≤ 9 native-HLS fallback modes have been removed, configuration options have been simplified, and older scaling modes have been retired to ensure a more consistent playback experience.
 
 ### **Changelog**
 
@@ -62,7 +74,7 @@ Finally, we have cleaned up outdated and rarely used features. Flash player and 
 ### Removed
 
 - flash player fallback mode
-- native hls fallback mode (iOS version <= 9)
+- native hls fallback mode (iOS version ≤ 9)
 - deprecated single source configuration via `config.source.h5live` object
   - remaining valid source configurations are `config.source.group` and `config.source.entries`
 - scaling modes `"resize"` and `"original"`
@@ -1705,7 +1717,7 @@ This release patches an issue with bintu sources. Now after a successful bintu c
 ### **Release Notes**
 
 With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<sales@nanocosmos.de>) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
 ### **Changelog**
@@ -1717,7 +1729,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
     - 5001: An exception was thrown during setup.
     - 5002: A forced tech is not supported by your browser.
     - 5003: The players source configuration is malformed or missing.
-    - 5004: This browser does not fully support HTML5 and H5Live. Supported are: Chrome >=54 (Windows, MacOSX, Android), Firefox >=48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX & at least iOS 10).
+    - 5004: This browser does not fully support HTML5 and H5Live. Supported are: Chrome ≥ 54 (Windows, MacOSX, Android), Firefox ≥ 48 (Windows, MacOSX, Android), Microsoft Edge (Windows), Microsoft Internet Explorer 11 (at least Windows 8), Safari (MacOSX & at least iOS 10).
     - 5005: Configuration error. Could not create player, the rtmp configuration is missing or incomplete. Add an rtmp url and streamname to the configuration.
     - 5006: Configuration error. Could not create player, with this configuration an security token is required. Add an token to the configuration.
     - 5007: Configuration error. Could not create player, the websocket server configuration is missing.
@@ -1742,7 +1754,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
   - enables event logging and data aggregation
   - configurable via the new 'config.metrics' object, see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor>
   - disabled by default
-  - for more information contact our sales team: mailto:<sales@nanocosmos.de>
+  - for more information contact our sales team: mailto:sales@nanocosmos.de
   - NOTE: don't set if you have no account!
   - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
 
