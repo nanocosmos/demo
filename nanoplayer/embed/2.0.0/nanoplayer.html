@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Embed Player</title>
+  </head>
+    <body>
+      <style>
+        body {
+          margin:0
+        }
+        #playerDiv {
+          width: 100vw;
+          height:100vh
+        }
+      </style>
+
+  <!-- player -->
+      <div id="playerDiv"></div>
+
+      <!-- nanoPlayer JS Files -->
+
+      <!-- nanoStream H5Live Player JS API (nanoPlayer)  -->
+      <script>
+          (function() {
+            var currentUrl = window.location.href;
+            var defaultDomain = 'demo.nanocosmos.de';
+            var domain = defaultDomain;
+
+            var match = currentUrl.match(/https?:\/\/([^\/]+)\/nanoplayer\/embed/);
+            if (match && match[1]) {
+              domain = match[1];
+            }
+
+            var scriptUrl = 'https://' + domain + '/nanoplayer/api/release/nanoplayer.5.min.js?20250403';
+            document.write('<script src="' + scriptUrl + '"><\/script>');
+          })();
+      </script>
+
+      <!-- nanoPlayer embed version -->
+      <script src="js/nanoplayer/nanoplayer-embed-version.js"></script>
+
+      <!-- nanoPlayer events - here you can find all the events from nanoplayer API -->
+      <script src="js/nanoplayer/nanoplayer-events.js"></script>
+
+      <!-- nanoPlayer config - here the config is created dynamically - no need to edit -->
+      <script src="js/nanoplayer/nanoplayer-config.js"></script>
+
+      <!-- nanoPlayer main - here the player setup happens - no need to edit -->
+      <script src="js/nanoplayer/nanoplayer-main.js"></script>
+
+      <script>
+
+        function getQueryParamTitle(name) {
+          var match = window.location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
+          return match ? decodeURIComponent(match[1]) : null;
+        }
+
+      </script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          nanoPlayerMain(); // HERE WE LOAD THE NANOPLAYER-MAIN.JS FILE, NO NEED TO EDIT IT
+
+          var title = getQueryParamTitle('title');
+          if (title) {
+              document.title = title;
+          }
+        });
+      </script>
+
+    </body>
+</html>
