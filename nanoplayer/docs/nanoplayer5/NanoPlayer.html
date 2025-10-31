@@ -81,7 +81,7 @@
         NanoPlayer
         </h2>
         
-            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 5.0.2</p></div>
+            <div class="class-description"><p>NanoPlayer (H5Live) Public API Class 5.0.3</p></div>
         
     
 </header>
@@ -170,7 +170,7 @@
 	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
 	<dd class="tag-version">
 		<ul class="dummy">
-			<li>5.0.2</li>
+			<li>5.0.3</li>
 		</ul>
 	</dd>
 	
@@ -5461,7 +5461,7 @@
                 </td>
             
 
-            <td class="description last"><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
+            <td class="description last"><p>Enable/disable autoplay (default: true). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the 'muted' property to 'true'. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p></td>
         </tr>
 
     
@@ -5499,7 +5499,7 @@
                 </td>
             
 
-            <td class="description last"><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With 'autoplay = true' and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p></td>
+            <td class="description last"><p>Enable/disable automute (default: false). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With 'autoplay = true' and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p></td>
         </tr>
 
     
@@ -5537,7 +5537,7 @@
                 </td>
             
 
-            <td class="description last"><p>Mute/unmute the player (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the 'muted' property to 'true'. See property 'autoplay' for more informations.</p></td>
+            <td class="description last"><p>Mute/unmute the player (default: false). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the 'muted' property to 'true'. See property 'autoplay' for more informations.</p></td>
         </tr>
 
     
@@ -5626,7 +5626,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -5645,6 +5645,8 @@
 
             
                 <td class="default">
+                
+                    true
                 
                 </td>
             
@@ -5662,7 +5664,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -5682,10 +5684,50 @@
             
                 <td class="default">
                 
+                    true
+                
                 </td>
             
 
             <td class="description last"><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>enableWakeLock</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>Enable/disable Wake Lock (default: true).</p></td>
         </tr>
 
     
@@ -8436,7 +8478,7 @@
                 </td>
             
 
-            <td class="description last"><p>The server domain to use with the metrics. e.g. &quot;metrics.stream360.io&quot;.</p></td>
+            <td class="description last"><p>The server domain to use with the metrics.</p></td>
         </tr>
 
     
@@ -12795,7 +12837,7 @@
 
             
 
-            <td class="description last"><p>The current active video element. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
+            <td class="description last"><p>The current active video element. <b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
         </tr>
 
     
@@ -12819,7 +12861,7 @@
 
             
 
-            <td class="description last"><p>The list of available video elements. Has two elements in case of iOS playback. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
+            <td class="description last"><p>The list of available video elements. Has two elements in case of iOS playback. <b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p></td>
         </tr>
 
     
@@ -24840,7 +24882,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a>
 	
-		on Fri Sep 26th 2025
+		on Fri Oct 31st 2025
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

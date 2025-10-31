@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer v5
 
 ## NanoPlayer {#NanoPlayer}
 
-NanoPlayer (H5Live) Public API Class 5.0.2
+NanoPlayer (H5Live) Public API Class 5.0.3
 
 **Kind**: global class
-**Version**: 5.0.2
+**Version**: 5.0.3
 
 ### new NanoPlayer(playerDivId) {#new_NanoPlayer_new}
 
@@ -1634,9 +1634,9 @@ The event that fires when the active video element for playback has been created
     </tr><tr>
     <td>data</td><td><code>object</code></td><td><p>The data object.</p> </td>
     </tr><tr>
-    <td>data.activeVideoElement</td><td><code>HTMLVideoElement</code></td><td><p>The current active video element. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p> </td>
+    <td>data.activeVideoElement</td><td><code>HTMLVideoElement</code></td><td><p>The current active video element. <b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p> </td>
     </tr><tr>
-    <td>data.videoElementList</td><td><code>Array.HTMLVideoElement</code></td><td><p>The list of available video elements. Has two elements in case of iOS playback. <br><b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p> </td>
+    <td>data.videoElementList</td><td><code>Array.HTMLVideoElement</code></td><td><p>The list of available video elements. Has two elements in case of iOS playback. <b>IMPORTANT</b>: Video elements should be treated as read-only and not be altered via properties or method calls.</p> </td>
     </tr>  </tbody>
 </table>
 
@@ -1752,19 +1752,21 @@ The config object to pass as param for the 'setup' call.
     </tr><tr>
     <td>[playback]</td><td><code>object</code></td><td></td><td><p>The object to configure the playback.</p> </td>
     </tr><tr>
-    <td>[playback.autoplay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable autoplay (default: true). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p> </td>
+    <td>[playback.autoplay]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable autoplay (default: true). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). To allow autoplay in this case set the &#39;muted&#39; property to &#39;true&#39;. See our <a href="https://www.nanocosmos.de/blog/2018/03/autoplay-on-web-pages-with-h5live-player-for-ultra-low-latency-live-streams/"><b>nanocosmos-blog</b></a> for more informations.</p> </td>
     </tr><tr>
-    <td>[playback.automute]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable automute (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p> </td>
+    <td>[playback.automute]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable automute (default: false). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio or within a user interaction (tap, click etc.). With &#39;autoplay = true&#39; and this option enabled the player will be muted to allow autoplay in case the browsers policy restricted autoplay.</p> </td>
     </tr><tr>
-    <td>[playback.muted]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Mute/unmute the player (default: false). <br><b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the &#39;muted&#39; property to &#39;true&#39;. See property &#39;autoplay&#39; for more informations.</p> </td>
+    <td>[playback.muted]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Mute/unmute the player (default: false). <b>IMPORTANT</b>: Browsers (mostly mobile) with stricter autoplay policy only allow autoplay with muted audio. To allow autoplay set the &#39;muted&#39; property to &#39;true&#39;. See property &#39;autoplay&#39; for more informations.</p> </td>
     </tr><tr>
     <td>[playback.latencyControlMode]</td><td><code>string</code></td><td><code>&quot;balancedadaptive&quot;</code></td><td><p>The latency control mode of the player - possible values: &quot;classic&quot;, &quot;fastadaptive&quot;, &quot;balancedadaptive&quot;</p> </td>
     </tr><tr>
     <td>[playback.metadata]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Enable/disable metadata (default: false).</p> </td>
     </tr><tr>
-    <td>[playback.enableMediaOverQuic]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic playback (default: true).</p> </td>
+    <td>[playback.enableMediaOverQuic]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Media Over Quic playback (default: true).</p> </td>
     </tr><tr>
-    <td>[playback.enableQuicConnectionProbe]</td><td><code>string</code></td><td></td><td><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p> </td>
+    <td>[playback.enableQuicConnectionProbe]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p> </td>
+    </tr><tr>
+    <td>[playback.enableWakeLock]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Wake Lock (default: true).</p> </td>
     </tr><tr>
     <td>[playback.videoId]</td><td><code>string</code> | <code>Array.string</code></td><td></td><td><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (HLS PLAYBACK ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p> </td>
     </tr><tr>
@@ -1916,7 +1918,7 @@ The config object to pass as param for the 'setup' call.
     </tr><tr>
     <td>metrics.accountKey</td><td><code>string</code></td><td></td><td><p>The account key provided by nanocosmos to use with the metrics.</p> </td>
     </tr><tr>
-    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>The server domain to use with the metrics. e.g. &quot;metrics.stream360.io&quot;.</p> </td>
+    <td>[metrics.serverDomain]</td><td><code>string</code></td><td></td><td><p>The server domain to use with the metrics.</p> </td>
     </tr><tr>
     <td>[metrics.userId]</td><td><code>string</code></td><td></td><td><p>Application user/viewer id. If your application includes a user name or user id, providing this information enables you to filter or aggregate data by this user.</p> </td>
     </tr><tr>
@@ -2327,4 +2329,3 @@ The possible pause reason in a onPause event.
     <td>sourcestreamstopped</td><td><p>Paused because the source stream has been stopped.</p> </td>
     </tr>  </tbody>
 </table>
-
