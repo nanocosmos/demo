@@ -314,6 +314,7 @@ let config = {
             updateStatusField('status-value', 'playing');
             hideStatusElement('error-container');
             hideStatusElement('metadata-container');
+            hasSetupError = false;
             checkActualConnection(); // Check actual connection when playback starts
         },
         'onPause': function (e) {
@@ -322,7 +323,7 @@ let config = {
             updateStatusField('status-value', 'paused' + (e.data.reason !== 'normal' ? ' (' + e.data.reason + ')' : ''));
             isPlaying = false;
             updateButtons();
-            checkActualConnection(); // Check actual connection when playback pauses
+            updateNeutralMOQDisplay();
             cleanupOrphanedStates(); // Clean up orphaned switching states when paused
         },
         'onLoading': function (e) {
@@ -330,6 +331,7 @@ let config = {
             updateStatus('Loading stream...');
             updateStatusField('status-value', 'loading');
             isPlaying = true;
+            hasSetupError = false;
             updateButtons();
             hideStatusElement('error-container');
             hideStatusElement('metadata-container');
@@ -370,6 +372,10 @@ let config = {
             updateStatusField('error-value', e.data.code + ': ' + e.data.message || 'Unknown error');
             updateStatusField('status-value', e.data.code + ': ' + e.data.message || 'Unknown error');
             cleanupOrphanedStates(); // Clean up orphaned switching states on error
+            if (e.data.code > 5000) {
+                hasSetupError = true;
+                updateNeutralMOQDisplay();
+            }
         },
         'onWarning': function (e) {
             logEvent(e.name, e.data);
@@ -2118,31 +2124,31 @@ function toggleCodeSnippet () {
     }
 }
 
+var hasSetupError = false;
+
 function checkActualConnection () {
+    if (hasSetupError) return;
+
     const indicator = document.getElementById('moq-indicator-config');
     const text = document.getElementById('moq-text-config');
     const dot = indicator.querySelector('.dot');
     
-    // Check if MoQ is enabled in config
     var isMoQEnabled = config && config.playback && config.playback.enableMediaOverQuic;
     
-    // Check browser support for MoQ technologies
     var hasWebTransport = !!window.WebTransport;
     var hasVideoDecoder = !!window.VideoDecoder;
     var hasAudioDecoder = !!window.AudioDecoder;
     var isMediaOverQuicSupported = hasWebTransport && hasVideoDecoder && hasAudioDecoder;
     
-    // Remove existing color classes
     dot.classList.remove('dot-green', 'dot-orange', 'dot-red');
     
-    // Show checking state initially
     text.textContent = 'Checking connection type...';
-    dot.classList.add('dot-orange');
-    
+    dot.classList.add('dot-white');
+
     function check () {
         updateMoQDisplay(isMoQEnabled, isMediaOverQuicSupported, player ? player.mediaplaybackapi : 'default');
     }
-    
+
     if (player && player.mediaplaybackapi === 'default') {
         setTimeout(function () {
             checkActualConnection();
@@ -2161,30 +2167,54 @@ function updateMoQDisplay (isMoQEnabled, isMediaOverQuicSupported, connectionTyp
     if (!dot || !text) return;
     
     // Remove existing color classes
-    dot.classList.remove('dot-green', 'dot-orange', 'dot-red');
+    dot.classList.remove('dot-green', 'dot-orange', 'dot-red', 'dot-white');
     
     if (isMoQEnabled) {
         if (connectionType === 'moq') {
             // Green: MoQ is active
             dot.classList.add('dot-green');
-            text.textContent = 'MoQ: Active (WebTransport)';
+            text.textContent = 'MOQ: Active (WebTransport)';
+        }
+        else if (connectionType === 'hls') {
+            // Orange: MoQ enabled but using HLS fallback
+            dot.classList.add('dot-orange');
+            text.textContent = 'MOQ: Inactive (HTTP/HLS Fallback)';
+        }
+        else if (connectionType === 'default') {
+            dot.classList.add('dot-white');
+            text.textContent = 'MOQ status';
         }
         else {
             // Orange: MoQ enabled but using fallback
             dot.classList.add('dot-orange');
-            text.textContent = 'MoQ: Inactive (WebSocket Fallback)';
+            text.textContent = 'MOQ: Inactive (WebSocket Fallback)';
         }
     }
     else if (isMediaOverQuicSupported) {
         // Orange: Supported but not enabled
         dot.classList.add('dot-orange');
-        text.textContent = 'MoQ: Supported but not enabled';
+        text.textContent = 'MOQ: Supported but not enabled';
     }
     else {
         // Red: Not supported
         dot.classList.add('dot-red');
-        text.textContent = 'MoQ: Not supported';
+        text.textContent = 'MOQ: Not supported';
     }
+}
+
+function updateNeutralMOQDisplay () {
+    const indicator = document.getElementById('moq-indicator-config');
+    const text = document.getElementById('moq-text-config');
+    const dot = indicator ? indicator.querySelector('.dot') : null;
+    
+    if (!dot || !text) return;
+    
+    indicator.style.display = 'inline-flex';
+    
+    dot.classList.remove('dot-green', 'dot-orange', 'dot-red', 'dot-white');
+    
+    dot.classList.add('dot-white');
+    text.textContent = 'MOQ Status';
 }
 
 // Update MoQ indicator when config changes

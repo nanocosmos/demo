@@ -1,0 +1,151 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NanoPlayer Releases</title>
+    <link rel="stylesheet" href="release-styles.css"/>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
+<h2 id="please-find-more-about-the-moq-playback-mode-feature-in-our-documentation">Please find more about the <strong>MOQ playback mode</strong> feature in our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_feature_moq/">documentation</a></h2>
+<h2 id="for-easy-to-use-migration-follow-our-guide">For easy-to-use migration follow our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide">guide</a></h2>
+<h2 id="-5-0-3-"><strong>[5.0.3]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release includes fixes for loading timeout behavior and fast-start buffer management, along with improved screen wake behavior on mobile devices. The loading timeout now properly resets when updating sources during the loading state. Separately, fast-start buffer requests are now prevented during playback to avoid unnecessary buffering. Additionally, mobile devices will stay active during MOQ mode playback, with screen dimming and locking disabled by default through the new playback.enableWakeLock setting.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>loading timeout is now correctly reinstated after updateSource is called in the loading state.</li>
+<li>prevent fast-start buffer from being requested by updateSource while in the playing state.</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>mobile devices no longer dim or lock the screen during playback in MOQ mode, ensuring consistent behavior across browsers and playback modes.<ul>
+<li>controlled via playback.enableWakeLock (default: enabled)</li>
+</ul>
+</li>
+</ul>
+<h3 id="release-package-5-0-3"><strong>Release Package 5.0.3</strong></h3>
+<ul>
+<li><a href="https://files.nanocosmos.de/index.php/s/tb2aX3H6CjCTBNw">5.0.3</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/y4e2axW7s8qEtJb">latest 5.x</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
+</ul>
+<h3 id="documentation"><strong>Documentation</strong></h3>
+<ul>
+<li><a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_api/">docs.nanocosmos.net</a></li>
+</ul>
+<h3 id="release-history"><strong>Release History</strong></h3>
+<ul>
+<li><a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_release_history">release history</a></li>
+</ul>
+
+  </body>
+</html>

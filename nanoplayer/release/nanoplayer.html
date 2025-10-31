@@ -466,6 +466,11 @@
             box-shadow: 0 0 10px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.3);
         }
 
+        .latency-badge.moq-indicator .dot-white{
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(247, 246, 245, 0.6), 0 0 20px rgba(244, 130, 32, 0.3);
+        }
+
         @keyframes pulse-glow {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(1.1); }
@@ -685,7 +690,7 @@
         <div class="moq-container">
             <div class="latency-badge moq-indicator" id="moq-indicator-config">
                 <div class="dot"></div>
-                <span id="moq-text-config">Checking connection type...</span>
+                <span id="moq-text-config">MOQ status</span>
             </div>
         </div>
 
@@ -793,10 +798,10 @@
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.5.0.2.min.js?release=20250926"></script>
+    <script src="./js/nanoplayer/nanoplayer.5.0.3.min.js?release=20251031"></script>
     <script>
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js?20250926';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js?20251031';
         };
         // Initialize player on page load
         window.addEventListener('load', function() {

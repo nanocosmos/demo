@@ -61,7 +61,7 @@ All modifications will remain property of nanocosmos.
                 <path id="moq-icon-cross" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" style="display: none;"></path>
                 <path id="moq-icon-loading" d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6z" style="display: block;"></path>
             </svg>
-            <span id="moq-text">Checking connection type...</span>
+            <span id="moq-text">MOQ status</span>
         </div>
         <p class="normal">
             <strong>switch rule:&nbsp;</strong>
@@ -176,15 +176,15 @@ All modifications will remain property of nanocosmos.
 
     
     
-    <script src="./js/nanoplayer/nanoplayer.5.0.2.min.js"></script>
+    <script src="./js/nanoplayer/nanoplayer.5.0.3.min.js"></script>
     <script>
 
-        var playerVersion = '5.0.2';
+        var playerVersion = '5.0.3';
         console.log('nanoplayer html version: ' + playerVersion);
         document.getElementById('demo-version').innerText = 'version ' + playerVersion;
 
         var getPlayerLocation = function () {
-            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js?20250926';
+            return '//demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.5.min.js?20251031';
         };
 
         var player;
@@ -204,7 +204,7 @@ All modifications will remain property of nanocosmos.
             var indicator = document.getElementById('moq-indicator');
             var text = document.getElementById('moq-text');
             indicator.style.cssText = 'display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; margin-bottom: 8px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;';
-            text.textContent = 'Checking connection type...';
+            text.textContent = 'MOQ status';
 
             var enableMediaOverQuic = getHTTPParam('enableMediaOverQuic') || getHTTPParam('playback.enableMediaOverQuic');
             var isMoQEnabled = !!(enableMediaOverQuic === '1' || enableMediaOverQuic === 'true');
