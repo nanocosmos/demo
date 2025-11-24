@@ -4,6 +4,23 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.4]**
+
+### **Release Notes**
+
+This release includes an improvement to the overall resilience of the player’s error handling and recovery. It resolves an issue that caused a black screen during error recovery in MSE and HLS playback modes. Furthermore, it fixes a playback start error that occurred when MOQ mode was enabled without a configured `server.webtransport` URL.
+
+### **Changelog**
+
+### Fixed
+
+ - an issue causing a black screen during error recovery in MSE and HLS playback modes.
+ - a playback start failure that occurred when MOQ mode was enabled but no server.webtransport URL was provided in the configuration.
+
+### Improved
+
+- Enhanced overall resilience of error handling and recovery mechanisms.
+
 ## **[5.0.3]**
 
 ### **Release Notes**
