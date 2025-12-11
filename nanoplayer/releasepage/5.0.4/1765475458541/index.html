@@ -116,22 +116,21 @@
     <h1 id="nanoplayer-release-overview"><strong>NanoPlayer - Release Overview</strong></h1>
 <h2 id="please-find-more-about-the-moq-playback-mode-feature-in-our-documentation">Please find more about the <strong>MOQ playback mode</strong> feature in our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_feature_moq/">documentation</a></h2>
 <h2 id="for-easy-to-use-migration-follow-our-guide">For easy-to-use migration follow our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide">guide</a></h2>
-<h2 id="-5-0-4-"><strong>[5.0.4]</strong></h2>
+<h2 id="-5-0-5-"><strong>[5.0.5]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
-<p>This release includes an improvement to the overall resilience of the player’s error handling and recovery. It resolves an issue that caused a black screen during error recovery in MSE and HLS playback modes. Furthermore, it fixes a playback start error that occurred when MOQ mode was enabled without a configured <code>server.webtransport</code> URL.</p>
+<p>This update refines metrics reporting for the <code>onReady</code> event and fixes a slight audio delay in MOQ playback that could gradually become noticeable after repeated stream switches.</p>
 <h3 id="changelog"><strong>Changelog</strong></h3>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>an issue causing a black screen during error recovery in MSE and HLS playback modes.</li>
-<li>a playback start failure that occurred when MOQ mode was enabled but no server.webtransport URL was provided in the configuration.</li>
+<li>slight audio delay in MOQ playback that could gradually become noticeable after repeated stream switches</li>
 </ul>
 <h3 id="improved">Improved</h3>
 <ul>
-<li>Enhanced overall resilience of error handling and recovery mechanisms.</li>
+<li>metrics for <code>onReady</code> event</li>
 </ul>
-<h3 id="release-package-5-0-4"><strong>Release Package 5.0.4</strong></h3>
+<h3 id="release-package-5-0-5"><strong>Release Package 5.0.5</strong></h3>
 <ul>
-<li><a href="https://files.nanocosmos.de/index.php/s/BGD7YEiXxsirPmw">5.0.4</a></li>
+<li><a href="https://files.nanocosmos.de/index.php/s/ysC6C7ZJ2T9niQy">5.0.5</a></li>
 <li><a href="https://files.nanocosmos.de/index.php/s/y4e2axW7s8qEtJb">latest 5.x</a></li>
 <li><a href="https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP">latest</a></li>
 </ul>
