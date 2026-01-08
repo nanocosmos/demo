@@ -4,6 +4,24 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.5]**
+
+### **Release Notes**
+
+This update resolves a slight audio delay in MOQ playback that could gradually become noticeable after repeated stream switches and improves the robustness of `config.general.serverDomain` parsing for edge cases. In addition, `onReady` metrics have been improved, and an inconsistency in error emission for malformed or missing source configurations has been fixed.
+
+### **Changelog**
+
+### Fixed
+
+- slight audio delay in MOQ playback that could gradually become noticeable after repeated stream switches
+- ensure a dedicated error with code 5004 is emitted consistently when the source configuration is missing or incomplete
+
+### Improved
+
+- metrics for the `onReady` event
+- robustness of `config.general.serverDomain` parsing for edge cases
+
 ## **[5.0.4]**
 
 ### **Release Notes**
@@ -14,30 +32,30 @@ This release includes an improvement to the overall resilience of the player’s
 
 ### Fixed
 
- - an issue causing a black screen during error recovery in MSE and HLS playback modes.
- - a playback start failure that occurred when MOQ mode was enabled but no server.webtransport URL was provided in the configuration.
+- an issue causing a black screen during error recovery in MSE and HLS playback modes
+- a playback start failure that occurred when MOQ mode was enabled but no `server.webtransport` URL was provided in the configuration
 
 ### Improved
 
-- Enhanced overall resilience of error handling and recovery mechanisms.
+- Enhanced overall resilience of error handling and recovery mechanisms
 
 ## **[5.0.3]**
 
 ### **Release Notes**
 
-This release includes fixes for loading timeout behavior and fast-start buffer management, along with improved screen wake behavior on mobile devices. The loading timeout now properly resets when updating sources during the loading state. Separately, fast-start buffer requests are now prevented during playback to avoid unnecessary buffering. Additionally, mobile devices will stay active during MOQ mode playback, with screen dimming and locking disabled by default through the new playback.enableWakeLock setting.
+This release includes fixes for loading timeout behavior and fast-start buffer management, along with improved screen wake behavior on mobile devices. The loading timeout now properly resets when updating sources during the loading state. Separately, fast-start buffer requests are now prevented during playback to avoid unnecessary buffering. Additionally, mobile devices will stay active during MOQ mode playback, with screen dimming and locking disabled by default through the new `playback.enableWakeLock` setting.
 
 ### **Changelog**
 
 ### Fixed
 
-- loading timeout is now correctly reinstated after updateSource is called in the loading state.
-- prevent fast-start buffer from being requested by updateSource while in the playing state.
+- loading timeout is now correctly reinstated after updateSource is called in the loading state
+- prevent fast-start buffer from being requested by updateSource while in the playing state
 
 ### Improved
 
 - mobile devices no longer dim or lock the screen during playback in MOQ mode, ensuring consistent behavior across browsers and playback modes.
-    - controlled via playback.enableWakeLock (default: enabled)
+  - controlled via `playback.enableWakeLock` (default: enabled)
 
 ## **[5.0.2]**
 
