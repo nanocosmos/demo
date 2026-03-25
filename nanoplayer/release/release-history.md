@@ -4,6 +4,18 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.6]**
+
+### **Release Notes**
+
+This release fixes an fullscreen issue with MOQ playback on iOS 26.4 and higher where the video isn't visible. THIS UPDATE IS MANDATORY FOR NANOPLAYER 5.0.X USERS AND SHOULD BE APPLIED ASAP.
+
+### **Changelog**
+
+### Fixed
+
+- video not visible in fullscreen mode with MOQ playback on iOS 26.4 and higher
+
 ## **[5.0.5]**
 
 ### **Release Notes**

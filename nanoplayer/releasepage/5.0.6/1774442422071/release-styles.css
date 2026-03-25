@@ -1,0 +1,128 @@
+  body {
+      padding: 15px;
+  }
+
+  h1 {
+    color: black;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+
+  h1:first-child {
+      margin-bottom: 30px;
+      font-size: 40px;
+  }
+
+  h1:not(:first-child) {
+    color: #ed7d0e;
+    padding-top: 20px;
+    border-top: 1px solid #e6e6e8;
+  }
+
+  p, li, a{
+    color: #24292e;
+    margin-bottom: 1em;
+    margin-top: 0;
+    border: 0;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font-size: 18px !important;
+  }
+
+  a { 
+    color: #ed7d0e !important;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  pre {
+      font-size: 14px;
+  }
+
+/* Base16 Atelier Plateau Light - Theme */
+/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/plateau) */
+/* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
+/* Atelier-Plateau Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #655d5d;
+}
+
+/* Atelier-Plateau Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-name,
+.hljs-regexp,
+.hljs-link,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #ca4949;
+}
+
+/* Atelier-Plateau Orange */
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: #b45a3c;
+}
+
+/* Atelier-Plateau Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet {
+  color: #4b8b8b;
+}
+
+/* Atelier-Plateau Blue */
+.hljs-title,
+.hljs-section {
+  color: #7272ca;
+}
+
+/* Atelier-Plateau Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #8464c4;
+}
+
+.hljs-deletion,
+.hljs-addition {
+  color: #1b1818;
+  display: inline-block;
+  width: 100%;
+}
+
+.hljs-deletion {
+  background-color: #ca4949;
+}
+
+.hljs-addition {
+  background-color: #4b8b8b;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #f4ecec;
+  color: #585050;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
