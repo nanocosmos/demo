@@ -4,21 +4,21 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
-## **[5.0.6]**
+## **[5.0.7]**
 
 ### **Release Notes**
 
-This release fixes an fullscreen issue with MOQ playback on iOS 26.4 and higher where the video isn't visible. THIS UPDATE IS MANDATORY FOR NANOPLAYER 5.0.X USERS AND SHOULD BE APPLIED ASAP.
+This release improves layout consistency for playback. When the nanoplayer view is disabled (`style.view: false`), the CSS property `object-fit: contain` was added to the MOQ playback `CanvasElement` to align its default video scaling behavior (aspect ratio preservation and letterboxing) with the `HTMLVideoElement`. All playback modes now display consistently without additional configuration.
 
 ### **Changelog**
 
 ### Fixed
 
-- video not visible in fullscreen mode with MOQ playback on iOS 26.4 and higher
+- default `CanvasElement` behavior for MOQ playback with `style.view: false` adjusted to match `HTMLVideoElement` behavior in MSE/HLS playback, ensuring similar display across all playback modes
 
-### **Release Package 5.0.6**
+### **Release Package 5.0.7**
 
-- [5.0.6](https://files.nanocosmos.de/index.php/s/HR4Hj3KqBdsfXKJ)
+- [5.0.7](https://files.nanocosmos.de/index.php/s/rPtxztnKxc2efdw)
 - [latest 5.x](https://files.nanocosmos.de/index.php/s/y4e2axW7s8qEtJb)
 - [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
 
