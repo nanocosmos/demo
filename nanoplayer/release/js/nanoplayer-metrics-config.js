@@ -1,16 +1,15 @@
-/* eslint-disable no-undef, no-console, no-unused-vars */
 (function () {
-    var useMetrics = false;
+    var useMetrics = true;
     if (useMetrics) {
         window.nanoPlayerMetricsConfig = {
-            'accountId'     : 'myId',
-            'accountKey'    : 'sdfhe457zsjhnrtzd8',
-            'userId'        : 'myUserId',
-            'eventId'       : 'myEventId',
+            'accountId'     : 'nanocosmos1',
+            'accountKey'    : 'nc1wj472649fkjah',
+            'userId'        : 'nanoplayer-demo',
+            'eventId'       : 'nanocosmos-demo',
             'statsInterval' : 10,
-            'customField1'  : 'custom',
-            'customField2'  : 42,
-            'customField3'  : true
+            'customField1'  : 'demo',
+            'customField2'  : 'public',
+            'customField3'  : 'online resource'
         };
     }
 })(window);
