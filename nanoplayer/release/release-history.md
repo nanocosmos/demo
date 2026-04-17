@@ -4,6 +4,30 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.8]**
+
+### **Release Notes**
+
+This release resolves an issue with growing memory allocation during MOQ playback if audio is remaining muted from playback start. The update is recommended for NanoPlayer 5.0.x users.
+
+### **Changelog**
+
+### Fixed
+
+- increasing memory allocation when MOQ playback is started and remains in muted state
+
+## **[5.0.7]**
+
+### **Release Notes**
+
+This release improves layout consistency for playback. When the nanoplayer view is disabled (`style.view: false`), the CSS property `object-fit: contain` was added to the MOQ playback `CanvasElement` to align its default video scaling behavior (aspect ratio preservation and letterboxing) with the `HTMLVideoElement`. All playback modes now display consistently without additional configuration.
+
+### **Changelog**
+
+### Fixed
+
+- default `CanvasElement` behavior for MOQ playback with `style.view: false` adjusted to match `HTMLVideoElement` behavior in MSE/HLS playback, ensuring similar display across all playback modes
+
 ## **[5.0.6]**
 
 ### **Release Notes**

@@ -1253,10 +1253,14 @@ latencyMode.addEventListener('change', function () {
     const value = this.value; // Gets latency mode
     if (player) {
         config.playback.latencyControlMode = value;
-        
-        // Reset mute button to default state
-        resetMuteButton();
-        
+
+        // Preserve current mute state and volume across setup
+        config.playback.muted = isMuted;
+        const volumeSlider = document.getElementById('volume-slider');
+        if (volumeSlider) {
+            config.playback.volume = volumeSlider.value / 100;
+        }
+
         createCodeSnippet(config);
         updateMoQIndicator(); // Update MoQ indicator when config changes
         player.setup(config).then(function (config) {
