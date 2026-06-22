@@ -1,15 +1,15 @@
 (function () {
-    var useMetrics = true;
+    var useMetrics = false;
     if (useMetrics) {
         window.nanoPlayerMetricsConfig = {
-            'accountId'     : 'nanocosmos5',
-            'accountKey'    : 'nc5v3vbjtxrgf767',
-            'userId'        : 'nanoplayer-demo-multi',
-            'eventId'       : 'nanocosmos-demo-multi',
+            'accountId'     : 'rgaerg',
+            'accountKey'    : 'asrgarg',
+            'userId'        : 'demo-multi',
+            'eventId'       : 'release-multi',
             'statsInterval' : 10,
-            'customField1'  : 'demo',
-            'customField2'  : 'public',
-            'customField3'  : 'multi'
+            'customField1'  : 'release test',
+            'customField2'  : 'multi',
+            'customField3'  : 'internal'
         };
     }
 })(window);

@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer v5
 
 ## NanoPlayer {#NanoPlayer}
 
-NanoPlayer (H5Live) Public API Class 5.0.9
+NanoPlayer (H5Live) Public API Class 5.0.10
 
 **Kind**: global class
-**Version**: 5.0.9
+**Version**: 5.0.10
 
 ### new NanoPlayer(playerDivId) {#new_NanoPlayer_new}
 
