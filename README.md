@@ -4,6 +4,18 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.10]**
+
+### **Release Notes**
+
+This release improves MOQ playback compatibility with H.264 streams encoded using "High 10" or "High 4:2:2" profiles across Safari MacOS and iOS.
+
+### **Changelog**
+
+### Improved
+
+- MOQ playback compatibility with H.264 video "High 10" & "High 4:2:2" profiles in Safari MacOS and iOS
+
 ## **[5.0.9]**
 
 ### **Release Notes**
