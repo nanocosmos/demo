@@ -116,6 +116,22 @@
     <h1 id="nanoplayer-release-history"><strong>NanoPlayer - Release History</strong></h1>
 <h2 id="please-find-more-about-the-moq-playback-mode-feature-in-our-documentation">Please find more about the <strong>MOQ playback mode</strong> feature in our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_feature_moq/">documentation</a></h2>
 <h2 id="for-easy-to-use-migration-follow-our-guide">For easy-to-use migration follow our <a href="https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide">guide</a></h2>
+<h2 id="-5-0-11-"><strong>[5.0.11]</strong></h2>
+<h3 id="release-notes"><strong>Release Notes</strong></h3>
+<p>This release focuses on improvements for MoQ playback mode, enabling unmuted audio playback when the iOS silent switch/mode is active and speeding up the initial ABR switch-up.</p>
+<h3 id="changelog"><strong>Changelog</strong></h3>
+<h3 id="added">Added</h3>
+<ul>
+<li>option to keep audio playing in MoQ playback mode when the iOS silent switch/mode is enabled<ul>
+<li>controlled via configuration option <code>playback.manageAudioSessionType</code>, enabled by default</li>
+<li>ensures the underlying <code>AudioSession.type</code> is set to either <code>playback</code> or <code>play-and-record</code> so audio continues when the iOS silent switch/mode is active</li>
+</ul>
+</li>
+</ul>
+<h3 id="improved">Improved</h3>
+<ul>
+<li>faster initial ABR switch-up in MoQ mode</li>
+</ul>
 <h2 id="-5-0-10-"><strong>[5.0.10]</strong></h2>
 <h3 id="release-notes"><strong>Release Notes</strong></h3>
 <p>This release improves MOQ playback compatibility with H.264 streams encoded using &quot;High 10&quot; or &quot;High 4:2:2&quot; profiles across Safari MacOS and iOS.</p>

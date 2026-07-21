@@ -4,6 +4,24 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.11]**
+
+### **Release Notes**
+
+This release focuses on improvements for MoQ playback mode, enabling unmuted audio playback when the iOS silent switch/mode is active and speeding up the initial ABR switch-up.
+
+### **Changelog**
+
+### Added
+
+- option to keep audio playing in MoQ playback mode when the iOS silent switch/mode is enabled
+  - controlled via configuration option `playback.manageAudioSessionType`, enabled by default
+  - ensures the underlying `AudioSession.type` is set to either `playback` or `play-and-record` so audio continues when the iOS silent switch/mode is active
+
+### Improved
+
+- faster initial ABR switch-up in MoQ mode
+
 ## **[5.0.10]**
 
 ### **Release Notes**

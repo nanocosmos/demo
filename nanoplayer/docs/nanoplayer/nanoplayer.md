@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer v5
 
 ## NanoPlayer {#NanoPlayer}
 
-NanoPlayer (H5Live) Public API Class 5.0.10
+NanoPlayer (H5Live) Public API Class 5.0.11
 
 **Kind**: global class
-**Version**: 5.0.10
+**Version**: 5.0.11
 
 ### new NanoPlayer(playerDivId) {#new_NanoPlayer_new}
 
@@ -1767,6 +1767,8 @@ The config object to pass as param for the 'setup' call.
     <td>[playback.enableQuicConnectionProbe]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Media Over Quic connection probe (default: true). If Media Over Quic playback is disabled, the probe functionality is not used.</p> </td>
     </tr><tr>
     <td>[playback.enableWakeLock]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Wake Lock (default: true).</p> </td>
+    </tr><tr>
+    <td>[playback.manageAudioSessionType]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>Enable/disable Audio Session type handling (default: true).</p> </td>
     </tr><tr>
     <td>[playback.videoId]</td><td><code>string</code> | <code>Array.string</code></td><td></td><td><p>One or two element ids of existing video tags that should be used for playback. No new element(s) will be created and after destroy it/they will be kept. Can be a string (old, only one element) or a string array with one or two (HLS PLAYBACK ONLY!) element ids. Two video elements are required only for stream switching on iOS, MSE playback uses only one video tag. If only one element id is given on iOS the second video tag will be created by the player.</p> </td>
     </tr><tr>
