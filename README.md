@@ -4,6 +4,24 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.11]**
+
+### **Release Notes**
+
+This release focuses on improvements for MoQ playback mode, enabling unmuted audio playback when the iOS silent switch/mode is active and speeding up the initial ABR switch-up.
+
+### **Changelog**
+
+### Added
+
+- option to keep audio playing in MoQ playback mode when the iOS silent switch/mode is enabled
+  - controlled via configuration option `playback.manageAudioSessionType`, enabled by default
+  - ensures the underlying `AudioSession.type` is set to either `playback` or `play-and-record` so audio continues when the iOS silent switch/mode is active
+
+### Improved
+
+- faster initial ABR switch-up in MoQ mode
+
 ## **[5.0.10]**
 
 ### **Release Notes**
@@ -29,9 +47,9 @@ This release also fixes an issue with incorrect `group.startQuality` selection w
 
 ### **Fixed**
 
-- issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
+- fixed an issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
 - ensured HLS playback in iOS WebViews as fallback when MSE/MOQ playback is not possible
-- incorrect `group.startQuality` matching when the configured quality was not included in the available group renditions
+- fixed incorrect `group.startquality` matching when the configured quality was not included in the available group renditions
 
 ## **[5.0.8]**
 
@@ -196,44 +214,6 @@ Finally, we have cleaned up outdated and rarely used features. Flash player and 
 - deprecated single source configuration via `config.source.h5live` object
   - remaining valid source configurations are `config.source.group` and `config.source.entries`
 - scaling modes `"resize"` and `"original"`
-
-## **[4.31.2]**
-
-### **Release Notes**
-
-This release focuses on stability improvements and fixes for iOS playback behavior and stream quality handling. The playback resume behavior after background suspension has been improved for MSE playback, fixing an issue where playback could get stuck when resuming in muted mode if the session was never unmuted, particularly on iOS 26.4. This release also fixes an issue with incorrect `group.startQuality` selection when the configured quality was not available in the active rendition set.
-
-### **Changelog**
-
-### Fixed
-
-- issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
-- incorrect `group.startQuality` matching when the configured quality was not included in the available group renditions
-
-## **[4.31.1]**
-
-### **Release Notes**
-
-This release includes fixes for fast-start buffer management and hls playback error recovery. Fast-start buffer requests are now prevented during playback to avoid unnecessary buffering. Furthermore, it resolves an issue that caused a black screen during error recovery in HLS playback mode.
-
-### **Changelog**
-
-### Fixed
-
-- prevent fast-start buffer from being requested by updateSource while in the playing state
-- an issue causing a black screen during error recovery in HLS playback mode
-
-## **[4.31.0]**
-
-### **Release Notes**  
-
-In this release, we introduce the new config option `metrics.serverDomain`, which allows you to configure a custom white-label domain for nanoStream Cloud metrics and telemetry endpoints.
-
-### **Changelog**
-
-### Added
-
-- option `metrics.serverDomain` enabling to configure a custom white-label domain name for nanoStream Cloud metrics/telemetry endpoints
 
 ## **[4.30.1]**
 
