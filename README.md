@@ -1,8 +1,24 @@
-﻿# **NanoPlayer - Release History**
+# **NanoPlayer - Release History**
 
 ## Please find more about the **MOQ playback mode** feature in our [documentation](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_feature_moq/)
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
+
+## **[5.0.12]**
+
+### **Release Notes**
+
+In this release, we have improved MOQ playback by enhancing iOS audio interruption handling and resolving a Firefox on Windows playback issue for H.264 Baseline streams with missing `constraint_set` flags, further improving playback reliability across supported environments.
+
+### **Changelog**
+
+### Improved
+
+- handling of iOS AudioSession interruptions caused by system or app audio during MOQ playback
+
+### Fixed
+
+- issue affecting MOQ playback in Firefox on Windows for H.264 Baseline streams with missing `constraint_set` flags
 
 ## **[5.0.11]**
 
@@ -22,7 +38,7 @@ This release focuses on improvements for MoQ playback mode, enabling unmuted aud
 
 - faster initial ABR switch-up in MoQ mode
 
-## **[5.0.10]**
+## **[5.0.11]**
 
 ### **Release Notes**
 
@@ -47,9 +63,9 @@ This release also fixes an issue with incorrect `group.startQuality` selection w
 
 ### **Fixed**
 
-- issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
+- fixed an issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
 - ensured HLS playback in iOS WebViews as fallback when MSE/MOQ playback is not possible
-- incorrect `group.startQuality` matching when the configured quality was not included in the available group renditions
+- fixed incorrect `group.startquality` matching when the configured quality was not included in the available group renditions
 
 ## **[5.0.8]**
 
@@ -214,44 +230,6 @@ Finally, we have cleaned up outdated and rarely used features. Flash player and 
 - deprecated single source configuration via `config.source.h5live` object
   - remaining valid source configurations are `config.source.group` and `config.source.entries`
 - scaling modes `"resize"` and `"original"`
-
-## **[4.31.2]**
-
-### **Release Notes**
-
-This release focuses on stability improvements and fixes for iOS playback behavior and stream quality handling. The playback resume behavior after background suspension has been improved for MSE playback, fixing an issue where playback could get stuck when resuming in muted mode if the session was never unmuted, particularly on iOS 26.4. This release also fixes an issue with incorrect `group.startQuality` selection when the configured quality was not available in the active rendition set.
-
-### **Changelog**
-
-### Fixed
-
-- issue in MSE playback where playback could get stuck when resuming in muted mode if the session was never unmuted, after being suspended in background state, particularly on iOS 26.4
-- incorrect `group.startQuality` matching when the configured quality was not included in the available group renditions
-
-## **[4.31.1]**
-
-### **Release Notes**
-
-This release includes fixes for fast-start buffer management and hls playback error recovery. Fast-start buffer requests are now prevented during playback to avoid unnecessary buffering. Furthermore, it resolves an issue that caused a black screen during error recovery in HLS playback mode.
-
-### **Changelog**
-
-### Fixed
-
-- prevent fast-start buffer from being requested by updateSource while in the playing state
-- an issue causing a black screen during error recovery in HLS playback mode
-
-## **[4.31.0]**
-
-### **Release Notes**  
-
-In this release, we introduce the new config option `metrics.serverDomain`, which allows you to configure a custom white-label domain for nanoStream Cloud metrics and telemetry endpoints.
-
-### **Changelog**
-
-### Added
-
-- option `metrics.serverDomain` enabling to configure a custom white-label domain name for nanoStream Cloud metrics/telemetry endpoints
 
 ## **[4.30.1]**
 
@@ -1891,7 +1869,7 @@ This release patches an issue with bintu sources. Now after a successful bintu c
 ### **Release Notes**
 
 With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<sales@nanocosmos.de>) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
 ### **Changelog**
@@ -1928,7 +1906,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
   - enables event logging and data aggregation
   - configurable via the new 'config.metrics' object, see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor>
   - disabled by default
-  - for more information contact our sales team: mailto:sales@nanocosmos.de
+  - for more information contact our sales team: mailto:<sales@nanocosmos.de>
   - NOTE: don't set if you have no account!
   - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
 
