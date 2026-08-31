@@ -292,14 +292,14 @@ let config = {
         'displayMutedAutoplay' : false
     },
     'metrics': {
-        'accountId'     : 'nanocosmos3',
-        'accountKey'    : 'nc3tb9eq0bnjburu',
-        'userId'        : 'demo1',
-        'eventId'       : 'release',
+        'accountId'     : 'nanocosmos1',
+        'accountKey'    : 'nc1wj472649fkjah',
+        'userId'        : 'nanoplayer-demo',
+        'eventId'       : 'nanocosmos-demo',
         'statsInterval' : 10,
-        'customField1'  : 'release test',
-        'customField2'  : 'stage',
-        'customField3'  : 'internal'
+        'customField1'  : 'demo',
+        'customField2'  : 'public',
+        'customField3'  : 'online resource'
     },
     'events': {
         'onReady': function (e) {

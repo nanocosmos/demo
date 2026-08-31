@@ -4,6 +4,22 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.12]**
+
+### **Release Notes**
+
+In this release, we have improved MOQ playback by enhancing iOS audio interruption handling and resolving a Firefox on Windows playback issue for H.264 Baseline streams with missing `constraint_set` flags, further improving playback reliability across supported environments.
+
+### **Changelog**
+
+### Improved
+
+- handling of iOS AudioSession interruptions caused by system or app audio during MOQ playback
+
+### Fixed
+
+- issue affecting MOQ playback in Firefox on Windows for H.264 Baseline streams with missing `constraint_set` flags
+
 ## **[5.0.11]**
 
 ### **Release Notes**
@@ -22,7 +38,7 @@ This release focuses on improvements for MoQ playback mode, enabling unmuted aud
 
 - faster initial ABR switch-up in MoQ mode
 
-## **[5.0.10]**
+## **[5.0.11]**
 
 ### **Release Notes**
 
@@ -1853,7 +1869,7 @@ This release patches an issue with bintu sources. Now after a successful bintu c
 ### **Release Notes**
 
 With this release come new features and some patches. One feature is about firing 'onError' with new error codes in case of a setup error. See the docs for more information (<https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc21__anchor>). Also a warnings will be fired if config properties are not valid or from wrong type.
-The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:sales@nanocosmos.de) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
+The other introduces a new metrics api which enables internal event logging and data aggregation with a nanocosmos backend. Please contact our sales team (mailto:<sales@nanocosmos.de>) for more information and see './js/nanoplayer-metrics-config.js' in the 'Demo Package'. This release also includes patches for IE/Edge regarding play stats and stable playback after viewport lost.
 Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be fired only if playing.
 
 ### **Changelog**
@@ -1890,7 +1906,7 @@ Now also 'Windows 10' will be detected correctly and on 'Destroy' pause will be 
   - enables event logging and data aggregation
   - configurable via the new 'config.metrics' object, see <https://demo.nanocosmos.de/nanoplayer/docs/nanoplayer/NanoPlayer.html#toc20__anchor>
   - disabled by default
-  - for more information contact our sales team: mailto:sales@nanocosmos.de
+  - for more information contact our sales team: mailto:<sales@nanocosmos.de>
   - NOTE: don't set if you have no account!
   - NOTE: if 'Demo Package' is used see './js/nanoplayer-metrics-config.js'!
 
