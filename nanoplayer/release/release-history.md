@@ -4,6 +4,18 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
+## **[5.0.13]**
+
+### **Release Notes**
+
+This release fixes an issue in MSE playback where specific SourceBuffer error conditions could cause playback to stall. These conditions are now handled to prevent playback from staying stalled.
+
+### **Changelog**
+
+### Fixed
+
+- detection and recovery from specific SourceBuffer error conditions during MSE playback that could lead to stalled playback
+
 ## **[5.0.12]**
 
 ### **Release Notes**
