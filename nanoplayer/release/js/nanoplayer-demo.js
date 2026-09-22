@@ -291,17 +291,8 @@ let config = {
         'scaling'              : 'letterbox',
         'displayMutedAutoplay' : false
     },
-    'metrics': {
-        'accountId'     : 'nanocosmos1',
-        'accountKey'    : 'nc1wj472649fkjah',
-        'userId'        : 'nanoplayer-demo',
-        'eventId'       : 'nanocosmos-demo',
-        'statsInterval' : 10,
-        'customField1'  : 'demo',
-        'customField2'  : 'public',
-        'customField3'  : 'online resource'
-    },
-    'events': {
+    'metrics' : window.nanoPlayerMetricsConfig || {},
+    'events'  : {
         'onReady': function (e) {
             logEvent(e.name, e.data);
             updateStatus('Player ready');
