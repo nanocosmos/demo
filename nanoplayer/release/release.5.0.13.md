@@ -4,25 +4,21 @@
 
 ## For easy-to-use migration follow our [guide](https://docs.nanocosmos.net/docs/nanoplayer/nanoplayer_v5_migration_guide)
 
-## **[5.0.12]**
+## **[5.0.13]**
 
 ### **Release Notes**
 
-In this release, we have improved MOQ playback by enhancing iOS audio interruption handling and resolving a Firefox on Windows playback issue for H.264 Baseline streams with missing `constraint_set` flags, further improving playback reliability across supported environments.
+This release fixes an issue in MSE playback where specific `SourceBuffer` error conditions could cause playback to stall. Media error recovery will restore playback automatically.
 
 ### **Changelog**
 
-### Improved
-
-- handling of iOS AudioSession interruptions caused by system or app audio during MOQ playback
-
 ### Fixed
 
-- issue affecting MOQ playback in Firefox on Windows for H.264 Baseline streams with missing `constraint_set` flags
+- detection and recovery from specific `SourceBuffer` error conditions during MSE playback that could lead to stalled playback
 
-### **Release Package 5.0.12**
+### **Release Package 5.0.13**
 
-- [5.0.12](https://files.nanocosmos.de/index.php/s/STjp4kMK3DyEctf)
+- [5.0.13](https://files.nanocosmos.de/index.php/s/Ma2m95jAj7rZnb5)
 - [latest 5.x](https://files.nanocosmos.de/index.php/s/y4e2axW7s8qEtJb)
 - [latest](https://files.nanocosmos.de/index.php/s/2tpCzgRjNEZDzeP)
 

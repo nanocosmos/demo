@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer v5
 
 ## NanoPlayer {#NanoPlayer}
 
-NanoPlayer (H5Live) Public API Class 5.0.12
+NanoPlayer (H5Live) Public API Class 5.0.13
 
 **Kind**: global class
-**Version**: 5.0.12
+**Version**: 5.0.13
 
 ### new NanoPlayer(playerDivId) {#new_NanoPlayer_new}
 
@@ -761,6 +761,8 @@ The stats event to pass in the 'config.events' object at the setup call. Fires i
     <td>data.stats.quality.droppedVideoFrames</td><td><code>number</code></td><td><p>The total number of dropped video frames.</p> </td>
     </tr><tr>
     <td>data.stats.quality.droppedVideoFramesCurrent</td><td><code>number</code></td><td><p>The number of dropped video frames within the last second.</p> </td>
+    </tr><tr>
+    <td>data.stats.quality.sourceBufferDetached</td><td><code>number</code></td><td><p>Whether the underlying media source buffer was detached and recovered since the last quality tick (0 or 1).</p> </td>
     </tr><tr>
     <td>data.stats.quality.totalVideoFrames</td><td><code>number</code></td><td><p>The total number of created and dropped video frames since creation of the video element.</p> </td>
     </tr>  </tbody>
