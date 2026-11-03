@@ -363,7 +363,8 @@ function getNanoPlayerParameters () {
         }
         else {
             bintuQ = {};
-            bintuQ.apiurl = getHTTPParam('bintu.apiurl') || 'https://bintu.nanocosmos.de';
+            // no default here: an explicit apiurl would take precedence over general.baseDomain
+            bintuQ.apiurl = getHTTPParam('bintu.apiurl');
             bintuQ.streamid = getHTTPParam('bintu.streamid');
             bintuQ.streamname = getHTTPParam('bintu.streamname');
             bintuQ.group = getHTTPParam('bintu.group');
@@ -396,7 +397,7 @@ function getNanoPlayerParameters () {
             doStartPlayer = true;
         }
         else if (bintuQ.group && bintuQ.apikey) {
-            bintu = new Bintu(bintuQ.apiurl, bintuQ.apikey);
+            bintu = new Bintu(bintuQ.apiurl || 'https://bintu.nanocosmos.de', bintuQ.apikey);
             searchStreams();
             searchRefreshInterval = setInterval(searchStreams, 8000);
 
@@ -733,10 +734,16 @@ function checkDefaults () {
 }
 function checkGeneral () {
     config.source = config.source || {};
-    var generalServerDomain = getHTTPParam('general.serverDomain') || getHTTPParam('general.serverDomain');
-    if (generalServerDomain) {
+    var generalServerDomain = getHTTPParam('general.serverDomain');
+    var generalBaseDomain = getHTTPParam('general.baseDomain');
+    if (generalServerDomain || generalBaseDomain) {
         config.source.general = config.source.general || {};
-        config.source.general.serverDomain = generalServerDomain;
+        if (generalServerDomain) {
+            config.source.general.serverDomain = generalServerDomain;
+        }
+        if (generalBaseDomain) {
+            config.source.general.baseDomain = generalBaseDomain;
+        }
     }
 }
 function checkOptions () {
