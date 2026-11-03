@@ -6,10 +6,10 @@ sidebar_label: NanoPlayer v5
 
 ## NanoPlayer {#NanoPlayer}
 
-NanoPlayer (H5Live) Public API Class 5.0.13
+NanoPlayer (H5Live) Public API Class 5.1.0
 
 **Kind**: global class
-**Version**: 5.0.13
+**Version**: 5.1.0
 
 ### new NanoPlayer(playerDivId) {#new_NanoPlayer_new}
 
@@ -1689,6 +1689,8 @@ The config object to pass as param for the 'setup' call.
     <td>[source.general]</td><td><code>object</code></td><td></td><td><p>The object to configure general values.</p> </td>
     </tr><tr>
     <td>[source.general.serverDomain]</td><td><code>string</code></td><td></td><td><p>The general server domain. It has highest prio and will override/modify all h5live server domains. Possible values are e.g. <code>bintu-play-eu.nanocosmos.de</code> or <code>bintu-play-ass.nanocosmos.de</code>.</p> </td>
+    </tr><tr>
+    <td>[source.general.baseDomain]</td><td><code>string</code></td><td></td><td><p>The base domain of all player services, e.g. <code>example.com</code>: the h5live servers use <code>play.example.com</code>, the bintu api <code>api.example.com</code> and the metrics <code>telemetry.example.com</code>. Like <code>source.general.serverDomain</code> it replaces the host of all h5live server urls, also of urls set in an entry. Explicit <code>source.general.serverDomain</code>, <code>source.group.apiurl</code>, <code>bintu.apiurl</code> and <code>metrics.serverDomain</code> values take precedence over it. <code>nanocosmos.de</code> uses <code>bintu-play.nanocosmos.de</code> and keeps the default api and metrics hosts. An invalid value is ignored with a configuration warning and the defaults are used.</p> </td>
     </tr><tr>
     <td>[source.options]</td><td><code>object</code></td><td></td><td><p>The object to configure the source entries options.</p> </td>
     </tr><tr>
